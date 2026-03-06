@@ -87,6 +87,23 @@ Data-driven, intelligent, operational control, high-tech, enterprise-ready.`;
           </motion.div>
         </div>
 
+
+
+        <div className="grid md:grid-cols-3 gap-4 mb-12">
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">What this page shows</p>
+            <p className="text-sm font-semibold text-slate-800">Core logistics gaps that hurt delivery speed and customer experience.</p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Operational blind spots</p>
+            <p className="text-sm font-semibold text-slate-800">Inventory, warehouse performance, shipping cost, and profitability visibility issues.</p>
+          </div>
+          <div className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+            <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Why Sendit exists</p>
+            <p className="text-sm font-semibold text-slate-800">How a unified lifecycle platform solves the disconnect between tools.</p>
+          </div>
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">

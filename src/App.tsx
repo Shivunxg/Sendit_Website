@@ -14,13 +14,15 @@ import Pricing from './pages/Pricing';
 import Products from './pages/Products';
 import Solutions from './pages/Solutions';
 import WhySendit from './pages/WhySendit';
-import Problem from './pages/Problem';
 import WareSync from './pages/WareSync';
 import SwiftShip from './pages/SwiftShip';
 import ShippingCalculator from './pages/ShippingCalculator';
 import VolumetricCalculator from './pages/VolumetricCalculator';
 import ShipmentTracking from './pages/ShipmentTracking';
 import Careers from './pages/Careers';
+import Contact from './pages/Contact';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import NotFound from './pages/NotFound';
 import ContactModal from './components/ContactModal';
 import Logo from './components/Logo';
 
@@ -277,7 +279,6 @@ const Footer = () => {
             <ul className="space-y-4 text-sm text-slate-600">
               <li><Link to="/products/waresync" className="hover:text-black">WareSync (WMS)</Link></li>
               <li><Link to="/products/swiftship" className="hover:text-black">SwiftShip (Shipping)</Link></li>
-              <li><Link to="/problem" className="hover:text-black">The Problem</Link></li>
             </ul>
           </div>
 
@@ -313,8 +314,8 @@ const Footer = () => {
         <div className="pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-xs text-slate-400">© 2026 Sendit Logistics Technologies Pvt Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <span className="text-xs text-slate-400">Terms of Service</span>
-            <span className="text-xs text-slate-400">Privacy Policy</span>
+            <Link to="/privacy-policy" className="text-xs text-slate-400 hover:text-slate-700">Terms of Service</Link>
+            <Link to="/privacy-policy" className="text-xs text-slate-400 hover:text-slate-700">Privacy Policy</Link>
           </div>
         </div>
       </div>
@@ -336,7 +337,6 @@ function AppContent() {
         <Routes>
           <Route path="/" element={<Home onContactClick={() => setIsContactOpen(true)} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/problem" element={<Problem />} />
           <Route path="/products" element={<Products onContactClick={() => setIsContactOpen(true)} />} />
           <Route path="/products/waresync" element={<WareSync onContactClick={() => setIsContactOpen(true)} />} />
           <Route path="/products/swiftship" element={<SwiftShip onContactClick={() => setIsContactOpen(true)} />} />
@@ -347,6 +347,9 @@ function AppContent() {
           <Route path="/tools/volumetric-calculator" element={<VolumetricCalculator />} />
           <Route path="/track-order" element={<ShipmentTracking />} />
           <Route path="/careers" element={<Careers />} />
+          <Route path="/contact" element={<Contact onContactClick={() => setIsContactOpen(true)} />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
       {!isLoginPage && <Footer />}
