@@ -1,109 +1,23 @@
-import { Warehouse, Truck, CheckCircle2, ArrowRight, ExternalLink, Loader2 } from 'lucide-react';
+import { Warehouse, Truck, CheckCircle2, ArrowRight, ExternalLink, Loader2, Boxes, PackageCheck } from 'lucide-react';
 import { motion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import { Helmet } from 'react-helmet-async';
 
 const Products = ({ onContactClick }: { onContactClick: () => void }) => {
-  const [waresyncImage, setWaresyncImage] = useState<string>("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200");
-  const [swiftshipImage, setSwiftshipImage] = useState<string>("https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&fit=crop&q=80&w=1200");
-  const [isWaresyncGenerating, setIsWaresyncGenerating] = useState(false);
-  const [isSwiftshipGenerating, setIsSwiftshipGenerating] = useState(false);
+  const [waresyncImage] = useState<string>("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200");
+  const [swiftshipImage] = useState<string>("https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&fit=crop&q=80&w=1200");
 
   useEffect(() => {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-    const generateWaresyncImage = async () => {
-      setIsWaresyncGenerating(true);
-      try {
-        const prompt = `A modern, high-tech warehouse management system (WMS) interface. A worker in a clean, organized warehouse is using a tablet that shows a sophisticated inventory dashboard with real-time stock levels, bin locations, and fulfillment metrics. The warehouse has neatly arranged racks and automated systems.
-
-Style:
-Professional photography
-Clean UI design
-Natural lighting
-High resolution
-No readable text
-No logos
-
-Mood:
-Efficient
-Organized
-Technologically advanced`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "16:9",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setWaresyncImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating WareSync image:", error);
-      } finally {
-        setIsWaresyncGenerating(false);
-      }
-    };
-
-    const generateSwiftshipImage = async () => {
-      setIsSwiftshipGenerating(true);
-      try {
-        const prompt = `A modern e-commerce shipping orchestration dashboard. The screen shows a map of India with multiple delivery routes, courier partner performance charts, and real-time shipment status updates. The background is a blurred view of a busy shipping hub.
-
-Style:
-Clean SaaS UI
-Professional environment
-Soft lighting
-High resolution
-No readable text
-No logos
-
-Mood:
-Connected
-Reliable
-Fast`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "16:9",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setSwiftshipImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating SwiftShip image:", error);
-      } finally {
-        setIsSwiftshipGenerating(false);
-      }
-    };
-
-    generateWaresyncImage();
-    generateSwiftshipImage();
+    // Static images are now used, no AI generation needed.
   }, []);
   return (
-    <div className="pt-32 pb-24 bg-white">
+    <div className="pt-32 pb-24 premium-hero">
+      <Helmet>
+        <title>Products | Unified Logistics Operating System | Sendit</title>
+        <meta name="description" content="Explore Sendit's suite of logistics products: WareSync for warehouse management and SwiftShip for intelligent courier aggregation." />
+        <link rel="canonical" href="https://sendit.in/products" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div
@@ -124,28 +38,28 @@ Fast`;
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-200 flex flex-col"
+            className="standard-card p-8 md:p-12 flex flex-col"
           >
             <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mb-8">
               <Warehouse className="text-emerald-600 w-8 h-8" />
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-slate-200 border border-slate-200 shadow-inner">
-              <motion.img 
-                key={waresyncImage}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 1 }}
-                src={waresyncImage} 
-                alt="WareSync Operations" 
-                className="w-full h-full object-cover"
-                referrerPolicy="no-referrer"
-              />
-              {isWaresyncGenerating && (
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-3 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold border border-white/10">
-                  <Loader2 className="w-2.5 h-2.5 animate-spin" />
-                  AI Refining...
-                </div>
-              )}
+            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-white border border-slate-200 shadow-inner p-6 flex items-center justify-center">
+              <div className="grid grid-cols-3 gap-4 w-full">
+                {[
+                  { icon: <Warehouse className="w-6 h-6" />, label: "Inbound" },
+                  { icon: <Boxes className="w-6 h-6" />, label: "Inventory" },
+                  { icon: <PackageCheck className="w-6 h-6" />, label: "Outbound" }
+                ].map((step, i) => (
+                  <div key={i} className="flex flex-col items-center gap-2">
+                    <div className="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-xl flex items-center justify-center border border-emerald-100">
+                      {step.icon}
+                    </div>
+                    <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500">{step.label}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 to-transparent pointer-events-none" />
             </div>
 
             <h3 className="text-4xl font-display font-bold mb-2">WareSync</h3>
@@ -191,7 +105,7 @@ Fast`;
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="bg-slate-50 p-8 md:p-12 rounded-3xl border border-slate-200 flex flex-col"
+            className="standard-card p-8 md:p-12 flex flex-col"
           >
             <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mb-8">
               <Truck className="text-blue-600 w-8 h-8" />
@@ -207,12 +121,6 @@ Fast`;
                 className="w-full h-full object-cover"
                 referrerPolicy="no-referrer"
               />
-              {isSwiftshipGenerating && (
-                <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-3 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold border border-white/10">
-                  <Loader2 className="w-2.5 h-2.5 animate-spin" />
-                  AI Refining...
-                </div>
-              )}
             </div>
 
             <h3 className="text-4xl font-display font-bold mb-2">SwiftShip</h3>

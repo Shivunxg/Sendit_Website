@@ -23,12 +23,12 @@ const Logo = ({ className = "h-10" }: { className?: string }) => {
         </text>
         
         {/* Blue Circle - Positioned after "Send" */}
-        <circle cx="225" cy="50" r="42" fill="#1E56A0" />
+        <circle cx="225" cy="52" r="42" fill="#1E56A0" />
         
         {/* "it" Text - White, inside circle */}
         <text 
           x="192" 
-          y="70" 
+          y="72" 
           fontFamily="Inter, system-ui, sans-serif" 
           fontWeight="800" 
           fontSize="48" 
@@ -40,10 +40,10 @@ const Logo = ({ className = "h-10" }: { className?: string }) => {
 
         {/* Arrow - White, pointing right, inside circle */}
         <path 
-          d="M258 50L242 40V60L258 50Z" 
+          d="M258 52L242 42V62L258 52Z" 
           fill="white" 
         />
-        <rect x="230" y="47" width="18" height="6" fill="white" />
+        <rect x="230" y="49" width="18" height="6" fill="white" />
       </svg>
     </div>
   );

@@ -1,77 +1,20 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { ArrowRight, Loader2, X, CheckCircle2, Globe, Zap, ShieldCheck, BarChart3, Boxes } from 'lucide-react';
 import { useState, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import { Helmet } from 'react-helmet-async';
 
 const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
-  const [sectorImages, setSectorImages] = useState<string[]>([
+  const [sectorImages] = useState<string[]>([
     "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=800",
     "https://images.unsplash.com/photo-1556740738-b6a63e27c4df?auto=format&fit=crop&q=80&w=800",
     "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800",
     "https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&fit=crop&q=80&w=800",
     "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=800"
   ]);
-  const [generatingIndices, setGeneratingIndices] = useState<number[]>([]);
   const [selectedSector, setSelectedSector] = useState<number | null>(null);
 
   useEffect(() => {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-    const generateSectorImage = async (index: number, sectorTitle: string) => {
-      setGeneratingIndices(prev => [...prev, index]);
-      try {
-        const prompt = `A professional, high-quality image representing ${sectorTitle} logistics and fulfillment. 
-        ${sectorTitle === "D2C Brands" ? "A modern lifestyle shot of a premium D2C package being prepared for shipping with a clean, branded aesthetic." : ""}
-        ${sectorTitle === "Marketplace Sellers" ? "A busy but organized workspace showing multiple marketplace orders (Amazon, Flipkart) being processed simultaneously." : ""}
-        ${sectorTitle === "3PL Providers" ? "A large-scale, professional warehouse environment with multiple client inventory sections and advanced logistics equipment." : ""}
-        ${sectorTitle === "Quick Commerce" ? "A high-velocity dark store or hyperlocal fulfillment center with workers quickly picking and packing orders for immediate delivery." : ""}
-        ${sectorTitle === "B2B Distribution" ? "A professional B2B distribution hub showing bulk inventory, pallets, and large-scale shipping operations." : ""}
-
-Style:
-Professional photography
-Clean environment
-Natural lighting
-High resolution
-No readable text
-No logos
-
-Mood:
-Efficient
-Reliable
-Scalable`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "16:9",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setSectorImages(prev => {
-              const newImages = [...prev];
-              newImages[index] = `data:image/png;base64,${part.inlineData.data}`;
-              return newImages;
-            });
-            break;
-          }
-        }
-      } catch (error) {
-        console.error(`Error generating image for ${sectorTitle}:`, error);
-      } finally {
-        setGeneratingIndices(prev => prev.filter(i => i !== index));
-      }
-    };
-
-    sectors.forEach((sector, index) => {
-      generateSectorImage(index, sector.title);
-    });
+    // Static images are now used, no AI generation needed.
   }, []);
 
   const sectors = [
@@ -103,7 +46,12 @@ Scalable`;
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-white">
+    <div className="pt-32 pb-24 premium-hero">
+      <Helmet>
+        <title>Logistics Solutions | Tailored Systems for D2C, Marketplaces & 3PL</title>
+        <meta name="description" content="Explore tailored logistics solutions for D2C brands, marketplace sellers, 3PL providers, and quick commerce. Scale your operations with Sendit." />
+        <link rel="canonical" href="https://sendit.in/solutions" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div
@@ -125,7 +73,7 @@ Scalable`;
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="p-10 bg-slate-50 rounded-3xl border border-slate-200 hover:border-emerald-500 transition-all group overflow-hidden cursor-pointer"
+              className="p-10 standard-card hover:border-emerald-500 transition-all group overflow-hidden cursor-pointer"
               onClick={() => setSelectedSector(i)}
             >
               <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-slate-200 border border-slate-200 shadow-inner">
@@ -138,12 +86,6 @@ Scalable`;
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   referrerPolicy="no-referrer"
                 />
-                {generatingIndices.includes(i) && (
-                  <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-md text-white px-3 py-1.5 rounded-full flex items-center gap-2 text-[10px] font-bold border border-white/10">
-                    <Loader2 className="w-2.5 h-2.5 animate-spin" />
-                    AI Refining...
-                  </div>
-                )}
               </div>
               <h3 className="text-3xl font-display font-bold mb-4 group-hover:text-emerald-600 transition-colors">{sector.title}</h3>
               <p className="text-lg text-slate-600 mb-8 leading-relaxed">{sector.desc}</p>

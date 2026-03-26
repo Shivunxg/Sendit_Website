@@ -112,7 +112,7 @@ const Careers = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
+    <div className="pt-32 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div
@@ -137,7 +137,7 @@ const Careers = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.1 }}
-                className="bg-slate-50 rounded-3xl border border-slate-200 p-8 flex flex-col justify-between"
+                className="standard-card p-8 flex flex-col justify-between"
               >
                 <div>
                   <h3 className="text-2xl font-bold mb-3">{job.title}</h3>
@@ -165,7 +165,7 @@ const Careers = () => {
         </div>
 
         {/* Resume Submission Form */}
-        <div className="max-w-3xl mx-auto bg-slate-50 rounded-[2.5rem] border border-slate-200 p-8 md:p-12">
+        <div className="max-w-3xl mx-auto standard-card p-8 md:p-12">
           <h2 className="text-4xl font-display font-bold text-center mb-12">Submit Your Resume</h2>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>

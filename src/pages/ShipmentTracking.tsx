@@ -70,7 +70,7 @@ const ShipmentTracking = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
+    <div className="pt-32 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.div
@@ -84,7 +84,7 @@ const ShipmentTracking = () => {
           </motion.div>
         </div>
 
-        <div className="bg-slate-50 rounded-[2.5rem] border border-slate-200 p-8 md:p-12 mb-16">
+        <div className="standard-card p-8 md:p-12 mb-16">
           <form onSubmit={handleTrack} className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <div className="relative w-full sm:w-2/3 max-w-xl">
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
@@ -134,7 +134,7 @@ const ShipmentTracking = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="bg-white rounded-[2.5rem] border border-slate-200 p-8 md:p-12 shadow-lg"
+              className="standard-card p-8 md:p-12 shadow-lg"
             >
               <div className="grid md:grid-cols-2 gap-8 mb-10">
                 <div>
@@ -169,27 +169,58 @@ const ShipmentTracking = () => {
                 )}
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-6">Tracking History</h3>
-              <div className="space-y-6">
-                {trackingResult.events.map((event, i) => (
-                  <div key={i} className="flex items-start gap-4">
-                    <div className="flex flex-col items-center">
-                      <div className={`w-4 h-4 rounded-full ${i === 0 ? 'bg-blue-500' : 'bg-slate-300'} shrink-0`} />
-                      {i < trackingResult.events.length - 1 && (
-                        <div className="w-0.5 h-10 bg-slate-200" />
-                      )}
-                    </div>
-                    <div>
-                      <p className="font-bold text-slate-900">{event.status}</p>
-                      <p className="text-slate-600 text-sm flex items-center gap-2 mt-1">
-                        <MapPin className="w-4 h-4 text-slate-400" /> {event.location}
-                      </p>
-                      <p className="text-slate-500 text-xs flex items-center gap-2 mt-1">
-                        <Clock className="w-3 h-3 text-slate-400" /> {event.timestamp}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+              <h3 className="text-xl font-bold text-slate-900 mb-8">Tracking History</h3>
+              <div className="relative">
+                {/* Vertical Line */}
+                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200" />
+
+                <div className="space-y-8">
+                  {trackingResult.events.map((event, i) => (
+                    <motion.div 
+                      key={i} 
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: i * 0.1 }}
+                      className={`relative flex items-start gap-6 pl-10 ${i === 0 ? 'group' : ''}`}
+                    >
+                      {/* Event Indicator */}
+                      <div className="absolute left-0 top-1.5 flex items-center justify-center">
+                        {i === 0 ? (
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-25" />
+                            <div className="relative w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                              <div className="w-2 h-2 bg-white rounded-full" />
+                            </div>
+                          </div>
+                        ) : (
+                          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border-2 border-slate-200">
+                            <div className="w-2 h-2 bg-slate-300 rounded-full" />
+                          </div>
+                        )}
+                      </div>
+
+                      {/* Event Content */}
+                      <div className={`flex-grow p-5 rounded-2xl transition-all ${
+                        i === 0 
+                          ? 'bg-blue-50 border border-blue-100 shadow-sm' 
+                          : 'hover:bg-slate-50 border border-transparent'
+                      }`}>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                          <p className={`font-bold text-lg ${i === 0 ? 'text-blue-900' : 'text-slate-900'}`}>
+                            {event.status}
+                          </p>
+                          <p className="text-slate-500 text-xs font-medium flex items-center gap-1.5">
+                            <Clock className="w-3.5 h-3.5" /> {event.timestamp}
+                          </p>
+                        </div>
+                        <p className={`text-sm flex items-center gap-2 ${i === 0 ? 'text-blue-700' : 'text-slate-600'}`}>
+                          <MapPin className={`w-4 h-4 ${i === 0 ? 'text-blue-500' : 'text-slate-400'}`} /> 
+                          {event.location}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
               </div>
             </motion.div>
           )}

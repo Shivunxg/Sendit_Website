@@ -1,6 +1,7 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { CheckCircle2, Warehouse, Truck, BarChart3, ShieldCheck, Zap, Globe, Cpu, HelpCircle } from 'lucide-react';
 import React, { useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 
 const Tooltip = ({ text, children }: { text: string, children: React.ReactNode }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -116,7 +117,12 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-slate-50 selection:bg-emerald-100 selection:text-emerald-900 min-h-screen">
+    <div className="pt-32 pb-24 premium-hero selection:bg-emerald-100 selection:text-emerald-900 min-h-screen">
+      <Helmet>
+        <title>Pricing Plans | Transparent Logistics Infrastructure Costs | Sendit</title>
+        <meta name="description" content="Choose the right plan for your business. From early-stage D2C brands to enterprise-scale logistics, Sendit offers transparent and scalable pricing." />
+        <link rel="canonical" href="https://sendit.in/pricing" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div
@@ -140,10 +146,10 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className={`relative flex flex-col p-8 rounded-[2.5rem] transition-all duration-300 ${
+              className={`relative flex flex-col p-8 transition-all duration-300 ${
                 plan.highlight 
-                  ? 'bg-white border-2 border-emerald-500 shadow-2xl shadow-emerald-500/10 scale-105 z-10' 
-                  : 'bg-white border border-slate-200 shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-slate-300'
+                  ? 'standard-card border-2 border-emerald-500 shadow-2xl shadow-emerald-500/10 scale-105 z-10' 
+                  : 'standard-card shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-slate-300'
               }`}
             >
               {plan.highlight && (

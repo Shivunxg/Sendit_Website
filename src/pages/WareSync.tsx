@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { GoogleGenAI } from "@google/genai";
+import { Helmet } from 'react-helmet-async';
 import { 
   Warehouse, 
   CheckCircle2, 
@@ -23,299 +23,31 @@ import {
   Smartphone,
   MessageSquare,
   Clock,
+  Truck,
   ArrowDown
 } from 'lucide-react';
 
+import WMSDashboard from '../components/WMSDashboard';
+import { WMSVisual, OMSVisual, InventoryVisual, OmnichannelVisual } from '../components/WareSyncVisuals';
+
 const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
-  const [heroImage, setHeroImage] = useState<string>("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200");
-  const [wmsImage, setWmsImage] = useState<string>("https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=1200");
-  const [omsImage, setOmsImage] = useState<string>("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200");
-  const [inventoryImage, setInventoryImage] = useState<string>("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200");
-  const [omniImage, setOmniImage] = useState<string>("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200");
-  const [unirecoImage, setUnirecoImage] = useState<string>("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200");
+  const [wmsImage] = useState<string>("https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&q=80&w=1200");
+  const [omsImage] = useState<string>("https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&q=80&w=1200");
+  const [inventoryImage] = useState<string>("https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&q=80&w=1200");
+  const [omniImage] = useState<string>("https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200");
+  const [unirecoImage] = useState<string>("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200");
   
-  const [isHeroGenerating, setIsHeroGenerating] = useState(false);
-  const [isWmsGenerating, setIsWmsGenerating] = useState(false);
-  const [isOmsGenerating, setIsOmsGenerating] = useState(false);
-  const [isInventoryGenerating, setIsInventoryGenerating] = useState(false);
-  const [isOmniGenerating, setIsOmniGenerating] = useState(false);
-  const [isUnirecoGenerating, setIsUnirecoGenerating] = useState(false);
   const [selectedModule, setSelectedModule] = useState<number | null>(null);
 
+  const scrollToCaseStudies = () => {
+    const element = document.getElementById('case-studies');
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   useEffect(() => {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-    const generateHeroImage = async () => {
-      setIsHeroGenerating(true);
-      try {
-        const prompt = `A modern, well-organized e-commerce fulfillment warehouse. Workers are scanning products and packing orders at clean workstations. Shelves are neatly arranged with labeled inventory boxes. In the foreground, a tablet or large monitor displays a clean e-commerce operations dashboard showing:
-- Order volume growth chart
-- Inventory levels
-- Warehouse performance metrics
-- Shipping status overview
-The dashboard should look realistic but not contain readable text.
-
-Style:
-Natural lighting
-Professional photography style
-Ultra high resolution
-Clean and modern environment
-Realistic proportions
-No exaggerated futuristic effects
-No text overlay
-No logos
-
-Mood:
-Efficient, organized, scalable operations
-Technology-enabled growth
-Confident and reliable`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setHeroImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating hero image:", error);
-      } finally {
-        setIsHeroGenerating(false);
-      }
-    };
-
-    const generateWmsImage = async () => {
-      setIsWmsGenerating(true);
-      try {
-        const prompt = `A clean, organized warehouse interior with clearly structured racks, bins, and barcoded inventory. Mobile handheld scanners rest on packing stations. A large wall-mounted screen shows a warehouse control dashboard with picking queues, bin locations, and performance metrics (no readable text).
-
-Style:
-Realistic photography
-Neutral color palette
-Professional lighting
-Minimal clutter
-No people
-No text overlays
-No logos
-
-Mood:
-Total warehouse control
-Operational visibility
-System-driven efficiency`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setWmsImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating WMS image:", error);
-      } finally {
-        setIsWmsGenerating(false);
-      }
-    };
-
-    const generateOmsImage = async () => {
-      setIsOmsGenerating(true);
-      try {
-        const prompt = `A professional e-commerce order management dashboard displayed on a modern computer screen. The UI shows a list of incoming orders from various marketplaces (Amazon, Flipkart, Shopify) with status tags like "Processing", "Shipped", and "Out for Delivery". There are small charts showing order distribution by channel.
-
-Style:
-Clean SaaS interface
-Professional office environment
-Soft depth of field
-Realistic lighting
-No readable text
-No logos
-
-Mood:
-Unified control
-Operational clarity
-Efficiency`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setOmsImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating OMS image:", error);
-      } finally {
-        setIsOmsGenerating(false);
-      }
-    };
-
-    const generateInventoryImage = async () => {
-      setIsInventoryGenerating(true);
-      try {
-        const prompt = `A high-tech inventory analytics dashboard showing SKU-level data, aging reports, and stock velocity heatmaps. The background is a blurred view of a modern warehouse. The dashboard looks like a premium enterprise software.
-
-Style:
-Data-rich UI
-Modern analytics aesthetic
-Blue and emerald color palette
-Professional lighting
-No readable text
-
-Mood:
-Intelligence
-Precision
-Control`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setInventoryImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating inventory image:", error);
-      } finally {
-        setIsInventoryGenerating(false);
-      }
-    };
-
-    const generateOmniImage = async () => {
-      setIsOmniGenerating(true);
-      try {
-        const prompt = `A modern retail store interior where a staff member is using a mobile tablet to fulfill an online order (Ship from Store). The store is well-lit and premium. In the background, there are customers browsing.
-
-Style:
-Lifestyle photography
-Modern retail environment
-Warm lighting
-Professional quality
-No readable text
-
-Mood:
-Connected
-Convenient
-Modern retail`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setOmniImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating omni image:", error);
-      } finally {
-        setIsOmniGenerating(false);
-      }
-    };
-
-    const generateUnirecoImage = async () => {
-      setIsUnirecoGenerating(true);
-      try {
-        const prompt = `A professional financial reconciliation dashboard for an e-commerce enterprise. The UI shows a side-by-side comparison of marketplace statements versus internal order records. There are green checkmarks indicating matched transactions, and a few red flags for discrepancies. Clean bar charts show "Recovered Amount" and "Pending Claims".
-
-Style:
-Clean, professional fintech UI
-Modern dashboard aesthetic
-Soft depth of field
-Realistic office lighting
-No readable text
-No logos
-
-Mood:
-Trustworthy
-Precise
-Automated
-Financial clarity`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setUnirecoImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating UniReco image:", error);
-      } finally {
-        setIsUnirecoGenerating(false);
-      }
-    };
-
-    generateHeroImage();
-    generateWmsImage();
-    generateOmsImage();
-    generateInventoryImage();
-    generateOmniImage();
-    generateUnirecoImage();
+    // Static images are now used, no AI generation needed.
   }, []);
 
   const coreModules = [
@@ -323,25 +55,41 @@ Financial clarity`;
       title: "Warehouse Management (WMS)",
       desc: "Enterprise-grade WMS for B2B and B2C. Optimize operations with handheld support, system-directed putaway, and 100% scan-based accuracy for GRN and picking.",
       icon: <Warehouse className="w-6 h-6" />,
-      color: "bg-emerald-50 text-emerald-600"
+      color: "bg-emerald-50 text-emerald-600",
+      stats: [
+        { label: "Accuracy", value: "99.9%" },
+        { label: "Efficiency", value: "+35%" }
+      ]
     },
     {
       title: "Order Management (OMS)",
       desc: "Centralize orders from 50+ marketplaces like Amazon, Flipkart, and Myntra. Automated order routing and real-time inventory sync to prevent overselling.",
       icon: <ShoppingCart className="w-6 h-6" />,
-      color: "bg-blue-50 text-blue-600"
+      color: "bg-blue-50 text-blue-600",
+      stats: [
+        { label: "Integrations", value: "50+" },
+        { label: "Sync Speed", value: "< 2m" }
+      ]
     },
     {
       title: "Inventory Intelligence",
       desc: "Unified view of stock across all warehouses and stores. Advanced SKU-level tracking with FEFO/FIFO logic and automated reorder triggers.",
       icon: <Database className="w-6 h-6" />,
-      color: "bg-purple-50 text-purple-600"
+      color: "bg-purple-50 text-purple-600",
+      stats: [
+        { label: "Visibility", value: "100%" },
+        { label: "Stockouts", value: "-42%" }
+      ]
     },
     {
       title: "Omnichannel Retail",
       desc: "Bridge the gap between online and offline. Enable 'Ship from Store', 'Click and Collect', and hyperlocal fulfillment to delight modern shoppers.",
       icon: <RefreshCw className="w-6 h-6" />,
-      color: "bg-orange-50 text-orange-600"
+      color: "bg-orange-50 text-orange-600",
+      stats: [
+        { label: "Fulfillment", value: "Hybrid" },
+        { label: "CSAT", value: "4.8/5" }
+      ]
     }
   ];
 
@@ -369,7 +117,12 @@ Financial clarity`;
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-white selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="pt-32 pb-24 premium-hero selection:bg-emerald-100 selection:text-emerald-900">
+      <Helmet>
+        <title>WareSync | Multi-Channel Inventory & Warehouse Management</title>
+        <meta name="description" content="Sync inventory across 50+ marketplaces and webstores. Automate order routing and optimize warehouse execution with WareSync. Built for scale." />
+        <link rel="canonical" href="https://sendit.in/waresync" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
@@ -398,7 +151,7 @@ Financial clarity`;
                 Book a Demo <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <button 
-                onClick={onContactClick}
+                onClick={scrollToCaseStudies}
                 className="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-full font-bold text-xl hover:bg-slate-50 transition-all"
               >
                 View Case Studies
@@ -411,26 +164,9 @@ Financial clarity`;
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative rounded-[2.5rem] border border-slate-200 bg-slate-50 p-4 shadow-2xl overflow-hidden aspect-square flex items-center justify-center">
-              <motion.img 
-                key={heroImage}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 1 }}
-                src={heroImage} 
-                alt="WareSync Fulfillment Operations" 
-                className="rounded-[2rem] w-full h-full object-cover shadow-inner"
-                referrerPolicy="no-referrer"
-              />
-              {isHeroGenerating && (
-                <div className="absolute top-8 right-8 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 text-xs font-bold border border-white/20">
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                  AI Refining...
-                </div>
-              )}
-              <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent pointer-events-none" />
-            </div>
+            <WMSDashboard />
             {/* Floating Badge */}
-            <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 max-w-[200px]">
+            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 max-w-[220px] z-20">
               <p className="text-3xl font-bold text-emerald-600 mb-1">99.9%</p>
               <p className="text-sm font-medium text-slate-500">Inventory Accuracy across 100+ Warehouses</p>
             </div>
@@ -446,7 +182,7 @@ Financial clarity`;
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-200 hover:border-emerald-500/50 transition-all group cursor-pointer"
+              className="p-10 standard-card hover:border-emerald-500/50 transition-all group cursor-pointer"
               onClick={() => setSelectedModule(i)}
             >
               <div className={`w-14 h-14 rounded-2xl ${module.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
@@ -454,6 +190,24 @@ Financial clarity`;
               </div>
               <h3 className="text-2xl font-display font-bold mb-4">{module.title}</h3>
               <p className="text-slate-600 text-lg leading-relaxed mb-8">{module.desc}</p>
+              
+              {/* Animated Stats Data */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {module.stats.map((stat, idx) => (
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                    <motion.p 
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (i * 0.1) + (idx * 0.1) + 0.3 }}
+                      className="text-xl font-bold text-slate-900"
+                    >
+                      {stat.value}
+                    </motion.p>
+                  </div>
+                ))}
+              </div>
+
               <button className="flex items-center gap-2 font-bold text-black hover:gap-3 transition-all">
                 Learn More <ArrowRight className="w-5 h-5" />
               </button>
@@ -525,12 +279,11 @@ Financial clarity`;
                           </ul>
                         </div>
                         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
-                          <img 
-                            src={wmsImage} 
-                            alt="WMS Operations" 
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
+                          <WMSVisual />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
+                            <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
+                            <p className="text-xl font-bold">Smart Bin Allocation</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -560,12 +313,11 @@ Financial clarity`;
                           </ul>
                         </div>
                         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
-                          <img 
-                            src={omsImage} 
-                            alt="OMS Operations" 
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
+                          <OMSVisual />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
+                            <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
+                            <p className="text-xl font-bold">50+ Marketplace Sync</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -595,12 +347,11 @@ Financial clarity`;
                           </ul>
                         </div>
                         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
-                          <img 
-                            src={inventoryImage} 
-                            alt="Inventory Intelligence" 
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
+                          <InventoryVisual />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
+                            <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
+                            <p className="text-xl font-bold">Stock Velocity Analytics</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -630,12 +381,11 @@ Financial clarity`;
                           </ul>
                         </div>
                         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
-                          <img 
-                            src={omniImage} 
-                            alt="Omnichannel Fulfillment" 
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
+                          <OmnichannelVisual />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
+                            <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
+                            <p className="text-xl font-bold">Hyperlocal Routing</p>
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -691,7 +441,7 @@ Financial clarity`;
               </div>
             </div>
             <div className="flex flex-col justify-center">
-              <div className="p-8 bg-white border border-slate-200 rounded-[2.5rem] shadow-xl shadow-slate-200/50">
+              <div className="p-8 standard-card shadow-xl shadow-slate-200/50">
                 <h3 className="text-2xl font-bold mb-6">Why Enterprises Choose Us?</h3>
                 <ul className="space-y-6">
                   {[
@@ -713,6 +463,73 @@ Financial clarity`;
                 >
                   Speak with Our Expert
                 </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Case Study Section */}
+        <div id="case-studies" className="mb-32 scroll-mt-32">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Success Stories</h2>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto">See how leading brands are transforming their warehouse operations with WareSync.</p>
+          </div>
+
+          <div className="standard-card overflow-hidden border border-slate-100 shadow-2xl">
+            <div className="grid lg:grid-cols-2">
+              <div className="relative h-[400px] lg:h-auto overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=1200" 
+                  alt="Case Study Brand" 
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-12 flex flex-col justify-end">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+                    Fashion & Apparel
+                  </div>
+                  <h3 className="text-4xl font-display font-bold text-white mb-2">Vibrant D2C</h3>
+                  <p className="text-white/80 text-lg">Scaling to 5,000+ daily orders with zero errors.</p>
+                </div>
+              </div>
+              <div className="p-10 lg:p-16 bg-white">
+                <div className="space-y-10">
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">The Challenge</h4>
+                    <p className="text-xl text-slate-700 leading-relaxed italic">
+                      "Scaling to 5,000+ daily orders across 10+ marketplaces led to massive inventory discrepancies and delayed shipments. Our warehouse was a bottleneck."
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">The Solution</h4>
+                    <p className="text-lg text-slate-600 leading-relaxed">
+                      Implemented WareSync's unified OMS and mobile-first WMS to centralize stock control and automate picking workflows.
+                    </p>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100">
+                    <div>
+                      <p className="text-3xl font-bold text-emerald-600 mb-1">99.9%</p>
+                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Accuracy</p>
+                    </div>
+                    <div>
+                      <p className="text-3xl font-bold text-blue-600 mb-1">+45%</p>
+                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Speed</p>
+                    </div>
+                    <div>
+                      <p className="text-3xl font-bold text-purple-600 mb-1">60%</p>
+                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Reduction</p>
+                    </div>
+                  </div>
+
+                  <button 
+                    onClick={onContactClick}
+                    className="inline-flex items-center gap-2 font-bold text-black hover:gap-3 transition-all border-b-2 border-black pb-1"
+                  >
+                    Read Full Story <ArrowRight className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>

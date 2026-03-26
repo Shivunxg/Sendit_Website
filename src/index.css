@@ -10,16 +10,44 @@
   --color-brand-accent: #15803D;
   --color-bg-base: #F8FAFC;
   --color-bg-alt: #F1F5F9;
+  --color-border-card: #E2E8F0;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 40s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
 }
 
 @layer base {
   body {
-    @apply font-sans text-brand-dark bg-bg-base antialiased;
+    @apply font-sans text-brand-dark antialiased min-h-screen;
+    background-color: var(--color-bg-base);
   }
   
   h1, h2, h3, h4 {
     @apply font-display tracking-tight text-brand-dark;
   }
+}
+
+.premium-hero {
+  background: 
+    radial-gradient(circle at 20% 20%, #FFFFFF 0%, transparent 40%),
+    radial-gradient(circle at 80% 0%, #F1F5F9 0%, transparent 40%),
+    var(--color-bg-base);
+}
+
+.standard-card {
+  @apply bg-white border border-border-card rounded-2xl shadow-sm;
 }
 
 .glass-card {

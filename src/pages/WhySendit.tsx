@@ -1,209 +1,329 @@
-import { motion } from 'motion/react';
-import {
-  AlertTriangle,
-  Boxes,
-  Clock3,
-  IndianRupee,
-  CheckCircle2,
-  Workflow,
-  Warehouse,
-  Truck,
-  BarChart3,
-  RefreshCcw,
+import { motion, AnimatePresence } from 'motion/react';
+import React, { useState, useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
+import { 
+  Layers, 
+  Zap, 
+  Lock, 
+  Globe, 
+  ShieldCheck, 
+  Activity, 
+  TrendingUp, 
+  ArrowRight, 
+  Eye, 
+  EyeOff, 
+  FileText, 
+  Cpu, 
+  BarChart3, 
+  Unplug, 
+  Network,
+  Maximize2,
+  Minimize2,
+  Box,
+  Plus,
+  Minus,
+  HelpCircle
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const problems = [
-  {
-    icon: Clock3,
-    title: 'Delayed Dispatch',
-    description: 'Manual handoffs between order, warehouse, and courier teams slow down daily dispatch cycles.',
-  },
-  {
-    icon: Boxes,
-    title: 'Inventory Mismatch',
-    description: 'Stock appears available online but not in warehouse, leading to cancellations and poor CX.',
-  },
-  {
-    icon: IndianRupee,
-    title: 'High Shipping Cost',
-    description: 'Without dynamic allocation, teams overpay for courier lanes and lose margin on every order.',
-  },
-  {
-    icon: AlertTriangle,
-    title: 'No Unified Visibility',
-    description: 'Data sits in silos across tools, so operations decisions are reactive instead of proactive.',
-  },
-];
+import OrderLifecycle from '../components/OrderLifecycle';
 
-const solutions = [
-  {
-    icon: Workflow,
-    title: 'Unified Workflow Engine',
-    description: 'Connect order ingestion, allocation, packaging, and dispatch in one operating layer.',
-  },
-  {
-    icon: Warehouse,
-    title: 'Smart Warehouse Allocation',
-    description: 'Auto-assign orders to the best warehouse based on stock, SLA, and delivery zone.',
-  },
-  {
-    icon: Truck,
-    title: 'Courier Intelligence',
-    description: 'Choose optimal courier per shipment using rate, performance, and RTO behavior.',
-  },
-  {
-    icon: BarChart3,
-    title: 'Real-Time Control Tower',
-    description: 'Track order health, dispatch velocity, and profitability with live analytics.',
-  },
-];
+const AdvantageCard = ({ 
+  title, 
+  them, 
+  us, 
+  iconThem: IconThem, 
+  iconUs: IconUs,
+  delay = 0 
+}: { 
+  title: string; 
+  them: string; 
+  us: string; 
+  iconThem: any; 
+  iconUs: any;
+  delay?: number;
+}) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay }}
+    className="standard-card p-8 flex flex-col h-full group hover:border-emerald-200 transition-colors"
+  >
+    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">{title}</h3>
+    
+    <div className="flex-grow space-y-8">
+      {/* Typical Aggregator */}
+      <div className="flex items-start gap-4 opacity-40 group-hover:opacity-60 transition-opacity">
+        <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
+          <IconThem className="w-5 h-5 text-slate-400" />
+        </div>
+        <div>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Typical Aggregator</p>
+          <p className="text-slate-600 font-medium">{them}</p>
+        </div>
+      </div>
 
-const flowSteps = [
-  'Order Created',
-  'Inventory Allocated',
-  'Picked & Packed',
-  'Courier Assigned',
-  'Out for Delivery',
-  'Delivered',
-];
+      {/* Divider */}
+      <div className="h-px bg-slate-100 w-full relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">VS</div>
+      </div>
 
-const dashboardImages = [
-  {
-    title: 'Warehouse Operations + Analytics Dashboard',
-    caption: 'A combined view of warehouse activity and analytics KPIs for throughput, SLA, and dispatch health.',
-    src: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1400',
-  },
-  {
-    title: 'Inventory & Fulfillment Pick-and-Pack',
-    caption: 'Pick-and-pack operations view to monitor bin picking, packing stations, and order readiness.',
-    src: 'https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1400',
-  },
-  {
-    title: 'Last-Mile Delivery Tracking',
-    caption: 'Shipment tracking view for route progress, delivery ETA, and final-mile status updates.',
-    src: 'https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1400',
-  },
-];
+      {/* Sendit */}
+      <div className="flex items-start gap-4">
+        <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100">
+          <IconUs className="w-5 h-5 text-emerald-600" />
+        </div>
+        <div>
+          <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mb-1">Sendit Advantage</p>
+          <p className="text-slate-900 font-bold text-lg leading-tight">{us}</p>
+        </div>
+      </div>
+    </div>
+  </motion.div>
+);
+
+interface FAQItemProps {
+  key?: React.Key;
+  question: string;
+  answer: string;
+  isOpen: boolean;
+  onClick: () => void;
+}
+
+const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => (
+  <div className="border-b border-slate-100 last:border-none">
+    <button
+      onClick={onClick}
+      className="w-full py-6 flex items-center justify-between text-left group"
+    >
+      <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-emerald-600' : 'text-slate-900 group-hover:text-emerald-600'}`}>
+        {question}
+      </span>
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-emerald-600 text-white rotate-180' : 'bg-slate-50 text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600'}`}>
+        {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+      </div>
+    </button>
+    <AnimatePresence>
+      {isOpen && (
+        <motion.div
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: 'auto', opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+          className="overflow-hidden"
+        >
+          <p className="pb-6 text-slate-600 leading-relaxed">
+            {answer}
+          </p>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+);
 
 const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  const faqs = [
+    {
+      question: "What makes Sendit's core offering different from other aggregators?",
+      answer: "Unlike typical aggregators that focus solely on courier rate comparison, Sendit provides a unified logistics operating system. We combine Shipping, Inventory Management, and Warehouse Execution into a single platform, giving you end-to-end control over your fulfillment lifecycle."
+    },
+    {
+      question: "How does Sendit improve visibility across operations?",
+      answer: "Most platforms leave you blind to what's happening inside the warehouse. Sendit offers real-time stock intelligence and granular visibility into every stage of an order—from the moment it's placed to the final mile delivery."
+    },
+    {
+      question: "What is the 'execution layer' and why is it important?",
+      answer: "The execution layer is our built-in Warehouse Management System (WMS). It handles the actual physical movement of goods—picking, packing, and QC workflows. This ensures that what you see in your dashboard is exactly what's happening on the warehouse floor, reducing errors and increasing speed."
+    },
+    {
+      question: "What kind of analytics can I expect with Sendit?",
+      answer: "We go beyond basic shipping costs. Sendit provides deep shipment profitability analytics, allowing you to see the true cost of every order, including packaging, labor, and courier fees, helping you optimize your bottom line."
+    },
+    {
+      question: "How does Sendit integrate with my existing tech stack?",
+      answer: "Sendit is built for deep operational integration. We connect seamlessly with major storefronts, ERPs, and over 50+ courier partners. Our goal is to become your operational source of truth, not just another tool in your stack."
+    },
+    {
+      question: "Is Sendit built to handle multi-warehouse scalability?",
+      answer: "Absolutely. Our architecture is designed for multi-warehouse operations. Whether you're shipping from one location or ten, Sendit allows you to manage inventory and route orders elastically based on stock availability and proximity to the customer."
+    }
+  ];
+
   return (
-    <div className="pt-32 pb-24 bg-white">
+    <div className="pt-32 pb-24 premium-hero min-h-screen">
+      <Helmet>
+        <title>Why Sendit | The Logistics Operating System for India</title>
+        <meta name="description" content="Discover why Sendit is the preferred logistics operating system for high-growth Indian brands. Unified infrastructure, deep integrations, and scale-ready." />
+        <link rel="canonical" href="https://sendit.in/why-sendit" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
-        <div className="text-center mb-16">
+        <div className="text-center mb-24">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">Why Sendit?</h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
-              Logistics teams don’t need more disconnected tools. They need one system that solves operational bottlenecks from order to delivery.
+            <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
+              The <span className="text-emerald-600">Sendit</span> Advantage
+            </h1>
+            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+              We don't just generate labels. We power the entire fulfillment lifecycle with intelligence and scale.
             </p>
           </motion.div>
         </div>
 
-        <section className="mb-20">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-3xl font-display font-bold">Problem Statement</h2>
-            <span className="text-xs font-bold uppercase tracking-widest text-rose-500 bg-rose-50 px-3 py-1 rounded-full">Current State</span>
+        {/* Bento Grid Advantage */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-32">
+          <AdvantageCard 
+            title="Core Offering"
+            them="Only courier rate comparison"
+            us="Shipping + Inventory + Warehouse"
+            iconThem={FileText}
+            iconUs={Layers}
+            delay={0.1}
+          />
+          <AdvantageCard 
+            title="Visibility"
+            them="No inventory visibility"
+            us="Real-time stock intelligence"
+            iconThem={EyeOff}
+            iconUs={Eye}
+            delay={0.2}
+          />
+          <AdvantageCard 
+            title="Execution"
+            them="No warehouse execution layer"
+            us="Full WMS workflows"
+            iconThem={Box}
+            iconUs={Cpu}
+            delay={0.3}
+          />
+          <AdvantageCard 
+            title="Analytics"
+            them="Limited cost visibility"
+            us="Shipment profitability analytics"
+            iconThem={TrendingUp}
+            iconUs={BarChart3}
+            delay={0.4}
+          />
+          <AdvantageCard 
+            title="Integration"
+            them="Easy to switch"
+            us="Deep operational integration"
+            iconThem={Unplug}
+            iconUs={Network}
+            delay={0.5}
+          />
+          <AdvantageCard 
+            title="Scalability"
+            them="Single warehouse focus"
+            us="Multi-warehouse architecture"
+            iconThem={Minimize2}
+            iconUs={Maximize2}
+            delay={0.6}
+          />
+        </div>
+
+        {/* Visual Lifecycle Section */}
+        <div className="mb-32">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-display font-bold mb-4">Unified Fulfillment Lifecycle</h2>
+            <p className="text-slate-500">One system, from order placement to final mile delivery.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {problems.map((item) => {
-              const Icon = item.icon;
-              return (
-                <div key={item.title} className="rounded-2xl border border-rose-100 bg-rose-50/50 p-6">
-                  <Icon className="w-6 h-6 text-rose-600 mb-4" />
-                  <h3 className="text-xl font-bold text-slate-900 mb-2">{item.title}</h3>
-                  <p className="text-slate-600 leading-relaxed">{item.description}</p>
-                </div>
-              );
-            })}
-          </div>
-        </section>
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.98 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <OrderLifecycle />
+          </motion.div>
+        </div>
 
-        <section className="mb-20">
-          <div className="rounded-3xl border border-slate-200 bg-slate-50 p-8 md:p-10">
-            <div className="flex flex-wrap items-center justify-between gap-4 mb-8">
-              <h2 className="text-3xl font-display font-bold">What We’re Solving</h2>
-              <span className="text-xs font-bold uppercase tracking-widest text-emerald-600 bg-emerald-100 px-3 py-1 rounded-full">Future State</span>
-            </div>
-
-            <div className="grid lg:grid-cols-2 gap-6 mb-8">
-              {solutions.map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div key={item.title} className="rounded-2xl border border-slate-200 bg-white p-5">
-                    <Icon className="w-6 h-6 text-emerald-600 mb-3" />
-                    <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
-                    <p className="text-slate-600 text-sm leading-relaxed">{item.description}</p>
-                  </div>
-                );
-              })}
-            </div>
-
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
-              <div className="flex items-center gap-2 mb-4">
-                <RefreshCcw className="w-4 h-4 text-emerald-700" />
-                <p className="font-bold text-emerald-800">Order-to-Delivery Lifecycle</p>
+        {/* Security & Scale - Simplified Widgets */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          <motion.div 
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="standard-card p-10 relative overflow-hidden group hover:border-emerald-200 transition-colors"
+          >
+            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+            <div className="relative z-10">
+              <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-8 border border-emerald-100">
+                <ShieldCheck className="text-emerald-600 w-6 h-6" />
               </div>
-              <div className="grid md:grid-cols-6 gap-3">
-                {flowSteps.map((step, idx) => (
-                  <div key={step} className="rounded-xl bg-white border border-emerald-100 p-3 text-center">
-                    <p className="text-[11px] font-bold text-emerald-700 mb-1">Step {idx + 1}</p>
-                    <p className="text-xs text-slate-700 font-semibold">{step}</p>
+              <h2 className="text-3xl font-display font-bold mb-6 text-slate-900">Enterprise Security</h2>
+              <p className="text-slate-600 mb-10 leading-relaxed">
+                Your operational data is your most valuable asset. We protect it with enterprise-grade security protocols.
+              </p>
+              <div className="grid grid-cols-2 gap-4">
+                {["SOC2 Compliant", "RBAC Access", "99.9% Uptime", "Audit Logs"].map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm font-bold text-slate-500">
+                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                    {item}
                   </div>
                 ))}
               </div>
             </div>
-          </div>
-        </section>
+          </motion.div>
 
-        <section className="mb-20">
-          <h2 className="text-3xl font-display font-bold mb-8">Business-Relevant Logistics Views in Sendit</h2>
-          <div className="grid lg:grid-cols-3 gap-6">
-            {dashboardImages.map((image) => (
-              <div key={image.title} className="rounded-2xl border border-slate-200 overflow-hidden bg-white shadow-sm">
-                <img
-                  src={image.src}
-                  alt={image.title}
-                  className="w-full h-52 object-cover"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="p-5">
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">{image.title}</h3>
-                  <p className="text-sm text-slate-600">{image.caption}</p>
-                </div>
+          <motion.div 
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="standard-card p-10 relative overflow-hidden group hover:border-blue-200 transition-colors"
+          >
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
+            <div className="relative z-10">
+              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-8 border border-blue-100">
+                <Zap className="text-blue-600 w-6 h-6" />
               </div>
+              <h2 className="text-3xl font-display font-bold mb-6 text-slate-900">Built for Scale</h2>
+              <p className="text-slate-600 mb-10 leading-relaxed">
+                Whether you ship 100 orders or 100,000, our architecture scales elastically with your business.
+              </p>
+              <button 
+                onClick={onContactClick}
+                className="px-8 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center gap-2 group shadow-lg shadow-blue-600/20"
+              >
+                Scale with Sendit <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-32 max-w-3xl mx-auto">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold uppercase tracking-widest mb-4">
+              <HelpCircle className="w-4 h-4" /> Common Questions
+            </div>
+            <h2 className="text-4xl font-display font-bold text-slate-900">Frequently Asked Questions</h2>
+          </div>
+          
+          <div className="standard-card p-8 md:p-12">
+            {faqs.map((faq, index) => (
+              <FAQItem
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                isOpen={openIndex === index}
+                onClick={() => setOpenIndex(openIndex === index ? null : index)}
+              />
             ))}
           </div>
-        </section>
+        </div>
 
-        <section className="rounded-3xl bg-slate-900 p-8 md:p-12 text-white">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Outcome for Operations Teams</h2>
-          <p className="text-slate-300 text-lg max-w-3xl mb-8">
-            Better dispatch speed, lower logistics cost, cleaner inventory accuracy, and complete visibility for leadership.
-          </p>
-          <div className="grid md:grid-cols-3 gap-4 mb-8">
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">2.3x</p>
-              <p className="text-sm text-slate-300">faster dispatch decisions</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">18%</p>
-              <p className="text-sm text-slate-300">lower weighted shipping cost</p>
-            </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-              <p className="text-2xl font-bold">99%+</p>
-              <p className="text-sm text-slate-300">inventory sync accuracy</p>
-            </div>
-          </div>
-          <button
-            onClick={onContactClick}
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-slate-900 rounded-xl font-bold hover:bg-slate-100 transition-colors"
-          >
-            Book a Problem-Solution Demo <CheckCircle2 className="w-4 h-4" />
-          </button>
-        </section>
+        <div className="mt-32 text-center">
+          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-8">Ready to see the difference?</p>
+          <Link to="/pricing" className="inline-flex items-center gap-2 text-2xl font-display font-bold text-slate-900 hover:text-emerald-600 transition-colors group">
+            Explore our pricing plans <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
+          </Link>
+        </div>
       </div>
     </div>
   );

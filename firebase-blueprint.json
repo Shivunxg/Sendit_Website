@@ -1,0 +1,34 @@
+{
+  "entities": {
+    "User": {
+      "title": "User Profile",
+      "description": "User account with product mapping and SSO configuration.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email", "description": "User email address" },
+        "products": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "productId": { "type": "string" },
+              "name": { "type": "string" },
+              "url": { "type": "string", "format": "uri" },
+              "access": { "type": "boolean" }
+            },
+            "required": ["productId", "name", "url", "access"]
+          }
+        },
+        "defaultProduct": { "type": "string", "description": "The product ID to redirect to by default" }
+      },
+      "required": ["userId", "email", "products"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "Stores user product mappings and preferences."
+    }
+  }
+}

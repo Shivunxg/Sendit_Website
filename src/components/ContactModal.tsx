@@ -1,27 +1,106 @@
-import { X, Send, Loader2, ArrowRight } from 'lucide-react';
+import { X, Send, Loader2, ArrowRight, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+interface FormValues {
+  name: string;
+  company: string;
+  email: string;
+  volume: string;
+  message: string;
+}
+
+interface FormErrors {
+  name?: string;
+  company?: string;
+  email?: string;
+}
+
 const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [formData, setFormData] = useState<FormValues>({
+    name: '',
+    company: '',
+    email: '',
+    volume: '0 - 500 orders',
+    message: ''
+  });
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
+
+  const validateField = (name: string, value: string) => {
+    let error = '';
+    switch (name) {
+      case 'name':
+        if (!value.trim()) error = 'Full name is required';
+        else if (value.trim().length < 2) error = 'Name must be at least 2 characters';
+        break;
+      case 'company':
+        if (!value.trim()) error = 'Company name is required';
+        break;
+      case 'email':
+        if (!value.trim()) error = 'Email is required';
+        else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) error = 'Invalid email address';
+        break;
+      default:
+        break;
+    }
+    return error;
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    
+    if (touched[name]) {
+      const error = validateField(name, value);
+      setErrors(prev => ({ ...prev, [name]: error }));
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setTouched(prev => ({ ...prev, [name]: true }));
+    const error = validateField(name, value);
+    setErrors(prev => ({ ...prev, [name]: error }));
+  };
+
+  const isFormValid = () => {
+    const nameErr = validateField('name', formData.name);
+    const companyErr = validateField('company', formData.company);
+    const emailErr = validateField('email', formData.email);
+    return !nameErr && !companyErr && !emailErr;
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
+    // Final validation check
+    const nameErr = validateField('name', formData.name);
+    const companyErr = validateField('company', formData.company);
+    const emailErr = validateField('email', formData.email);
+    
+    if (nameErr || companyErr || emailErr) {
+      setErrors({ name: nameErr, company: companyErr, email: emailErr });
+      setTouched({ name: true, company: true, email: true });
+      return;
+    }
+
     setStatus('loading');
 
-    const formData = new FormData(e.currentTarget);
-    // Replace with your Web3Forms Access Key
-    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
+    const submitData = new FormData();
+    Object.entries(formData).forEach(([key, value]) => submitData.append(key, value));
+    submitData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY || "");
 
     try {
       const response = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
-        body: formData
+        body: submitData
       });
 
       const data = await response.json();
@@ -31,6 +110,15 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
         setTimeout(() => {
           onClose();
           setStatus('idle');
+          setFormData({
+            name: '',
+            company: '',
+            email: '',
+            volume: '0 - 500 orders',
+            message: ''
+          });
+          setErrors({});
+          setTouched({});
         }, 3000);
       } else {
         setStatus('error');
@@ -56,7 +144,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className="relative w-full max-w-lg bg-white rounded-3xl shadow-2xl overflow-hidden"
+            className="relative w-full max-w-lg standard-card overflow-hidden"
           >
             <button 
               onClick={onClose}
@@ -87,40 +175,75 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-slate-700">Full Name</label>
                       <input 
-                        required
                         name="name"
                         type="text" 
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        onBlur={handleBlur}
                         placeholder="John Doe"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                        className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                          errors.name && touched.name 
+                            ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
+                            : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                        }`}
                       />
+                      {errors.name && touched.name && (
+                        <p className="text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" /> {errors.name}
+                        </p>
+                      )}
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-bold text-slate-700">Company Name</label>
                       <input 
-                        required
                         name="company"
                         type="text" 
+                        value={formData.company}
+                        onChange={handleInputChange}
+                        onBlur={handleBlur}
                         placeholder="Acme Corp"
-                        className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                        className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                          errors.company && touched.company 
+                            ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
+                            : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                        }`}
                       />
+                      {errors.company && touched.company && (
+                        <p className="text-xs text-red-500 flex items-center gap-1">
+                          <AlertCircle className="w-3 h-3" /> {errors.company}
+                        </p>
+                      )}
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700">Work Email</label>
                     <input 
-                      required
                       name="email"
                       type="email" 
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      onBlur={handleBlur}
                       placeholder="john@company.com"
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                      className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                        errors.email && touched.email 
+                          ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
+                          : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                      }`}
                     />
+                    {errors.email && touched.email && (
+                      <p className="text-xs text-red-500 flex items-center gap-1">
+                        <AlertCircle className="w-3 h-3" /> {errors.email}
+                      </p>
+                    )}
                   </div>
 
                   <div className="space-y-2">
                     <label className="text-sm font-bold text-slate-700">Monthly Order Volume</label>
                     <select 
                       name="volume"
+                      value={formData.volume}
+                      onChange={handleInputChange}
                       className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
                     >
                       <option>0 - 500 orders</option>
@@ -135,13 +258,15 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                     <textarea 
                       name="message"
                       rows={3}
+                      value={formData.message}
+                      onChange={handleInputChange}
                       placeholder="Tell us about your logistics needs..."
                       className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none"
                     />
                   </div>
 
                   <button 
-                    disabled={status === 'loading'}
+                    disabled={status === 'loading' || !isFormValid()}
                     type="submit"
                     className="w-full py-4 bg-black text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >

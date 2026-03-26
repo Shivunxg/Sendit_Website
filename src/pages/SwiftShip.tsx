@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { useState, useEffect } from 'react';
-import { GoogleGenAI } from "@google/genai";
+import { Helmet } from 'react-helmet-async';
 import { 
   Truck, 
   CheckCircle2, 
@@ -22,128 +22,55 @@ import {
   X
 } from 'lucide-react';
 
+import SwiftShipVisual from '../components/SwiftShipVisual';
+import BrandedTrackingVisual from '../components/BrandedTrackingVisual';
+
 const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
-  const [heroImage, setHeroImage] = useState<string>("https://images.unsplash.com/photo-1566576721346-d4a3b4eaad5b?auto=format&fit=crop&q=80&w=1200");
-  const [trackingImage, setTrackingImage] = useState<string>("https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=1200");
-  const [isHeroGenerating, setIsHeroGenerating] = useState(false);
-  const [isTrackingGenerating, setIsTrackingGenerating] = useState(false);
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
 
   useEffect(() => {
-    const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-
-    const generateHeroImage = async () => {
-      setIsHeroGenerating(true);
-      try {
-        const prompt = `A modern e-commerce shipping and tracking interface displayed on a high-end smartphone. The screen shows a clean delivery timeline with status updates like "Out for Delivery" and a live map showing a delivery van icon moving towards a destination. The background is a soft-focus view of a modern logistics hub.
-
-Style:
-Professional product photography
-Clean UI design
-Soft lighting
-High resolution
-No readable text
-No logos
-
-Mood:
-Reliable
-Fast
-Connected`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "4:3",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setHeroImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating hero image:", error);
-      } finally {
-        setIsHeroGenerating(false);
-      }
-    };
-
-    const generateTrackingImage = async () => {
-      setIsTrackingGenerating(true);
-      try {
-        const prompt = `A premium branded shipping package with a clean, minimalist design. The package has a custom logo (abstract) and a QR code for tracking. It's placed on a clean wooden surface with soft, natural morning light.
-
-Style:
-Lifestyle photography
-Minimalist aesthetic
-High-end brand feel
-Professional quality
-No readable text
-
-Mood:
-Premium
-Trustworthy
-Exciting (unboxing feel)`;
-
-        const response = await ai.models.generateContent({
-          model: "gemini-2.5-flash-image",
-          contents: {
-            parts: [{ text: prompt }],
-          },
-          config: {
-            imageConfig: {
-              aspectRatio: "1:1",
-            },
-          },
-        });
-
-        for (const part of response.candidates[0].content.parts) {
-          if (part.inlineData) {
-            setTrackingImage(`data:image/png;base64,${part.inlineData.data}`);
-            break;
-          }
-        }
-      } catch (error) {
-        console.error("Error generating tracking image:", error);
-      } finally {
-        setIsTrackingGenerating(false);
-      }
-    };
-
-    generateHeroImage();
-    generateTrackingImage();
+    // Static images are now used, no AI generation needed.
   }, []);
   const shippingFeatures = [
     {
       title: "Shipping Intelligence",
       desc: "AI-driven courier selection based on 50+ parameters including cost, speed, and NDR performance. Optimize every shipment for maximum delivery success.",
       icon: <Zap className="w-6 h-6" />,
-      color: "bg-blue-50 text-blue-600"
+      color: "bg-blue-50 text-blue-600",
+      stats: [
+        { label: "Couriers", value: "15+" },
+        { label: "Optimization", value: "AI-Led" }
+      ]
     },
     {
       title: "RTO Reduction Suite",
       desc: "Predictive AI to flag high-risk orders. Automate COD verification via WhatsApp and IVR to reduce RTO by up to 45%.",
       icon: <AlertCircle className="w-6 h-6" />,
-      color: "bg-red-50 text-red-600"
+      color: "bg-red-50 text-red-600",
+      stats: [
+        { label: "RTO Drop", value: "-45%" },
+        { label: "Verification", value: "Auto" }
+      ]
     },
     {
       title: "Automated NDR Management",
       desc: "Real-time non-delivery follow-ups via WhatsApp, SMS, and Email. Empower buyers to re-schedule or update addresses instantly.",
       icon: <Activity className="w-6 h-6" />,
-      color: "bg-emerald-50 text-emerald-600"
+      color: "bg-emerald-50 text-emerald-600",
+      stats: [
+        { label: "Resolution", value: "90%" },
+        { label: "Response", value: "< 5m" }
+      ]
     },
     {
       title: "Branded Tracking Experience",
       desc: "Custom tracking pages on your domain. Drive 15% more repeat sales with product recommendations and NPS surveys on the tracking page.",
       icon: <Search className="w-6 h-6" />,
-      color: "bg-purple-50 text-purple-600"
+      color: "bg-purple-50 text-purple-600",
+      stats: [
+        { label: "Repeat Sales", value: "+15%" },
+        { label: "NPS Score", value: "4.9/5" }
+      ]
     }
   ];
 
@@ -171,7 +98,12 @@ Exciting (unboxing feel)`;
   ];
 
   return (
-    <div className="pt-32 pb-24 bg-white selection:bg-blue-100 selection:text-blue-900">
+    <div className="pt-32 pb-24 premium-hero selection:bg-blue-100 selection:text-blue-900">
+      <Helmet>
+        <title>SwiftShip | AI-Driven Courier Selection & Shipping Optimization</title>
+        <meta name="description" content="Optimize every shipment with AI-driven courier selection, real-time tracking, and automated RTO reduction. Built for high-growth Indian D2C brands." />
+        <link rel="canonical" href="https://sendit.in/swiftship" />
+      </Helmet>
       <div className="max-w-7xl mx-auto px-6">
         {/* Hero Section */}
         <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
@@ -211,31 +143,9 @@ Exciting (unboxing feel)`;
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative rounded-[2.5rem] border border-slate-200 bg-slate-50 p-4 shadow-2xl overflow-hidden aspect-[4/3] flex items-center justify-center">
-              <motion.img 
-                key={heroImage}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 1 }}
-                src={heroImage} 
-                alt="SwiftShip Tracking Interface" 
-                className="rounded-[2rem] w-full h-full object-cover shadow-inner"
-                referrerPolicy="no-referrer"
-              />
-              {isHeroGenerating && (
-                <div className="absolute top-8 right-8 bg-black/50 backdrop-blur-md text-white px-4 py-2 rounded-full flex items-center gap-2 text-xs font-bold border border-white/20">
-                  <Loader2 className="w-3 h-3 animate-spin" />
-                  AI Refining...
-                </div>
-              )}
+            <div className="relative standard-card p-4 shadow-2xl overflow-hidden aspect-[4/3] flex items-center justify-center">
+              <SwiftShipVisual />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-500/10 to-transparent pointer-events-none" />
-            </div>
-            {/* Floating Stats */}
-            <div className="absolute -top-6 -right-6 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100">
-              <div className="flex items-center gap-3 mb-2">
-                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                <span className="text-xs font-bold text-slate-400 uppercase">Live NDR Follow-up</span>
-              </div>
-              <p className="text-2xl font-bold text-slate-900">42% RTO Reduction</p>
             </div>
           </motion.div>
         </div>
@@ -249,13 +159,31 @@ Exciting (unboxing feel)`;
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-10 bg-slate-50 rounded-[2.5rem] border border-slate-200 hover:border-blue-500/50 transition-all group"
+              className="p-10 standard-card hover:border-blue-500/50 transition-all group"
             >
               <div className={`w-14 h-14 rounded-2xl ${feature.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
                 {feature.icon}
               </div>
               <h3 className="text-2xl font-display font-bold mb-4">{feature.title}</h3>
               <p className="text-slate-600 text-lg leading-relaxed mb-8">{feature.desc}</p>
+              
+              {/* Animated Stats Data */}
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                {feature.stats.map((stat, idx) => (
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
+                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                    <motion.p 
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: (i * 0.1) + (idx * 0.1) + 0.3 }}
+                      className="text-xl font-bold text-slate-900"
+                    >
+                      {stat.value}
+                    </motion.p>
+                  </div>
+                ))}
+              </div>
+
               <button 
                 onClick={() => setSelectedFeature(i)}
                 className="flex items-center gap-2 font-bold text-black hover:gap-3 transition-all"
@@ -492,13 +420,8 @@ Exciting (unboxing feel)`;
                           </ul>
                         </div>
                         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
-                          <img 
-                            src={trackingImage} 
-                            alt="Branded Tracking" 
-                            className="w-full h-full object-cover"
-                            referrerPolicy="no-referrer"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white">
+                          <BrandedTrackingVisual />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
                             <p className="text-xl font-bold">Your Brand. Your Experience.</p>
                           </div>
@@ -584,18 +507,6 @@ Exciting (unboxing feel)`;
           </div>
         </div>
 
-        {/* Integrations Section */}
-        <div className="text-center mb-32">
-          <h2 className="text-3xl md:text-4xl font-display font-bold mb-12">50+ Plug & Play Integrations</h2>
-          <div className="flex flex-wrap justify-center gap-8 opacity-50 grayscale hover:grayscale-0 transition-all">
-            {/* Placeholder for integration icons */}
-            {[1, 2, 3, 4, 5, 6].map((i) => (
-              <div key={i} className="w-32 h-16 bg-slate-100 rounded-xl flex items-center justify-center font-bold text-slate-400">
-                Partner {i}
-              </div>
-            ))}
-          </div>
-        </div>
 
         {/* Final CTA */}
         <div className="text-center max-w-3xl mx-auto">

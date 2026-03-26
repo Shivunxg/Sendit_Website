@@ -42,7 +42,7 @@ const ShippingCalculatorPage = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
+    <div className="pt-32 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.div
@@ -56,7 +56,7 @@ const ShippingCalculatorPage = () => {
           </motion.div>
         </div>
 
-        <div className="bg-slate-50 rounded-[2.5rem] border border-slate-200 p-8 md:p-12">
+        <div className="standard-card p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100">

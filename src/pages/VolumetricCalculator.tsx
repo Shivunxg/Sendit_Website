@@ -42,7 +42,7 @@ const VolumetricCalculator = () => {
   }, [formData]);
 
   return (
-    <div className="pt-32 pb-24 bg-white min-h-screen">
+    <div className="pt-32 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.div
@@ -57,7 +57,7 @@ const VolumetricCalculator = () => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-start">
-          <div className="bg-slate-50 rounded-[2.5rem] border border-slate-200 p-8 md:p-12">
+          <div className="standard-card p-8 md:p-12">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 text-purple-700 text-xs font-bold uppercase tracking-wider mb-6 border border-purple-100">
               <Maximize className="w-3 h-3" /> Dimensional Weight
             </div>
