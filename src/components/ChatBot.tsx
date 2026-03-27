@@ -107,14 +107,14 @@ const ChatBot = () => {
             initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-            className={`bg-white border border-brand-secondary/10 shadow-2xl rounded-2xl overflow-hidden mb-4 flex flex-col transition-all duration-300 ${
+            className={`bg-white border border-brand-secondary/10 rounded-2xl overflow-hidden mb-4 flex flex-col transition-all duration-300 ${
               isMinimized ? "h-14 w-64" : "h-[520px] w-[340px] md:w-[380px] max-h-[calc(100vh-120px)]"
             }`}
           >
             {/* Header */}
             <div className="bg-brand-dark p-3 flex items-center justify-between text-white border-b border-white/10">
               <div className="flex items-center gap-2.5">
-                <div className="w-9 h-9 bg-brand-primary rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/20">
+                <div className="w-9 h-9 bg-brand-primary rounded-xl flex items-center justify-center">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
@@ -157,8 +157,8 @@ const ChatBot = () => {
                       <div
                         className={`max-w-[90%] p-3 rounded-xl text-sm leading-relaxed ${
                           msg.role === "user"
-                            ? "bg-brand-primary text-white rounded-tr-none shadow-lg shadow-brand-primary/10"
-                            : "bg-white border border-brand-secondary/10 text-brand-dark rounded-tl-none shadow-sm"
+                            ? "bg-brand-primary text-white rounded-tr-none"
+                            : "bg-white border border-brand-secondary/10 text-brand-dark rounded-tl-none"
                         }`}
                       >
                         <div className="prose prose-sm max-w-none prose-p:my-0 prose-headings:text-brand-dark prose-a:text-brand-primary">
@@ -195,7 +195,7 @@ const ChatBot = () => {
 
                   {isLoading && messages[messages.length - 1].role === "user" && (
                     <div className="flex justify-start">
-                      <div className="bg-white border border-brand-secondary/10 p-4 rounded-2xl rounded-tl-none shadow-sm flex items-center gap-2">
+                      <div className="bg-white border border-brand-secondary/10 p-4 rounded-2xl rounded-tl-none flex items-center gap-2">
                         <div className="flex gap-1">
                           <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:-0.3s]" />
                           <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:-0.15s]" />
@@ -250,7 +250,7 @@ const ChatBot = () => {
           setIsOpen(!isOpen);
           setIsMinimized(false);
         }}
-        className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-2xl transition-all duration-500 ${
+        className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500 ${
           isOpen 
             ? "bg-white text-brand-dark border border-brand-secondary/10 rotate-0" 
             : "bg-brand-dark text-white hover:bg-brand-primary -rotate-12 hover:rotate-0"

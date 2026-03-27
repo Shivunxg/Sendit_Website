@@ -87,7 +87,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center group">
-          <Logo className={`transition-all duration-500 ${isScrolled ? 'h-10' : 'h-12'} group-hover:scale-105`} />
+          <Logo className={`transition-all duration-500 ${isScrolled ? 'h-11' : 'h-14'}`} />
         </Link>
 
         {/* Desktop Nav */}
@@ -362,7 +362,7 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-16">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="flex items-center mb-6">
-              <Logo className="h-10" />
+              <Logo className="h-12" />
             </div>
             <p className="text-brand-secondary text-sm leading-relaxed mb-8">
               The unified logistics operating system for modern Indian brands.

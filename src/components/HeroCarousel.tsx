@@ -63,7 +63,7 @@ const HeroCarousel = () => {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + picsumItems.length) % picsumItems.length);
 
   return (
-    <div className="w-full aspect-[4/3] bg-white rounded-[2.5rem] border border-brand-secondary/10 shadow-2xl overflow-hidden relative group">
+    <div className="w-full aspect-[4/3] bg-white rounded-[2.5rem] border border-brand-secondary/10 overflow-hidden relative group">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}

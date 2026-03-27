@@ -72,7 +72,7 @@ const Login = () => {
             initial={{ opacity: 0, y: 40, rotateX: 15 }}
             animate={{ opacity: 1, y: 0, rotateX: 0 }}
             transition={{ duration: 1, delay: 0.3 }}
-            className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 shadow-[0_20px_50px_rgba(0,0,0,0.5)] group"
+            className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-2xl p-8 group"
           >
             <div className="flex items-center justify-between mb-8">
               <div className="space-y-1">
@@ -191,7 +191,7 @@ const Login = () => {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + (i * 0.1) }}
-                  className="bg-white p-4 rounded-xl border border-brand-secondary/10 shadow-sm hover:border-brand-primary/20 transition-colors group"
+                  className="bg-white p-4 rounded-xl border border-brand-secondary/10 hover:border-brand-primary/20 transition-colors group"
                 >
                   <p className="text-xs font-bold text-brand-dark mb-1 group-hover:text-brand-primary transition-colors">{faq.q}</p>
                   <p className="text-[11px] text-brand-secondary/40 leading-relaxed">{faq.a}</p>

@@ -146,7 +146,7 @@ const ShippingCalculatorPage = () => {
                 <button 
                   type="submit"
                   disabled={isCalculating}
-                  className="w-full py-5 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-5 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isCalculating ? (
                     <>
@@ -204,7 +204,7 @@ const ShippingCalculatorPage = () => {
                       Estimated Rates <span className="text-xs font-normal text-brand-accent/40">(Inclusive of all taxes)</span>
                     </h4>
                     {results.map((res, i) => (
-                      <div key={i} className="p-5 bg-white rounded-2xl border border-brand-secondary/10 flex items-center justify-between hover:shadow-lg transition-all group">
+                      <div key={i} className="p-5 bg-white rounded-2xl border border-brand-secondary/10 flex items-center justify-between transition-all group">
                         <div className="flex items-center gap-4">
                           <div className="w-12 h-12 bg-brand-secondary/5 rounded-xl flex items-center justify-center font-bold text-[10px] text-brand-secondary/80 text-center leading-tight">
                             {res.name.split(' ').map((n: string) => n[0]).join('')}

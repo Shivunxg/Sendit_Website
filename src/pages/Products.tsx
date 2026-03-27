@@ -42,7 +42,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             {/* WareSync Logo */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-brand-accent rounded-2xl flex items-center justify-center shadow-lg shadow-brand-accent/20">
+              <div className="w-16 h-16 bg-brand-accent rounded-2xl flex items-center justify-center">
                 <Warehouse className="text-white w-9 h-9" />
               </div>
               <div>
@@ -51,7 +51,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-white border border-brand-secondary/10 shadow-inner p-6 flex items-center justify-center">
+            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-white border border-brand-secondary/10 p-6 flex items-center justify-center">
               <div className="grid grid-cols-3 gap-4 w-full">
                 {[
                   { icon: <Warehouse className="w-6 h-6" />, label: "Inbound" },
@@ -94,7 +94,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onContactClick}
-                className="flex-grow py-4 bg-brand-primary text-white rounded-xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-primary/20 group"
+                className="flex-grow py-4 bg-brand-primary text-white rounded-xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group"
               >
                 Get Started <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -116,7 +116,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             {/* SwiftShip Logo */}
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center shadow-lg shadow-brand-primary/20">
+              <div className="w-16 h-16 bg-brand-primary rounded-2xl flex items-center justify-center">
                 <Truck className="text-white w-9 h-9" />
               </div>
               <div>
@@ -125,7 +125,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
               </div>
             </div>
 
-            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-brand-secondary/10 border border-brand-secondary/10 shadow-inner">
+            <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-brand-secondary/10 border border-brand-secondary/10">
               <motion.img 
                 key={swiftshipImage}
                 initial={{ opacity: 0.8 }}
@@ -162,7 +162,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onContactClick}
-                className="flex-grow py-4 bg-brand-primary text-white rounded-xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 shadow-xl shadow-brand-primary/20 group"
+                className="flex-grow py-4 bg-brand-primary text-white rounded-xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group"
               >
                 Get Started <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>

@@ -70,7 +70,7 @@ const AdvantageCard = ({
 
       {/* Divider */}
       <div className="h-px bg-brand-secondary/10 w-full relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 py-0.5 rounded-full border border-brand-secondary/10 text-[10px] font-bold text-brand-accent/60 uppercase tracking-widest shadow-sm">VS</div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 py-0.5 rounded-full border border-brand-secondary/10 text-[10px] font-bold text-brand-accent/60 uppercase tracking-widest">VS</div>
       </div>
 
       {/* Sendit */}
@@ -298,7 +298,7 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
               </p>
               <button 
                 onClick={onContactClick}
-                className="px-8 py-4 bg-brand-accent text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center gap-2 group shadow-lg shadow-brand-accent/20"
+                className="px-8 py-4 bg-brand-accent text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center gap-2 group"
               >
                 Scale with <span className="text-brand-primary font-bold">Sendit</span> <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>

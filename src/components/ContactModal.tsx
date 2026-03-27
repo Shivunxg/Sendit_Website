@@ -180,7 +180,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         value={formData.name}
                         onChange={handleInputChange}
                         onBlur={handleBlur}
-                        placeholder="John Doe"
                         className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                           errors.name && touched.name 
                             ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
@@ -201,7 +200,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         value={formData.company}
                         onChange={handleInputChange}
                         onBlur={handleBlur}
-                        placeholder="Acme Corp"
                         className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                           errors.company && touched.company 
                             ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
@@ -224,7 +222,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       value={formData.email}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      placeholder="john@company.com"
                       className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                         errors.email && touched.email 
                           ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
@@ -260,7 +257,6 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       rows={3}
                       value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="Tell us about your logistics needs..."
                       className="w-full px-4 py-3 bg-brand-secondary/5 border border-brand-secondary/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-all resize-none"
                     />
                   </div>

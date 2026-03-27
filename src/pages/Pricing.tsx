@@ -15,7 +15,7 @@ const Tooltip = ({ text, children }: { text: string, children: React.ReactNode }
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}
-            className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-brand-dark text-white text-xs rounded-lg shadow-xl w-48 text-center pointer-events-none"
+            className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-brand-dark text-white text-xs rounded-lg w-48 text-center pointer-events-none"
           >
             {text}
             <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-brand-dark" />
@@ -148,12 +148,12 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className={`relative flex flex-col p-8 transition-all duration-300 ${
                 plan.highlight 
-                  ? 'standard-card border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 scale-105 z-10' 
-                  : 'standard-card shadow-xl shadow-brand-secondary/10 hover:shadow-2xl hover:border-brand-secondary/20'
+                  ? 'standard-card border-2 border-brand-primary scale-105 z-10' 
+                  : 'standard-card hover:border-brand-secondary/20'
               }`}
             >
               {plan.highlight && (
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-brand-primary text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-brand-primary text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest">
                   Recommended
                 </div>
               )}
@@ -191,10 +191,10 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
                 onClick={onContactClick}
                 className={`w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300 ${
                   plan.highlight
-                    ? 'bg-brand-primary text-white hover:bg-brand-secondary shadow-lg shadow-brand-primary/20'
+                    ? 'bg-brand-primary text-white hover:bg-brand-secondary'
                     : plan.title === "Control Tower"
                       ? 'bg-white text-brand-dark border-2 border-brand-dark hover:bg-brand-secondary/5'
-                      : 'bg-brand-dark text-white hover:bg-brand-dark/90 shadow-lg shadow-brand-dark/10'
+                      : 'bg-brand-dark text-white hover:bg-brand-dark/90'
                 }`}
               >
                 {plan.cta}

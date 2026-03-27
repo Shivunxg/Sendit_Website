@@ -25,7 +25,7 @@ export const LoginForm: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
   };
 
   return (
-    <div className="w-full bg-white rounded-2xl shadow-xl p-8 lg:p-12">
+    <div className="w-full bg-white rounded-2xl p-8 lg:p-12">
       <motion.div 
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,7 +40,7 @@ export const LoginForm: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
         <motion.div 
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded shadow-sm"
+          className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 mb-6 rounded"
         >
           <p className="text-sm font-medium">{error}</p>
         </motion.div>
@@ -98,7 +98,7 @@ export const LoginForm: React.FC<{ onSwitchToSignup: () => void }> = ({ onSwitch
           whileTap={{ scale: 0.98 }}
           type="submit" 
           disabled={loading}
-          className="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-xl transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-brand-primary/20 hover:bg-brand-dark"
+          className="w-full bg-brand-primary text-white font-bold py-3 px-4 rounded-xl transform transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-brand-dark"
         >
           {loading ? (
             <span className="flex items-center justify-center">

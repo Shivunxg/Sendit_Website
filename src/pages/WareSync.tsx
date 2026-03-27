@@ -148,7 +148,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onContactClick}
-                className="px-10 py-5 bg-brand-primary text-white rounded-full font-bold text-xl hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group shadow-xl shadow-brand-primary/20"
+                className="px-10 py-5 bg-brand-primary text-white rounded-full font-bold text-xl hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group"
               >
                 Book a Demo <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -168,7 +168,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             <WMSDashboard />
             {/* Floating Badge */}
-            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl border border-brand-secondary/10 max-w-[220px] z-20">
+            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl border border-brand-secondary/10 max-w-[220px] z-20">
               <p className="text-3xl font-bold text-brand-accent mb-1">99.9%</p>
               <p className="text-sm font-medium text-brand-accent">Inventory Accuracy across 100+ Warehouses</p>
             </div>
@@ -196,7 +196,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
               {/* Animated Stats Data */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {module.stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-2xl border border-brand-secondary/10 shadow-sm">
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-brand-secondary/10">
                     <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-1">{stat.label}</p>
                     <motion.p 
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -237,7 +237,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col"
+                className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col"
               >
                 {/* Modal Header */}
                 <div className="p-6 md:p-8 border-b border-brand-secondary/10 flex items-center justify-between bg-white sticky top-0 z-10">
@@ -280,7 +280,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 aspect-square">
                           <WMSVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -314,7 +314,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 aspect-square">
                           <OMSVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -348,7 +348,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 aspect-square">
                           <InventoryVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -382,7 +382,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 aspect-square">
                           <OmnichannelVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -404,7 +404,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                       setSelectedModule(null);
                       onContactClick();
                     }}
-                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/25 flex items-center justify-center gap-2 group"
+                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group"
                   >
                     Book a Demo <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
@@ -437,8 +437,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     viewport={{ once: true }}
                     className={`flex items-start gap-6 p-6 rounded-[2rem] transition-all duration-500 ${
                       f.highlight 
-                        ? 'bg-brand-accent text-white shadow-2xl shadow-brand-accent/20 -mx-4 md:-mx-8 border border-brand-accent/30' 
-                        : 'hover:bg-white hover:shadow-xl hover:shadow-brand-secondary/10'
+                        ? 'bg-brand-accent text-white -mx-4 md:-mx-8 border border-brand-accent/30' 
+                        : 'hover:bg-white hover:border-brand-secondary/20'
                     }`}
                   >
                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${
@@ -460,7 +460,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
               </div>
             </div>
             <div className="flex flex-col justify-center">
-              <div className="p-8 standard-card shadow-xl shadow-brand-secondary/10">
+              <div className="p-8 standard-card">
                 <h3 className="text-2xl font-bold mb-6">Why Enterprises Choose Us?</h3>
                 <ul className="space-y-6">
                   {[
@@ -478,7 +478,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 </ul>
                 <button 
                   onClick={onContactClick}
-                  className="w-full mt-10 py-5 bg-brand-accent text-white rounded-2xl font-bold text-xl hover:bg-brand-accent/90 transition-all shadow-lg shadow-brand-accent/20"
+                  className="w-full mt-10 py-5 bg-brand-accent text-white rounded-2xl font-bold text-xl hover:bg-brand-accent/90 transition-all"
                 >
                   Speak with Our Expert
                 </button>
@@ -494,7 +494,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
             <p className="text-xl text-brand-dark/80 max-w-2xl mx-auto">See how leading brands are transforming their warehouse operations with WareSync.</p>
           </div>
 
-          <div className="standard-card overflow-hidden border border-brand-secondary/10 shadow-2xl">
+          <div className="standard-card overflow-hidden border border-brand-secondary/10">
             <div className="grid lg:grid-cols-2">
               <div className="relative h-[400px] lg:h-auto overflow-hidden">
                 <img 
@@ -562,7 +562,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
           </p>
           <button 
             onClick={onContactClick}
-            className="px-12 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all shadow-2xl"
+            className="px-12 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all"
           >
             Start Your Transformation
           </button>

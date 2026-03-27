@@ -49,11 +49,11 @@
 
 /* Recipe 8: Modern utility cards with large rounded corners */
 .standard-card {
-  @apply bg-white border border-border-card rounded-[24px] shadow-sm;
+  @apply bg-white border border-border-card rounded-[24px];
 }
 
 .glass-card {
-  @apply bg-white/80 backdrop-blur-md border border-brand-secondary/10 shadow-sm;
+  @apply bg-white/80 backdrop-blur-md border border-brand-secondary/10;
 }
 
 .gradient-text {

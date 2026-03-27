@@ -38,7 +38,7 @@ const AnimatedNumber = ({ value, duration = 2, isPercentage = false }: { value: 
 
 const WMSDashboard = () => {
   return (
-    <div className="w-full aspect-square bg-brand-dark rounded-[2.5rem] p-6 shadow-2xl border border-white/10 overflow-hidden relative group">
+    <div className="w-full aspect-square bg-brand-dark rounded-[2.5rem] p-6 border border-white/10 overflow-hidden relative group">
       {/* Sidebar Mockup */}
       <div className="absolute left-0 top-0 bottom-0 w-16 bg-brand-dark/50 border-r border-white/5 flex flex-col items-center py-8 gap-6">
         <div className="w-8 h-8 bg-brand-accent rounded-lg flex items-center justify-center mb-4">
@@ -144,7 +144,7 @@ const WMSDashboard = () => {
         <motion.div 
           animate={{ y: [0, -5, 0] }}
           transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-10 right-10 p-4 bg-brand-accent rounded-2xl shadow-2xl shadow-brand-accent/20 flex items-center gap-3"
+          className="absolute bottom-10 right-10 p-4 bg-brand-accent rounded-2xl flex items-center gap-3"
         >
           <CheckCircle2 className="w-5 h-5 text-white" />
           <div className="text-white">

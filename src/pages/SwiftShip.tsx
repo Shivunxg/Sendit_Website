@@ -127,7 +127,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
                 onClick={onContactClick}
-                className="px-10 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-black/10"
+                className="px-10 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all flex items-center justify-center gap-2 group"
               >
                 Start Shipping <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </button>
@@ -145,7 +145,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
             transition={{ duration: 0.8 }}
             className="relative"
           >
-            <div className="relative standard-card p-4 shadow-2xl overflow-hidden aspect-[4/3] flex items-center justify-center">
+            <div className="relative standard-card p-4 overflow-hidden aspect-[4/3] flex items-center justify-center">
               <SwiftShipVisual />
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-primary/10 to-transparent pointer-events-none" />
             </div>
@@ -172,7 +172,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
               {/* Animated Stats Data */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {feature.stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-2xl border border-brand-secondary/10 shadow-sm">
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-brand-secondary/10">
                     <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-1">{stat.label}</p>
                     <motion.p 
                       initial={{ opacity: 0, scale: 0.5 }}
@@ -216,7 +216,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
                 animate={{ scale: 1, opacity: 1, y: 0 }}
                 exit={{ scale: 0.9, opacity: 0, y: 20 }}
-                className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col"
+                className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] overflow-hidden flex flex-col"
               >
                 {/* Modal Header */}
                 <div className="p-6 md:p-8 border-b border-brand-secondary/10 flex items-center justify-between bg-white sticky top-0 z-10">
@@ -310,7 +310,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </div>
                         </div>
-                        <div className="rounded-3xl overflow-hidden border border-brand-secondary/10 shadow-xl bg-white p-6">
+                        <div className="rounded-3xl overflow-hidden border border-brand-secondary/10 bg-white p-6">
                           <h5 className="text-sm font-bold mb-4 text-brand-accent uppercase tracking-widest">Risk Analysis Engine</h5>
                           <div className="space-y-3">
                             {[
@@ -421,7 +421,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/10 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/10 aspect-square">
                           <BrandedTrackingVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -443,7 +443,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
                       setSelectedFeature(null);
                       onContactClick();
                     }}
-                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/25 flex items-center justify-center gap-2 group"
+                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group"
                   >
                     Book a Demo <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
@@ -500,7 +500,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
                 </ul>
                 <button 
                   onClick={onContactClick}
-                  className="w-full mt-10 py-5 bg-white text-brand-primary rounded-2xl font-bold text-xl hover:bg-bg-alt transition-all shadow-xl shadow-brand-primary/20"
+                  className="w-full mt-10 py-5 bg-white text-brand-primary rounded-2xl font-bold text-xl hover:bg-bg-alt transition-all"
                 >
                   Activate RTO Suite Now
                 </button>
@@ -518,7 +518,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
           </p>
           <button 
             onClick={onContactClick}
-            className="px-12 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all shadow-2xl"
+            className="px-12 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all"
           >
             Start Shipping Today
           </button>

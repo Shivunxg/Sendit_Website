@@ -63,7 +63,7 @@ const Problem = () => {
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-square bg-brand-dark rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center relative">
+            <div className="aspect-square bg-brand-dark rounded-3xl overflow-hidden flex items-center justify-center relative">
               <motion.img 
                 key={heroImage}
                 initial={{ opacity: 0.8 }}
@@ -74,7 +74,7 @@ const Problem = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-8 -right-8 w-72 p-8 bg-brand-dark text-white rounded-3xl shadow-2xl">
+            <div className="absolute -bottom-8 -right-8 w-72 p-8 bg-brand-dark text-white rounded-3xl">
               <p className="text-sm font-medium opacity-70 mb-2">Industry Insight</p>
               <p className="text-xl font-bold">74% of Indian D2C brands cite "Fulfillment Inefficiency" as their #1 growth barrier.</p>
             </div>

@@ -99,7 +99,7 @@ const ShipmentTracking = () => {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto px-8 py-4 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full sm:w-auto px-8 py-4 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 disabled:opacity-50"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -134,7 +134,7 @@ const ShipmentTracking = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="standard-card p-8 md:p-12 shadow-lg"
+              className="standard-card p-8 md:p-12"
             >
               <div className="grid md:grid-cols-2 gap-8 mb-10">
                 <div>
@@ -188,7 +188,7 @@ const ShipmentTracking = () => {
                         {i === 0 ? (
                           <div className="relative">
                             <div className="absolute inset-0 bg-brand-primary rounded-full animate-ping opacity-25" />
-                            <div className="relative w-6 h-6 bg-brand-primary rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                            <div className="relative w-6 h-6 bg-brand-primary rounded-full flex items-center justify-center border-4 border-white">>
                               <div className="w-2 h-2 bg-white rounded-full" />
                             </div>
                           </div>
@@ -202,7 +202,7 @@ const ShipmentTracking = () => {
                       {/* Event Content */}
                       <div className={`flex-grow p-5 rounded-2xl transition-all ${
                         i === 0 
-                          ? 'bg-brand-primary/5 border border-brand-primary/10 shadow-sm' 
+                          ? 'bg-brand-primary/5 border border-brand-primary/10' 
                           : 'hover:bg-brand-secondary/5 border border-transparent'
                       }`}>
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">

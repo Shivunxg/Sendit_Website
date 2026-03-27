@@ -111,7 +111,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onContactClick}
-                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-bold text-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-brand-primary/20"
+                className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-bold text-lg hover:opacity-90 transition-all flex items-center justify-center gap-2 group"
               >
                 Book a Demo <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </motion.button>
@@ -145,7 +145,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.5 }}
-                  className="glass-card p-4 rounded-xl border border-brand-secondary/10 shadow-2xl flex items-center gap-4 bg-white/80 backdrop-blur-md"
+                  className="glass-card p-4 rounded-xl border border-brand-secondary/10 flex items-center gap-4 bg-white/80 backdrop-blur-md"
                 >
                   <div className="w-10 h-10 bg-brand-accent/10 rounded-lg flex items-center justify-center">
                     <Activity className="text-brand-accent w-5 h-5" />
@@ -162,7 +162,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
                   initial={{ x: 20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.7 }}
-                  className="glass-card p-4 rounded-xl border border-brand-secondary/10 shadow-2xl flex items-center gap-4 bg-white/80 backdrop-blur-md"
+                  className="glass-card p-4 rounded-xl border border-brand-secondary/10 flex items-center gap-4 bg-white/80 backdrop-blur-md"
                 >
                   <div className="w-10 h-10 bg-brand-primary/10 rounded-lg flex items-center justify-center">
                     <Truck className="text-brand-primary w-5 h-5" />
@@ -233,7 +233,7 @@ const FinalCTA = ({ onContactClick }: { onContactClick: () => void }) => {
             />
             <button 
               onClick={onContactClick}
-              className="relative w-full sm:w-auto px-10 py-5 bg-white text-brand-dark rounded-lg font-bold text-xl hover:bg-bg-alt transition-all shadow-xl"
+              className="relative w-full sm:w-auto px-10 py-5 bg-white text-brand-dark rounded-lg font-bold text-xl hover:bg-bg-alt transition-all"
             >
               Start Shipping
             </button>
@@ -242,7 +242,7 @@ const FinalCTA = ({ onContactClick }: { onContactClick: () => void }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onContactClick}
-            className="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-bold text-xl hover:opacity-90 transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 group"
+            className="w-full sm:w-auto px-10 py-5 bg-gradient-to-r from-brand-primary to-brand-secondary text-white rounded-lg font-bold text-xl hover:opacity-90 transition-all flex items-center justify-center gap-2 group"
           >
             Book a Demo <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           </motion.button>

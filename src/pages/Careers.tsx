@@ -196,7 +196,7 @@ const Careers = () => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 onClick={() => openEditor()}
-                className="mt-8 px-6 py-3 bg-brand-primary text-white rounded-xl font-bold flex items-center gap-2 mx-auto hover:bg-brand-secondary transition-all shadow-lg shadow-brand-primary/20"
+                className="mt-8 px-6 py-3 bg-brand-primary text-white rounded-xl font-bold flex items-center gap-2 mx-auto hover:bg-brand-secondary transition-all"
               >
                 <Plus className="w-5 h-5" /> Add New Job Posting
               </motion.button>
@@ -230,13 +230,13 @@ const Careers = () => {
                     <div className="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
                       <button 
                         onClick={() => openEditor(job)}
-                        className="p-2 bg-white border border-brand-secondary/10 rounded-lg text-brand-secondary hover:text-brand-primary transition-colors shadow-sm"
+                        className="p-2 bg-white border border-brand-secondary/10 rounded-lg text-brand-secondary hover:text-brand-primary transition-colors"
                       >
                         <Edit2 className="w-4 h-4" />
                       </button>
                       <button 
                         onClick={() => handleDeleteJob(job.id)}
-                        className="p-2 bg-white border border-brand-secondary/10 rounded-lg text-brand-secondary hover:text-red-500 transition-colors shadow-sm"
+                        className="p-2 bg-white border border-brand-secondary/10 rounded-lg text-brand-secondary hover:text-red-500 transition-colors"
                       >
                         <Trash2 className="w-4 h-4" />
                       </button>
@@ -363,7 +363,7 @@ const Careers = () => {
 
               <button
                 type="submit"
-                className="w-full py-5 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 disabled:opacity-50"
+                className="w-full py-5 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 disabled:opacity-50"
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
@@ -412,7 +412,7 @@ const Careers = () => {
               initial={{ opacity: 0, scale: 0.95, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 20 }}
-              className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2rem] shadow-2xl overflow-hidden flex flex-col"
+              className="relative w-full max-w-4xl max-h-[90vh] bg-white rounded-[2rem] overflow-hidden flex flex-col"
             >
               <div className="p-6 border-b border-brand-secondary/10 flex items-center justify-between">
                 <h3 className="text-2xl font-display font-bold">{editingJob?.id ? 'Edit Job Posting' : 'Add New Job Posting'}</h3>
@@ -568,7 +568,7 @@ const Careers = () => {
                 <button 
                   onClick={handleSaveJob}
                   disabled={isSaving}
-                  className="px-8 py-2 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all shadow-lg shadow-brand-primary/20 flex items-center gap-2 disabled:opacity-50"
+                  className="px-8 py-2 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center gap-2 disabled:opacity-50"
                 >
                   {isSaving ? <Loader2 className="w-4 h-4 animate-spin" /> : <Save className="w-4 h-4" />}
                   Save Posting
