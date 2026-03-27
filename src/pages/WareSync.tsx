@@ -24,7 +24,8 @@ import {
   MessageSquare,
   Clock,
   Truck,
-  ArrowDown
+  ArrowDown,
+  ScanBarcode
 } from 'lucide-react';
 
 import WMSDashboard from '../components/WMSDashboard';
@@ -55,7 +56,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
       title: "Warehouse Management (WMS)",
       desc: "Enterprise-grade WMS for B2B and B2C. Optimize operations with handheld support, system-directed putaway, and 100% scan-based accuracy for GRN and picking.",
       icon: <Warehouse className="w-6 h-6" />,
-      color: "bg-emerald-50 text-emerald-600",
+      color: "bg-brand-accent/10 text-brand-accent",
       stats: [
         { label: "Accuracy", value: "99.9%" },
         { label: "Efficiency", value: "+35%" }
@@ -65,7 +66,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
       title: "Order Management (OMS)",
       desc: "Centralize orders from 50+ marketplaces like Amazon, Flipkart, and Myntra. Automated order routing and real-time inventory sync to prevent overselling.",
       icon: <ShoppingCart className="w-6 h-6" />,
-      color: "bg-blue-50 text-blue-600",
+      color: "bg-brand-primary/10 text-brand-primary",
       stats: [
         { label: "Integrations", value: "50+" },
         { label: "Sync Speed", value: "< 2m" }
@@ -75,7 +76,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
       title: "Inventory Intelligence",
       desc: "Unified view of stock across all warehouses and stores. Advanced SKU-level tracking with FEFO/FIFO logic and automated reorder triggers.",
       icon: <Database className="w-6 h-6" />,
-      color: "bg-purple-50 text-purple-600",
+      color: "bg-brand-secondary/10 text-brand-secondary",
       stats: [
         { label: "Visibility", value: "100%" },
         { label: "Stockouts", value: "-42%" }
@@ -85,7 +86,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
       title: "Omnichannel Retail",
       desc: "Bridge the gap between online and offline. Enable 'Ship from Store', 'Click and Collect', and hyperlocal fulfillment to delight modern shoppers.",
       icon: <RefreshCw className="w-6 h-6" />,
-      color: "bg-orange-50 text-orange-600",
+      color: "bg-brand-accent/10 text-brand-accent",
       stats: [
         { label: "Fulfillment", value: "Hybrid" },
         { label: "CSAT", value: "4.8/5" }
@@ -94,6 +95,12 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   const advancedFeatures = [
+    {
+      title: "Barcode-Enabled Picking & Packing",
+      desc: "Group orders for maximum efficiency with wave picking and 100% scan-based accuracy. Eliminate manual errors completely.",
+      icon: <ScanBarcode className="w-6 h-6" />,
+      highlight: true
+    },
     {
       title: "UniReco Reconciliation",
       desc: "Save up to 5% of your GMV. Match orders, payments, and returns effortlessly across marketplaces and resolve discrepancies in real-time.",
@@ -108,16 +115,11 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
       title: "Smart Bin Allocation",
       desc: "Optimize space with system-directed putaway based on item velocity and storage constraints.",
       icon: <Boxes className="w-5 h-5" />
-    },
-    {
-      title: "Barcode-Enabled Picking",
-      desc: "Group orders for maximum efficiency with wave picking and 100% scan-based accuracy.",
-      icon: <Zap className="w-5 h-5" />
     }
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="pt-32 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary">
       <Helmet>
         <title>WareSync | Multi-Channel Inventory & Warehouse Management</title>
         <meta name="description" content="Sync inventory across 50+ marketplaces and webstores. Automate order routing and optimize warehouse execution with WareSync. Built for scale." />
@@ -131,14 +133,14 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 text-emerald-700 text-xs font-bold uppercase tracking-wider mb-6 border border-emerald-100">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent/10 text-brand-accent text-xs font-bold uppercase tracking-wider mb-6 border border-brand-accent/20">
               <ShieldCheck className="w-3 h-3" /> Enterprise-Grade WMS
             </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 leading-[1.1]">
               Simplify E-commerce, <br />
-              <span className="text-emerald-600">Accelerate Growth.</span>
+              <span className="text-brand-accent">Accelerate Growth.</span>
             </h1>
-            <p className="text-xl text-slate-600 mb-10 leading-relaxed max-w-xl">
+            <p className="text-xl text-brand-dark/80 mb-10 leading-relaxed max-w-xl">
               WareSync is an integrated e-commerce enablement SaaS platform designed to streamline operations for D2C brands, retailers, and marketplaces.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
@@ -146,13 +148,13 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 onClick={onContactClick}
-                className="px-10 py-5 bg-blue-600 text-white rounded-full font-bold text-xl hover:bg-blue-700 transition-all flex items-center justify-center gap-2 group shadow-xl shadow-blue-600/20"
+                className="px-10 py-5 bg-brand-primary text-white rounded-full font-bold text-xl hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 group shadow-xl shadow-brand-primary/20"
               >
                 Book a Demo <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
               </motion.button>
               <button 
                 onClick={scrollToCaseStudies}
-                className="px-10 py-5 bg-white text-slate-900 border border-slate-200 rounded-full font-bold text-xl hover:bg-slate-50 transition-all"
+                className="px-10 py-5 bg-white text-brand-dark border border-brand-secondary/10 rounded-full font-bold text-xl hover:bg-brand-secondary/5 transition-all"
               >
                 View Case Studies
               </button>
@@ -166,9 +168,9 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             <WMSDashboard />
             {/* Floating Badge */}
-            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl border border-slate-100 max-w-[220px] z-20">
-              <p className="text-3xl font-bold text-emerald-600 mb-1">99.9%</p>
-              <p className="text-sm font-medium text-slate-500">Inventory Accuracy across 100+ Warehouses</p>
+            <div className="absolute -bottom-10 -left-10 bg-white p-6 rounded-3xl shadow-2xl border border-brand-secondary/10 max-w-[220px] z-20">
+              <p className="text-3xl font-bold text-brand-accent mb-1">99.9%</p>
+              <p className="text-sm font-medium text-brand-accent">Inventory Accuracy across 100+ Warehouses</p>
             </div>
           </motion.div>
         </div>
@@ -182,25 +184,25 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-10 standard-card hover:border-emerald-500/50 transition-all group cursor-pointer"
+              className="p-10 standard-card hover:border-brand-accent/50 transition-all group cursor-pointer"
               onClick={() => setSelectedModule(i)}
             >
               <div className={`w-14 h-14 rounded-2xl ${module.color} flex items-center justify-center mb-8 group-hover:scale-110 transition-transform`}>
                 {module.icon}
               </div>
               <h3 className="text-2xl font-display font-bold mb-4">{module.title}</h3>
-              <p className="text-slate-600 text-lg leading-relaxed mb-8">{module.desc}</p>
+              <p className="text-brand-dark/70 text-lg leading-relaxed mb-8">{module.desc}</p>
               
               {/* Animated Stats Data */}
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {module.stats.map((stat, idx) => (
-                  <div key={idx} className="bg-white p-4 rounded-2xl border border-slate-100 shadow-sm">
-                    <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-1">{stat.label}</p>
+                  <div key={idx} className="bg-white p-4 rounded-2xl border border-brand-secondary/10 shadow-sm">
+                    <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest mb-1">{stat.label}</p>
                     <motion.p 
                       initial={{ opacity: 0, scale: 0.5 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: (i * 0.1) + (idx * 0.1) + 0.3 }}
-                      className="text-xl font-bold text-slate-900"
+                      className="text-xl font-bold text-brand-dark"
                     >
                       {stat.value}
                     </motion.p>
@@ -208,7 +210,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 ))}
               </div>
 
-              <button className="flex items-center gap-2 font-bold text-black hover:gap-3 transition-all">
+              <button className="flex items-center gap-2 font-bold text-brand-primary hover:gap-3 transition-all">
                 Learn More <ArrowRight className="w-5 h-5" />
               </button>
             </motion.div>
@@ -229,7 +231,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedModule(null)}
-                className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+                className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
               />
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -238,7 +240,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col"
               >
                 {/* Modal Header */}
-                <div className="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                <div className="p-6 md:p-8 border-b border-brand-secondary/10 flex items-center justify-between bg-white sticky top-0 z-10">
                   <div className="flex items-center gap-4">
                     <div className={`w-12 h-12 rounded-xl ${coreModules[selectedModule].color} flex items-center justify-center`}>
                       {coreModules[selectedModule].icon}
@@ -247,7 +249,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                   </div>
                   <button 
                     onClick={() => setSelectedModule(null)}
-                    className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                    className="p-2 hover:bg-brand-secondary/10 rounded-full transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -259,8 +261,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     <div className="space-y-12">
                       <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                          <h4 className="text-3xl font-display font-bold mb-6">Advanced WMS: <br /><span className="text-emerald-600">Total Warehouse Control</span></h4>
-                          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                          <h4 className="text-3xl font-display font-bold mb-6">Advanced WMS: <br /><span className="text-brand-accent">Total Warehouse Control</span></h4>
+                          <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
                             Optimize every inch of your warehouse with our mobile-first WMS. From automated GRN to system-directed putaway, WareSync ensures that your operations are fast, accurate, and scalable.
                           </p>
                           <ul className="space-y-4">
@@ -272,13 +274,13 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                               "Customizable QC & multi-stage packing workflows"
                             ].map((item, i) => (
                               <li key={i} className="flex items-center gap-3">
-                                <CheckCircle2 className="text-emerald-500 w-5 h-5 shrink-0" />
-                                <span className="text-slate-700 font-medium">{item}</span>
+                                <CheckCircle2 className="text-brand-accent w-5 h-5 shrink-0" />
+                                <span className="text-brand-dark font-medium">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
                           <WMSVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -293,8 +295,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     <div className="space-y-12">
                       <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                          <h4 className="text-3xl font-display font-bold mb-6">Unified OMS: <br /><span className="text-blue-600">Sell Everywhere, Manage Here</span></h4>
-                          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                          <h4 className="text-3xl font-display font-bold mb-6">Unified OMS: <br /><span className="text-brand-primary">Sell Everywhere, Manage Here</span></h4>
+                          <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
                             Centralize your orders from 50+ marketplaces and webstores. Our OMS provides a single source of truth for all your sales channels.
                           </p>
                           <ul className="space-y-4">
@@ -306,13 +308,13 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                               "Integrated returns management & QC workflows"
                             ].map((item, i) => (
                               <li key={i} className="flex items-center gap-3">
-                                <CheckCircle2 className="text-blue-500 w-5 h-5 shrink-0" />
-                                <span className="text-slate-700 font-medium">{item}</span>
+                                <CheckCircle2 className="text-brand-primary w-5 h-5 shrink-0" />
+                                <span className="text-brand-dark font-medium">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
                           <OMSVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -327,8 +329,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     <div className="space-y-12">
                       <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                          <h4 className="text-3xl font-display font-bold mb-6">Inventory Intelligence: <br /><span className="text-purple-600">Data-Driven Stock Control</span></h4>
-                          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                          <h4 className="text-3xl font-display font-bold mb-6">Inventory Intelligence: <br /><span className="text-brand-secondary">Data-Driven Stock Control</span></h4>
+                          <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
                             Move beyond simple stock counting. WareSync provides deep insights into your inventory health, helping you identify slow-moving items and prevent stockouts.
                           </p>
                           <ul className="space-y-4">
@@ -340,13 +342,13 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                               "Cycle counting & blind audit support via mobile app"
                             ].map((item, i) => (
                               <li key={i} className="flex items-center gap-3">
-                                <CheckCircle2 className="text-purple-500 w-5 h-5 shrink-0" />
-                                <span className="text-slate-700 font-medium">{item}</span>
+                                <CheckCircle2 className="text-brand-secondary w-5 h-5 shrink-0" />
+                                <span className="text-brand-dark font-medium">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
                           <InventoryVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -361,8 +363,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     <div className="space-y-12">
                       <div className="grid lg:grid-cols-2 gap-12 items-center">
                         <div>
-                          <h4 className="text-3xl font-display font-bold mb-6">Omnichannel Fulfillment: <br /><span className="text-orange-600">Ship from Store</span></h4>
-                          <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                          <h4 className="text-3xl font-display font-bold mb-6">Omnichannel Fulfillment: <br /><span className="text-brand-accent">Ship from Store</span></h4>
+                          <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
                             Transform your retail stores into mini-fulfillment centers. Enable hyperlocal deliveries and reduce shipping costs by fulfilling orders from the nearest location.
                           </p>
                           <ul className="space-y-4">
@@ -374,13 +376,13 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                               "Click & Collect (BOPIS) enablement for retail stores"
                             ].map((item, i) => (
                               <li key={i} className="flex items-center gap-3">
-                                <CheckCircle2 className="text-orange-500 w-5 h-5 shrink-0" />
-                                <span className="text-slate-700 font-medium">{item}</span>
+                                <CheckCircle2 className="text-brand-accent w-5 h-5 shrink-0" />
+                                <span className="text-brand-dark font-medium">{item}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
+                        <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
                           <OmnichannelVisual />
                           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex flex-col justify-end p-6 text-white pointer-events-none">
                             <p className="text-xs font-bold uppercase tracking-widest mb-2">Live Preview</p>
@@ -393,8 +395,8 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="p-8 border-t border-slate-100 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <p className="text-slate-500 text-sm font-medium">Ready to see this in action for your business?</p>
+                <div className="p-8 border-t border-brand-secondary/10 bg-brand-secondary/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <p className="text-brand-accent text-sm font-medium">Ready to see this in action for your business?</p>
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -402,7 +404,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                       setSelectedModule(null);
                       onContactClick();
                     }}
-                    className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/25 flex items-center justify-center gap-2 group"
+                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/25 flex items-center justify-center gap-2 group"
                   >
                     Book a Demo <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
@@ -415,33 +417,50 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
         {/* Detailed Feature Elaborations - Removed as they are now in the modal */}
 
         {/* Advanced Features List */}
-        <div className="bg-slate-50 rounded-[3.5rem] p-12 md:p-24 text-slate-900 overflow-hidden relative mb-32 border border-slate-100">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-emerald-500/5 rounded-full blur-[120px]" />
+        <div className="bg-brand-secondary/5 rounded-[3.5rem] p-12 md:p-24 text-brand-dark overflow-hidden relative mb-32 border border-brand-secondary/10">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-accent/5 rounded-full blur-[120px]" />
           <div className="grid lg:grid-cols-2 gap-20 relative z-10">
             <div>
               <h2 className="text-4xl md:text-6xl font-display font-bold mb-8 leading-tight">
                 One-stop All <br />
-                <span className="text-emerald-600">Automation Needs.</span>
+                <span className="text-brand-accent">Automation Needs.</span>
               </h2>
-              <p className="text-xl text-slate-600 mb-12 leading-relaxed">
+              <p className="text-xl text-brand-dark/80 mb-12 leading-relaxed">
                 From payment reconciliation to multi-vendor management, WareSync provides the deep operational tools required by modern enterprises.
               </p>
-              <div className="space-y-8">
-                {advancedFeatures.map((f, i) => (
-                  <div key={i} className="flex items-start gap-6">
-                    <div className="w-12 h-12 rounded-xl bg-emerald-100 flex items-center justify-center shrink-0 text-emerald-600">
+              <div className="space-y-6">
+                {advancedFeatures.map((f: any, i) => (
+                  <motion.div 
+                    key={i} 
+                    initial={f.highlight ? { scale: 0.95, opacity: 0 } : {}}
+                    whileInView={f.highlight ? { scale: 1, opacity: 1 } : {}}
+                    viewport={{ once: true }}
+                    className={`flex items-start gap-6 p-6 rounded-[2rem] transition-all duration-500 ${
+                      f.highlight 
+                        ? 'bg-brand-accent text-white shadow-2xl shadow-brand-accent/20 -mx-4 md:-mx-8 border border-brand-accent/30' 
+                        : 'hover:bg-white hover:shadow-xl hover:shadow-brand-secondary/10'
+                    }`}
+                  >
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 ${
+                      f.highlight ? 'bg-white text-brand-accent' : 'bg-brand-accent/10 text-brand-accent'
+                    }`}>
                       {f.icon}
                     </div>
                     <div>
-                      <h4 className="text-xl font-bold mb-2">{f.title}</h4>
-                      <p className="text-slate-600 leading-relaxed">{f.desc}</p>
+                      <h4 className={`text-xl font-bold mb-2 ${f.highlight ? 'text-white' : ''}`}>
+                        {f.title}
+                        {f.highlight && (
+                          <span className="ml-3 text-[10px] bg-white/20 px-2 py-1 rounded-full uppercase tracking-widest">Featured</span>
+                        )}
+                      </h4>
+                      <p className={`${f.highlight ? 'text-white' : 'text-brand-dark/70'} leading-relaxed`}>{f.desc}</p>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
             <div className="flex flex-col justify-center">
-              <div className="p-8 standard-card shadow-xl shadow-slate-200/50">
+              <div className="p-8 standard-card shadow-xl shadow-brand-secondary/10">
                 <h3 className="text-2xl font-bold mb-6">Why Enterprises Choose Us?</h3>
                 <ul className="space-y-6">
                   {[
@@ -452,14 +471,14 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                     "Advanced Payment Reconciliation (UniReco)"
                   ].map((item, i) => (
                     <li key={i} className="flex items-center gap-4">
-                      <CheckCircle2 className="text-emerald-500 w-6 h-6 shrink-0" />
-                      <span className="text-lg text-slate-700">{item}</span>
+                      <CheckCircle2 className="text-brand-accent w-6 h-6 shrink-0" />
+                      <span className="text-lg text-brand-dark">{item}</span>
                     </li>
                   ))}
                 </ul>
                 <button 
                   onClick={onContactClick}
-                  className="w-full mt-10 py-5 bg-emerald-600 text-white rounded-2xl font-bold text-xl hover:bg-emerald-700 transition-all shadow-lg shadow-emerald-600/20"
+                  className="w-full mt-10 py-5 bg-brand-accent text-white rounded-2xl font-bold text-xl hover:bg-brand-accent/90 transition-all shadow-lg shadow-brand-accent/20"
                 >
                   Speak with Our Expert
                 </button>
@@ -472,10 +491,10 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
         <div id="case-studies" className="mb-32 scroll-mt-32">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Success Stories</h2>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">See how leading brands are transforming their warehouse operations with WareSync.</p>
+            <p className="text-xl text-brand-dark/80 max-w-2xl mx-auto">See how leading brands are transforming their warehouse operations with WareSync.</p>
           </div>
 
-          <div className="standard-card overflow-hidden border border-slate-100 shadow-2xl">
+          <div className="standard-card overflow-hidden border border-brand-secondary/10 shadow-2xl">
             <div className="grid lg:grid-cols-2">
               <div className="relative h-[400px] lg:h-auto overflow-hidden">
                 <img 
@@ -485,7 +504,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
                   referrerPolicy="no-referrer"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-12 flex flex-col justify-end">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-accent text-white text-xs font-bold uppercase tracking-wider mb-4 w-fit">
                     Fashion & Apparel
                   </div>
                   <h3 className="text-4xl font-display font-bold text-white mb-2">Vibrant D2C</h3>
@@ -495,37 +514,37 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
               <div className="p-10 lg:p-16 bg-white">
                 <div className="space-y-10">
                   <div>
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">The Challenge</h4>
-                    <p className="text-xl text-slate-700 leading-relaxed italic">
+                    <h4 className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-4">The Challenge</h4>
+                    <p className="text-xl text-brand-dark leading-relaxed italic">
                       "Scaling to 5,000+ daily orders across 10+ marketplaces led to massive inventory discrepancies and delayed shipments. Our warehouse was a bottleneck."
                     </p>
                   </div>
 
                   <div>
-                    <h4 className="text-sm font-bold text-slate-400 uppercase tracking-widest mb-4">The Solution</h4>
-                    <p className="text-lg text-slate-600 leading-relaxed">
+                    <h4 className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-4">The Solution</h4>
+                    <p className="text-lg text-brand-dark/70 leading-relaxed">
                       Implemented WareSync's unified OMS and mobile-first WMS to centralize stock control and automate picking workflows.
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-3 gap-6 pt-6 border-t border-slate-100">
+                  <div className="grid grid-cols-3 gap-6 pt-6 border-t border-brand-secondary/10">
                     <div>
-                      <p className="text-3xl font-bold text-emerald-600 mb-1">99.9%</p>
-                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Accuracy</p>
+                      <p className="text-3xl font-bold text-brand-accent mb-1">99.9%</p>
+                      <p className="text-xs font-medium text-brand-accent uppercase tracking-wider">Accuracy</p>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold text-blue-600 mb-1">+45%</p>
-                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Speed</p>
+                      <p className="text-3xl font-bold text-brand-primary mb-1">+45%</p>
+                      <p className="text-xs font-medium text-brand-accent uppercase tracking-wider">Speed</p>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold text-purple-600 mb-1">60%</p>
-                      <p className="text-xs font-medium text-slate-500 uppercase tracking-wider">Reduction</p>
+                      <p className="text-3xl font-bold text-brand-secondary mb-1">60%</p>
+                      <p className="text-xs font-medium text-brand-accent uppercase tracking-wider">Reduction</p>
                     </div>
                   </div>
 
                   <button 
                     onClick={onContactClick}
-                    className="inline-flex items-center gap-2 font-bold text-black hover:gap-3 transition-all border-b-2 border-black pb-1"
+                    className="inline-flex items-center gap-2 font-bold text-brand-primary hover:gap-3 transition-all border-b-2 border-brand-primary pb-1"
                   >
                     Read Full Story <ArrowRight className="w-5 h-5" />
                   </button>
@@ -538,12 +557,12 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
         {/* Final CTA */}
         <div className="text-center max-w-3xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-display font-bold mb-6">Ready to Scale Your Operations?</h2>
-          <p className="text-xl text-slate-600 mb-10">
+          <p className="text-xl text-brand-dark/80 mb-10">
             Join 7,000+ global brands that trust our technology to power their fulfillment.
           </p>
           <button 
             onClick={onContactClick}
-            className="px-12 py-5 bg-black text-white rounded-full font-bold text-xl hover:bg-slate-800 transition-all shadow-2xl"
+            className="px-12 py-5 bg-brand-dark text-white rounded-full font-bold text-xl hover:bg-brand-dark/90 transition-all shadow-2xl"
           >
             Start Your Transformation
           </button>

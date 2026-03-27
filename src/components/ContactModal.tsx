@@ -137,7 +137,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            className="absolute inset-0 bg-brand-dark/60 backdrop-blur-sm"
           />
           
           <motion.div
@@ -148,14 +148,14 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
           >
             <button 
               onClick={onClose}
-              className="absolute top-6 right-6 p-2 text-slate-400 hover:text-black transition-colors"
+              className="absolute top-6 right-6 p-2 text-brand-accent/40 hover:text-brand-dark transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
 
             <div className="p-8 md:p-12">
               <h2 className="text-3xl font-display font-bold mb-2">Get Started with Sendit</h2>
-              <p className="text-slate-500 mb-8">Fill in the details below and our logistics experts will reach out to you within 24 hours.</p>
+              <p className="text-brand-accent/60 mb-8">Fill in the details below and our logistics experts will reach out to you within 24 hours.</p>
 
               {status === 'success' ? (
                 <motion.div 
@@ -163,17 +163,17 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   animate={{ opacity: 1, y: 0 }}
                   className="py-12 text-center"
                 >
-                  <div className="w-20 h-20 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <div className="w-20 h-20 bg-brand-accent/10 text-brand-accent rounded-full flex items-center justify-center mx-auto mb-6">
                     <Send className="w-10 h-10" />
                   </div>
                   <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-slate-600">Thank you for reaching out. We'll be in touch soon.</p>
+                  <p className="text-brand-accent/60">Thank you for reaching out. We'll be in touch soon.</p>
                 </motion.div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700">Full Name</label>
+                      <label className="text-sm font-bold text-brand-accent/80">Full Name</label>
                       <input 
                         name="name"
                         type="text" 
@@ -181,10 +181,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         onChange={handleInputChange}
                         onBlur={handleBlur}
                         placeholder="John Doe"
-                        className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                        className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                           errors.name && touched.name 
                             ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
-                            : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                            : 'border-brand-secondary/10 focus:ring-brand-accent/20 focus:border-brand-accent'
                         }`}
                       />
                       {errors.name && touched.name && (
@@ -194,7 +194,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       )}
                     </div>
                     <div className="space-y-2">
-                      <label className="text-sm font-bold text-slate-700">Company Name</label>
+                      <label className="text-sm font-bold text-brand-accent/80">Company Name</label>
                       <input 
                         name="company"
                         type="text" 
@@ -202,10 +202,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                         onChange={handleInputChange}
                         onBlur={handleBlur}
                         placeholder="Acme Corp"
-                        className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                        className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                           errors.company && touched.company 
                             ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
-                            : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                            : 'border-brand-secondary/10 focus:ring-brand-accent/20 focus:border-brand-accent'
                         }`}
                       />
                       {errors.company && touched.company && (
@@ -217,7 +217,7 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Work Email</label>
+                    <label className="text-sm font-bold text-brand-accent/80">Work Email</label>
                     <input 
                       name="email"
                       type="email" 
@@ -225,10 +225,10 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                       onChange={handleInputChange}
                       onBlur={handleBlur}
                       placeholder="john@company.com"
-                      className={`w-full px-4 py-3 bg-slate-50 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
+                      className={`w-full px-4 py-3 bg-brand-secondary/5 border rounded-xl focus:outline-none focus:ring-2 transition-all ${
                         errors.email && touched.email 
                           ? 'border-red-500 focus:ring-red-500/20 focus:border-red-500' 
-                          : 'border-slate-200 focus:ring-emerald-500/20 focus:border-emerald-500'
+                          : 'border-brand-secondary/10 focus:ring-brand-accent/20 focus:border-brand-accent'
                       }`}
                     />
                     {errors.email && touched.email && (
@@ -239,12 +239,12 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Monthly Order Volume</label>
+                    <label className="text-sm font-bold text-brand-accent/80">Monthly Order Volume</label>
                     <select 
                       name="volume"
                       value={formData.volume}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
+                      className="w-full px-4 py-3 bg-brand-secondary/5 border border-brand-secondary/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-all"
                     >
                       <option>0 - 500 orders</option>
                       <option>500 - 5,000 orders</option>
@@ -254,21 +254,21 @@ const ContactModal = ({ isOpen, onClose }: ContactModalProps) => {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-sm font-bold text-slate-700">Message (Optional)</label>
+                    <label className="text-sm font-bold text-brand-accent/80">Message (Optional)</label>
                     <textarea 
                       name="message"
                       rows={3}
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="Tell us about your logistics needs..."
-                      className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all resize-none"
+                      className="w-full px-4 py-3 bg-brand-secondary/5 border border-brand-secondary/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent transition-all resize-none"
                     />
                   </div>
 
                   <button 
                     disabled={status === 'loading' || !isFormValid()}
                     type="submit"
-                    className="w-full py-4 bg-black text-white rounded-xl font-bold text-lg hover:bg-slate-800 transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full py-4 bg-brand-dark text-white rounded-xl font-bold text-lg hover:bg-brand-secondary transition-all flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {status === 'loading' ? (
                       <Loader2 className="w-6 h-6 animate-spin" />

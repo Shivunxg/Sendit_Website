@@ -1,5 +1,5 @@
 import { GoogleGenAI, GenerateContentResponse } from "@google/genai";
-import { MessageSquare, X, Send, Loader2, Minimize2, Maximize2 } from "lucide-react";
+import { MessageSquare, X, Send, Loader2, Minimize2, Maximize2, Package, Calculator, BarChart3, HelpCircle, ArrowRight } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import React, { useState, useRef, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
@@ -9,11 +9,18 @@ interface Message {
   text: string;
 }
 
+const QUICK_ACTIONS = [
+  { id: "track", label: "Track Shipment", icon: Package, prompt: "I want to track my shipment. What information do you need?" },
+  { id: "calc", label: "Shipping Calculator", icon: Calculator, prompt: "How do I calculate shipping costs for my business?" },
+  { id: "wms", label: "WareSync WMS", icon: BarChart3, prompt: "Tell me more about WareSync WMS and how it can help my warehouse." },
+  { id: "support", label: "Contact Support", icon: HelpCircle, prompt: "I need to speak with a human. How can I contact Sendit support?" },
+];
+
 const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMinimized, setIsMinimized] = useState(false);
   const [messages, setMessages] = useState<Message[]>([
-    { role: "model", text: "Hello! I'm your Sendit Logistics assistant. How can I help you optimize your supply chain today?" }
+    { role: "model", text: "Hello! I'm your **Sendit** Assistant. How can I help you optimize your logistics today?" }
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -27,11 +34,28 @@ const ChatBot = () => {
     scrollToBottom();
   }, [messages]);
 
-  const handleSend = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const [lastMessageTime, setLastMessageTime] = useState<number>(0);
+  const MESSAGE_COOLDOWN = 2000; // 2 seconds between messages
 
-    const userMessage = input.trim();
+  const handleSend = async (text: string) => {
+    if (!text.trim() || isLoading) return;
+
+    const now = Date.now();
+    if (now - lastMessageTime < MESSAGE_COOLDOWN) {
+      const remaining = Math.ceil((MESSAGE_COOLDOWN - (now - lastMessageTime)) / 1000);
+      setMessages(prev => [...prev, { role: "model", text: `Slow down! Please wait ${remaining} more second(s).` }]);
+      return;
+    }
+    setLastMessageTime(now);
+
+    if (typeof window !== 'undefined' && (window as any).aistudio) {
+      const hasKey = await (window as any).aistudio.hasSelectedApiKey();
+      if (!hasKey) {
+        await (window as any).aistudio.openSelectKey();
+      }
+    }
+
+    const userMessage = text.trim();
     setInput("");
     setMessages(prev => [...prev, { role: "user", text: userMessage }]);
     setIsLoading(true);
@@ -39,14 +63,14 @@ const ChatBot = () => {
     try {
       const apiKey = process.env.GEMINI_API_KEY;
       if (!apiKey) {
-        throw new Error("Gemini API key is missing. Please check your environment variables.");
+        throw new Error("API key missing. Please connect your Gemini API key.");
       }
 
       const ai = new GoogleGenAI({ apiKey });
       const chat = ai.chats.create({
-        model: "gemini-1.5-flash",
+        model: "gemini-3-flash-preview",
         config: {
-          systemInstruction: "You are a helpful and professional logistics assistant for 'Sendit', India's unified shipping and fulfillment infrastructure. Your goal is to help users understand Sendit's products (WareSync WMS, SwiftShip), shipping tools (calculators), and general logistics queries. Be concise, expert, and friendly. If users ask about pricing, mention we have flexible plans for all business sizes. If they need support, direct them to hello@sendit.co.in.",
+          systemInstruction: "You are a professional logistics expert for 'Sendit'. Help users with shipping, WMS (WareSync), and fulfillment. Be concise, technical yet approachable. Direct support queries to hello@sendit.co.in.",
         },
       });
 
@@ -66,10 +90,10 @@ const ChatBot = () => {
           return newMessages;
         });
       }
-    } catch (error) {
+    } catch (error: any) {
       console.error("Chat error:", error);
       const errorMessage = error instanceof Error ? error.message : "An unexpected error occurred.";
-      setMessages(prev => [...prev, { role: "model", text: `Sorry, I encountered an error: ${errorMessage}. Please try again or contact support at hello@sendit.co.in.` }]);
+      setMessages(prev => [...prev, { role: "model", text: `Error: ${errorMessage}. Please try again.` }]);
     } finally {
       setIsLoading(false);
     }
@@ -80,37 +104,41 @@ const ChatBot = () => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            className={`bg-white border border-slate-200 shadow-2xl rounded-2xl overflow-hidden mb-4 flex flex-col transition-all duration-300 ${
-              isMinimized ? "h-16 w-72" : "h-[500px] w-[350px] md:w-[400px]"
+            exit={{ opacity: 0, scale: 0.95, y: 20 }}
+            className={`bg-white border border-brand-secondary/10 shadow-2xl rounded-2xl overflow-hidden mb-4 flex flex-col transition-all duration-300 ${
+              isMinimized ? "h-14 w-64" : "h-[520px] w-[340px] md:w-[380px] max-h-[calc(100vh-120px)]"
             }`}
           >
             {/* Header */}
-            <div className="bg-brand-dark p-4 flex items-center justify-between text-white">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+            <div className="bg-brand-dark p-3 flex items-center justify-between text-white border-b border-white/10">
+              <div className="flex items-center gap-2.5">
+                <div className="w-9 h-9 bg-brand-primary rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/20">
                   <MessageSquare className="w-5 h-5" />
                 </div>
                 <div>
-                  <p className="font-bold text-sm">Sendit Assistant</p>
-                  {!isMinimized && <p className="text-[10px] text-emerald-400 flex items-center gap-1">
-                    <span className="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-                    Online
-                  </p>}
+                  <p className="font-bold text-xs tracking-tight"><span className="text-brand-primary">Sendit</span> Logistics AI</p>
+                  {!isMinimized && (
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 bg-brand-accent rounded-full animate-pulse" />
+                      <p className="text-[10px] font-medium text-white/70 uppercase tracking-wider">Expert Online</p>
+                    </div>
+                  )}
                 </div>
               </div>
               <div className="flex items-center gap-1">
                 <button 
                   onClick={() => setIsMinimized(!isMinimized)}
-                  className="p-1.5 hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  title={isMinimized ? "Expand" : "Minimize"}
                 >
                   {isMinimized ? <Maximize2 className="w-4 h-4" /> : <Minimize2 className="w-4 h-4" />}
                 </button>
                 <button 
                   onClick={() => setIsOpen(false)}
-                  className="p-1.5 hover:bg-white/10 rounded-lg transition-colors"
+                  className="p-2 hover:bg-white/10 rounded-lg transition-colors"
+                  title="Close"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -120,29 +148,59 @@ const ChatBot = () => {
             {/* Chat Body */}
             {!isMinimized && (
               <>
-                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-slate-50">
+                <div className="flex-grow overflow-y-auto p-4 space-y-4 bg-brand-secondary/5 scrollbar-thin scrollbar-thumb-brand-secondary/20">
                   {messages.map((msg, idx) => (
                     <div
                       key={idx}
-                      className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
+                      className={`flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`}
                     >
                       <div
-                        className={`max-w-[85%] p-3 rounded-2xl text-sm ${
+                        className={`max-w-[90%] p-3 rounded-xl text-sm leading-relaxed ${
                           msg.role === "user"
-                            ? "bg-emerald-600 text-white rounded-tr-none shadow-md shadow-emerald-600/10"
-                            : "bg-white border border-slate-200 text-slate-800 rounded-tl-none shadow-sm"
+                            ? "bg-brand-primary text-white rounded-tr-none shadow-lg shadow-brand-primary/10"
+                            : "bg-white border border-brand-secondary/10 text-brand-dark rounded-tl-none shadow-sm"
                         }`}
                       >
-                        <div className="prose prose-sm max-w-none prose-p:leading-relaxed prose-p:my-1 prose-headings:my-2 prose-ul:my-1 prose-li:my-0.5">
+                        <div className="prose prose-sm max-w-none prose-p:my-0 prose-headings:text-brand-dark prose-a:text-brand-primary">
                           <ReactMarkdown>{msg.text}</ReactMarkdown>
                         </div>
                       </div>
+                      <span className="text-[10px] font-medium text-brand-dark/60 mt-1 px-1">
+                        {msg.role === "user" ? "You" : "Assistant"}
+                      </span>
                     </div>
                   ))}
+
+                  {/* Quick Actions - Only show at start or when requested */}
+                  {messages.length === 1 && !isLoading && (
+                    <div className="grid grid-cols-1 gap-2 mt-4">
+                      <p className="text-[11px] font-semibold text-brand-accent/40 uppercase tracking-wider mb-1">Quick Actions</p>
+                      {QUICK_ACTIONS.map((action) => (
+                        <button
+                          key={action.id}
+                          onClick={() => handleSend(action.prompt)}
+                          className="flex items-center justify-between p-3 bg-white border border-brand-secondary/10 rounded-xl hover:border-brand-primary hover:bg-brand-primary/5 transition-all group text-left"
+                        >
+                          <div className="flex items-center gap-3">
+                            <div className="p-2 bg-brand-secondary/5 rounded-lg group-hover:bg-brand-primary/10 transition-colors">
+                              <action.icon className="w-4 h-4 text-brand-dark/70 group-hover:text-brand-primary" />
+                            </div>
+                            <span className="text-sm font-medium text-brand-dark group-hover:text-brand-primary">{action.label}</span>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-brand-dark/20 group-hover:text-brand-primary transform translate-x-0 group-hover:translate-x-1 transition-all" />
+                        </button>
+                      ))}
+                    </div>
+                  )}
+
                   {isLoading && messages[messages.length - 1].role === "user" && (
                     <div className="flex justify-start">
-                      <div className="bg-white border border-slate-200 p-3 rounded-2xl rounded-tl-none shadow-sm">
-                        <Loader2 className="w-4 h-4 animate-spin text-emerald-600" />
+                      <div className="bg-white border border-brand-secondary/10 p-4 rounded-2xl rounded-tl-none shadow-sm flex items-center gap-2">
+                        <div className="flex gap-1">
+                          <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:-0.3s]" />
+                          <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce [animation-delay:-0.15s]" />
+                          <span className="w-1.5 h-1.5 bg-brand-primary rounded-full animate-bounce" />
+                        </div>
                       </div>
                     </div>
                   )}
@@ -150,23 +208,34 @@ const ChatBot = () => {
                 </div>
 
                 {/* Input Area */}
-                <form onSubmit={handleSend} className="p-4 bg-white border-t border-slate-100 flex gap-2">
-                  <input
-                    type="text"
-                    value={input}
-                    onChange={(e) => setInput(e.target.value)}
-                    placeholder="Ask about shipping, WMS..."
-                    className="flex-grow px-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-                    disabled={isLoading}
-                  />
-                  <button
-                    type="submit"
-                    disabled={!input.trim() || isLoading}
-                    className="p-2 bg-emerald-600 text-white rounded-xl hover:bg-emerald-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-emerald-600/20"
+                <div className="p-3 bg-white border-t border-brand-secondary/10">
+                  <form 
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      handleSend(input);
+                    }} 
+                    className="relative flex items-center"
                   >
-                    <Send className="w-5 h-5" />
-                  </button>
-                </form>
+                    <input
+                      type="text"
+                      value={input}
+                      onChange={(e) => setInput(e.target.value)}
+                      placeholder="Type your message..."
+                      className="w-full pl-3 pr-10 py-2.5 bg-brand-secondary/5 border border-brand-secondary/10 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/10 focus:border-brand-primary transition-all"
+                      disabled={isLoading}
+                    />
+                    <button
+                      type="submit"
+                      disabled={!input.trim() || isLoading}
+                      className="absolute right-1.5 p-1.5 bg-brand-dark text-white rounded-md hover:bg-brand-primary transition-all disabled:opacity-30 disabled:cursor-not-allowed"
+                    >
+                      {isLoading ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Send className="w-3.5 h-3.5" />}
+                    </button>
+                  </form>
+                  <p className="text-[9px] text-center text-brand-accent/40 mt-2">
+                    Powered by <span className="text-brand-primary font-bold">Sendit</span> AI • Concisely expert logistics support
+                  </p>
+                </div>
               </>
             )}
           </motion.div>
@@ -181,13 +250,19 @@ const ChatBot = () => {
           setIsOpen(!isOpen);
           setIsMinimized(false);
         }}
-        className={`w-14 h-14 rounded-full flex items-center justify-center shadow-2xl transition-all duration-300 ${
-          isOpen ? "bg-white text-brand-dark border border-slate-200" : "bg-emerald-600 text-white"
+        className={`w-14 h-14 rounded-xl flex items-center justify-center shadow-2xl transition-all duration-500 ${
+          isOpen 
+            ? "bg-white text-brand-dark border border-brand-secondary/10 rotate-0" 
+            : "bg-brand-dark text-white hover:bg-brand-primary -rotate-12 hover:rotate-0"
         }`}
       >
-        {isOpen ? <X className="w-6 h-6" /> : <MessageSquare className="w-6 h-6" />}
-        {!isOpen && (
-          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 border-2 border-white rounded-full" />
+        {isOpen ? (
+          <X className="w-6 h-6" />
+        ) : (
+          <div className="relative">
+            <MessageSquare className="w-6 h-6" />
+            <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-brand-accent border-2 border-brand-dark rounded-full animate-pulse" />
+          </div>
         )}
       </motion.button>
     </div>
@@ -195,3 +270,4 @@ const ChatBot = () => {
 };
 
 export default ChatBot;
+

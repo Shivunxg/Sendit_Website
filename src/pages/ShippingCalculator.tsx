@@ -50,7 +50,7 @@ const ShippingCalculatorPage = () => {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Shipping Rate Calculator</h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <p className="text-xl text-brand-accent/60 max-w-2xl mx-auto">
               Compare shipping rates across India's top courier partners in seconds.
             </p>
           </motion.div>
@@ -59,39 +59,39 @@ const ShippingCalculatorPage = () => {
         <div className="standard-card p-8 md:p-12">
           <div className="grid lg:grid-cols-2 gap-16">
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider mb-6 border border-blue-100">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-wider mb-6 border border-brand-primary/20">
                 <Calculator className="w-3 h-3" /> Rate Estimator
               </div>
               <h2 className="text-3xl font-display font-bold mb-6">Calculate Your Shipment</h2>
-              <p className="text-slate-600 mb-10 leading-relaxed">
+              <p className="text-brand-accent/60 mb-10 leading-relaxed">
                 Input your shipment details to see real-time cost comparisons. We calculate both dead weight and volumetric weight to give you the most accurate estimate.
               </p>
 
               <form onSubmit={handleCalculate} className="space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Origin Pincode</label>
+                    <label className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest ml-1">Origin Pincode</label>
                     <div className="relative">
-                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-accent/40" />
                       <input 
                         type="text" 
                         placeholder="e.g. 110001"
                         required
-                        className="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                        className="w-full pl-11 pr-4 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all"
                         value={formData.origin}
                         onChange={(e) => setFormData({...formData, origin: e.target.value})}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Destination Pincode</label>
+                    <label className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest ml-1">Destination Pincode</label>
                     <div className="relative">
-                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-accent/40" />
                       <input 
                         type="text" 
                         placeholder="e.g. 400001"
                         required
-                        className="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                        className="w-full pl-11 pr-4 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all"
                         value={formData.destination}
                         onChange={(e) => setFormData({...formData, destination: e.target.value})}
                       />
@@ -101,41 +101,41 @@ const ShippingCalculatorPage = () => {
 
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Weight (kg)</label>
+                    <label className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest ml-1">Weight (kg)</label>
                     <div className="relative">
-                      <Weight className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
+                      <Weight className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-accent/40" />
                       <input 
                         type="number" 
                         step="0.1"
                         placeholder="e.g. 0.5"
                         required
-                        className="w-full pl-11 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all"
+                        className="w-full pl-11 pr-4 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all"
                         value={formData.weight}
                         onChange={(e) => setFormData({...formData, weight: e.target.value})}
                       />
                     </div>
                   </div>
                   <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Dimensions (L x W x H cm)</label>
+                    <label className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest ml-1">Dimensions (L x W x H cm)</label>
                     <div className="relative flex gap-2">
                       <input 
                         type="number" 
                         placeholder="L"
-                        className="w-full px-3 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-center"
+                        className="w-full px-3 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all text-center"
                         value={formData.length}
                         onChange={(e) => setFormData({...formData, length: e.target.value})}
                       />
                       <input 
                         type="number" 
                         placeholder="W"
-                        className="w-full px-3 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-center"
+                        className="w-full px-3 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all text-center"
                         value={formData.width}
                         onChange={(e) => setFormData({...formData, width: e.target.value})}
                       />
                       <input 
                         type="number" 
                         placeholder="H"
-                        className="w-full px-3 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-center"
+                        className="w-full px-3 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all text-center"
                         value={formData.height}
                         onChange={(e) => setFormData({...formData, height: e.target.value})}
                       />
@@ -146,7 +146,7 @@ const ShippingCalculatorPage = () => {
                 <button 
                   type="submit"
                   disabled={isCalculating}
-                  className="w-full py-5 bg-blue-600 text-white rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 disabled:opacity-50"
+                  className="w-full py-5 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 disabled:opacity-50"
                 >
                   {isCalculating ? (
                     <>
@@ -168,13 +168,13 @@ const ShippingCalculatorPage = () => {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-slate-200 rounded-3xl"
+                    className="absolute inset-0 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-brand-secondary/10 rounded-3xl"
                   >
-                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mb-4">
-                      <Truck className="w-8 h-8 text-slate-300" />
+                    <div className="w-16 h-16 bg-brand-secondary/10 rounded-full flex items-center justify-center mb-4">
+                      <Truck className="w-8 h-8 text-brand-accent/40" />
                     </div>
-                    <h4 className="text-lg font-bold text-slate-400">Ready to Calculate</h4>
-                    <p className="text-slate-400 text-sm max-w-[200px]">Enter shipment details to see courier options and rates.</p>
+                    <h4 className="text-lg font-bold text-brand-accent/40">Ready to Calculate</h4>
+                    <p className="text-brand-accent/40 text-sm max-w-[200px]">Enter shipment details to see courier options and rates.</p>
                   </motion.div>
                 )}
 
@@ -186,11 +186,11 @@ const ShippingCalculatorPage = () => {
                     className="absolute inset-0 flex flex-col items-center justify-center text-center p-8"
                   >
                     <div className="relative">
-                      <div className="w-20 h-20 border-4 border-blue-100 border-t-blue-600 rounded-full animate-spin" />
-                      <Truck className="absolute inset-0 m-auto w-8 h-8 text-blue-600" />
+                      <div className="w-20 h-20 border-4 border-brand-primary/10 border-t-brand-primary rounded-full animate-spin" />
+                      <Truck className="absolute inset-0 m-auto w-8 h-8 text-brand-primary" />
                     </div>
-                    <p className="mt-6 font-bold text-slate-900">Fetching best rates...</p>
-                    <p className="text-slate-400 text-sm">Comparing 15+ courier partners</p>
+                    <p className="mt-6 font-bold text-brand-dark">Fetching best rates...</p>
+                    <p className="text-brand-accent/40 text-sm">Comparing 15+ courier partners</p>
                   </motion.div>
                 )}
 
@@ -201,33 +201,33 @@ const ShippingCalculatorPage = () => {
                     className="space-y-4"
                   >
                     <h4 className="text-xl font-bold mb-4 flex items-center gap-2">
-                      Estimated Rates <span className="text-xs font-normal text-slate-400">(Inclusive of all taxes)</span>
+                      Estimated Rates <span className="text-xs font-normal text-brand-accent/40">(Inclusive of all taxes)</span>
                     </h4>
                     {results.map((res, i) => (
-                      <div key={i} className="p-5 bg-white rounded-2xl border border-slate-100 flex items-center justify-between hover:shadow-lg transition-all group">
+                      <div key={i} className="p-5 bg-white rounded-2xl border border-brand-secondary/10 flex items-center justify-between hover:shadow-lg transition-all group">
                         <div className="flex items-center gap-4">
-                          <div className="w-12 h-12 bg-slate-50 rounded-xl flex items-center justify-center font-bold text-[10px] text-slate-400 text-center leading-tight">
+                          <div className="w-12 h-12 bg-brand-secondary/5 rounded-xl flex items-center justify-center font-bold text-[10px] text-brand-secondary/80 text-center leading-tight">
                             {res.name.split(' ').map((n: string) => n[0]).join('')}
                           </div>
                           <div>
-                            <p className="font-bold text-slate-900">{res.name}</p>
+                            <p className="font-bold text-brand-dark">{res.name}</p>
                             <div className="flex items-center gap-2">
-                              <span className="text-xs text-slate-400 flex items-center gap-1">
+                              <span className="text-xs text-brand-accent/70 flex items-center gap-1">
                                 <Activity className="w-3 h-3" /> {res.time}
                               </span>
-                              <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 bg-blue-50 text-blue-600 rounded">
+                              <span className="text-[10px] font-bold uppercase tracking-wider px-1.5 py-0.5 bg-brand-primary/10 text-brand-primary rounded">
                                 {res.type}
                               </span>
                             </div>
                           </div>
                         </div>
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-slate-900">₹{res.total}</p>
-                          <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest">Best Value</p>
+                          <p className="text-2xl font-bold text-brand-dark">₹{res.total}</p>
+                          <p className="text-[10px] font-bold text-brand-accent uppercase tracking-widest">Best Value</p>
                         </div>
                       </div>
                     ))}
-                    <p className="text-[10px] text-slate-400 text-center pt-4 italic">
+                    <p className="text-[10px] text-brand-accent/40 text-center pt-4 italic">
                       *Rates are indicative and subject to change based on actual weight and dimensions at pickup.
                     </p>
                   </motion.div>

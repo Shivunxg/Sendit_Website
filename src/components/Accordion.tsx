@@ -11,9 +11,9 @@ interface AccordionItemProps {
 
 const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, isOpen, onClick }) => {
   return (
-    <div className="border-b border-slate-200 last:border-b-0">
+    <div className="border-b border-brand-secondary/10 last:border-b-0">
       <button
-        className="flex justify-between items-center w-full py-5 text-left font-bold text-lg text-slate-900 hover:text-blue-600 transition-colors"
+        className="flex justify-between items-center w-full py-5 text-left font-bold text-lg text-brand-dark hover:text-brand-primary transition-colors"
         onClick={onClick}
       >
         {question}
@@ -22,7 +22,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, isOpen,
           animate={{ rotate: isOpen ? 180 : 0 }}
           transition={{ duration: 0.3 }}
         >
-          <ChevronDown className="w-5 h-5 text-slate-500" />
+          <ChevronDown className="w-5 h-5 text-brand-accent/40" />
         </motion.div>
       </button>
       <AnimatePresence>
@@ -34,7 +34,7 @@ const AccordionItem: React.FC<AccordionItemProps> = ({ question, answer, isOpen,
             transition={{ duration: 0.3, ease: 'easeInOut' }}
             className="overflow-hidden"
           >
-            <p className="pb-5 text-slate-600 leading-relaxed">
+            <p className="pb-5 text-brand-accent/60 leading-relaxed">
               {answer}
             </p>
           </motion.div>

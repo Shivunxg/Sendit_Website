@@ -1,34 +1,88 @@
 {
   "entities": {
     "User": {
-      "title": "User Profile",
-      "description": "User account with product mapping and SSO configuration.",
+      "title": "User",
+      "description": "Core user account information.",
       "type": "object",
       "properties": {
-        "userId": { "type": "string", "description": "Firebase Auth UID" },
-        "email": { "type": "string", "format": "email", "description": "User email address" },
-        "products": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "productId": { "type": "string" },
-              "name": { "type": "string" },
-              "url": { "type": "string", "format": "uri" },
-              "access": { "type": "boolean" }
-            },
-            "required": ["productId", "name", "url", "access"]
-          }
-        },
-        "defaultProduct": { "type": "string", "description": "The product ID to redirect to by default" }
+        "email": { "type": "string", "format": "email" },
+        "name": { "type": "string" },
+        "companyName": { "type": "string" },
+        "contactNo": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "suspended"] },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "createdAt": { "type": "string" }
       },
-      "required": ["userId", "email", "products"]
+      "required": ["email", "name", "companyName", "contactNo", "status", "createdAt"]
+    },
+    "Product": {
+      "title": "Product",
+      "description": "SaaS product definition.",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" }
+      },
+      "required": ["name"]
+    },
+    "UserProductMap": {
+      "title": "User Product Map",
+      "description": "Mapping between users and products with roles and status.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "productId": { "type": "string" },
+        "role": { "type": "string", "enum": ["admin", "user"] },
+        "status": { "type": "string", "enum": ["approved", "pending", "rejected"] }
+      },
+      "required": ["userId", "productId", "role", "status"]
+    },
+    "JobPosting": {
+      "title": "Job Posting",
+      "description": "A career opportunity at Sendit.",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "location": { "type": "string" },
+        "type": { "type": "string", "enum": ["Full-time", "Part-time", "Contract", "Internship"] },
+        "description": { "type": "string" },
+        "requirements": { "type": "array", "items": { "type": "string" } },
+        "responsibilities": { "type": "array", "items": { "type": "string" } },
+        "createdAt": { "type": "string" },
+        "active": { "type": "boolean" }
+      },
+      "required": ["title", "location", "type", "description", "requirements", "responsibilities", "createdAt", "active"]
+    },
+    "NewsletterSubscriber": {
+      "title": "Newsletter Subscriber",
+      "description": "A user subscribed to the newsletter.",
+      "type": "object",
+      "properties": {
+        "email": { "type": "string", "format": "email" },
+        "subscribedAt": { "type": "string" }
+      },
+      "required": ["email", "subscribedAt"]
     }
   },
   "firestore": {
     "/users/{userId}": {
       "schema": "User",
-      "description": "Stores user product mappings and preferences."
+      "description": "User accounts"
+    },
+    "/products/{productId}": {
+      "schema": "Product",
+      "description": "Available products"
+    },
+    "/userProductMaps/{mapId}": {
+      "schema": "UserProductMap",
+      "description": "User-to-product permissions"
+    },
+    "/jobPostings/{jobId}": {
+      "schema": "JobPosting",
+      "description": "Career opportunities"
+    },
+    "/newsletterSubscribers/{subscriberId}": {
+      "schema": "NewsletterSubscriber",
+      "description": "Newsletter subscriptions"
     }
   }
 }

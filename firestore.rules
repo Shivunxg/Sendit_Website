@@ -2,7 +2,10 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
     
-    // Helper functions
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    
     function isAuthenticated() {
       return request.auth != null;
     }
@@ -11,19 +14,92 @@ service cloud.firestore {
       return isAuthenticated() && request.auth.uid == userId;
     }
     
-    function isValidUser(data) {
-      return data.keys().hasAll(['userId', 'email', 'products']) &&
-             data.userId is string &&
-             data.email is string &&
-             data.products is list;
+    function isAdmin() {
+      return isAuthenticated() &&
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+          (request.auth.token.email == "shivuNXG@gmail.com" && request.auth.token.email_verified == true));
     }
+
+    // ===============================================================
+    // Data Validation
+    // ===============================================================
+
+    function isValidUser(data) {
+      return data.keys().hasAll(['email', 'name', 'companyName', 'contactNo', 'status', 'createdAt']) &&
+             data.email is string &&
+             data.name is string && data.name.size() > 0 &&
+             data.companyName is string && data.companyName.size() > 0 &&
+             data.contactNo is string && data.contactNo.size() > 0 &&
+             data.status in ['active', 'suspended'] &&
+             data.createdAt is string;
+    }
+
+    function isValidProduct(data) {
+      return data.keys().hasAll(['name']) &&
+             data.name is string && data.name.size() > 0;
+    }
+
+    function isValidUserProductMap(data) {
+      return data.keys().hasAll(['userId', 'productId', 'role', 'status']) &&
+             data.userId is string &&
+             data.productId is string &&
+             data.role in ['admin', 'user'] &&
+             data.status in ['approved', 'pending', 'rejected'];
+    }
+
+    function isValidJobPosting(data) {
+      return data.keys().hasAll(['title', 'location', 'type', 'description', 'requirements', 'responsibilities', 'createdAt', 'active']) &&
+             data.title is string && data.title.size() > 0 &&
+             data.location is string && data.location.size() > 0 &&
+             data.type in ['Full-time', 'Part-time', 'Contract', 'Internship'] &&
+             data.description is string && data.description.size() > 0 &&
+             data.requirements is list &&
+             data.responsibilities is list &&
+             data.createdAt is string &&
+             data.active is bool;
+    }
+
+    function isValidNewsletterSubscriber(data) {
+      return data.keys().hasAll(['email', 'subscribedAt']) &&
+             data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.subscribedAt is string;
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
 
     // User profiles
     match /users/{userId} {
-      allow read: if isOwner(userId);
+      allow read: if isOwner(userId) || isAdmin();
       allow create: if isOwner(userId) && isValidUser(request.resource.data);
-      allow update: if isOwner(userId) && isValidUser(request.resource.data);
-      allow delete: if false; // Users cannot delete their own profile via frontend
+      allow update: if (isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == resource.data.role) || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Products
+    match /products/{productId} {
+      allow read: if isAuthenticated();
+      allow write: if isAdmin() && isValidProduct(request.resource.data);
+    }
+
+    // User-to-product permissions
+    match /userProductMaps/{mapId} {
+      allow read: if isAuthenticated() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow write: if isAdmin() && isValidUserProductMap(request.resource.data);
+    }
+
+    // Job Postings
+    match /jobPostings/{jobId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidJobPosting(request.resource.data);
+    }
+
+    // Newsletter Subscriptions
+    match /newsletterSubscribers/{subscriberId} {
+      allow read: if isAdmin();
+      allow create: if isValidNewsletterSubscriber(request.resource.data);
+      allow update, delete: if isAdmin();
     }
   }
 }

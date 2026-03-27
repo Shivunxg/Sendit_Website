@@ -26,60 +26,60 @@ const SwiftShipVisual = () => {
       {/* Header */}
       <div className="flex items-center justify-between relative z-10">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-lg shadow-blue-200">
+          <div className="w-10 h-10 bg-brand-primary rounded-xl flex items-center justify-center shadow-lg shadow-brand-primary/20">
             <Navigation className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h4 className="text-sm font-bold text-slate-900 tracking-tight">Tracking ID: SS-928371</h4>
-            <p className="text-[10px] text-slate-500 font-medium">In Transit - Out for Delivery</p>
+            <h4 className="text-sm font-bold text-brand-dark tracking-tight">Tracking ID: SS-928371</h4>
+            <p className="text-[10px] text-brand-secondary font-medium">In Transit - Out for Delivery</p>
           </div>
         </div>
-        <div className="flex items-center gap-2 px-3 py-1 bg-emerald-50 text-emerald-600 rounded-full border border-emerald-100">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="flex items-center gap-2 px-3 py-1 bg-brand-accent/10 text-brand-accent rounded-full border border-brand-accent/20">
+          <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
           <span className="text-[10px] font-bold uppercase tracking-wider">On Time</span>
         </div>
       </div>
 
       {/* Delivery Progress */}
-      <div className="bg-slate-50 rounded-2xl p-5 border border-slate-100 relative z-10">
+      <div className="bg-brand-secondary/5 rounded-2xl p-5 border border-brand-secondary/10 relative z-10">
         <div className="flex justify-between items-center mb-6">
           <div className="flex flex-col items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-brand-primary/10 text-brand-primary flex items-center justify-center">
               <Package className="w-4 h-4" />
             </div>
-            <span className="text-[8px] font-bold text-slate-400">Shipped</span>
+            <span className="text-[8px] font-bold text-brand-accent/60">Shipped</span>
           </div>
-          <div className="flex-grow h-[2px] bg-blue-100 mx-2 relative overflow-hidden">
+          <div className="flex-grow h-[2px] bg-brand-primary/10 mx-2 relative overflow-hidden">
             <motion.div 
               initial={{ width: "0%" }}
               animate={{ width: "100%" }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="absolute top-0 left-0 h-full bg-blue-500"
+              className="absolute top-0 left-0 h-full bg-brand-primary"
             />
           </div>
           <div className="flex flex-col items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-md">
+            <div className="w-8 h-8 rounded-full bg-brand-primary text-white flex items-center justify-center shadow-md">
               <Truck className="w-4 h-4" />
             </div>
-            <span className="text-[8px] font-bold text-blue-600">Transit</span>
+            <span className="text-[8px] font-bold text-brand-primary">Transit</span>
           </div>
-          <div className="flex-grow h-[2px] bg-slate-200 mx-2" />
+          <div className="flex-grow h-[2px] bg-brand-secondary/10 mx-2" />
           <div className="flex flex-col items-center gap-2">
-            <div className="w-8 h-8 rounded-full bg-slate-100 text-slate-400 flex items-center justify-center">
+            <div className="w-8 h-8 rounded-full bg-brand-secondary/5 text-brand-accent/40 flex items-center justify-center">
               <CheckCircle2 className="w-4 h-4" />
             </div>
-            <span className="text-[8px] font-bold text-slate-400">Delivered</span>
+            <span className="text-[8px] font-bold text-brand-accent/60">Delivered</span>
           </div>
         </div>
 
         <div className="space-y-4">
           <div className="flex items-start gap-3">
-            <div className="w-6 h-6 rounded-full bg-blue-50 flex items-center justify-center mt-1">
-              <MapPin className="w-3 h-3 text-blue-600" />
+            <div className="w-6 h-6 rounded-full bg-brand-primary/5 flex items-center justify-center mt-1">
+              <MapPin className="w-3 h-3 text-brand-primary" />
             </div>
             <div>
-              <p className="text-[11px] font-bold text-slate-800">Current Location: Hub - Bangalore South</p>
-              <p className="text-[9px] text-slate-500">Expected delivery by 6:00 PM today</p>
+              <p className="text-[11px] font-bold text-brand-dark">Current Location: Hub - Bangalore South</p>
+              <p className="text-[9px] text-brand-secondary">Expected delivery by 6:00 PM today</p>
             </div>
           </div>
         </div>
@@ -89,34 +89,34 @@ const SwiftShipVisual = () => {
       <div className="grid grid-cols-2 gap-4 relative z-10">
         <motion.div 
           whileHover={{ y: -5 }}
-          className="p-4 bg-white rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-2"
+          className="p-4 bg-white rounded-2xl border border-brand-secondary/10 shadow-sm flex flex-col gap-2"
         >
           <div className="flex items-center gap-2">
-            <ShieldCheck className="w-4 h-4 text-emerald-500" />
-            <span className="text-[10px] font-bold text-slate-600">AI NDR Shield</span>
+            <ShieldCheck className="w-4 h-4 text-brand-accent" />
+            <span className="text-[10px] font-bold text-brand-secondary">AI NDR Shield</span>
           </div>
-          <p className="text-xs font-bold text-slate-900">Address Verified</p>
-          <div className="h-1 w-full bg-slate-100 rounded-full overflow-hidden">
-            <div className="h-full w-[95%] bg-emerald-500" />
+          <p className="text-xs font-bold text-brand-dark">Address Verified</p>
+          <div className="h-1 w-full bg-brand-secondary/10 rounded-full overflow-hidden">
+            <div className="h-full w-[95%] bg-brand-accent" />
           </div>
         </motion.div>
 
         <motion.div 
           whileHover={{ y: -5 }}
-          className="p-4 bg-white rounded-2xl border border-slate-100 shadow-sm flex flex-col gap-2"
+          className="p-4 bg-white rounded-2xl border border-brand-secondary/10 shadow-sm flex flex-col gap-2"
         >
           <div className="flex items-center gap-2">
-            <PhoneCall className="w-4 h-4 text-blue-500" />
-            <span className="text-[10px] font-bold text-slate-600">Smart Connect</span>
+            <PhoneCall className="w-4 h-4 text-brand-accent" />
+            <span className="text-[10px] font-bold text-brand-secondary">Smart Connect</span>
           </div>
-          <p className="text-xs font-bold text-slate-900">IVR Confirmation</p>
+          <p className="text-xs font-bold text-brand-dark">IVR Confirmation</p>
           <div className="flex items-center gap-1">
             {[1, 2, 3, 4, 5].map(i => (
               <motion.div 
                 key={i}
                 animate={{ height: [4, 12, 4] }}
                 transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }}
-                className="w-1 bg-blue-400 rounded-full"
+                className="w-1 bg-brand-accent/40 rounded-full"
               />
             ))}
           </div>
@@ -124,25 +124,25 @@ const SwiftShipVisual = () => {
       </div>
 
       {/* Courier Logos Strip */}
-      <div className="mt-auto pt-4 border-t border-slate-50 flex items-center justify-between opacity-50 grayscale">
-        <div className="h-4 w-12 bg-slate-200 rounded" />
-        <div className="h-4 w-12 bg-slate-200 rounded" />
-        <div className="h-4 w-12 bg-slate-200 rounded" />
-        <div className="h-4 w-12 bg-slate-200 rounded" />
+      <div className="mt-auto pt-4 border-t border-brand-secondary/5 flex items-center justify-between opacity-80 grayscale">
+        <div className="h-4 w-12 bg-brand-secondary/10 rounded" />
+        <div className="h-4 w-12 bg-brand-secondary/10 rounded" />
+        <div className="h-4 w-12 bg-brand-secondary/10 rounded" />
+        <div className="h-4 w-12 bg-brand-secondary/10 rounded" />
       </div>
 
       {/* Floating Action Overlay */}
       <motion.div 
         animate={{ scale: [1, 1.05, 1] }}
         transition={{ duration: 3, repeat: Infinity }}
-        className="absolute bottom-6 left-6 p-3 bg-white rounded-xl shadow-2xl border border-slate-100 flex items-center gap-3 z-20"
+        className="absolute bottom-6 left-6 p-3 bg-white rounded-xl shadow-2xl border border-brand-secondary/10 flex items-center gap-3 z-20"
       >
-        <div className="w-8 h-8 bg-blue-50 rounded-lg flex items-center justify-center">
-          <Zap className="w-4 h-4 text-blue-600" />
+        <div className="w-8 h-8 bg-brand-primary/5 rounded-lg flex items-center justify-center">
+          <Zap className="w-4 h-4 text-brand-primary" />
         </div>
         <div>
-          <p className="text-[9px] font-bold text-slate-400 uppercase">Smart Routing</p>
-          <p className="text-[11px] font-bold text-slate-900">Bluedart Express</p>
+          <p className="text-[9px] font-bold text-brand-accent/60 uppercase">Smart Routing</p>
+          <p className="text-[11px] font-bold text-brand-dark">Bluedart Express</p>
         </div>
       </motion.div>
     </div>

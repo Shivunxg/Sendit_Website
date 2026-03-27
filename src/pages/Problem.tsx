@@ -33,7 +33,7 @@ const Problem = () => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">The Logistics Gap</h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-brand-secondary max-w-3xl mx-auto">
               Most platforms only solve half the problem. We solve the part that actually impacts your margins.
             </p>
           </motion.div>
@@ -42,28 +42,28 @@ const Problem = () => {
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 leading-tight">
-              Shipping Aggregators Are <span className="text-slate-400">Not Enough.</span>
+              Shipping Aggregators Are <span className="text-brand-accent">Not Enough.</span>
             </h2>
-            <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+            <p className="text-lg text-brand-secondary mb-8 leading-relaxed">
               Generating labels is easy. Managing the operational complexity behind those labels is where most brands fail. Without unified data, you're flying blind.
             </p>
             <div className="space-y-4">
               {problems.map((problem, i) => (
                 <div key={i} className="flex items-center gap-3">
-                  <X className="w-5 h-5 text-red-500" />
-                  <span className="text-slate-700 font-medium text-lg">{problem}</span>
+                  <X className="w-5 h-5 text-brand-primary" />
+                  <span className="text-brand-dark font-medium text-lg">{problem}</span>
                 </div>
               ))}
             </div>
             <div className="mt-10 p-8 standard-card">
-              <p className="text-xl text-slate-900 font-semibold">
+              <p className="text-xl text-brand-dark font-semibold">
                 Disconnected systems create operational chaos. <br />
-                <span className="text-emerald-600">Sendit was built to unify the entire lifecycle.</span>
+                <span className="text-brand-primary">Sendit was built to unify the entire lifecycle.</span>
               </p>
             </div>
           </div>
           <div className="relative">
-            <div className="aspect-square bg-slate-900 rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center relative">
+            <div className="aspect-square bg-brand-dark rounded-3xl overflow-hidden shadow-2xl flex items-center justify-center relative">
               <motion.img 
                 key={heroImage}
                 initial={{ opacity: 0.8 }}
@@ -74,7 +74,7 @@ const Problem = () => {
                 referrerPolicy="no-referrer"
               />
             </div>
-            <div className="absolute -bottom-8 -right-8 w-72 p-8 bg-black text-white rounded-3xl shadow-2xl">
+            <div className="absolute -bottom-8 -right-8 w-72 p-8 bg-brand-dark text-white rounded-3xl shadow-2xl">
               <p className="text-sm font-medium opacity-70 mb-2">Industry Insight</p>
               <p className="text-xl font-bold">74% of Indian D2C brands cite "Fulfillment Inefficiency" as their #1 growth barrier.</p>
             </div>

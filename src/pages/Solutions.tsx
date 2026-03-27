@@ -60,7 +60,7 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
             transition={{ duration: 0.6 }}
           >
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6">Logistics Solutions</h1>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
+            <p className="text-xl text-brand-dark/80 max-w-3xl mx-auto">
               Tailored logistics operating systems for every type of modern commerce.
             </p>
           </motion.div>
@@ -73,10 +73,10 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="p-10 standard-card hover:border-emerald-500 transition-all group overflow-hidden cursor-pointer"
+              className="p-10 standard-card hover:border-brand-accent transition-all group overflow-hidden cursor-pointer"
               onClick={() => setSelectedSector(i)}
             >
-              <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-slate-200 border border-slate-200 shadow-inner">
+              <div className="relative rounded-2xl overflow-hidden mb-8 aspect-video bg-brand-secondary/10 border border-brand-secondary/10 shadow-inner">
                 <motion.img 
                   key={sectorImages[i]}
                   initial={{ opacity: 0.8 }}
@@ -87,19 +87,19 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                   referrerPolicy="no-referrer"
                 />
               </div>
-              <h3 className="text-3xl font-display font-bold mb-4 group-hover:text-emerald-600 transition-colors">{sector.title}</h3>
-              <p className="text-lg text-slate-600 mb-8 leading-relaxed">{sector.desc}</p>
+              <h3 className="text-3xl font-display font-bold mb-4 group-hover:text-brand-accent transition-colors">{sector.title}</h3>
+              <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">{sector.desc}</p>
               
               <div className="flex flex-wrap gap-3 mb-10">
                 {sector.features.map((f, j) => (
-                  <span key={j} className="px-4 py-2 bg-white border border-slate-200 rounded-full text-sm font-semibold text-slate-700">
+                  <span key={j} className="px-4 py-2 bg-white border border-brand-secondary/10 rounded-full text-sm font-semibold text-brand-dark">
                     {f}
                   </span>
                 ))}
               </div>
 
               <button 
-                className="flex items-center gap-2 font-bold text-black hover:gap-3 transition-all"
+                className="flex items-center gap-2 font-bold text-brand-dark hover:gap-3 transition-all"
               >
                 Explore Feature <ArrowRight className="w-5 h-5" />
               </button>
@@ -121,7 +121,7 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setSelectedSector(null)}
-                className="absolute inset-0 bg-slate-900/80 backdrop-blur-sm"
+                className="absolute inset-0 bg-brand-dark/80 backdrop-blur-sm"
               />
               <motion.div 
                 initial={{ scale: 0.9, opacity: 0, y: 20 }}
@@ -130,13 +130,13 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                 className="relative w-full max-w-5xl max-h-[90vh] bg-white rounded-[2.5rem] shadow-2xl overflow-hidden flex flex-col"
               >
                 {/* Modal Header */}
-                <div className="p-6 md:p-8 border-b border-slate-100 flex items-center justify-between bg-white sticky top-0 z-10">
+                <div className="p-6 md:p-8 border-b border-brand-secondary/10 flex items-center justify-between bg-white sticky top-0 z-10">
                   <div className="flex items-center gap-4">
                     <h3 className="text-2xl md:text-3xl font-display font-bold">{sectors[selectedSector].title}</h3>
                   </div>
                   <button 
                     onClick={() => setSelectedSector(null)}
-                    className="p-2 hover:bg-slate-100 rounded-full transition-colors"
+                    className="p-2 hover:bg-brand-secondary/10 rounded-full transition-colors"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -147,28 +147,28 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                   <div className="grid lg:grid-cols-2 gap-12 items-center">
                     <div>
                       <h4 className="text-3xl font-display font-bold mb-6">Tailored for {sectors[selectedSector].title}</h4>
-                      <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                      <p className="text-lg text-brand-dark/70 mb-8 leading-relaxed">
                         {sectors[selectedSector].desc} We provide specialized tools to handle the unique challenges of your industry, ensuring maximum efficiency and scalability.
                       </p>
                       <div className="space-y-6">
-                        <div className="p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
-                          <h5 className="font-bold text-emerald-900 mb-2 flex items-center gap-2">
+                        <div className="p-6 bg-brand-accent/10 rounded-2xl border border-brand-accent/20">
+                          <h5 className="font-bold text-brand-accent mb-2 flex items-center gap-2">
                             <Zap className="w-5 h-5" /> Key Capabilities
                           </h5>
                           <ul className="space-y-3">
                             {sectors[selectedSector].features.map((f, idx) => (
                               <li key={idx} className="flex items-center gap-3">
-                                <CheckCircle2 className="text-emerald-500 w-4 h-4 shrink-0" />
-                                <span className="text-emerald-800 text-sm font-medium">{f}</span>
+                                <CheckCircle2 className="text-brand-accent w-4 h-4 shrink-0" />
+                                <span className="text-brand-accent text-sm font-medium">{f}</span>
                               </li>
                             ))}
                           </ul>
                         </div>
-                        <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
-                          <h5 className="font-bold text-slate-900 mb-2 flex items-center gap-2">
+                        <div className="p-6 bg-brand-secondary/5 rounded-2xl border border-brand-secondary/10">
+                          <h5 className="font-bold text-brand-dark mb-2 flex items-center gap-2">
                             <BarChart3 className="w-5 h-5" /> Expected Impact
                           </h5>
-                          <p className="text-sm text-slate-600 leading-relaxed">
+                          <p className="text-sm text-brand-dark/70 leading-relaxed">
                             {selectedSector === 0 && "Reduce RTO by 25% and improve customer NPS with branded tracking and seamless returns."}
                             {selectedSector === 1 && "Centralize marketplace operations and eliminate overselling with real-time inventory sync."}
                             {selectedSector === 2 && "Scale client operations with multi-tenant warehousing and automated billing systems."}
@@ -178,7 +178,7 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                         </div>
                       </div>
                     </div>
-                    <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-2xl aspect-square">
+                    <div className="relative rounded-3xl overflow-hidden border border-brand-secondary/20 shadow-2xl aspect-square">
                       <img 
                         src={sectorImages[selectedSector]} 
                         alt={sectors[selectedSector].title} 
@@ -190,12 +190,12 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                 </div>
 
                 {/* Modal Footer */}
-                <div className="p-8 border-t border-slate-100 bg-slate-50 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div className="p-8 border-t border-brand-secondary/10 bg-brand-secondary/5 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600">
+                    <div className="w-10 h-10 rounded-full bg-brand-accent/20 flex items-center justify-center text-brand-accent">
                       <Globe className="w-5 h-5" />
                     </div>
-                    <p className="text-slate-500 text-sm font-medium">Powering {sectors[selectedSector].title} globally.</p>
+                    <p className="text-brand-accent text-sm font-medium">Powering {sectors[selectedSector].title} globally.</p>
                   </div>
                   <motion.button 
                     whileHover={{ scale: 1.05 }}
@@ -204,7 +204,7 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
                       setSelectedSector(null);
                       onContactClick();
                     }}
-                    className="w-full sm:w-auto px-10 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/25 flex items-center justify-center gap-2 group"
+                    className="w-full sm:w-auto px-10 py-4 bg-brand-primary text-white rounded-xl font-bold hover:bg-brand-primary/90 transition-all shadow-xl shadow-brand-primary/25 flex items-center justify-center gap-2 group"
                   >
                     Get Industry Solution <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </motion.button>
@@ -214,16 +214,16 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
           )}
         </AnimatePresence>
 
-        <div className="mt-24 bg-black rounded-3xl p-12 text-center text-white">
-          <h2 className="text-4xl font-display font-bold mb-6">Don't see your industry?</h2>
-          <p className="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">
-            Our platform is highly configurable. Talk to our solutions team to see how Sendit can fit your unique operational needs.
+        <div className="mt-24 bg-brand-dark rounded-3xl p-12 text-center text-white">
+          <h2 className="text-4xl font-display font-bold mb-6 text-white">Don't see your industry?</h2>
+          <p className="text-xl text-white/80 mb-10 max-w-2xl mx-auto">
+            Our platform is highly configurable. Talk to our solutions team to see how <span className="text-brand-primary font-bold">Sendit</span> can fit your unique operational needs.
           </p>
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onContactClick}
-            className="px-12 py-5 bg-blue-600 text-white rounded-full font-bold text-xl hover:bg-blue-700 transition-all shadow-xl shadow-blue-600/20 flex items-center justify-center gap-2 group"
+            className="px-12 py-5 bg-brand-primary text-white rounded-full font-bold text-xl hover:bg-brand-primary/90 transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 group mx-auto"
           >
             Talk to Solutions Team <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </motion.button>

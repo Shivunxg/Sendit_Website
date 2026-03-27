@@ -31,6 +31,9 @@ import ContactModal from './components/ContactModal';
 import Logo from './components/Logo';
 import ChatBot from './components/ChatBot';
 
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from './firebase';
+
 // --- Shared Components ---
 
 const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
@@ -79,12 +82,12 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-in-out ${
       isScrolled 
-        ? 'bg-white/80 backdrop-blur-xl border-b border-slate-200/50 py-2 shadow-sm' 
+        ? 'bg-white/80 backdrop-blur-xl border-b border-brand-secondary/10 py-2 shadow-sm' 
         : 'bg-transparent py-6'
     }`}>
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="flex items-center group">
-          <Logo className={`transition-all duration-500 ${isScrolled ? 'h-8' : 'h-10'} group-hover:scale-105`} />
+          <Logo className={`transition-all duration-500 ${isScrolled ? 'h-10' : 'h-12'} group-hover:scale-105`} />
         </Link>
 
         {/* Desktop Nav */}
@@ -97,13 +100,13 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             <button 
               className={`text-sm font-semibold transition-all flex items-center gap-1.5 relative py-2 ${
-                location.pathname.startsWith('/products') ? 'text-emerald-600' : 'text-slate-600 hover:text-black'
+                location.pathname.startsWith('/products') ? 'text-brand-primary' : 'text-brand-secondary hover:text-brand-dark'
               }`}
             >
               Products 
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isProductsDropdownOpen ? 'rotate-180' : ''}`} />
               <motion.div 
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: location.pathname.startsWith('/products') ? 1 : 0 }}
                 whileHover={{ scaleX: 1 }}
@@ -117,7 +120,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden"
+                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-2xl shadow-2xl border border-brand-secondary/10 overflow-hidden"
                 >
                   <div className="p-3">
                     {productLinks.map((link, idx) => (
@@ -129,13 +132,13 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
                       >
                         <Link
                           to={link.path}
-                          className="block p-4 rounded-xl hover:bg-slate-50 transition-all group/item"
+                          className="block p-4 rounded-xl hover:bg-brand-secondary/5 transition-all group/item"
                         >
-                          <p className="font-bold text-slate-900 group-hover/item:text-emerald-600 transition-colors flex items-center gap-2">
+                          <p className="font-bold text-brand-dark group-hover/item:text-brand-primary transition-colors flex items-center gap-2">
                             {link.name}
                             <ArrowRight className="w-3 h-3 opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all" />
                           </p>
-                          <p className="text-xs text-slate-500 mt-1">{link.desc}</p>
+                          <p className="text-xs text-brand-secondary mt-1">{link.desc}</p>
                         </Link>
                       </motion.div>
                     ))}
@@ -153,13 +156,13 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
           >
             <button 
               className={`text-sm font-semibold transition-all flex items-center gap-1.5 relative py-2 ${
-                location.pathname.startsWith('/tools') ? 'text-emerald-600' : 'text-slate-600 hover:text-black'
+                location.pathname.startsWith('/tools') ? 'text-brand-primary' : 'text-brand-secondary hover:text-brand-dark'
               }`}
             >
               Shipping Tools 
               <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-300 ${isToolsDropdownOpen ? 'rotate-180' : ''}`} />
               <motion.div 
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: location.pathname.startsWith('/tools') ? 1 : 0 }}
                 whileHover={{ scaleX: 1 }}
@@ -173,7 +176,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
                   animate={{ opacity: 1, y: 0, scale: 1 }}
                   exit={{ opacity: 0, y: 10, scale: 0.95 }}
                   transition={{ duration: 0.2, ease: "easeOut" }}
-                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 overflow-hidden"
+                  className="absolute top-full left-0 mt-1 w-72 bg-white rounded-2xl shadow-2xl border border-brand-secondary/10 overflow-hidden"
                 >
                   <div className="p-3">
                     {toolLinks.map((link, idx) => (
@@ -185,13 +188,13 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
                       >
                         <Link
                           to={link.path}
-                          className="block p-4 rounded-xl hover:bg-slate-50 transition-all group/item"
+                          className="block p-4 rounded-xl hover:bg-brand-secondary/5 transition-all group/item"
                         >
-                          <p className="font-bold text-slate-900 group-hover/item:text-emerald-600 transition-colors flex items-center gap-2">
+                          <p className="font-bold text-brand-dark group-hover/item:text-brand-primary transition-colors flex items-center gap-2">
                             {link.name}
                             <ArrowRight className="w-3 h-3 opacity-0 group-hover/item:opacity-100 group-hover/item:translate-x-1 transition-all" />
                           </p>
-                          <p className="text-xs text-slate-500 mt-1">{link.desc}</p>
+                          <p className="text-xs text-brand-secondary mt-1">{link.desc}</p>
                         </Link>
                       </motion.div>
                     ))}
@@ -206,12 +209,12 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
               key={link.path}
               to={link.path} 
               className={`text-sm font-semibold transition-all relative py-2 group ${
-                location.pathname === link.path ? 'text-emerald-600' : 'text-slate-600 hover:text-black'
+                location.pathname === link.path ? 'text-brand-primary' : 'text-brand-secondary hover:text-brand-dark'
               }`}
             >
               {link.name}
               <motion.div 
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary origin-left"
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: location.pathname === link.path ? 1 : 0 }}
                 whileHover={{ scaleX: 1 }}
@@ -222,12 +225,12 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
           <Link 
             to="/track-order" 
             className={`text-sm font-semibold transition-all relative py-2 group ${
-              location.pathname === '/track-order' ? 'text-emerald-600' : 'text-slate-600 hover:text-black'
+              location.pathname === '/track-order' ? 'text-brand-primary' : 'text-brand-secondary hover:text-brand-dark'
             }`}
           >
             Track Order
             <motion.div 
-              className="absolute bottom-0 left-0 right-0 h-0.5 bg-emerald-500 origin-left"
+              className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand-primary origin-left"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: location.pathname === '/track-order' ? 1 : 0 }}
               whileHover={{ scaleX: 1 }}
@@ -238,7 +241,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
         <div className="hidden md:flex items-center gap-4">
           <Link 
             to="/login"
-            className="text-sm font-bold px-4 py-2 text-slate-600 hover:text-black transition-colors"
+            className="text-sm font-bold px-4 py-2 text-brand-secondary hover:text-brand-dark transition-colors"
           >
             Log In
           </Link>
@@ -246,7 +249,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={onContactClick}
-            className="text-sm font-bold px-7 py-3 bg-black text-white rounded-full hover:bg-slate-800 transition-all shadow-xl shadow-black/10"
+            className="text-sm font-bold px-7 py-3 bg-brand-dark text-white rounded-full hover:bg-brand-dark/90 transition-all shadow-xl shadow-black/10"
           >
             Start Shipping
           </motion.button>
@@ -265,15 +268,15 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="absolute top-full left-0 right-0 bg-white border-b border-slate-200 p-6 flex flex-col gap-4 md:hidden max-h-[80vh] overflow-y-auto"
+            className="absolute top-full left-0 right-0 bg-white border-b border-brand-secondary/10 p-6 flex flex-col gap-4 md:hidden max-h-[80vh] overflow-y-auto"
           >
             <div className="space-y-2">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Products</p>
+              <p className="text-xs font-bold text-brand-secondary uppercase tracking-wider">Products</p>
               {productLinks.map((link) => (
                 <Link 
                   key={link.path}
                   to={link.path} 
-                  className="block text-lg font-medium pl-4 border-l-2 border-slate-100" 
+                  className="block text-lg font-medium pl-4 border-l-2 border-brand-secondary/5" 
                   onClick={closeMobileMenuWithDelay}
                 >
                   {link.name}
@@ -282,12 +285,12 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             </div>
 
             <div className="space-y-2">
-              <p className="text-xs font-bold text-slate-400 uppercase tracking-wider">Shipping Tools</p>
+              <p className="text-xs font-bold text-brand-secondary uppercase tracking-wider">Shipping Tools</p>
               {toolLinks.map((link) => (
                 <Link 
                   key={link.path}
                   to={link.path} 
-                  className="block text-lg font-medium pl-4 border-l-2 border-slate-100" 
+                  className="block text-lg font-medium pl-4 border-l-2 border-brand-secondary/5" 
                   onClick={closeMobileMenuWithDelay}
                 >
                   {link.name}
@@ -314,7 +317,7 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
             </Link>
             <button 
               onClick={() => { closeMobileMenuWithDelay(); onContactClick(); }}
-              className="w-full py-3 bg-black text-white rounded-xl font-semibold mt-4"
+              className="w-full py-3 bg-brand-dark text-white rounded-xl font-semibold mt-4"
             >
               Start Shipping
             </button>
@@ -326,27 +329,57 @@ const Navbar = ({ onContactClick }: { onContactClick: () => void }) => {
 };
 
 const Footer = () => {
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubscribed, setIsSubscribed] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+
+    setIsSubmitting(true);
+    setError(null);
+
+    try {
+      await addDoc(collection(db, 'newsletterSubscribers'), {
+        email,
+        subscribedAt: new Date().toISOString()
+      });
+      setIsSubscribed(true);
+      setEmail('');
+    } catch (err) {
+      console.error('Error subscribing to newsletter:', err);
+      setError('Failed to subscribe. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
-    <footer className="bg-bg-base pt-20 pb-10 border-t border-slate-100">
+    <footer className="bg-bg-base pt-20 pb-10 border-t border-brand-secondary/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-16">
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
             <div className="flex items-center mb-6">
-              <Logo className="h-8" />
+              <Logo className="h-10" />
             </div>
-            <p className="text-slate-500 text-sm leading-relaxed mb-8">
+            <p className="text-brand-secondary text-sm leading-relaxed mb-8">
               The unified logistics operating system for modern Indian brands.
             </p>
             <div className="flex gap-3">
               {[
-                { icon: <Linkedin className="w-4 h-4" />, href: "#" },
-                { icon: <Twitter className="w-4 h-4" />, href: "#" },
-                { icon: <Instagram className="w-4 h-4" />, href: "#" }
+                { icon: <Linkedin className="w-4 h-4" />, href: "https://www.linkedin.com/company/senditlogistics/posts/?feedView=all", label: "LinkedIn" },
+                { icon: <Twitter className="w-4 h-4" />, href: "https://twitter.com/sendit", label: "Twitter" },
+                { icon: <Instagram className="w-4 h-4" />, href: "https://www.instagram.com/oksendit/", label: "Instagram" }
               ].map((social, i) => (
                 <a 
                   key={i}
                   href={social.href} 
-                  className="w-9 h-9 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-400 hover:text-emerald-600 hover:border-emerald-200 hover:shadow-lg hover:shadow-emerald-500/10 transition-all"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-10 h-10 rounded-xl bg-white border border-brand-secondary/10 flex items-center justify-center text-brand-secondary hover:bg-brand-primary hover:text-white hover:border-brand-primary hover:shadow-lg hover:shadow-brand-primary/20 transition-all duration-300"
                 >
                   {social.icon}
                 </a>
@@ -355,54 +388,78 @@ const Footer = () => {
           </div>
           
           <div>
-            <h5 className="font-bold mb-6 text-slate-900">Products</h5>
-            <ul className="space-y-4 text-sm text-slate-600">
-              <li><Link to="/products/waresync" className="hover:text-emerald-600 transition-colors">WareSync (WMS)</Link></li>
-              <li><Link to="/products/swiftship" className="hover:text-emerald-600 transition-colors">SwiftShip (Shipping)</Link></li>
-              <li><Link to="/problem" className="hover:text-emerald-600 transition-colors">The Problem</Link></li>
+            <h5 className="font-bold mb-6 text-brand-dark">Products</h5>
+            <ul className="space-y-4 text-sm text-brand-secondary">
+              <li><Link to="/products/waresync" className="hover:text-brand-primary transition-colors">WareSync (WMS)</Link></li>
+              <li><Link to="/products/swiftship" className="hover:text-brand-primary transition-colors">SwiftShip (Shipping)</Link></li>
+              <li><Link to="/problem" className="hover:text-brand-primary transition-colors">The Problem</Link></li>
             </ul>
           </div>
 
           <div>
-            <h5 className="font-bold mb-6 text-slate-900">Shipping Tools</h5>
-            <ul className="space-y-4 text-sm text-slate-600">
-              <li><Link to="/tools/shipping-calculator" className="hover:text-emerald-600 transition-colors">Shipping Calculator</Link></li>
-              <li><Link to="/tools/volumetric-calculator" className="hover:text-emerald-600 transition-colors">Volumetric Calculator</Link></li>
-              <li><Link to="/pricing" className="hover:text-emerald-600 transition-colors">Pricing Plans</Link></li>
+            <h5 className="font-bold mb-6 text-brand-dark">Shipping Tools</h5>
+            <ul className="space-y-4 text-sm text-brand-secondary">
+              <li><Link to="/tools/shipping-calculator" className="hover:text-brand-primary transition-colors">Shipping Calculator</Link></li>
+              <li><Link to="/tools/volumetric-calculator" className="hover:text-brand-primary transition-colors">Volumetric Calculator</Link></li>
+              <li><Link to="/pricing" className="hover:text-brand-primary transition-colors">Pricing Plans</Link></li>
             </ul>
           </div>
 
           <div>
-            <h5 className="font-bold mb-6 text-slate-900">Company</h5>
-            <ul className="space-y-4 text-sm text-slate-600">
-              <li><Link to="/why-sendit" className="hover:text-emerald-600 transition-colors">About Us</Link></li>
-              <li><Link to="/careers" className="hover:text-emerald-600 transition-colors">Careers</Link></li>
-              <li><Link to="/contact" className="hover:text-emerald-600 transition-colors">Contact</Link></li>
-              <li><Link to="/privacy-policy" className="hover:text-emerald-600 transition-colors">Privacy Policy</Link></li>
+            <h5 className="font-bold mb-6 text-brand-dark">Company</h5>
+            <ul className="space-y-4 text-sm text-brand-secondary">
+              <li><Link to="/why-sendit" className="hover:text-brand-primary transition-colors">About Us</Link></li>
+              <li><Link to="/careers" className="hover:text-brand-primary transition-colors">Careers</Link></li>
+              <li><Link to="/contact" className="hover:text-brand-primary transition-colors">Contact</Link></li>
+              <li><Link to="/privacy-policy" className="hover:text-brand-primary transition-colors">Privacy Policy</Link></li>
             </ul>
           </div>
 
           <div className="col-span-2 md:col-span-3 lg:col-span-1">
-            <h5 className="font-bold mb-6 text-slate-900">Newsletter</h5>
-            <p className="text-xs text-slate-500 mb-4 leading-relaxed">Get the latest logistics insights and product updates.</p>
-            <form className="relative" onSubmit={(e) => e.preventDefault()}>
-              <input 
-                type="email" 
-                placeholder="Email address"
-                className="w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-500 transition-all"
-              />
-              <button className="absolute right-1.5 top-1.5 p-1.5 bg-slate-900 text-white rounded-lg hover:bg-black transition-colors">
-                <ArrowRight className="w-4 h-4" />
-              </button>
-            </form>
+            <h5 className="font-bold mb-6 text-brand-dark">Newsletter</h5>
+            <p className="text-xs text-brand-secondary mb-4 leading-relaxed">Get the latest logistics insights and product updates.</p>
+            
+            {isSubscribed ? (
+              <motion.div 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="p-4 bg-brand-primary/5 border border-brand-primary/20 rounded-xl"
+              >
+                <p className="text-sm text-brand-primary font-medium">Thanks for subscribing! We'll keep you updated.</p>
+              </motion.div>
+            ) : (
+              <form className="relative" onSubmit={handleSubmit}>
+                <input 
+                  type="email" 
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Email address"
+                  required
+                  disabled={isSubmitting}
+                  className="w-full px-4 py-3 bg-white border border-brand-secondary/10 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary transition-all disabled:opacity-50"
+                />
+                <button 
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="absolute right-1.5 top-1.5 p-1.5 bg-brand-dark text-white rounded-lg hover:bg-brand-dark/90 transition-colors disabled:opacity-50"
+                >
+                  {isSubmitting ? (
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  ) : (
+                    <ArrowRight className="w-4 h-4" />
+                  )}
+                </button>
+                {error && <p className="text-[10px] text-red-500 mt-2 ml-1">{error}</p>}
+              </form>
+            )}
           </div>
         </div>
         
-        <div className="pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-slate-400">© 2026 Sendit Logistics Pvt Ltd. All rights reserved.</p>
+        <div className="pt-10 border-t border-brand-secondary/5 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-xs text-brand-secondary">© 2026 <span className="text-brand-primary font-bold">Sendit</span> Logistics Pvt Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <Link to="/terms-of-service" className="text-xs text-slate-400 hover:text-slate-600 transition-colors">Terms of Service</Link>
-            <Link to="/privacy-policy" className="text-xs text-slate-400 hover:text-slate-600 transition-colors">Privacy Policy</Link>
+            <Link to="/terms-of-service" className="text-xs text-brand-secondary hover:text-brand-dark transition-colors">Terms of Service</Link>
+            <Link to="/privacy-policy" className="text-xs text-brand-secondary hover:text-brand-dark transition-colors">Privacy Policy</Link>
           </div>
         </div>
       </div>
@@ -410,11 +467,19 @@ const Footer = () => {
   );
 };
 
+import { AuthProvider, useAuth } from './contexts/AuthContext';
+import { LoginForm } from './components/auth/LoginForm';
+import { SignupForm } from './components/auth/SignupForm';
+import { ProductSwitcher } from './components/ProductSwitcher';
+
 // --- Main App ---
 
 function AppContent() {
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [authMode, setAuthMode] = useState<'login' | 'signup'>('login');
   const location = useLocation();
+  const { user, loading } = useAuth();
+  
   const isLoginPage = location.pathname === '/login';
 
   const { scrollYProgress } = useScroll();
@@ -424,12 +489,17 @@ function AppContent() {
     restDelta: 0.001
   });
 
+  if (loading) {
+    return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
+  }
+
   return (
-    <div className="min-h-screen selection:bg-emerald-100 selection:text-emerald-900">
+    <div className="min-h-screen selection:bg-brand-primary/10 selection:text-brand-primary">
+      {user && <ProductSwitcher />}
       {!isLoginPage && (
         <>
           <motion.div
-            className="fixed top-0 left-0 right-0 h-1 bg-emerald-500 origin-left z-[100]"
+            className="fixed top-0 left-0 right-0 h-1 bg-brand-primary origin-left z-[100]"
             style={{ scaleX }}
           />
           <Navbar onContactClick={() => setIsContactOpen(true)} />
@@ -438,7 +508,7 @@ function AppContent() {
       <main>
         <Routes>
           <Route path="/" element={<Home onContactClick={() => setIsContactOpen(true)} />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={user ? <Home onContactClick={() => setIsContactOpen(true)} /> : <Login />} />
           <Route path="/problem" element={<Problem />} />
           <Route path="/products" element={<Products onContactClick={() => setIsContactOpen(true)} />} />
           <Route path="/products/waresync" element={<WareSync onContactClick={() => setIsContactOpen(true)} />} />
@@ -464,8 +534,10 @@ function AppContent() {
 
 export default function App() {
   return (
-    <Router>
-      <AppContent />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AppContent />
+      </Router>
+    </AuthProvider>
   );
 }

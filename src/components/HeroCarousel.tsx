@@ -63,7 +63,7 @@ const HeroCarousel = () => {
   const prev = () => setCurrentIndex((prev) => (prev - 1 + picsumItems.length) % picsumItems.length);
 
   return (
-    <div className="w-full aspect-[4/3] bg-white rounded-[2.5rem] border border-slate-100 shadow-2xl overflow-hidden relative group">
+    <div className="w-full aspect-[4/3] bg-white rounded-[2.5rem] border border-brand-secondary/10 shadow-2xl overflow-hidden relative group">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
@@ -88,7 +88,7 @@ const HeroCarousel = () => {
               transition={{ delay: 0.3 }}
             >
               <h3 className="text-2xl font-display font-bold mb-2">{picsumItems[currentIndex].title}</h3>
-              <p className="text-sm text-slate-300 font-medium max-w-md">{picsumItems[currentIndex].desc}</p>
+              <p className="text-sm text-brand-accent/40 font-medium max-w-md">{picsumItems[currentIndex].desc}</p>
             </motion.div>
           </div>
         </motion.div>
@@ -118,7 +118,7 @@ const HeroCarousel = () => {
           <div 
             key={i}
             className={`h-1 rounded-full transition-all duration-500 ${
-              i === currentIndex ? 'w-8 bg-emerald-500' : 'w-2 bg-white/30'
+              i === currentIndex ? 'w-8 bg-brand-accent' : 'w-2 bg-white/30'
             }`}
           />
         ))}
@@ -126,8 +126,8 @@ const HeroCarousel = () => {
 
       {/* Live Badge */}
       <div className="absolute top-6 left-8">
-        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-black/40 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/20">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+        <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-dark/40 backdrop-blur-md text-white text-[10px] font-bold uppercase tracking-wider border border-white/20">
+          <div className="w-1.5 h-1.5 rounded-full bg-brand-accent animate-pulse" />
           Order Lifecycle
         </div>
       </div>

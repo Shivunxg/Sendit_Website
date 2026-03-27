@@ -48,35 +48,39 @@ const AdvantageCard = ({
     whileInView={{ opacity: 1, y: 0 }}
     viewport={{ once: true }}
     transition={{ duration: 0.5, delay }}
-    className="standard-card p-8 flex flex-col h-full group hover:border-emerald-200 transition-colors"
+    className="standard-card p-8 flex flex-col h-full group hover:border-brand-primary/20 transition-colors"
   >
-    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-8">{title}</h3>
+    <div className="mb-8">
+      <span className="inline-flex items-center px-2.5 py-1 rounded-full bg-brand-primary/10 text-[10px] font-bold text-brand-primary uppercase tracking-widest">
+        {title}
+      </span>
+    </div>
     
     <div className="flex-grow space-y-8">
       {/* Typical Aggregator */}
       <div className="flex items-start gap-4 opacity-40 group-hover:opacity-60 transition-opacity">
-        <div className="w-10 h-10 rounded-xl bg-slate-100 flex items-center justify-center shrink-0">
-          <IconThem className="w-5 h-5 text-slate-400" />
+        <div className="w-10 h-10 rounded-xl bg-brand-secondary/5 flex items-center justify-center shrink-0">
+          <IconThem className="w-5 h-5 text-brand-accent/40" />
         </div>
         <div>
-          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-1">Typical Aggregator</p>
-          <p className="text-slate-600 font-medium">{them}</p>
+          <p className="text-[10px] font-bold text-brand-accent/60 uppercase tracking-wider mb-1">Typical Aggregator</p>
+          <p className="text-brand-accent/80 font-medium">{them}</p>
         </div>
       </div>
 
       {/* Divider */}
-      <div className="h-px bg-slate-100 w-full relative">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-2 text-[10px] font-bold text-slate-300 uppercase tracking-widest">VS</div>
+      <div className="h-px bg-brand-secondary/10 w-full relative">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white px-3 py-0.5 rounded-full border border-brand-secondary/10 text-[10px] font-bold text-brand-accent/60 uppercase tracking-widest shadow-sm">VS</div>
       </div>
 
       {/* Sendit */}
       <div className="flex items-start gap-4">
-        <div className="w-10 h-10 rounded-xl bg-emerald-50 flex items-center justify-center shrink-0 border border-emerald-100">
-          <IconUs className="w-5 h-5 text-emerald-600" />
+        <div className="w-10 h-10 rounded-xl bg-brand-primary/10 flex items-center justify-center shrink-0 border border-brand-primary/20">
+          <IconUs className="w-5 h-5 text-brand-primary" />
         </div>
         <div>
-          <p className="text-[10px] font-bold text-emerald-600 uppercase tracking-wider mb-1">Sendit Advantage</p>
-          <p className="text-slate-900 font-bold text-lg leading-tight">{us}</p>
+          <p className="text-[10px] font-bold text-brand-primary uppercase tracking-wider mb-1">Sendit Advantage</p>
+          <p className="text-brand-dark font-bold text-lg leading-tight">{us}</p>
         </div>
       </div>
     </div>
@@ -92,15 +96,15 @@ interface FAQItemProps {
 }
 
 const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => (
-  <div className="border-b border-slate-100 last:border-none">
+  <div className="border-b border-brand-secondary/10 last:border-none">
     <button
       onClick={onClick}
       className="w-full py-6 flex items-center justify-between text-left group"
     >
-      <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-emerald-600' : 'text-slate-900 group-hover:text-emerald-600'}`}>
+      <span className={`text-lg font-bold transition-colors ${isOpen ? 'text-brand-primary' : 'text-brand-dark group-hover:text-brand-primary'}`}>
         {question}
       </span>
-      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-emerald-600 text-white rotate-180' : 'bg-slate-50 text-slate-400 group-hover:bg-emerald-50 group-hover:text-emerald-600'}`}>
+      <div className={`w-8 h-8 rounded-full flex items-center justify-center transition-all ${isOpen ? 'bg-brand-primary text-white rotate-180' : 'bg-brand-secondary/5 text-brand-accent/40 group-hover:bg-brand-primary/10 group-hover:text-brand-primary'}`}>
         {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
       </div>
     </button>
@@ -113,7 +117,7 @@ const FAQItem = ({ question, answer, isOpen, onClick }: FAQItemProps) => (
           transition={{ duration: 0.3, ease: 'easeInOut' }}
           className="overflow-hidden"
         >
-          <p className="pb-6 text-slate-600 leading-relaxed">
+          <p className="pb-6 text-brand-accent/80 leading-relaxed">
             {answer}
           </p>
         </motion.div>
@@ -166,10 +170,13 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-6">
+              Why Choose Us
+            </div>
             <h1 className="text-5xl md:text-7xl font-display font-bold mb-6 tracking-tight">
-              The <span className="text-emerald-600">Sendit</span> Advantage
+              The <span className="text-brand-primary font-bold">Sendit</span> Advantage
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-brand-accent/80 max-w-2xl mx-auto leading-relaxed">
               We don't just generate labels. We power the entire fulfillment lifecycle with intelligence and scale.
             </p>
           </motion.div>
@@ -230,8 +237,11 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
         {/* Visual Lifecycle Section */}
         <div className="mb-32">
           <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-4">
+              Operational Flow
+            </div>
             <h2 className="text-3xl font-display font-bold mb-4">Unified Fulfillment Lifecycle</h2>
-            <p className="text-slate-500">One system, from order placement to final mile delivery.</p>
+            <p className="text-brand-accent/70">One system, from order placement to final mile delivery.</p>
           </div>
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
@@ -249,21 +259,21 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="standard-card p-10 relative overflow-hidden group hover:border-emerald-200 transition-colors"
+            className="standard-card p-10 relative overflow-hidden group hover:border-brand-primary/20 transition-colors"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-emerald-500/5 rounded-full blur-3xl" />
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-primary/5 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <div className="w-12 h-12 bg-emerald-50 rounded-xl flex items-center justify-center mb-8 border border-emerald-100">
-                <ShieldCheck className="text-emerald-600 w-6 h-6" />
+              <div className="w-12 h-12 bg-brand-primary/10 rounded-xl flex items-center justify-center mb-8 border border-brand-primary/20">
+                <ShieldCheck className="text-brand-primary w-6 h-6" />
               </div>
-              <h2 className="text-3xl font-display font-bold mb-6 text-slate-900">Enterprise Security</h2>
-              <p className="text-slate-600 mb-10 leading-relaxed">
+              <h2 className="text-3xl font-display font-bold mb-6 text-brand-dark">Enterprise Security</h2>
+              <p className="text-brand-accent/80 mb-10 leading-relaxed">
                 Your operational data is your most valuable asset. We protect it with enterprise-grade security protocols.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {["SOC2 Compliant", "RBAC Access", "99.9% Uptime", "Audit Logs"].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm font-bold text-slate-500">
-                    <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                  <div key={i} className="flex items-center gap-2 text-sm font-bold text-brand-accent/70">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-primary" />
                     {item}
                   </div>
                 ))}
@@ -275,22 +285,22 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="standard-card p-10 relative overflow-hidden group hover:border-blue-200 transition-colors"
+            className="standard-card p-10 relative overflow-hidden group hover:border-brand-accent/20 transition-colors"
           >
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-500/5 rounded-full blur-3xl" />
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-accent/5 rounded-full blur-3xl" />
             <div className="relative z-10">
-              <div className="w-12 h-12 bg-blue-50 rounded-xl flex items-center justify-center mb-8 border border-blue-100">
-                <Zap className="text-blue-600 w-6 h-6" />
+              <div className="w-12 h-12 bg-brand-accent/10 rounded-xl flex items-center justify-center mb-8 border border-brand-accent/20">
+                <Zap className="text-brand-accent w-6 h-6" />
               </div>
-              <h2 className="text-3xl font-display font-bold mb-6 text-slate-900">Built for Scale</h2>
-              <p className="text-slate-600 mb-10 leading-relaxed">
+              <h2 className="text-3xl font-display font-bold mb-6 text-brand-dark">Built for Scale</h2>
+              <p className="text-brand-accent/80 mb-10 leading-relaxed">
                 Whether you ship 100 orders or 100,000, our architecture scales elastically with your business.
               </p>
               <button 
                 onClick={onContactClick}
-                className="px-8 py-4 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-all flex items-center gap-2 group shadow-lg shadow-blue-600/20"
+                className="px-8 py-4 bg-brand-accent text-white rounded-xl font-bold hover:bg-brand-secondary transition-all flex items-center gap-2 group shadow-lg shadow-brand-accent/20"
               >
-                Scale with Sendit <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Scale with <span className="text-brand-primary font-bold">Sendit</span> <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </motion.div>
@@ -299,10 +309,10 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
         {/* FAQ Section */}
         <div className="mt-32 max-w-3xl mx-auto">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 text-emerald-600 text-xs font-bold uppercase tracking-widest mb-4">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-primary/10 text-brand-primary text-xs font-bold uppercase tracking-widest mb-4">
               <HelpCircle className="w-4 h-4" /> Common Questions
             </div>
-            <h2 className="text-4xl font-display font-bold text-slate-900">Frequently Asked Questions</h2>
+            <h2 className="text-4xl font-display font-bold text-brand-dark">Frequently Asked Questions</h2>
           </div>
           
           <div className="standard-card p-8 md:p-12">
@@ -319,8 +329,8 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
         </div>
 
         <div className="mt-32 text-center">
-          <p className="text-slate-400 text-sm font-bold uppercase tracking-widest mb-8">Ready to see the difference?</p>
-          <Link to="/pricing" className="inline-flex items-center gap-2 text-2xl font-display font-bold text-slate-900 hover:text-emerald-600 transition-colors group">
+          <p className="text-brand-accent/60 text-sm font-bold uppercase tracking-widest mb-8">Ready to see the difference?</p>
+          <Link to="/pricing" className="inline-flex items-center gap-2 text-2xl font-display font-bold text-brand-dark hover:text-brand-primary transition-colors group">
             Explore our pricing plans <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
           </Link>
         </div>

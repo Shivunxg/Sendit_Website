@@ -15,10 +15,10 @@ const Tooltip = ({ text, children }: { text: string, children: React.ReactNode }
             initial={{ opacity: 0, y: 5 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 5 }}
-            className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-slate-900 text-white text-xs rounded-lg shadow-xl w-48 text-center pointer-events-none"
+            className="absolute z-50 bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-2 bg-brand-dark text-white text-xs rounded-lg shadow-xl w-48 text-center pointer-events-none"
           >
             {text}
-            <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-slate-900" />
+            <div className="absolute top-full left-1/2 -translate-x-1/2 border-8 border-transparent border-t-brand-dark" />
           </motion.div>
         )}
       </AnimatePresence>
@@ -117,7 +117,7 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero selection:bg-emerald-100 selection:text-emerald-900 min-h-screen">
+    <div className="pt-32 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary min-h-screen">
       <Helmet>
         <title>Pricing Plans | Transparent Logistics Infrastructure Costs | Sendit</title>
         <meta name="description" content="Choose the right plan for your business. From early-stage D2C brands to enterprise-scale logistics, Sendit offers transparent and scalable pricing." />
@@ -130,10 +130,10 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 text-slate-900 tracking-tight">
-              Enterprise <span className="text-emerald-600">Solutions.</span>
+            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 text-brand-dark tracking-tight">
+              Enterprise <span className="text-brand-primary">Solutions.</span>
             </h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-brand-dark/80 max-w-2xl mx-auto leading-relaxed">
               Scale your fulfillment operations with predictable costs and enterprise-grade intelligence.
             </p>
           </motion.div>
@@ -148,36 +148,36 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
               transition={{ duration: 0.6, delay: i * 0.1 }}
               className={`relative flex flex-col p-8 transition-all duration-300 ${
                 plan.highlight 
-                  ? 'standard-card border-2 border-emerald-500 shadow-2xl shadow-emerald-500/10 scale-105 z-10' 
-                  : 'standard-card shadow-xl shadow-slate-200/50 hover:shadow-2xl hover:border-slate-300'
+                  ? 'standard-card border-2 border-brand-primary shadow-2xl shadow-brand-primary/10 scale-105 z-10' 
+                  : 'standard-card shadow-xl shadow-brand-secondary/10 hover:shadow-2xl hover:border-brand-secondary/20'
               }`}
             >
               {plan.highlight && (
-                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-emerald-600 text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 bg-brand-primary text-white px-6 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest shadow-lg">
                   Recommended
                 </div>
               )}
 
               <div className="mb-8">
-                <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">{plan.title}</h3>
-                <p className="text-slate-500 text-sm font-medium">{plan.subtitle}</p>
+                <h3 className="text-2xl font-display font-bold text-brand-dark mb-2">{plan.title}</h3>
+                <p className="text-brand-accent text-sm font-medium">{plan.subtitle}</p>
               </div>
 
               <div className="flex-grow space-y-8 mb-10">
                 {plan.sections.map((section, j) => (
                   <div key={j}>
-                    <div className="flex items-center gap-2 text-slate-900 font-bold text-xs uppercase tracking-wider mb-4 opacity-70">
+                    <div className="flex items-center gap-2 text-brand-dark font-bold text-xs uppercase tracking-wider mb-4 opacity-70">
                       {section.icon}
                       {section.label}
                     </div>
                     <ul className="space-y-3">
                       {section.features.map((feature, k) => (
                         <li key={k} className="flex items-start gap-3 group">
-                          <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${plan.highlight ? 'text-emerald-500' : 'text-slate-400'}`} />
+                          <CheckCircle2 className={`w-5 h-5 shrink-0 mt-0.5 ${plan.highlight ? 'text-brand-primary' : 'text-brand-accent'}`} />
                           <div className="flex items-center gap-1.5">
-                            <span className="text-slate-600 text-sm leading-snug">{feature}</span>
+                            <span className="text-brand-dark/80 text-sm leading-snug">{feature}</span>
                             <Tooltip text={featureDescriptions[feature] || "Feature details coming soon"}>
-                              <HelpCircle className="w-3.5 h-3.5 text-slate-300 hover:text-slate-500 cursor-help transition-colors" />
+                              <HelpCircle className="w-3.5 h-3.5 text-brand-accent/50 hover:text-brand-accent cursor-help transition-colors" />
                             </Tooltip>
                           </div>
                         </li>
@@ -191,10 +191,10 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
                 onClick={onContactClick}
                 className={`w-full py-5 rounded-2xl font-bold text-lg transition-all duration-300 ${
                   plan.highlight
-                    ? 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-lg shadow-emerald-600/20'
+                    ? 'bg-brand-primary text-white hover:bg-brand-secondary shadow-lg shadow-brand-primary/20'
                     : plan.title === "Control Tower"
-                      ? 'bg-white text-slate-900 border-2 border-slate-900 hover:bg-slate-50'
-                      : 'bg-[#0F172A] text-white hover:bg-[#1E293B] shadow-lg shadow-slate-900/10'
+                      ? 'bg-white text-brand-dark border-2 border-brand-dark hover:bg-brand-secondary/5'
+                      : 'bg-brand-dark text-white hover:bg-brand-dark/90 shadow-lg shadow-brand-dark/10'
                 }`}
               >
                 {plan.cta}
@@ -204,28 +204,28 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
         </div>
 
         {/* Trust Section */}
-        <div className="mt-32 pt-24 border-t border-slate-200">
+        <div className="mt-32 pt-24 border-t border-brand-secondary/10">
           <div className="grid md:grid-cols-3 gap-12">
             <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-50 flex items-center justify-center text-emerald-600 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-brand-primary/10 flex items-center justify-center text-brand-primary mb-6">
                 <ShieldCheck className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Enterprise Security</h4>
-              <p className="text-slate-500 text-sm">Bank-grade encryption and SOC2 compliant infrastructure.</p>
+              <h4 className="font-bold text-brand-dark mb-2">Enterprise Security</h4>
+              <p className="text-brand-dark/70 text-sm">Bank-grade encryption and SOC2 compliant infrastructure.</p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 flex items-center justify-center text-brand-accent mb-6">
                 <Zap className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Instant Setup</h4>
-              <p className="text-slate-500 text-sm">Go live in days, not months with our plug-and-play integrations.</p>
+              <h4 className="font-bold text-brand-dark mb-2">Instant Setup</h4>
+              <p className="text-brand-dark/70 text-sm">Go live in days, not months with our plug-and-play integrations.</p>
             </div>
             <div className="flex flex-col items-center text-center">
-              <div className="w-12 h-12 rounded-2xl bg-purple-50 flex items-center justify-center text-purple-600 mb-6">
+              <div className="w-12 h-12 rounded-2xl bg-brand-secondary/10 flex items-center justify-center text-brand-secondary mb-6">
                 <Globe className="w-6 h-6" />
               </div>
-              <h4 className="font-bold text-slate-900 mb-2">Global Scale</h4>
-              <p className="text-slate-500 text-sm">Multi-currency and international shipping support built-in.</p>
+              <h4 className="font-bold text-brand-dark mb-2">Global Scale</h4>
+              <p className="text-brand-dark/70 text-sm">Multi-currency and international shipping support built-in.</p>
             </div>
           </div>
         </div>

@@ -77,8 +77,8 @@ const ShipmentTracking = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6">Track Your Shipment</h1>
-            <p className="text-xl text-slate-600 max-w-2xl mx-auto">
+            <h1 className="text-5xl md:text-6xl font-display font-bold mb-6 text-brand-dark">Track Your Shipment</h1>
+            <p className="text-xl text-brand-secondary max-w-2xl mx-auto">
               Enter your tracking number to get real-time updates on your package status and location.
             </p>
           </motion.div>
@@ -87,11 +87,11 @@ const ShipmentTracking = () => {
         <div className="standard-card p-8 md:p-12 mb-16">
           <form onSubmit={handleTrack} className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <div className="relative w-full sm:w-2/3 max-w-xl">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-brand-accent/40" />
               <input
                 type="text"
                 placeholder="Enter tracking number (e.g., 123456789)"
-                className="w-full pl-12 pr-4 py-4 bg-white border border-slate-200 rounded-2xl focus:ring-2 focus:ring-blue-500 outline-none transition-all text-lg"
+                className="w-full pl-12 pr-4 py-4 bg-white border border-brand-secondary/10 rounded-2xl focus:ring-2 focus:ring-brand-primary outline-none transition-all text-lg"
                 value={trackingNumber}
                 onChange={(e) => setTrackingNumber(e.target.value)}
                 disabled={isLoading}
@@ -99,7 +99,7 @@ const ShipmentTracking = () => {
             </div>
             <button
               type="submit"
-              className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white rounded-2xl font-bold text-lg hover:bg-blue-700 transition-all shadow-xl shadow-blue-900/20 flex items-center justify-center gap-2 disabled:opacity-50"
+              className="w-full sm:w-auto px-8 py-4 bg-brand-primary text-white rounded-2xl font-bold text-lg hover:bg-brand-secondary transition-all shadow-xl shadow-brand-primary/20 flex items-center justify-center gap-2 disabled:opacity-50"
               disabled={isLoading}
             >
               {isLoading ? (
@@ -138,41 +138,41 @@ const ShipmentTracking = () => {
             >
               <div className="grid md:grid-cols-2 gap-8 mb-10">
                 <div>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Tracking Number</p>
-                  <p className="text-2xl font-bold text-slate-900">{trackingResult.trackingNumber}</p>
+                  <p className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest mb-2">Tracking Number</p>
+                  <p className="text-2xl font-bold text-brand-dark">{trackingResult.trackingNumber}</p>
                 </div>
                 <div>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Courier Partner</p>
-                  <p className="text-2xl font-bold text-slate-900">{trackingResult.courier}</p>
+                  <p className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest mb-2">Courier Partner</p>
+                  <p className="text-2xl font-bold text-brand-dark">{trackingResult.courier}</p>
                 </div>
               </div>
 
-              <div className="mb-10 p-6 bg-slate-50 rounded-2xl border border-slate-100 flex items-center justify-between">
+              <div className="mb-10 p-6 bg-brand-secondary/5 rounded-2xl border border-brand-secondary/10 flex items-center justify-between">
                 <div>
-                  <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Current Status</p>
+                  <p className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest mb-2">Current Status</p>
                   <div className="flex items-center gap-3">
                     {trackingResult.status === 'Delivered' ? (
-                      <CheckCircle2 className="w-6 h-6 text-emerald-500" />
+                      <CheckCircle2 className="w-6 h-6 text-brand-accent" />
                     ) : trackingResult.status === 'In Transit' ? (
-                      <Package className="w-6 h-6 text-blue-500" />
+                      <Package className="w-6 h-6 text-brand-primary" />
                     ) : (
                       <XCircle className="w-6 h-6 text-red-500" />
                     )}
-                    <p className="text-3xl font-bold text-slate-900">{trackingResult.status}</p>
+                    <p className="text-3xl font-bold text-brand-dark">{trackingResult.status}</p>
                   </div>
                 </div>
                 {trackingResult.eta && (
                   <div className="text-right">
-                    <p className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-2">Estimated Delivery</p>
-                    <p className="text-xl font-bold text-slate-700">{trackingResult.eta}</p>
+                    <p className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest mb-2">Estimated Delivery</p>
+                    <p className="text-xl font-bold text-brand-dark">{trackingResult.eta}</p>
                   </div>
                 )}
               </div>
 
-              <h3 className="text-xl font-bold text-slate-900 mb-8">Tracking History</h3>
+              <h3 className="text-xl font-bold text-brand-dark mb-8">Tracking History</h3>
               <div className="relative">
                 {/* Vertical Line */}
-                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-slate-200" />
+                <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-brand-secondary/10" />
 
                 <div className="space-y-8">
                   {trackingResult.events.map((event, i) => (
@@ -187,14 +187,14 @@ const ShipmentTracking = () => {
                       <div className="absolute left-0 top-1.5 flex items-center justify-center">
                         {i === 0 ? (
                           <div className="relative">
-                            <div className="absolute inset-0 bg-blue-500 rounded-full animate-ping opacity-25" />
-                            <div className="relative w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+                            <div className="absolute inset-0 bg-brand-primary rounded-full animate-ping opacity-25" />
+                            <div className="relative w-6 h-6 bg-brand-primary rounded-full flex items-center justify-center border-4 border-white shadow-lg">
                               <div className="w-2 h-2 bg-white rounded-full" />
                             </div>
                           </div>
                         ) : (
-                          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border-2 border-slate-200">
-                            <div className="w-2 h-2 bg-slate-300 rounded-full" />
+                          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border-2 border-brand-secondary/10">
+                            <div className="w-2 h-2 bg-brand-secondary/20 rounded-full" />
                           </div>
                         )}
                       </div>
@@ -202,19 +202,19 @@ const ShipmentTracking = () => {
                       {/* Event Content */}
                       <div className={`flex-grow p-5 rounded-2xl transition-all ${
                         i === 0 
-                          ? 'bg-blue-50 border border-blue-100 shadow-sm' 
-                          : 'hover:bg-slate-50 border border-transparent'
+                          ? 'bg-brand-primary/5 border border-brand-primary/10 shadow-sm' 
+                          : 'hover:bg-brand-secondary/5 border border-transparent'
                       }`}>
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
-                          <p className={`font-bold text-lg ${i === 0 ? 'text-blue-900' : 'text-slate-900'}`}>
+                          <p className={`font-bold text-lg ${i === 0 ? 'text-brand-primary' : 'text-brand-dark'}`}>
                             {event.status}
                           </p>
-                          <p className="text-slate-500 text-xs font-medium flex items-center gap-1.5">
+                          <p className="text-brand-secondary text-xs font-medium flex items-center gap-1.5">
                             <Clock className="w-3.5 h-3.5" /> {event.timestamp}
                           </p>
                         </div>
-                        <p className={`text-sm flex items-center gap-2 ${i === 0 ? 'text-blue-700' : 'text-slate-600'}`}>
-                          <MapPin className={`w-4 h-4 ${i === 0 ? 'text-blue-500' : 'text-slate-400'}`} /> 
+                        <p className={`text-sm flex items-center gap-2 ${i === 0 ? 'text-brand-primary/80' : 'text-brand-secondary'}`}>
+                          <MapPin className={`w-4 h-4 ${i === 0 ? 'text-brand-primary' : 'text-brand-accent/70'}`} /> 
                           {event.location}
                         </p>
                       </div>
@@ -230,11 +230,11 @@ const ShipmentTracking = () => {
               key="placeholder"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="h-64 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-slate-200 rounded-3xl"
+              className="h-64 flex flex-col items-center justify-center text-center p-8 border-2 border-dashed border-brand-secondary/10 rounded-3xl"
             >
-              <Package className="w-12 h-12 text-slate-300 mb-4" />
-              <p className="text-lg font-bold text-slate-400">Enter a tracking number above</p>
-              <p className="text-slate-400 text-sm max-w-[250px]">We support major courier partners across India.</p>
+              <Package className="w-12 h-12 text-brand-accent/20 mb-4" />
+              <p className="text-lg font-bold text-brand-accent/40">Enter a tracking number above</p>
+              <p className="text-brand-accent/40 text-sm max-w-[250px]">We support major courier partners across India.</p>
             </motion.div>
           )}
         </AnimatePresence>
