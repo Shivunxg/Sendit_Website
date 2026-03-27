@@ -38,7 +38,7 @@ const Logo = ({ className = "h-14" }: { className?: string }) => {
       <img 
         src="/logo.png" 
         alt="Sendit Logo" 
-        className={`w-auto object-contain mix-blend-multiply relative z-10 ${className}`}
+        className={`w-auto object-contain relative z-10 ${className}`}
       />
     </motion.div>
   );
