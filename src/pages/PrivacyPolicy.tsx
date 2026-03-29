@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 
 const PrivacyPolicy = () => {
   return (
-    <div className="pt-32 pb-24 bg-bg-base">
+    <div className="pt-44 pb-24 bg-bg-base">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -30,7 +30,7 @@ const PrivacyPolicy = () => {
                 We collect personal information that you voluntarily provide to us when expressing an interest in obtaining information about us or our products and services, when participating in activities on the website or otherwise contacting us.
               </p>
               <ul className="list-disc pl-6 text-brand-accent/60 space-y-2">
-                <li>Name and Contact Data (Email, Phone Number, Address)</li>
+                <li>Name and Contact Data (Email, Address)</li>
                 <li>Business Information (Company Name, GSTIN, Industry)</li>
                 <li>Logistics and Shipping Data (Pickup addresses, delivery addresses, package details)</li>
                 <li>Payment Information (Billing address, payment methods)</li>

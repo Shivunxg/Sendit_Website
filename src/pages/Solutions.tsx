@@ -46,7 +46,7 @@ const Solutions = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero">
+    <div className="pt-44 pb-24 premium-hero">
       <Helmet>
         <title>Logistics Solutions | Tailored Systems for D2C, Marketplaces & 3PL</title>
         <meta name="description" content="Explore tailored logistics solutions for D2C brands, marketplace sellers, 3PL providers, and quick commerce. Scale your operations with Sendit." />

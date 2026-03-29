@@ -19,7 +19,7 @@ const Problem = () => {
   }, []);
 
   return (
-    <div className="pt-32 pb-24 premium-hero">
+    <div className="pt-44 pb-24 premium-hero">
       <Helmet>
         <title>The Problem | Why Traditional Logistics Fails | Sendit</title>
         <meta name="description" content="Traditional logistics is fragmented and inefficient. Discover how Sendit solves the core problems of inventory sync, courier selection, and warehouse execution." />

@@ -117,7 +117,7 @@ const Pricing = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary min-h-screen">
+    <div className="pt-44 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary min-h-screen">
       <Helmet>
         <title>Pricing Plans | Transparent Logistics Infrastructure Costs | Sendit</title>
         <meta name="description" content="Choose the right plan for your business. From early-stage D2C brands to enterprise-scale logistics, Sendit offers transparent and scalable pricing." />

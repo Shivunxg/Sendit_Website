@@ -70,7 +70,7 @@ const ChatBot = () => {
       const chat = ai.chats.create({
         model: "gemini-3-flash-preview",
         config: {
-          systemInstruction: "You are a professional logistics expert for 'Sendit'. Help users with shipping, WMS (WareSync), and fulfillment. Be concise, technical yet approachable. Direct support queries to hello@sendit.co.in.",
+          systemInstruction: "You are a professional logistics expert for 'Sendit'. Help users with shipping, WMS (WareSync), and fulfillment. Be concise, technical yet approachable. Direct support queries to office@sendit.co.in.",
         },
       });
 

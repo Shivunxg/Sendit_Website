@@ -25,11 +25,10 @@ service cloud.firestore {
     // ===============================================================
 
     function isValidUser(data) {
-      return data.keys().hasAll(['email', 'name', 'companyName', 'contactNo', 'status', 'createdAt']) &&
+      return data.keys().hasAll(['email', 'name', 'companyName', 'status', 'createdAt']) &&
              data.email is string &&
              data.name is string && data.name.size() > 0 &&
              data.companyName is string && data.companyName.size() > 0 &&
-             data.contactNo is string && data.contactNo.size() > 0 &&
              data.status in ['active', 'suspended'] &&
              data.createdAt is string;
     }

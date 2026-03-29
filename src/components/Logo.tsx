@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 
-const Logo = ({ className = "h-14" }: { className?: string }) => {
+const Logo = ({ className = "h-12" }: { className?: string }) => {
   return (
     <motion.div 
       className="flex items-center relative group"
@@ -23,22 +23,36 @@ const Logo = ({ className = "h-14" }: { className?: string }) => {
         }
       }}
     >
-      {/* Subtle Glow Effect */}
+      {/* Enhanced Subtle Glow Effect */}
       <motion.div 
-        className="absolute inset-0 bg-brand-primary/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        className="absolute -inset-4 bg-brand-primary/15 blur-2xl rounded-full z-0"
         animate={{
-          scale: [1, 1.2, 1],
+          scale: [1, 1.15, 1],
+          opacity: [0.3, 0.5, 0.3],
         }}
         transition={{
-          duration: 2,
+          duration: 4,
           repeat: Infinity,
           ease: "easeInOut"
+        }}
+      />
+      <motion.div 
+        className="absolute -inset-2 bg-brand-accent/10 blur-xl rounded-full z-0"
+        animate={{
+          scale: [1.1, 1, 1.1],
+          opacity: [0.2, 0.4, 0.2],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeInOut",
+          delay: 0.5
         }}
       />
       <img 
         src="/logo.png" 
         alt="Sendit Logo" 
-        className={`w-auto object-contain relative z-10 ${className}`}
+        className={`w-auto object-contain mix-blend-multiply contrast-[1.15] brightness-[1.08] relative z-10 drop-shadow-sm ${className}`}
       />
     </motion.div>
   );

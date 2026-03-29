@@ -82,7 +82,7 @@ async function startServer() {
 
   // API Route: Signup (SwiftShip only)
   app.post("/api/auth/signup", async (req, res) => {
-    const { idToken, name, companyName, contactNo } = req.body;
+    const { idToken, name, companyName } = req.body;
 
     if (!idToken) {
       return res.status(400).json({ error: "Firebase ID token required" });
@@ -101,7 +101,6 @@ async function startServer() {
           email,
           name: name || "",
           companyName: companyName || "",
-          contactNo: contactNo || "",
           status: "active",
           role: "user",
           createdAt: new Date().toISOString()

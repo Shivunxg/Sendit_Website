@@ -54,7 +54,7 @@ const Hero = ({ onContactClick }: { onContactClick: () => void }) => {
   }, []);
 
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden premium-hero">
+    <section className="relative pt-44 pb-20 overflow-hidden premium-hero">
       {/* Background Lottie/Visual Element */}
       <div className="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
         {lottieData && (

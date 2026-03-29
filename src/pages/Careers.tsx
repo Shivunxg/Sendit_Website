@@ -178,7 +178,7 @@ const Careers = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 premium-hero min-h-screen">
+    <div className="pt-44 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-20">
           <motion.div

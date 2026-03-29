@@ -70,7 +70,7 @@ const ShipmentTracking = () => {
   };
 
   return (
-    <div className="pt-32 pb-24 premium-hero min-h-screen">
+    <div className="pt-44 pb-24 premium-hero min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <motion.div
@@ -162,9 +162,22 @@ const ShipmentTracking = () => {
                   </div>
                 </div>
                 {trackingResult.eta && (
-                  <div className="text-right">
+                  <div className="text-right flex flex-col items-end">
                     <p className="text-xs font-bold text-brand-accent/70 uppercase tracking-widest mb-2">Estimated Delivery</p>
-                    <p className="text-xl font-bold text-brand-dark">{trackingResult.eta}</p>
+                    <p className="text-xl font-bold text-brand-dark mb-3">{trackingResult.eta}</p>
+                    <div className="w-48 h-2 bg-brand-secondary/10 rounded-full overflow-hidden relative">
+                      <motion.div 
+                        initial={{ width: 0 }}
+                        animate={{ 
+                          width: trackingResult.status === 'Delivered' ? '100%' : 
+                                 trackingResult.status === 'In Transit' ? '65%' : '20%' 
+                        }}
+                        transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+                        className={`absolute top-0 left-0 h-full rounded-full ${
+                          trackingResult.status === 'Delivered' ? 'bg-brand-accent' : 'bg-brand-primary'
+                        }`}
+                      />
+                    </div>
                   </div>
                 )}
               </div>
@@ -173,38 +186,52 @@ const ShipmentTracking = () => {
               <div className="relative">
                 {/* Vertical Line */}
                 <div className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-brand-secondary/10" />
+                <motion.div 
+                  initial={{ height: 0 }}
+                  animate={{ height: '100%' }}
+                  transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+                  className="absolute left-[11px] top-2 bottom-2 w-0.5 bg-brand-primary origin-top z-10"
+                />
 
                 <div className="space-y-8">
                   {trackingResult.events.map((event, i) => (
                     <motion.div 
                       key={i} 
-                      initial={{ opacity: 0, x: -10 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: i * 0.1 }}
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.15, duration: 0.5 }}
                       className={`relative flex items-start gap-6 pl-10 ${i === 0 ? 'group' : ''}`}
                     >
                       {/* Event Indicator */}
-                      <div className="absolute left-0 top-1.5 flex items-center justify-center">
+                      <div className="absolute left-0 top-1.5 flex items-center justify-center z-20">
                         {i === 0 ? (
                           <div className="relative">
-                            <div className="absolute inset-0 bg-brand-primary rounded-full animate-ping opacity-25" />
-                            <div className="relative w-6 h-6 bg-brand-primary rounded-full flex items-center justify-center border-4 border-white">>
+                            <motion.div 
+                              animate={{ scale: [1, 1.5, 1], opacity: [0.2, 0.4, 0.2] }}
+                              transition={{ duration: 2, repeat: Infinity }}
+                              className="absolute inset-0 bg-brand-primary rounded-full" 
+                            />
+                            <div className="relative w-6 h-6 bg-brand-primary rounded-full flex items-center justify-center border-4 border-white shadow-lg shadow-brand-primary/20">
                               <div className="w-2 h-2 bg-white rounded-full" />
                             </div>
                           </div>
                         ) : (
-                          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border-2 border-brand-secondary/10">
+                          <div className="w-6 h-6 bg-white rounded-full flex items-center justify-center border-2 border-brand-secondary/10 shadow-sm">
                             <div className="w-2 h-2 bg-brand-secondary/20 rounded-full" />
                           </div>
                         )}
                       </div>
 
                       {/* Event Content */}
-                      <div className={`flex-grow p-5 rounded-2xl transition-all ${
-                        i === 0 
-                          ? 'bg-brand-primary/5 border border-brand-primary/10' 
-                          : 'hover:bg-brand-secondary/5 border border-transparent'
-                      }`}>
+                      <motion.div 
+                        whileHover={{ x: 5 }}
+                        className={`flex-grow p-5 rounded-2xl transition-all ${
+                          i === 0 
+                            ? 'bg-brand-primary/5 border border-brand-primary/10 shadow-sm' 
+                            : 'hover:bg-brand-secondary/5 border border-transparent'
+                        }`}
+                      >
                         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
                           <p className={`font-bold text-lg ${i === 0 ? 'text-brand-primary' : 'text-brand-dark'}`}>
                             {event.status}
@@ -217,7 +244,7 @@ const ShipmentTracking = () => {
                           <MapPin className={`w-4 h-4 ${i === 0 ? 'text-brand-primary' : 'text-brand-accent/70'}`} /> 
                           {event.location}
                         </p>
-                      </div>
+                      </motion.div>
                     </motion.div>
                   ))}
                 </div>

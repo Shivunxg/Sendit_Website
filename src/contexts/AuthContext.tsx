@@ -31,7 +31,7 @@ interface AuthContextType {
   accessibleProducts: AccessibleProduct[];
   loading: boolean;
   login: (email: string, password: string, productId: string) => Promise<void>;
-  signup: (email: string, password: string, name: string, companyName: string, contactNo: string) => Promise<void>;
+  signup: (email: string, password: string, name: string, companyName: string) => Promise<void>;
   switchProduct: (productId: string) => Promise<void>;
   logout: () => Promise<void>;
 }
@@ -108,7 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const signup = async (email: string, password: string, name: string, companyName: string, contactNo: string) => {
+  const signup = async (email: string, password: string, name: string, companyName: string) => {
     try {
       // 1. Firebase Signup
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -118,7 +118,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       const res = await fetch('/api/auth/signup', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ idToken, name, companyName, contactNo }),
+        body: JSON.stringify({ idToken, name, companyName }),
       });
 
       if (!res.ok) {

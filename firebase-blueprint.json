@@ -8,12 +8,11 @@
         "email": { "type": "string", "format": "email" },
         "name": { "type": "string" },
         "companyName": { "type": "string" },
-        "contactNo": { "type": "string" },
         "status": { "type": "string", "enum": ["active", "suspended"] },
         "role": { "type": "string", "enum": ["admin", "user"] },
         "createdAt": { "type": "string" }
       },
-      "required": ["email", "name", "companyName", "contactNo", "status", "createdAt"]
+      "required": ["email", "name", "companyName", "status", "createdAt"]
     },
     "Product": {
       "title": "Product",

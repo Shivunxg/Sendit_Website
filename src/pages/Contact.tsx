@@ -4,7 +4,7 @@ import { Mail, Phone, MapPin, Clock, MessageSquare, ArrowRight } from 'lucide-re
 
 const Contact = () => {
   return (
-    <div className="pt-32 pb-24 premium-hero">
+    <div className="pt-44 pb-24 premium-hero">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-start">
           <motion.div
@@ -28,18 +28,7 @@ const Contact = () => {
                 <div>
                   <h4 className="text-lg font-bold mb-1">Email Us</h4>
                   <p className="text-brand-accent/60 mb-1">For general inquiries & support:</p>
-                  <a href="mailto:hello@sendit.co.in" className="text-brand-primary font-bold hover:underline">hello@sendit.co.in</a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-6">
-                <div className="w-12 h-12 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center shrink-0">
-                  <Phone className="w-6 h-6" />
-                </div>
-                <div>
-                  <h4 className="text-lg font-bold mb-1">Call Us</h4>
-                  <p className="text-brand-accent/60 mb-1">Mon-Sat, 9am - 7pm IST:</p>
-                  <a href="tel:+918045678901" className="text-brand-accent font-bold hover:underline">+91 80 4567 8901</a>
+                  <a href="mailto:office@sendit.co.in" className="text-brand-primary font-bold hover:underline">office@sendit.co.in</a>
                 </div>
               </div>
 

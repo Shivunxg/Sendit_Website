@@ -9,7 +9,6 @@ export const SignupForm: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitch
   const [confirmPassword, setConfirmPassword] = useState('');
   const [name, setName] = useState('');
   const [companyName, setCompanyName] = useState('');
-  const [contactNo, setContactNo] = useState('');
   const [error, setError] = useState('');
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,14 +23,14 @@ export const SignupForm: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitch
       return;
     }
 
-    if (!name || !companyName || !contactNo) {
+    if (!name || !companyName) {
       setError('Please fill in all required fields');
       return;
     }
 
     setLoading(true);
     try {
-      await signup(email, password, name, companyName, contactNo);
+      await signup(email, password, name, companyName);
       setSuccess(true);
     } catch (err: any) {
       setError(err.message || 'Failed to create account');
@@ -108,7 +107,7 @@ export const SignupForm: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitch
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="grid grid-cols-1 gap-5">
           <div>
             <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
               <Building2 className="w-4 h-4 text-brand-primary" />
@@ -119,21 +118,6 @@ export const SignupForm: React.FC<{ onSwitchToLogin: () => void }> = ({ onSwitch
               type="text" 
               value={companyName} 
               onChange={(e) => setCompanyName(e.target.value)}
-              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
-              required
-            />
-          </div>
-
-          <div>
-            <label className="flex items-center gap-2 text-sm font-semibold text-gray-700 mb-2">
-              <Phone className="w-4 h-4 text-brand-primary" />
-              Contact Number
-            </label>
-            <motion.input 
-              whileFocus={{ scale: 1.01 }}
-              type="tel" 
-              value={contactNo} 
-              onChange={(e) => setContactNo(e.target.value)}
               className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent transition-all"
               required
             />

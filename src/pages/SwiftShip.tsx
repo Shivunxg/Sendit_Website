@@ -28,11 +28,24 @@ import BrandedTrackingVisual from '../components/BrandedTrackingVisual';
 
 const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
   const [selectedFeature, setSelectedFeature] = useState<number | null>(null);
+  const [isInsuranceEnabled, setIsInsuranceEnabled] = useState(false);
+  const [declaredValue, setDeclaredValue] = useState<string>('');
+  const [insuranceFee, setInsuranceFee] = useState<number>(0);
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Static images are now used, no AI generation needed.
-  }, []);
+    if (isInsuranceEnabled && declaredValue) {
+      const value = parseFloat(declaredValue);
+      if (!isNaN(value)) {
+        // Calculate insurance fee as 2% of declared value
+        setInsuranceFee(value * 0.02);
+      } else {
+        setInsuranceFee(0);
+      }
+    } else {
+      setInsuranceFee(0);
+    }
+  }, [isInsuranceEnabled, declaredValue]);
   const shippingFeatures = [
     {
       title: "Shipping Intelligence",
@@ -100,7 +113,7 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-dark">
+    <div className="pt-44 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-dark">
       <Helmet>
         <title>SwiftShip | AI-Driven Courier Selection & Shipping Optimization</title>
         <meta name="description" content="Optimize every shipment with AI-driven courier selection, real-time tracking, and automated RTO reduction. Built for high-growth Indian D2C brands." />
@@ -454,6 +467,131 @@ const SwiftShip = ({ onContactClick }: { onContactClick: () => void }) => {
         </AnimatePresence>
 
         {/* Detailed Feature Elaborations - Removed as they are now in the modal */}
+
+        {/* Shipping Insurance Feature */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-32 p-12 rounded-[3rem] bg-brand-dark text-white overflow-hidden relative"
+        >
+          {/* Decorative background elements */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-primary/20 rounded-full blur-[100px] -mr-48 -mt-48" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-accent/10 rounded-full blur-[80px] -ml-32 -mb-32" />
+          
+          <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-primary/20 text-brand-primary text-xs font-bold uppercase tracking-wider mb-6 border border-brand-primary/30">
+                <ShieldCheck className="w-4 h-4" /> Secure Your Cargo
+              </div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold mb-6 leading-tight">
+                Ship with <span className="text-brand-primary">Total Confidence.</span>
+              </h2>
+              <p className="text-xl text-white/70 mb-10 leading-relaxed">
+                Our comprehensive shipping insurance protects your business against the unexpected. From transit damage to lost shipments, we've got you covered.
+              </p>
+              
+              <div className="grid sm:grid-cols-2 gap-6 mb-10">
+                {[
+                  { title: "Full Coverage", desc: "Up to 100% of declared value" },
+                  { title: "Damage Protection", desc: "Covers transit & handling damage" },
+                  { title: "Loss Recovery", desc: "Instant reimbursement for lost items" },
+                  { title: "7-Day Claims", desc: "Fastest claim settlement in India" }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4">
+                    <CheckCircle2 className="text-brand-primary w-6 h-6 shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-bold text-lg">{item.title}</h4>
+                      <p className="text-sm text-white/50">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="p-6 bg-white/5 rounded-2xl border border-white/10">
+                <h5 className="text-sm font-bold text-brand-primary uppercase tracking-widest mb-3">The Policy in Brief</h5>
+                <p className="text-sm text-white/60 leading-relaxed">
+                  Insurance is valid for all domestic shipments within India. Claims must be filed within 48 hours of delivery for damage, or 7 days after expected delivery for loss. Standard premium is 2% of the declared value.
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-white text-brand-dark p-8 md:p-10 rounded-[2.5rem] shadow-2xl">
+              <h3 className="text-2xl font-display font-bold mb-8">Insurance Calculator</h3>
+              
+              <div className="space-y-8">
+                <div className="flex items-center gap-4 p-5 bg-brand-secondary/5 rounded-2xl border border-brand-secondary/10 cursor-pointer hover:bg-brand-secondary/10 transition-colors" onClick={() => setIsInsuranceEnabled(!isInsuranceEnabled)}>
+                  <div className={`w-6 h-6 rounded flex items-center justify-center border-2 transition-all ${isInsuranceEnabled ? 'bg-brand-primary border-brand-primary' : 'border-brand-secondary/30'}`}>
+                    {isInsuranceEnabled && <CheckCircle2 className="w-4 h-4 text-white" />}
+                  </div>
+                  <span className="font-bold text-lg">Opt-in for Shipping Insurance</span>
+                </div>
+
+                <AnimatePresence>
+                  {isInsuranceEnabled && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      className="space-y-6 overflow-hidden"
+                    >
+                      <div className="space-y-3">
+                        <label className="text-sm font-bold text-brand-accent uppercase tracking-widest">Declared Value of Shipment</label>
+                        <div className="relative">
+                          <span className="absolute left-5 top-1/2 -translate-y-1/2 font-bold text-brand-dark/40 text-xl">₹</span>
+                          <input 
+                            type="number" 
+                            value={declaredValue}
+                            onChange={(e) => setDeclaredValue(e.target.value)}
+                            placeholder="e.g. 50,000"
+                            className="w-full pl-10 pr-5 py-5 bg-brand-secondary/5 border border-brand-secondary/10 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-primary/10 focus:border-brand-primary transition-all text-xl font-bold"
+                          />
+                        </div>
+                        <p className="text-xs text-brand-dark/50 italic">Maximum coverage up to ₹5,00,000 per shipment.</p>
+                      </div>
+
+                      <div className="p-8 bg-brand-primary/5 rounded-[2rem] border border-brand-primary/20 relative overflow-hidden">
+                        <div className="absolute top-0 right-0 p-4 opacity-10">
+                          <ShieldCheck className="w-24 h-24 text-brand-primary" />
+                        </div>
+                        <div className="relative z-10">
+                          <div className="flex justify-between items-center mb-4">
+                            <span className="text-brand-dark/60 font-medium">Premium Rate</span>
+                            <span className="px-3 py-1 bg-brand-primary/10 text-brand-primary rounded-full font-bold text-sm">2.0%</span>
+                          </div>
+                          <div className="flex justify-between items-end pt-6 border-t border-brand-primary/10">
+                            <div>
+                              <p className="text-sm font-bold text-brand-accent uppercase tracking-widest mb-1">Insurance Fee</p>
+                              <p className="text-4xl font-display font-bold text-brand-primary">
+                                ₹{insuranceFee.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}
+                              </p>
+                            </div>
+                            <div className="text-right">
+                              <p className="text-[10px] font-bold text-brand-dark/40 uppercase tracking-widest mb-1">Total Protection</p>
+                              <p className="text-lg font-bold text-brand-dark">₹{parseFloat(declaredValue || '0').toLocaleString('en-IN')}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                <button 
+                  onClick={onContactClick}
+                  className="w-full py-6 bg-brand-dark text-white rounded-2xl font-bold text-xl hover:bg-brand-primary transition-all flex items-center justify-center gap-3 group shadow-xl shadow-brand-dark/20"
+                >
+                  {isInsuranceEnabled ? 'Secure My Shipment' : 'Get a Quote'}
+                  <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                </button>
+                
+                <p className="text-center text-xs text-brand-dark/40">
+                  By opting in, you agree to our <span className="underline cursor-pointer hover:text-brand-primary">Insurance Terms & Conditions</span>.
+                </p>
+              </div>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Post-Purchase Suite */}
         <div className="bg-brand-primary rounded-[3.5rem] p-12 md:p-24 text-white overflow-hidden relative mb-32">

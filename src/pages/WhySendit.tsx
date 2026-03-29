@@ -157,7 +157,7 @@ const WhySendit = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero min-h-screen">
+    <div className="pt-44 pb-24 premium-hero min-h-screen">
       <Helmet>
         <title>Why Sendit | The Logistics Operating System for India</title>
         <meta name="description" content="Discover why Sendit is the preferred logistics operating system for high-growth Indian brands. Unified infrastructure, deep integrations, and scale-ready." />

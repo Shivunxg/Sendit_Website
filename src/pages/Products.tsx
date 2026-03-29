@@ -12,7 +12,7 @@ const Products = ({ onContactClick }: { onContactClick: () => void }) => {
     // Static images are now used, no AI generation needed.
   }, []);
   return (
-    <div className="pt-32 pb-24 premium-hero">
+    <div className="pt-44 pb-24 premium-hero">
       <Helmet>
         <title>Products | Unified Logistics Operating System | Sendit</title>
         <meta name="description" content="Explore Sendit's suite of logistics products: WareSync for warehouse management and SwiftShip for intelligent courier aggregation." />

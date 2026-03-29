@@ -3,7 +3,7 @@ import { motion } from 'motion/react';
 
 const TermsOfService = () => {
   return (
-    <div className="pt-32 pb-24 bg-bg-base">
+    <div className="pt-44 pb-24 bg-bg-base">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

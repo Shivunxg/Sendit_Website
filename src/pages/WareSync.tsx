@@ -119,7 +119,7 @@ const WareSync = ({ onContactClick }: { onContactClick: () => void }) => {
   ];
 
   return (
-    <div className="pt-32 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary">
+    <div className="pt-44 pb-24 premium-hero selection:bg-brand-primary/10 selection:text-brand-primary">
       <Helmet>
         <title>WareSync | Multi-Channel Inventory & Warehouse Management</title>
         <meta name="description" content="Sync inventory across 50+ marketplaces and webstores. Automate order routing and optimize warehouse execution with WareSync. Built for scale." />
