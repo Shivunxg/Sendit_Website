@@ -855,6 +855,127 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .ws-kanban{grid-template-columns:1fr}
 }
 
+
+/* ── Hero browser mockup ─────────────────────────────────────────────────── */
+.hero-mockup-browser{
+  background:#1a2a5e;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 24px 60px rgba(0,0,0,0.4);
+  border:1px solid rgba(107,159,255,0.2);
+  position:relative;
+}
+.hmb-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:10px 14px;
+  background:#0f1a40;
+  border-bottom:1px solid rgba(107,159,255,0.15);
+}
+.hmb-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.hmb-r{background:#ff5f57}.hmb-y{background:#febc2e}.hmb-g{background:#28c840}
+.hmb-url{
+  flex:1;margin:0 10px;
+  background:#0a1235;border:1px solid rgba(107,159,255,0.2);
+  border-radius:5px;padding:3px 10px;
+  font-size:0.68rem;color:#5a7aaa;font-family:monospace;
+}
+.hmb-app{display:flex;min-height:320px}
+.hmb-nav{
+  width:120px;flex-shrink:0;
+  background:#0f1a40;
+  border-right:1px solid rgba(107,159,255,0.12);
+  padding:12px 0;
+}
+.hmb-logo{
+  display:flex;align-items:center;gap:7px;
+  padding:0 10px 12px;
+  font-size:0.78rem;font-weight:700;color:#fff;
+  border-bottom:1px solid rgba(107,159,255,0.12);margin-bottom:8px;
+}
+.hmb-logo-box{
+  width:20px;height:20px;background:#1B4FD8;
+  border-radius:5px;flex-shrink:0;
+}
+.hmb-nav-item{
+  font-size:0.68rem;color:rgba(255,255,255,0.45);
+  padding:7px 10px;cursor:pointer;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.hmb-nav-active{
+  background:rgba(27,79,216,0.25)!important;
+  color:#6b9fff!important;font-weight:600;
+}
+.hmb-main{flex:1;padding:14px 16px;overflow:hidden}
+.hmb-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;margin-bottom:10px;
+}
+.hmb-title{font-size:0.95rem;font-weight:700;color:#fff}
+.hmb-sub{font-size:0.65rem;color:rgba(255,255,255,0.4);margin-top:2px}
+.hmb-btn{
+  font-size:0.68rem;font-weight:700;
+  background:#1B4FD8;color:#fff;
+  padding:5px 10px;border-radius:6px;
+  white-space:nowrap;flex-shrink:0;
+}
+.hmb-courier-tabs{display:flex;gap:4px;margin-bottom:8px;flex-wrap:wrap}
+.hmb-ctab{
+  font-size:0.65rem;font-weight:500;
+  padding:3px 10px;border-radius:20px;
+  border:1px solid rgba(107,159,255,0.25);
+  color:rgba(255,255,255,0.45);cursor:pointer;
+}
+.hmb-ctab-active{background:#1B4FD8;color:#fff;border-color:#1B4FD8}
+.hmb-table{width:100%;border-collapse:collapse;font-size:0.68rem}
+.hmb-table th{
+  text-align:left;font-size:0.6rem;font-weight:700;
+  text-transform:uppercase;letter-spacing:0.08em;
+  color:rgba(255,255,255,0.3);
+  padding:5px 6px;border-bottom:1px solid rgba(107,159,255,0.12);
+}
+.hmb-table td{
+  padding:7px 6px;color:rgba(255,255,255,0.8);
+  border-bottom:1px solid rgba(107,159,255,0.07);
+  vertical-align:middle;
+}
+.hmb-table tr:last-child td{border-bottom:none}
+.hmb-row-highlight td{background:rgba(27,79,216,0.1)}
+.hmb-mono{font-family:monospace;letter-spacing:0.03em}
+.hmb-bold{font-weight:700;color:#fff}
+.hmb-muted{color:rgba(255,255,255,0.4)}
+.hmb-badge{font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:20px;white-space:nowrap}
+.hmb-green{background:rgba(16,185,129,0.2);color:#34d399}
+.hmb-orange{background:rgba(245,158,11,0.2);color:#fbbf24}
+.hmb-blue{background:rgba(59,130,246,0.2);color:#60a5fa}
+.hmb-purple{background:rgba(139,92,246,0.2);color:#a78bfa}
+.hmb-stats{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;margin-top:10px;
+  padding-top:10px;
+  border-top:1px solid rgba(107,159,255,0.12);
+}
+.hmb-stat{text-align:center}
+.hmb-stat-num{
+  font-family:var(--font-mono);font-size:0.95rem;
+  font-weight:600;color:#6b9fff;
+}
+.hmb-stat-lbl{font-size:0.6rem;color:rgba(255,255,255,0.35);margin-top:2px}
+.hmb-float-pill{
+  position:absolute;bottom:12px;right:16px;
+  background:rgba(16,185,129,0.15);
+  border:1px solid rgba(16,185,129,0.4);
+  border-radius:20px;padding:5px 14px;
+  font-size:0.72rem;font-weight:600;
+  color:#34d399;
+  display:flex;align-items:center;gap:6px;
+}
+.hmb-pill-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#10b981;
+  box-shadow:0 0 6px rgba(16,185,129,0.7);
+  animation:pulse-dot 2s ease infinite;
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -1108,19 +1229,106 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
           </div>
         </div>
         <div class="hero-visual">
-          <div class="route-diagram">
-            <div class="route-header"><div class="route-title">Live Shipment Tracker</div><div class="route-id mono">#SWF-2024-BLR-08471</div></div>
-            <div class="tracking-timeline">
-              <div class="track-item"><div class="track-dot done"></div><div class="track-info"><div class="track-status">Order Picked Up</div><div class="track-detail">Bannerghatta Rd Hub, Bengaluru</div></div><div class="track-time">09:14 AM</div></div>
-              <div class="track-item"><div class="track-dot done"></div><div class="track-info"><div class="track-status">In Transit — Sort Center</div><div class="track-detail">KR Puram Sortation, Bengaluru</div></div><div class="track-time">11:47 AM</div></div>
-              <div class="track-item"><div class="track-dot active"></div><div class="track-info"><div class="track-status">Out for Delivery</div><div class="track-detail">Rider Rajan M.</div></div><div class="track-time">02:23 PM</div></div>
-              <div class="track-item"><div class="track-dot"></div><div class="track-info"><div class="track-status" style="color:var(--steel)">Delivered</div><div class="track-detail">ETA: 3:30–4:00 PM today</div></div><div class="track-time">—</div></div>
+          <div class="hero-mockup-browser">
+            <div class="hmb-bar">
+              <span class="hmb-dot hmb-r"></span>
+              <span class="hmb-dot hmb-y"></span>
+              <span class="hmb-dot hmb-g"></span>
+              <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
             </div>
-            <div class="route-footer"><div class="carrier-badge">📦 Ekart Logistics</div><div class="on-time">⬤ On Track</div></div>
-          </div>
-          <div class="hero-kpi-row">
-            <div class="kpi-card"><div class="kpi-val">₹1,240</div><div class="kpi-label">COD Pending Today</div></div>
-            <div class="kpi-card"><div class="kpi-val">94.3%</div><div class="kpi-label">First Attempt Delivery</div></div>
+            <div class="hmb-app">
+              <!-- Sidebar -->
+              <div class="hmb-nav">
+                <div class="hmb-logo">
+                  <div class="hmb-logo-box"></div>
+                  <span>SwiftShip</span>
+                </div>
+                <div class="hmb-nav-item hmb-nav-active">📦 Shipments</div>
+                <div class="hmb-nav-item">📊 Analytics</div>
+                <div class="hmb-nav-item">🔄 NDR</div>
+                <div class="hmb-nav-item">💳 COD</div>
+                <div class="hmb-nav-item">🔗 Carriers</div>
+                <div class="hmb-nav-item">⚙ Settings</div>
+              </div>
+              <!-- Main -->
+              <div class="hmb-main">
+                <div class="hmb-header">
+                  <div>
+                    <div class="hmb-title">Shipments</div>
+                    <div class="hmb-sub">142 active · updated just now</div>
+                  </div>
+                  <div class="hmb-btn">+ Book Shipment</div>
+                </div>
+                <div class="hmb-courier-tabs">
+                  <span class="hmb-ctab hmb-ctab-active">All</span>
+                  <span class="hmb-ctab">Delhivery</span>
+                  <span class="hmb-ctab">Blue Dart</span>
+                  <span class="hmb-ctab">Ekart</span>
+                  <span class="hmb-ctab">DTDC</span>
+                </div>
+                <table class="hmb-table">
+                  <thead>
+                    <tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="hmb-mono hmb-bold">DLV-77213</td>
+                      <td class="hmb-muted">Delhivery</td>
+                      <td class="hmb-muted">Bengaluru</td>
+                      <td><span class="hmb-badge hmb-green">Delivered</span></td>
+                      <td class="hmb-muted">—</td>
+                    </tr>
+                    <tr>
+                      <td class="hmb-mono hmb-bold">BD-40921</td>
+                      <td class="hmb-muted">Blue Dart</td>
+                      <td class="hmb-muted">Hyderabad</td>
+                      <td><span class="hmb-badge hmb-orange">Out for delivery</span></td>
+                      <td class="hmb-muted">Today</td>
+                    </tr>
+                    <tr class="hmb-row-highlight">
+                      <td class="hmb-mono hmb-bold">EKT-55302</td>
+                      <td class="hmb-muted">Ekart</td>
+                      <td class="hmb-muted">Kolkata</td>
+                      <td><span class="hmb-badge hmb-blue">In transit</span></td>
+                      <td class="hmb-muted">2 days</td>
+                    </tr>
+                    <tr>
+                      <td class="hmb-mono hmb-bold">DTDC-1180</td>
+                      <td class="hmb-muted">DTDC</td>
+                      <td class="hmb-muted">Chennai</td>
+                      <td><span class="hmb-badge hmb-purple">Label created</span></td>
+                      <td class="hmb-muted">3 days</td>
+                    </tr>
+                    <tr>
+                      <td class="hmb-mono hmb-bold">DLV-77198</td>
+                      <td class="hmb-muted">Delhivery</td>
+                      <td class="hmb-muted">Pune</td>
+                      <td><span class="hmb-badge hmb-blue">In transit</span></td>
+                      <td class="hmb-muted">1 day</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <!-- Stats row -->
+                <div class="hmb-stats">
+                  <div class="hmb-stat">
+                    <div class="hmb-stat-num">97.5%</div>
+                    <div class="hmb-stat-lbl">On-time delivery</div>
+                  </div>
+                  <div class="hmb-stat">
+                    <div class="hmb-stat-num">₹1,240</div>
+                    <div class="hmb-stat-lbl">COD pending today</div>
+                  </div>
+                  <div class="hmb-stat">
+                    <div class="hmb-stat-num">94.3%</div>
+                    <div class="hmb-stat-lbl">First attempt delivery</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Floating pill -->
+            <div class="hmb-float-pill">
+              <span class="hmb-pill-dot"></span> Live tracking · 5 carriers
+            </div>
           </div>
         </div>
       </div>
