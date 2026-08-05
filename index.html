@@ -82,7 +82,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .mega-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:var(--radius-sm);transition:background 0.15s}
 .mega-item:hover{background:rgba(255,255,255,0.05)}
-.mega-icon{width:36px;height:36px;background:rgba(27,79,216,0.18);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px}
+.mega-icon{width:36px;height:36px;background:rgba(27,79,216,0.18);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.mega-icon svg{width:18px;height:18px;color:#6B9FFF}
 .mega-label{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:2px}
 .mega-desc{font-size:0.78rem;color:var(--steel);line-height:1.4}
 .nav-ctas{display:flex;align-items:center;gap:10px}
@@ -686,12 +686,16 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
     <div class="nav-links">
       <div class="nav-item">
         <a class="nav-link" href="#">Products <span class="chevron">▾</span></a>
-        <div class="mega-menu">
-          <div class="mega-grid">
-            <a class="mega-item" href="#" onclick="showPage('swiftship')"><div class="mega-icon">📦</div><div><div class="mega-label">SwiftShip</div><div class="mega-desc">Multi-carrier orchestration, rate shopping, NDR & COD management</div></div></a>
-            <a class="mega-item" href="#" onclick="showPage('waresync')"><div class="mega-icon">🏭</div><div><div class="mega-label">WareSync</div><div class="mega-desc">Warehouse management, inbound/outbound, inventory & ERP integrations</div></div></a>
-            <a class="mega-item" href="#" onclick="showPage('swiftship')"><div class="mega-icon">🔗</div><div><div class="mega-label">Integrations</div><div class="mega-desc">100+ connections — Shopify, SAP, WooCommerce, Amazon & more</div></div></a>
-            <a class="mega-item" href="#" onclick="showPage('swiftship')"><div class="mega-icon">⚡</div><div><div class="mega-label">API & Webhooks</div><div class="mega-desc">RESTful APIs, real-time webhooks, SDKs for developers</div></div></a>
+        <div class="mega-menu" style="min-width:360px">
+          <div class="mega-grid" style="grid-template-columns:1fr 1fr">
+            <a class="mega-item" href="#" onclick="showPage('swiftship')">
+              <div class="mega-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;color:#6B9FFF"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+              <div><div class="mega-label">SwiftShip</div><div class="mega-desc">Multi-carrier orchestration, rate shopping, NDR &amp; COD management</div></div>
+            </a>
+            <a class="mega-item" href="#" onclick="showPage('waresync')">
+              <div class="mega-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px;color:#6B9FFF"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg></div>
+              <div><div class="mega-label">WareSync</div><div class="mega-desc">Warehouse management, inbound/outbound, inventory &amp; ERP integrations</div></div>
+            </a>
           </div>
         </div>
       </div>
