@@ -1046,6 +1046,19 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .trusted-logo-img{height:24px}
 }
 
+
+.blog-body{max-width:760px;margin:0 auto}
+.blog-body h2{font-size:1.25rem;font-weight:700;color:var(--ink);margin:36px 0 12px}
+.blog-body p{font-size:0.95rem;color:var(--text-body);line-height:1.85;margin-bottom:16px}
+.blog-body ul{padding-left:20px;margin-bottom:18px}
+.blog-body ul li{font-size:0.92rem;color:var(--text-body);line-height:1.75;margin-bottom:8px;list-style:disc}
+.blog-callout{background:rgba(27,79,216,0.06);border-left:3px solid #1B4FD8;border-radius:0 8px 8px 0;padding:16px 20px;margin:20px 0;font-size:0.88rem;color:var(--text-body);line-height:1.7}
+.blog-stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin:20px 0;padding:20px;background:var(--white);border:1px solid var(--steel-xs);border-radius:12px}
+.blog-stat{text-align:center}
+.blog-stat-num{font-family:var(--font-mono);font-size:1.4rem;font-weight:600;color:#1B4FD8}
+.blog-stat-lbl{font-size:0.72rem;color:var(--steel);margin-top:4px}
+.res-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.08);transform:translateY(-2px)}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -2242,7 +2255,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 <div class="page" id="page-resources">
   <section class="page-hero" style="padding-top:100px;padding-bottom:48px"><div class="container"><div class="page-hero-inner"><div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a> <span class="breadcrumb-sep">›</span> Resources</div><div class="eyebrow eyebrow-light">Resources</div><h1>Insights for India's logistics operators</h1><p>Playbooks, benchmarks, and case studies from real shipments across D2C, FMCG, and retail.</p></div></div></section>
 
-  <section style="padding:60px 0 0;background:var(--offwhite)"><div class="container"><div class="eyebrow" style="margin-bottom:8px">Blog</div><h2 style="font-size:1.5rem;margin-bottom:32px">Latest from the SendIt team</h2><div class="res-grid"><div class="res-card"><div class="res-tag">Operations</div><h4 class="res-title">How to reduce RTO by 30% in 60 days</h4><p class="res-excerpt">Non-delivery reports are the biggest margin killer in Indian e-commerce. Here's the playbook we use with D2C brands.</p><div class="res-meta">Aug 2026 · 5 min read</div></div><div class="res-card"><div class="res-tag">WMS</div><h4 class="res-title">Cycle count vs full stock audit</h4><p class="res-excerpt">Most operators default to full audits. Here's why cycle counts work better for high-SKU operations and how to run them.</p><div class="res-meta">Jul 2026 · 5 min read</div></div><div class="res-card"><div class="res-tag">Courier</div><h4 class="res-title">India courier SLA benchmark: Q2 2026</h4><p class="res-excerpt">We analysed 80,000+ shipments across 6 carriers. Who delivered on time, by zone and weight slab.</p><div class="res-meta">Jun 2026 · 5 min read</div></div><div class="res-card"><div class="res-tag">COD</div><h4 class="res-title">COD reconciliation: why numbers never match</h4><p class="res-excerpt">Remittance mismatches cost Indian brands crores annually. The 5 most common causes and how SwiftShip handles each.</p><div class="res-meta">Jun 2026 · 5 min read</div></div><div class="res-card"><div class="res-tag">FTL/PTL</div><h4 class="res-title">FTL vs PTL: a guide for FMCG distribution</h4><p class="res-excerpt">When does it make sense to book a full truck? We answer with data from 120+ freight lanes across India.</p><div class="res-meta">May 2026 · 5 min read</div></div><div class="res-card"><div class="res-tag">D2C</div><h4 class="res-title">Why your per-order logistics cost is too high</h4><p class="res-excerpt">Most D2C founders can't tell you their true fulfilment cost. Here's how to calculate it and what benchmarks to aim for.</p><div class="res-meta">May 2026 · 5 min read</div></div></div></div></section>
+  <section style="padding:60px 0 0;background:var(--offwhite)"><div class="container"><div class="eyebrow" style="margin-bottom:8px">Blog</div><h2 style="font-size:1.5rem;margin-bottom:32px">Latest from the SendIt team</h2><div class="res-grid"><div class="res-card" onclick="showPage('blog-rto')" style="cursor:pointer"><div class="res-tag">Operations</div><h4 class="res-title" style="color:var(--ink)">How to reduce RTO by 30% in 60 days</h4><p class="res-excerpt">Non-delivery reports are the biggest margin killer in Indian e-commerce. Here's the playbook we use with D2C brands.</p><div class="res-meta">Aug 2026 · 5 min read</div></div><div class="res-card" onclick="showPage('blog-cycle')" style="cursor:pointer"><div class="res-tag">WMS</div><h4 class="res-title" style="color:var(--ink)">Cycle count vs full stock audit</h4><p class="res-excerpt">Most operators default to full audits. Here's why cycle counts work better for high-SKU operations and how to run them.</p><div class="res-meta">Jul 2026 · 5 min read</div></div><div class="res-card" onclick="showPage('blog-sla')" style="cursor:pointer"><div class="res-tag">Courier</div><h4 class="res-title" style="color:var(--ink)">India courier SLA benchmark: Q2 2026</h4><p class="res-excerpt">We analysed 80,000+ shipments across 6 carriers. Who delivered on time, by zone and weight slab.</p><div class="res-meta">Jun 2026 · 5 min read</div></div><div class="res-card" onclick="showPage('blog-cod')" style="cursor:pointer"><div class="res-tag">COD</div><h4 class="res-title" style="color:var(--ink)">COD reconciliation: why numbers never match</h4><p class="res-excerpt">Remittance mismatches cost Indian brands crores annually. The 5 most common causes and how SwiftShip handles each.</p><div class="res-meta">Jun 2026 · 5 min read</div></div><div class="res-card" onclick="showPage('blog-ftl')" style="cursor:pointer"><div class="res-tag">FTL/PTL</div><h4 class="res-title" style="color:var(--ink)">FTL vs PTL: a guide for FMCG distribution</h4><p class="res-excerpt">When does it make sense to book a full truck? We answer with data from 120+ freight lanes across India.</p><div class="res-meta">May 2026 · 5 min read</div></div><div class="res-card" onclick="showPage('blog-d2c')" style="cursor:pointer"><div class="res-tag">D2C</div><h4 class="res-title" style="color:var(--ink)">Why your per-order logistics cost is too high</h4><p class="res-excerpt">Most D2C founders can't tell you their true fulfilment cost. Here's how to calculate it and what benchmarks to aim for.</p><div class="res-meta">May 2026 · 5 min read</div></div></div></div></section>
 
   <section style="padding:60px 0 0;background:var(--offwhite)"><div class="container"><div class="eyebrow" style="margin-bottom:8px">Case Studies</div><h2 style="font-size:1.5rem;margin-bottom:32px">Results from brands using SendIt</h2><div class="res-case-grid"><div class="res-case-card"><div class="res-case-tag">D2C Fashion</div><h4 class="res-title">Bengaluru D2C brand cuts RTO from 28% to 18% in 45 days</h4><p class="res-excerpt">By switching to SwiftShip's smart NDR workflows and carrier scoring, this brand recovered ₹4.2L in shipments that would have been returned.</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;padding:16px;background:var(--offwhite);border-radius:8px"><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">-10%</div><div style="font-size:0.72rem;color:var(--steel)">RTO drop</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">45 days</div><div style="font-size:0.72rem;color:var(--steel)">Time to result</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">₹4.2L</div><div style="font-size:0.72rem;color:var(--steel)">Recovered</div></div></div><a href="#" onclick="showPage('demo')" style="font-size:0.85rem;font-weight:600;color:#1B4FD8">Read case study →</a></div><div class="res-case-card"><div class="res-case-tag">FMCG</div><h4 class="res-title">WareSync reduces mis-ships by 40% in 2 weeks</h4><p class="res-excerpt">Manual pick lists and paper-based GRN were costing this brand 3-4% of inventory in errors. WareSync's barcode-guided workflows fixed it.</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;padding:16px;background:var(--offwhite);border-radius:8px"><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">-40%</div><div style="font-size:0.72rem;color:var(--steel)">Mis-ships</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">2 weeks</div><div style="font-size:0.72rem;color:var(--steel)">Go-live</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">99.2%</div><div style="font-size:0.72rem;color:var(--steel)">Accuracy</div></div></div><a href="#" onclick="showPage('demo')" style="font-size:0.85rem;font-weight:600;color:#1B4FD8">Read case study →</a></div><div class="res-case-card"><div class="res-case-tag">Retail 3PL</div><h4 class="res-title">Retail brand onboards to 3PL in 48 hours, saves 22%</h4><p class="res-excerpt">A Hyderabad retailer needed to exit their own warehouse before peak season. SendIt onboarded them under 48 hours at zero setup cost.</p><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:20px 0;padding:16px;background:var(--offwhite);border-radius:8px"><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">48 hrs</div><div style="font-size:0.72rem;color:var(--steel)">Go-live</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">₹0</div><div style="font-size:0.72rem;color:var(--steel)">Setup cost</div></div><div><div style="font-family:var(--font-mono);font-size:1.2rem;color:#1B4FD8;font-weight:600">22%</div><div style="font-size:0.72rem;color:var(--steel)">Cost saved</div></div></div><a href="#" onclick="showPage('demo')" style="font-size:0.85rem;font-weight:600;color:#1B4FD8">Read case study →</a></div></div></div></section>
 
@@ -2310,6 +2323,133 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 </div>
 
 <!-- 404 -->
+<div class="page" id="page-blog-rto">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">Operations</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">Operations</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">How to reduce RTO by 30% in 60 days</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>Aug 2026</span><span>&#183;</span><span>6 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>Non-delivery reports (NDRs) are the single biggest margin killer in Indian e-commerce. The average D2C brand loses 18-25% of shipments to RTO. At Rs 80-120 per returned shipment, that adds up fast.</p><div class="blog-stats-row"><div class="blog-stat"><div class="blog-stat-num">18-25%</div><div class="blog-stat-lbl">Avg D2C RTO rate</div></div><div class="blog-stat"><div class="blog-stat-num">Rs 100+</div><div class="blog-stat-lbl">Cost per return</div></div><div class="blog-stat"><div class="blog-stat-num">30%</div><div class="blog-stat-lbl">Reduction in 60 days</div></div></div><h2>Why RTO happens</h2><p>Our analysis of 800,000+ shipments shows five root causes account for 90% of all returns:</p><ul><li>Wrong or incomplete address (34%)</li><li>Customer unavailability - repeated attempts failed (28%)</li><li>Customer refused delivery - usually COD (19%)</li><li>Carrier could not locate the address (11%)</li><li>Shipment damaged in transit (8%)</li></ul><h2>Step 1-4: Address hygiene</h2><p>Before a shipment leaves your warehouse, run every order through:</p><ul><li>PIN code validation against serviceable areas</li><li>Address standardisation</li><li>Duplicate order detection</li><li>Mobile number format validation</li></ul><div class="blog-callout">SwiftShip runs address validation at order ingestion. Brands using this see a 40% drop in address-not-found NDRs.</div><h2>Step 5-8: Carrier allocation</h2><p>Not all carriers perform equally in every zone. Allocating blindly by rate causes unnecessary RTO.</p><ul><li>Score carriers by zone-level delivery rate, not just cost</li><li>Avoid low-performing carriers in Tier 3 zones even if cheaper</li><li>Split COD and prepaid orders - COD needs higher-reliability carriers</li><li>Track carrier NDR patterns and auto-blacklist underperformers</li></ul><div class="blog-callout">SwiftShip's allocation engine scores carriers on 14 signals including zone performance, COD remittance speed, and last-mile network density.</div><h2>Step 9-12: NDR re-engagement</h2><p>When a delivery fails, the next 24 hours are critical.</p><ul><li>Auto-trigger WhatsApp message within 2 hours of NDR event</li><li>Let customers reschedule via a link - no call centre needed</li><li>Offer alternate pickup point for Tier 1 cities</li><li>After 3 failed attempts, auto-cancel COD and convert to return</li></ul><p>Brands that deploy WhatsApp NDR re-engagement see 60-70% of NDR shipments successfully delivered on retry.</p></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-blog-cycle">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">WMS</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">WMS</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">Cycle count vs full stock audit</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>Jul 2026</span><span>&#183;</span><span>5 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>Most warehouse managers default to the full stock audit - shut everything down for 2 days, count every SKU, reconcile. It is disruptive, expensive, and by the time you fix the variance, new errors have already crept in.</p><p>Cycle counting is the alternative: count a rotating subset of inventory continuously, so every SKU gets counted 3-4 times per year without stopping operations.</p><h2>Why full audits fail at scale</h2><p>For warehouses with 500+ SKUs, annual full audits have a fundamental problem: the count is stale the moment it is done.</p><ul><li>Full audit takes 16-48 hours of downtime</li><li>Reconciliation takes another 2-3 days</li><li>Error rate during manual counting: 3-5% on average</li><li>By the time you act on the data, it is already outdated</li></ul><div class="blog-callout">One FMCG brand on WareSync found Rs 4.8L in phantom inventory through cycle counting - stock that appeared in the system but had not physically existed for months.</div><h2>How cycle counting works</h2><p>Divide your inventory into zones or ABC categories:</p><ul><li>A-class SKUs (top 20% by value/velocity) - count weekly</li><li>B-class SKUs - count monthly</li><li>C-class SKUs - count quarterly</li><li>Trigger-based counts after any unusual movement</li></ul><h2>Getting started in 3 steps</h2><ul><li>Classify your SKUs into A/B/C by sales velocity</li><li>Set count frequency and variance tolerance per class</li><li>Run the WareSync cycle count task generator - it does the scheduling automatically</li></ul></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-blog-sla">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">Courier</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">Courier</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">India courier SLA benchmark: Q2 2026</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>Jun 2026</span><span>&#183;</span><span>7 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>We analysed 80,000+ shipments processed through SwiftShip in Q2 2026 across 6 major carriers to produce India's most detailed logistics SLA benchmark.</p><div class="blog-stats-row"><div class="blog-stat"><div class="blog-stat-num">80,000+</div><div class="blog-stat-lbl">Shipments analysed</div></div><div class="blog-stat"><div class="blog-stat-num">6</div><div class="blog-stat-lbl">Carriers covered</div></div><div class="blog-stat"><div class="blog-stat-num">28</div><div class="blog-stat-lbl">States covered</div></div></div><h2>On-time delivery by carrier</h2><ul><li>Blue Dart: 96.8% - highest overall, strongest in metro zones</li><li>Amazon Shipping: 95.2% - exceptional for Amazon-enabled PIN codes</li><li>Delhivery: 93.1% - best Tier 2/3 coverage at this performance level</li><li>XpressBees: 91.4% - strong in South India</li><li>Ekart: 90.7% - dominant in Tier 3 PIN codes</li><li>DTDC: 88.3% - most economical, lower SLA consistency</li></ul><div class="blog-callout">No single carrier dominates every zone. Brands using SwiftShip zone-based allocation see 4-6% higher overall on-time rates than single-carrier brands.</div><h2>COD remittance speed</h2><ul><li>Amazon Shipping: T+2 days (fastest)</li><li>Blue Dart: T+4 days</li><li>Delhivery: T+5 days</li><li>XpressBees: T+5 days</li><li>Ekart: T+7 days</li><li>DTDC: T+7 to T+10 days</li></ul><h2>Weight slab accuracy</h2><p>In Q2 2026, 8.3% of shipments had weight discrepancies. Blue Dart and Amazon Shipping had the lowest dispute rates. SwiftShip's shipment audit module flags weight discrepancies and auto-raises dispute tickets - brands recovered an average of Rs 1.2L per month in overcharges.</p></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-blog-cod">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">COD</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">COD</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">COD reconciliation: why numbers never match</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>Jun 2026</span><span>&#183;</span><span>5 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>If you are processing more than 500 COD orders a month, you have probably experienced this: the amount deposited by your carrier does not match your expected remittance. This is a structural problem with how COD reconciliation works.</p><h2>The 5 root causes</h2><ul><li>Remittance cycle mismatch: carriers remit on different cycles (T+2 to T+10), orders from different periods get mixed</li><li>Short shipments excluded: carriers deduct undelivered COD without always notifying you</li><li>Weight dispute deductions: overweight charges auto-deducted from COD pool</li><li>Bank charges: some carriers deduct NEFT/RTGS charges from remittance</li><li>Exchange/return deductions: reverse logistics charges deducted inline</li></ul><h2>How SwiftShip handles it</h2><ul><li>Pulls remittance files from all carriers via API daily</li><li>Matches each remittance line to an AWB and order</li><li>Flags unmatched remittances and short payments automatically</li><li>Generates a dispute file pre-formatted for each carrier portal</li></ul><div class="blog-callout">Brands using SwiftShip COD reconciliation recover an average of Rs 80,000-1,20,000 per month in previously undetected short payments.</div><h2>What to do right now</h2><ul><li>Download last 3 months of remittance data from all your carriers</li><li>Map each remittance line to an AWB in your OMS</li><li>Calculate expected vs actual for each carrier</li><li>Flag discrepancies above Rs 50 per shipment for dispute</li></ul></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-blog-ftl">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">FTL/PTL</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">FTL/PTL</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">FTL vs PTL: a guide for FMCG distribution</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>May 2026</span><span>&#183;</span><span>6 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>FMCG brands moving goods from factory to distributor or warehouse face a recurring decision: book a full truck or consolidate loads? The wrong choice adds 15-40% to your per-kg freight cost.</p><h2>FTL: when it makes sense</h2><p>Full Truckload (FTL) is right when:</p><ul><li>Your shipment fills 70%+ of a truck (typically 5-10 tonnes+)</li><li>Transit time is critical - FTL is point-to-point, no stops</li><li>You are moving high-value or fragile goods</li><li>The lane runs daily or multiple times per week</li></ul><p>Typical FTL rates in India (2026): Rs 18-32 per tonne-km on major lanes.</p><h2>PTL: when it makes sense</h2><p>Part Truckload (PTL) is right when:</p><ul><li>Shipment is under 3-4 tonnes</li><li>Frequency is low (once or twice a week per lane)</li><li>Destination is served by a consolidation hub</li><li>Cost per kg matters more than transit time</li></ul><div class="blog-callout">SendIt's PTL network covers 120+ lanes with consolidation hubs in Bengaluru, Mumbai, Delhi NCR, Hyderabad, and Chennai.</div><h2>The hybrid strategy</h2><p>Most FMCG brands with national distribution use a hybrid:</p><ul><li>FTL for factory-to-warehouse (high volume, regular)</li><li>PTL for warehouse-to-distributor (variable volume, multiple destinations)</li><li>Express courier for urgent replenishment of fast-moving SKUs</li></ul></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+<div class="page" id="page-blog-d2c">
+  <section style="background:var(--ink);padding:100px 0 48px">
+    <div class="container"><div style="max-width:760px;margin:0 auto">
+      <div class="breadcrumb"><a href="#" onclick="showPage('home')" style="color:var(--steel)">Home</a> <span class="breadcrumb-sep">&#x203a;</span> <a href="#" onclick="showPage('resources')" style="color:var(--steel)">Resources</a> <span class="breadcrumb-sep">&#x203a;</span> <span style="color:var(--white)">D2C</span></div>
+      <div class="eyebrow eyebrow-light" style="margin-top:16px">D2C</div>
+      <h1 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.8rem);margin:16px 0 20px;line-height:1.15">Why your per-order logistics cost is too high</h1>
+      <div style="display:flex;align-items:center;gap:16px;color:var(--steel);font-size:0.82rem">
+        <span>SendIt Team</span><span>&#183;</span><span>May 2026</span><span>&#183;</span><span>7 min read</span>
+      </div>
+    </div></div>
+  </section>
+  <section style="padding:60px 0 100px;background:var(--offwhite)">
+    <div class="container">
+      <div class="blog-body"><p>Most D2C founders can quote their customer acquisition cost to two decimal places. Ask them their per-order fulfilment cost and you will get a shrug. This is one of the biggest reasons D2C margins look worse than they should.</p><h2>The full cost formula</h2><p>True per-order logistics cost = Storage cost + Pick and pack + Outbound delivery + Returns cost (weighted by RTO rate) + COD fee (weighted by COD mix)</p><div class="blog-callout">Most brands calculate only the outbound delivery charge and ignore the rest. This understates true logistics cost by 35-60%.</div><div class="blog-stats-row"><div class="blog-stat"><div class="blog-stat-num">Rs 28-45</div><div class="blog-stat-lbl">Outbound delivery (prepaid, 500g, Tier 1)</div></div><div class="blog-stat"><div class="blog-stat-num">Rs 12-20</div><div class="blog-stat-lbl">Pick and pack labour</div></div><div class="blog-stat"><div class="blog-stat-num">Rs 8-15</div><div class="blog-stat-lbl">Storage per order</div></div><div class="blog-stat"><div class="blog-stat-num">Rs 18-35</div><div class="blog-stat-lbl">RTO cost at 20% RTO rate</div></div></div><h2>Benchmarks by order value</h2><ul><li>Order value under Rs 500: logistics should be under 18% of order value</li><li>Order value Rs 500-1,500: logistics should be under 12%</li><li>Order value above Rs 1,500: logistics should be under 8%</li><li>If you are above these: high RTO, expensive packaging, or under-negotiating carrier rates</li></ul><h2>The biggest levers</h2><ul><li>Reduce RTO rate by 5% - saves Rs 8-12 per order at average volumes</li><li>Shift 20% of COD orders to prepaid - saves Rs 15-25 per converted order</li><li>Negotiate weight slabs - most brands pay 500g slab for 200g products</li><li>Move to a 3PL closer to your customer concentration zone</li></ul></div>
+      <div style="max-width:760px;margin:60px auto 0;padding-top:40px;border-top:1px solid var(--steel-xs);display:flex;justify-content:space-between;align-items:center">
+        <a href="#" onclick="showPage('resources')" class="btn btn-outline">&#8592; Back to Resources</a>
+        <a href="#" onclick="showPage('demo')" class="btn btn-primary">Book a Demo &#8594;</a>
+      </div>
+    </div>
+  </section>
+</div>
+
 <div class="page" id="page-404">
   <section style="min-height:80vh;display:flex;align-items:center;justify-content:center;background:var(--ink);text-align:center;padding:80px 20px;"><div><div style="font-family:var(--font-mono);font-size:5rem;font-weight:500;color:rgba(200,208,220,0.1);line-height:1;">404</div><h2 style="color:var(--white);margin-bottom:12px;">Page not found</h2><p style="color:var(--steel);margin-bottom:32px;">This shipment seems to have gone missing. Let's get you back on track.</p><a class="btn btn-primary" href="#" onclick="showPage('home')">← Return to Homepage</a></div></section>
 </div>
