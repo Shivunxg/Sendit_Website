@@ -713,8 +713,8 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 
 /* Slide container */
 .ws-slides{position:relative}
-.ws-slide{display:none;grid-template-columns:1fr 1.6fr;gap:48px;align-items:center}
-.ws-slide.active{display:grid}
+.ws-slide{grid-template-columns:1fr 1.6fr;gap:48px;align-items:center}
+
 
 /* Copy panel */
 .ws-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#1B4FD8;margin-bottom:10px}
@@ -984,13 +984,24 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 
 // WareSync mockup tabs
 function wsShow(idx) {
-  document.querySelectorAll('.ws-slide').forEach((s,i) => {
-    s.classList.toggle('active', i === idx);
-  });
-  document.querySelectorAll('.ws-tab').forEach((t,i) => {
+  // Use IDs to be precise — avoids matching ws-slides container or other pages
+  for (var i = 0; i < 5; i++) {
+    var slide = document.getElementById('ws-slide-' + i);
+    if (slide) slide.style.display = (i === idx) ? 'grid' : 'none';
+  }
+  document.querySelectorAll('.ws-tab').forEach(function(t, i) {
     t.classList.toggle('active', i === idx);
   });
 }
+// Init: hide slides 1-4, show 0
+document.addEventListener('DOMContentLoaded', function() {
+  for (var i = 1; i < 5; i++) {
+    var s = document.getElementById('ws-slide-' + i);
+    if (s) s.style.display = 'none';
+  }
+  var s0 = document.getElementById('ws-slide-0');
+  if (s0) s0.style.display = 'grid';
+});
 
 </script>
 <script type="application/ld+json">
@@ -1444,7 +1455,7 @@ function wsShow(idx) {
       <div class="ws-slides">
 
         <!-- ─── SLIDE 0: Dashboard (dark) ─────────────────────────────── -->
-        <div class="ws-slide ws-slide-dark active" id="ws-slide-0">
+        <div class="ws-slide ws-slide-dark" id="ws-slide-0" style="display:grid">
           <div class="ws-copy">
             <div class="ws-eyebrow">Powerful Dashboard</div>
             <h3 class="ws-headline">Everything you need.<br>One dashboard.</h3>
@@ -1516,7 +1527,7 @@ function wsShow(idx) {
         </div>
 
         <!-- ─── SLIDE 1: Orders ────────────────────────────────────────── -->
-        <div class="ws-slide" id="ws-slide-1">
+        <div class="ws-slide" id="ws-slide-1" style="display:none">
           <div class="ws-copy">
             <div class="ws-eyebrow">Order Management</div>
             <h3 class="ws-headline-dark">Manage orders from<br>a single dashboard.</h3>
@@ -1576,7 +1587,7 @@ function wsShow(idx) {
         </div>
 
         <!-- ─── SLIDE 2: Inventory ─────────────────────────────────────── -->
-        <div class="ws-slide" id="ws-slide-2">
+        <div class="ws-slide" id="ws-slide-2" style="display:none">
           <div class="ws-copy">
             <div class="ws-eyebrow">Inventory Management</div>
             <h3 class="ws-headline-dark">Real-time<br>inventory visibility.</h3>
@@ -1635,7 +1646,7 @@ function wsShow(idx) {
         </div>
 
         <!-- ─── SLIDE 3: Warehouse Operations ─────────────────────────── -->
-        <div class="ws-slide" id="ws-slide-3">
+        <div class="ws-slide" id="ws-slide-3" style="display:none">
           <div class="ws-browser" style="order:1">
             <div class="ws-browser-bar">
               <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
@@ -1699,7 +1710,7 @@ function wsShow(idx) {
         </div>
 
         <!-- ─── SLIDE 4: Shipping ──────────────────────────────────────── -->
-        <div class="ws-slide" id="ws-slide-4">
+        <div class="ws-slide" id="ws-slide-4" style="display:none">
           <div class="ws-copy">
             <div class="ws-eyebrow">Shipping & Fulfillment</div>
             <h3 class="ws-headline-dark">End-to-end logistics<br>management.</h3>
