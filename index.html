@@ -517,6 +517,28 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 }
 
 
+
+/* ── Pricing v2 ──────────────────────────────────────────── */
+.pricing-v2-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:start;margin-bottom:40px}
+.pricing-v2-card{background:var(--white);border:1.5px solid var(--steel-xs);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;position:relative}
+.pricing-v2-card.pv2-featured{border-color:#1B4FD8;box-shadow:0 0 0 3px rgba(27,79,216,0.08)}
+.pv2-badge{background:#1B4FD8;color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:5px 0;text-align:center}
+.pv2-header{padding:28px 24px 20px;border-bottom:1px solid var(--steel-xs)}
+.pv2-tier{font-size:1.5rem;font-weight:800;color:var(--ink);margin-bottom:4px}
+.pv2-tagline{font-size:0.8rem;color:#1B4FD8;font-weight:500;margin-bottom:16px}
+.pv2-price{font-family:var(--font-mono);font-size:2rem;font-weight:500;color:var(--ink)}
+.pv2-per{font-size:0.9rem;color:var(--steel);font-weight:400}
+.pv2-body{padding:20px 24px;flex:1;display:flex;flex-direction:column;gap:20px}
+.pv2-footer{padding:20px 24px 24px}
+.pricing-cat{}
+.pricing-cat-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pricing-cat-icon{width:16px;height:16px;color:var(--steel);flex-shrink:0}
+.pricing-cat-label{font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--steel)}
+.pricing-feat-list{list-style:none;display:flex;flex-direction:column;gap:8px}
+.pricing-feat-row{display:flex;align-items:flex-start;gap:10px;font-size:0.84rem;color:var(--text-body)}
+.pf-check{width:18px;height:18px;color:#1B4FD8;flex-shrink:0;margin-top:1px}
+@media(max-width:900px){.pricing-v2-grid{grid-template-columns:1fr}}
+
 /* Stock photo banner */
 .stock-photo-banner {
   position: relative;
@@ -1278,30 +1300,156 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
       </div>
     </div>
   </section>
-  <section class="features-section"><div class="container"><div class="features-header animate-on-scroll"><div class="eyebrow">What's Included</div><h2>Full-service 3PL, not a pick-and-mix</h2></div><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg></div><h4>Managed Warehousing</h4><p>Storage, inbound, put-away, cycle counts, kitting, QC, and labelling — all included.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17H5M13 17h2M9 15V9h7l2 2v4M9 9H5"/></svg></div><h4>Last-Mile Delivery</h4><p>Same-day and next-day delivery across 60+ cities via our owned and aggregated rider fleet.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div><h4>Intercity Freight</h4><p>FTL and PTL movement between your factories, our warehouses, and retail distribution points.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div><h4>SendIt Platform Access</h4><p>Full SwiftShip & WareSync access included in every 3PL engagement.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>Dedicated Account Team</h4><p>Named account manager, weekly ops review, monthly business review.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="12" y2="16"/></svg></div><h4>SLA-Backed Contracts</h4><p>99.5% order accuracy. Same-day dispatch for orders before 2PM. Financial penalties for SLA breach.</p></div></div></div></section>
-  <section class="cta-band"><div class="container"><div class="cta-inner"><div class="cta-text"><h2>₹0 setup. Pay per shipment.</h2><p>No infrastructure investment required. Pilot with us before committing to a long-term arrangement.</p></div><div class="cta-actions"><a class="btn btn-primary btn-lg" href="#" onclick="showPage('quote')">Request a Quote →</a><a class="btn btn-secondary" href="#" onclick="showPage('demo')">Talk to Sales</a></div></div></div></section>
-    <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
-</div>
-
-<!-- PRICING -->
-<div class="page" id="page-pricing">
-  <section class="page-hero">
+  <section class="features-section"><div class="container"><div class="features-header animate-on-scroll"><div class="eyebrow">What's Included</div><h2>Full-service 3PL, not a pick-and-mix</h2></div><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 22 16 8"/><path d="M3.47 12.53 5 11l1.53 1.53a3.5 3.5 0 0 1 0 4.94L5 19l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M7.47 8.53 9 7l1.53 1.53a3.5 3.5 0 0 1 0 4.94L9 15l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M11.47 4.53 13 3l1.53 1.53a3.5 3.5 0 0 1 0 4.94L13 11l-1.53-1.53a3.5 3.5 0 0 1 0-4.94Z"/><path d="M20 2h2v2a4 4 0 0 1-4 4h-2V6a4 4 0 0 1 4-4Z"/><path d="M11.47 17.47 13 19l-1.53 1.53a3.5 3.5 0 0 1-4.94 0L5 19l1.53-1.53a3.5 3.5 0 0 1 4.94 0Z"/></svg></div><h4>Managed Warehousing</h4><p>Storage, inbound, put-away, cycle counts, kitting, QC, and labelling — all included.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M9 17H5M13 17h2M9 15V9h7l2 2v4M9 9H5"/></svg></div><h4>Last-Mile Delivery</h4><p>Same-day and next-day delivery across 60+ cities via our owned and aggregated rider fleet.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg></div><h4>Intercity Freight</h4><p>FTL and PTL movement between your factories, our warehouses, and retail distribution points.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div><h4>SendIt Platform Access</h4><p>Full SwiftShip & WareSync access included in every 3PL engagement.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin<div class="page" id="page-pricing">
+  <section class="page-hero" style="padding-bottom:60px">
     <div class="container">
       <div class="page-hero-inner">
         <div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a> <span class="breadcrumb-sep">›</span> Pricing</div>
         <div class="eyebrow eyebrow-light">Pricing</div>
-        <h1>Transparent SaaS pricing. Quoted 3PL rates.</h1>
-        <p>SwiftShip and WareSync are subscription SaaS. 3PL services are priced per usage.</p>
-        <div class="page-hero-ctas"><a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a Demo</a><a class="btn btn-secondary" href="#" onclick="showPage('quote')">Request a Quote</a></div>
+        <h1>Simple, transparent pricing.</h1>
+        <p>Start with just SwiftShip, just WareSync, or take the full platform. No setup fees. Cancel anytime.</p>
       </div>
     </div>
   </section>
-  <section class="pricing-section"><div class="container">
-    <div class="pricing-header animate-on-scroll"><div class="eyebrow">SwiftShip</div><h2>Start shipping smarter</h2><p>All plans include unlimited carrier integrations and real-time tracking.</p></div>
-    <div class="pricing-grid animate-on-scroll">
-      <div class="pricing-card"><div class="pricing-tier">Starter</div><div class="pricing-price">₹4,999</div><div class="pricing-per">per month · up to 2,000 shipments</div><div class="pricing-divider"></div><div class="pricing-features"><div class="p-feat"><span class="p-feat-check">✓</span> 5 carrier integrations</div><div class="p-feat"><span class="p-feat-check">✓</span> Real-time tracking</div><div class="p-feat"><span class="p-feat-check">✓</span> Basic NDR management</div><div class="p-feat"><span class="p-feat-check">✓</span> COD reconciliation</div><div class="p-feat"><span class="p-feat-check">✓</span> Email support</div></div><a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;">Start Free Trial</a></div>
-      <div class="pricing-card featured"><div class="pricing-badge">Most Popular</div><div class="pricing-tier">Growth</div><div class="pricing-price">₹14,999</div><div class="pricing-per" style="color:var(--steel-lt)">per month · up to 10,000 shipments</div><div class="pricing-divider"></div><div class="pricing-features"><div class="p-feat"><span class="p-feat-check">✓</span> 15+ carrier integrations</div><div class="p-feat"><span class="p-feat-check">✓</span> Smart carrier allocation</div><div class="p-feat"><span class="p-feat-check">✓</span> Advanced NDR + RTO playbooks</div><div class="p-feat"><span class="p-feat-check">✓</span> Branded tracking page</div><div class="p-feat"><span class="p-feat-check">✓</span> API & webhooks access</div><div class="p-feat"><span class="p-feat-check">✓</span> Priority support + CSM</div></div><a class="btn btn-primary" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;">Book a Demo</a></div>
-      <div class="pricing-card"><div class="pricing-tier">Enterprise</div><div class="pricing-price">Custom</div><div class="pricing-per">10,000+ shipments · SLA contracts</div><div class="pricing-divider"></div><div class="pricing-features"><div class="p-feat"><span class="p-feat-check">✓</span> Unlimited carriers</div><div class="p-feat"><span class="p-feat-check">✓</span> Custom allocation rules</div><div class="p-feat"><span class="p-feat-check">✓</span> Dedicated infrastructure</div><div class="p-feat"><span class="p-feat-check">✓</span> White-label tracking</div><div class="p-feat"><span class="p-feat-check">✓</span> SLA with uptime guarantees</div><div class="p-feat"><span class="p-feat-check">✓</span> Named support team</div></div><a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;">Talk to Sales</a></div>
+
+  <!-- WARESYNC PRICING -->
+  <section style="padding:60px 0 0;background:var(--offwhite)">
+    <div class="container">
+      <div class="eyebrow" style="margin-bottom:8px">WareSync — Warehouse Management</div>
+      <h2 style="margin-bottom:40px;font-size:1.6rem">Choose your warehouse tier</h2>
+      <div class="pricing-v2-grid">
+
+        <!-- Foundation -->
+        <div class="pricing-v2-card">
+          <div class="pv2-header">
+            <div class="pv2-tier">Foundation</div>
+            <div class="pv2-tagline">For single-warehouse D2C brands</div>
+            <div class="pv2-price">₹9,999<span class="pv2-per">/mo</span></div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="pricing-cat-label">Warehouse Management</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>1 Warehouse</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Barcode-based picking & putaway</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Basic inventory tracking</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>5 courier integrations</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Basic rate comparison</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Standard NDR handling</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-primary" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center">Start Managing My Warehouse</a>
+          </div>
+        </div>
+
+        <!-- Orchestrated -->
+        <div class="pricing-v2-card pv2-featured">
+          <div class="pv2-badge">Most Popular</div>
+          <div class="pv2-header">
+            <div class="pv2-tier">Orchestrated</div>
+            <div class="pv2-tagline">For scaling brands managing complexity</div>
+            <div class="pv2-price">₹24,999<span class="pv2-per">/mo</span></div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="pricing-cat-label">Warehouse Management</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Up to 3 warehouses</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>System-directed putaway</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Wave & batch picking</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>15+ courier integrations</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Smart auto-allocation</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Automated NDR workflows</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="pricing-cat-label">Analytics</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>SKU-level profitability dashboard</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-primary" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;background:#fff;color:#1B4FD8">Upgrade to Smart Orchestration</a>
+          </div>
+        </div>
+
+        <!-- Control Tower -->
+        <div class="pricing-v2-card">
+          <div class="pv2-header">
+            <div class="pv2-tier">Control Tower</div>
+            <div class="pv2-tagline">For enterprise & 3PL operators</div>
+            <div class="pv2-price">Custom</div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg><span class="pricing-cat-label">Warehouse Management</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Unlimited warehouses</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Custom workflows</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>AI-based rate optimization</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Rule-based routing</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="pricing-cat-label">Intelligence</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Unified dashboard</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>API-first architecture</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center">Talk to a Fulfillment Expert</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SWIFTSHIP PRICING -->
+  <section style="padding:60px 0 0;background:var(--offwhite)">
+    <div class="container">
+      <div class="eyebrow" style="margin-bottom:8px">SwiftShip — Courier Orchestration</div>
+      <h2 style="margin-bottom:40px;font-size:1.6rem">Start shipping smarter</h2>
+      <div class="pricing-v2-grid">
+
+        <div class="pricing-v2-card">
+          <div class="pv2-header">
+            <div class="pv2-tier">Starter</div>
+            <div class="pv2-tagline">Up to 2,000 shipments / month</div>
+            <div class="pv2-price">₹4,999<span class="pv2-per">/mo</span></div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>5 carrier integrations</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Real-time tracking</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Basic NDR management</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="pricing-cat-label">Reporting</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>COD reconciliation</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Email support</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center">Start Free Trial</a>
+          </div>
+        </div>
+
+        <div class="pricing-v2-card pv2-featured">
+          <div class="pv2-badge">Most Popular</div>
+          <div class="pv2-header">
+            <div class="pv2-tier">Growth</div>
+            <div class="pv2-tagline">Up to 10,000 shipments / month</div>
+            <div class="pv2-price">₹14,999<span class="pv2-per">/mo</span></div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>15+ carrier integrations</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Smart carrier allocation</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Advanced NDR + RTO playbooks</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Branded tracking page</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg><span class="pricing-cat-label">Analytics & Support</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>API & webhooks access</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Priority support + CSM</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-primary" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;background:#fff;color:#1B4FD8">Book a Demo</a>
+          </div>
+        </div>
+
+        <div class="pricing-v2-card">
+          <div class="pv2-header">
+            <div class="pv2-tier">Enterprise</div>
+            <div class="pv2-tagline">10,000+ shipments · SLA contracts</div>
+            <div class="pv2-price">Custom</div>
+          </div>
+          <div class="pv2-body">
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg><span class="pricing-cat-label">Courier Orchestration</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Unlimited carriers</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Custom allocation rules</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>White-label tracking</span></li></ul></div>
+            <div class="pricing-cat"><div class="pricing-cat-header"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="pricing-cat-icon"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg><span class="pricing-cat-label">Infrastructure</span></div><ul class="pricing-feat-list"><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Dedicated infrastructure</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>SLA with uptime guarantees</span></li><li class="pricing-feat-row"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pf-check"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><span>Named support team</span></li></ul></div>
+          </div>
+          <div class="pv2-footer">
+            <a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center">Talk to Sales</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3PL QUOTE BAND -->
+  <section style="padding:60px 0 80px;background:var(--offwhite)">
+    <div class="container">
+      <div style="background:var(--ink);border-radius:var(--radius-lg);padding:48px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;">
+        <div>
+          <div class="eyebrow eyebrow-light" style="margin-bottom:12px">3PL Services — Warehousing, Delivery & Freight</div>
+          <h3 style="color:var(--white);font-size:1.4rem;margin-bottom:10px">Usage-based pricing. No minimum commitment.</h3>
+          <p style="color:var(--steel);font-size:0.9rem;line-height:1.7">3PL services are priced per sq ft of storage, per shipment delivered, and per tonne-km of freight moved. Get a detailed rate card within 48 hours.</p>
+        </div>
+        <div style="flex-shrink:0"><a class="btn btn-primary btn-lg" href="#" onclick="showPage('quote')">Request a Quote →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
+</div>
+
+
+✓</span> Custom allocation rules</div><div class="p-feat"><span class="p-feat-check">✓</span> Dedicated infrastructure</div><div class="p-feat"><span class="p-feat-check">✓</span> White-label tracking</div><div class="p-feat"><span class="p-feat-check">✓</span> SLA with uptime guarantees</div><div class="p-feat"><span class="p-feat-check">✓</span> Named support team</div></div><a class="btn btn-outline" href="#" onclick="showPage('demo')" style="width:100%;justify-content:center;">Talk to Sales</a></div>
     </div>
     <div style="margin-top:60px;background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-lg);padding:40px;" class="animate-on-scroll">
       <div style="display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;"><div><div class="eyebrow">3PL Services</div><h3 style="font-size:1.3rem;margin-bottom:10px;">Warehousing, Delivery & Freight</h3><p style="color:var(--steel);font-size:0.9rem;line-height:1.7;">3PL services are priced on usage — per sq ft of storage, per shipment delivered, per tonne-km of freight moved. No hidden fees, no minimum commitments for the first 90 days.</p></div><div style="flex-shrink:0;"><a class="btn btn-primary btn-lg" href="#" onclick="showPage('quote')">Request a Quote →</a></div></div>
