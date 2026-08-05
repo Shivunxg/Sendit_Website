@@ -1360,6 +1360,99 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   }
 }
 
+
+/* ── Cookie Consent Banner ──────────────────────────────────────── */
+.cookie-banner{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:#0C1C3E;
+  border-top:2px solid #1B4FD8;
+  z-index:9999;
+  padding:0;
+  transform:translateY(100%);
+  transition:transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  box-shadow:0 -4px 32px rgba(0,0,0,0.3);
+}
+.cookie-banner.visible{
+  transform:translateY(0);
+}
+.cookie-banner-inner{
+  max-width:1200px;
+  margin:0 auto;
+  padding:20px 32px;
+  display:flex;
+  align-items:center;
+  gap:32px;
+  flex-wrap:wrap;
+}
+.cookie-banner-title{
+  font-size:0.95rem;
+  font-weight:700;
+  color:#fff;
+  margin-bottom:6px;
+}
+.cookie-banner-body{
+  font-size:0.82rem;
+  color:rgba(200,212,240,0.85);
+  line-height:1.6;
+  margin:0;
+  max-width:600px;
+}
+.cookie-banner-link{
+  color:#6B9FFF;
+  text-decoration:underline;
+  text-underline-offset:2px;
+}
+.cookie-banner-text{flex:1;min-width:260px}
+.cookie-banner-actions{
+  display:flex;
+  gap:10px;
+  flex-shrink:0;
+}
+.cookie-btn{
+  padding:10px 22px;
+  border-radius:8px;
+  font-size:0.85rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all 0.15s;
+  white-space:nowrap;
+  border:none;
+}
+.cookie-btn-decline{
+  background:transparent;
+  color:rgba(200,212,240,0.7);
+  border:1.5px solid rgba(200,212,240,0.25);
+}
+.cookie-btn-decline:hover{
+  border-color:rgba(200,212,240,0.6);
+  color:#fff;
+}
+.cookie-btn-accept{
+  background:#1B4FD8;
+  color:#fff;
+}
+.cookie-btn-accept:hover{
+  background:#1741b8;
+}
+@media(max-width:768px){
+  .cookie-banner-inner{
+    padding:16px;
+    flex-direction:column;
+    gap:16px;
+    align-items:stretch;
+  }
+  .cookie-banner-actions{
+    flex-direction:column;
+    gap:8px;
+  }
+  .cookie-btn{
+    width:100%;
+    text-align:center;
+    padding:12px;
+  }
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -1486,6 +1579,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
     }
   ]
 }
+
 
 </script>
 <script type="application/ld+json">
@@ -2613,14 +2707,14 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 <!-- PRIVACY -->
 <div class="page" id="page-privacy">
   <section class="page-hero" style="padding-bottom:48px"><div class="container"><div class="page-hero-inner"><div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a> <span class="breadcrumb-sep">›</span> Legal › Privacy Policy</div><div class="eyebrow eyebrow-light">Legal</div><h1>Privacy Policy</h1></div></div></section>
-  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. About this Policy</a><a href="#">2. Data We Collect</a><a href="#">3. How We Use Data</a><a href="#">4. Third-Party Sharing</a><a href="#">5. Data Retention</a><a href="#">6. Your Rights (DPDPA 2023)</a><a href="#">7. Cookies</a><a href="#">8. Security</a><a href="#">9. DPO Contact</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 1 November 2024</div><h2>1. About This Policy</h2><p>This Privacy Policy is published by <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), a company incorporated under the Companies Act, 2013, with its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us", or "our").</p><p>SendIt operates the SwiftShip courier orchestration platform, the WareSync warehouse management system, and provides third-party logistics (3PL) services. This Policy is framed in compliance with India's Digital Personal Data Protection Act, 2023 ("DPDPA 2023").</p><h2>2. Data We Collect</h2><h3>2.1 Account and Business Data</h3><p>When you register for SwiftShip or WareSync, we collect your name, business name, GST number, work email address, mobile number, billing address, and payment instrument details (stored via our PCI-DSS-compliant payment processor).</p><h3>2.2 Shipment and Consignee Data</h3><p>In the course of processing shipments, we collect and process the following data about end consignees: full name, delivery address (including PIN code), mobile number or email address for delivery notifications, order value (for COD purposes), and package contents description.</p><h3>2.3 Rider and Fleet Location Data</h3><p>For last-mile delivery operations, we collect real-time GPS location data from our rider application. This data is used solely for route optimisation, live tracking provision, COD accountability, and operational performance monitoring.</p><h2>3. How We Use Your Data</h2><p>We use personal data for: providing and operating the platforms; fulfilling 3PL service obligations; processing payments and COD reconciliation; sending shipment tracking notifications; conducting security monitoring; complying with applicable law; and improving our services through aggregate analytics.</p><h2>4. Third-Party Sharing</h2><p>We share personal data with: carrier partners (shipment data for delivery purposes); payment processors (Razorpay, Cashfree); cloud infrastructure providers (AWS Mumbai region); communication service providers (SMS/WhatsApp notifications); and regulatory authorities when required by applicable Indian law. We do not sell personal data to any third party.</p><h2>5. Data Retention</h2><p>Shipment and consignee data is retained for 7 years from the date of shipment. Account data is retained for the duration of the customer relationship and for 7 years thereafter. Rider location data is retained in raw form for 90 days and in aggregated form for 3 years.</p><h2>6. Your Rights Under DPDPA 2023</h2><p>You have the right to access, correction, erasure, and grievance redressal in respect of your personal data. To exercise any of these rights, contact our DPO at sales@sendit.co.in. We will respond within 30 days.</p><h2>7. Cookies</h2><p>Our website uses strictly necessary cookies (session management, security) and analytics cookies (Google Analytics 4, deployed only with consent). Advertising and tracking cookies are not deployed on our Platforms.</p><h2>8. Security</h2><p>We implement industry-standard security controls including TLS 1.2+ encryption in transit, AES-256 encryption at rest, role-based access controls, and multi-factor authentication.</p><h2>9. Data Protection Officer</h2><p><strong>Email:</strong> sales@sendit.co.in<br><strong>Address:</strong> Data Protection Officer, SendIt Logistics Private Limited, BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001</p></div></div></div></div>
+  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. About this Policy</a><a href="#">2. Data We Collect</a><a href="#">3. How We Use Data</a><a href="#">4. Third-Party Sharing</a><a href="#">5. Data Retention</a><a href="#">6. Your Rights (DPDPA 2023)</a><a href="#">7. Cookies</a><a href="#">8. Security</a><a href="#">9. DPO Contact</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 5 August 2026</div><h2>1. About This Policy</h2><p>This Privacy Policy is published by <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), a company incorporated under the Companies Act, 2013, with its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us", or "our").</p><p>SendIt operates the SwiftShip courier orchestration platform, the WareSync warehouse management system, and provides third-party logistics (3PL) services. This Policy is framed in compliance with India's Digital Personal Data Protection Act, 2023 ("DPDPA 2023").</p><h2>2. Data We Collect</h2><h3>2.1 Account and Business Data</h3><p>When you register for SwiftShip or WareSync, we collect your name, business name, GST number, work email address, mobile number, billing address, and payment instrument details (stored via our PCI-DSS-compliant payment processor).</p><h3>2.2 Shipment and Consignee Data</h3><p>In the course of processing shipments, we collect and process the following data about end consignees: full name, delivery address (including PIN code), mobile number or email address for delivery notifications, order value (for COD purposes), and package contents description.</p><h3>2.3 Rider and Fleet Location Data</h3><p>For last-mile delivery operations, we collect real-time GPS location data from our rider application. This data is used solely for route optimisation, live tracking provision, COD accountability, and operational performance monitoring.</p><h2>3. How We Use Your Data</h2><p>We use personal data for: providing and operating the platforms; fulfilling 3PL service obligations; processing payments and COD reconciliation; sending shipment tracking notifications; conducting security monitoring; complying with applicable law; and improving our services through aggregate analytics.</p><h2>4. Third-Party Sharing</h2><p>We share personal data with: carrier partners (shipment data for delivery purposes); payment processors (Razorpay, Cashfree); cloud infrastructure providers (AWS Mumbai region); communication service providers (SMS/WhatsApp notifications); and regulatory authorities when required by applicable Indian law. We do not sell personal data to any third party.</p><h2>5. Data Retention</h2><p>Shipment and consignee data is retained for 7 years from the date of shipment. Account data is retained for the duration of the customer relationship and for 7 years thereafter. Rider location data is retained in raw form for 90 days and in aggregated form for 3 years.</p><h2>6. Your Rights Under DPDPA 2023</h2><p>You have the right to access, correction, erasure, and grievance redressal in respect of your personal data. To exercise any of these rights, contact our DPO at sales@sendit.co.in. We will respond within 30 days.</p><h2>7. Cookies</h2><p>Our website uses strictly necessary cookies (session management, security) and analytics cookies (Google Analytics 4, deployed only with consent). Advertising and tracking cookies are not deployed on our Platforms.</p><h2>8. Security</h2><p>We implement industry-standard security controls including TLS 1.2+ encryption in transit, AES-256 encryption at rest, role-based access controls, and multi-factor authentication.</p><h2>9. Data Protection Officer</h2><p><strong>Email:</strong> sales@sendit.co.in<br><strong>Address:</strong> Data Protection Officer, SendIt Logistics Private Limited, BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001</p></div></div></div></div>
     <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
 </div>
 
 <!-- TERMS -->
 <div class="page" id="page-terms">
   <section class="page-hero" style="padding-bottom:48px"><div class="container"><div class="page-hero-inner"><div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a> <span class="breadcrumb-sep">›</span> Legal › Terms of Service</div><div class="eyebrow eyebrow-light">Legal</div><h1>Terms of Service</h1></div></div></section>
-  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. Parties & Definitions</a><a href="#">2. SaaS Subscription</a><a href="#">3. Uptime SLA</a><a href="#">4. Acceptable Use</a><a href="#">5. Intellectual Property</a><a href="#">6. Fees & Payment</a><a href="#">7. Liability Cap</a><a href="#">8. 3PL Service Terms</a><a href="#">9. Termination</a><a href="#">10. Governing Law</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 1 November 2024</div><h2>1. Parties and Definitions</h2><p>These Terms of Service ("Terms") constitute a binding legal agreement between <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), having its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us"), and the entity or individual that has completed the registration process for the SwiftShip or WareSync platform ("Customer").</p><p>"Platform" means the SendIt platform, comprising the SwiftShip courier orchestration software and/or the WareSync warehouse management system, as subscribed by the Customer.</p><h2>2. SaaS Subscription Terms</h2><p>Subject to these Terms and payment of applicable fees, SendIt grants the Customer a non-exclusive, non-transferable, revocable licence to access and use the Platform during the Subscription Term solely for the Customer's internal business operations.</p><h2>3. Uptime SLA</h2><p>SendIt commits to a monthly uptime of 99.5% for the SwiftShip and WareSync platforms, measured on a calendar month basis and excluding scheduled maintenance windows, force majeure events, and downtime caused by the Customer's systems or third-party carrier API outages.</p><p>Service credits: 10% of that month's subscription fee for uptime between 99.0–99.4%; 20% for uptime between 98.0–98.9%; 30% for uptime below 98.0%. Credits must be claimed within 30 days of the relevant month's end.</p><h2>4. Acceptable Use Policy</h2><p>The Customer shall not use the Platform to process shipments containing prohibited goods under applicable Indian law; engage in fraudulent COD transactions; attempt to access or disrupt SendIt's systems; or reverse-engineer the Platform.</p><h2>5. Intellectual Property</h2><p>SendIt retains all intellectual property rights in the Platform. The Customer retains all rights in their own data uploaded to the Platform. "SendIt", "SwiftShip" and "WareSync" are registered trademarks of SendIt Logistics Private Limited.</p><h2>6. Fees and Payment</h2><p>Subscription fees are charged monthly or annually in advance. All fees are exclusive of GST. Payment is due within 7 days of invoice date. Overdue invoices accrue interest at 18% per annum from the due date.</p><h2>7. Liability Limitation</h2><p>SendIt's aggregate liability to the Customer for all claims shall not exceed the total fees paid in the 3 months preceding the event giving rise to the claim. SendIt shall not be liable for any indirect, incidental, or consequential damages. These limitations do not apply to liability arising from gross negligence, fraud, or wilful misconduct.</p><h2>8. 3PL Service Terms</h2><h3>8.1 Liability for Goods in Transit</h3><p>SendIt's liability for loss of or damage to goods in transit is limited to ₹1,000 per shipment or the declared value of the goods (whichever is lower), unless the Customer has purchased additional freight insurance. Claims must be submitted within 48 hours of delivery or non-delivery.</p><h3>8.2 Force Majeure</h3><p>SendIt shall not be liable for failure to perform 3PL obligations due to events beyond its reasonable control, including acts of God, natural disasters, pandemic, strikes, government orders, or road closures.</p><h2>9. Termination</h2><p>Either party may terminate the subscription on 30 days' written notice. SendIt may terminate immediately if the Customer breaches the Acceptable Use Policy, fails to pay fees within 30 days of notice, or engages in fraudulent activity.</p><h2>10. Governing Law</h2><p>These Terms shall be governed by the laws of India. Disputes shall be referred to binding arbitration under the Arbitration and Conciliation Act, 1996, with the seat of arbitration in Bengaluru, Karnataka, conducted in English before a sole arbitrator.</p></div></div></div></div>
+  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. Parties & Definitions</a><a href="#">2. SaaS Subscription</a><a href="#">3. Uptime SLA</a><a href="#">4. Acceptable Use</a><a href="#">5. Intellectual Property</a><a href="#">6. Fees & Payment</a><a href="#">7. Liability Cap</a><a href="#">8. 3PL Service Terms</a><a href="#">9. Termination</a><a href="#">10. Governing Law</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 5 August 2026</div><h2>1. Parties and Definitions</h2><p>These Terms of Service ("Terms") constitute a binding legal agreement between <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), having its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us"), and the entity or individual that has completed the registration process for the SwiftShip or WareSync platform ("Customer").</p><p>"Platform" means the SendIt platform, comprising the SwiftShip courier orchestration software and/or the WareSync warehouse management system, as subscribed by the Customer.</p><h2>2. SaaS Subscription Terms</h2><p>Subject to these Terms and payment of applicable fees, SendIt grants the Customer a non-exclusive, non-transferable, revocable licence to access and use the Platform during the Subscription Term solely for the Customer's internal business operations.</p><h2>3. Uptime SLA</h2><p>SendIt commits to a monthly uptime of 99.5% for the SwiftShip and WareSync platforms, measured on a calendar month basis and excluding scheduled maintenance windows, force majeure events, and downtime caused by the Customer's systems or third-party carrier API outages.</p><p>Service credits: 10% of that month's subscription fee for uptime between 99.0–99.4%; 20% for uptime between 98.0–98.9%; 30% for uptime below 98.0%. Credits must be claimed within 30 days of the relevant month's end.</p><h2>4. Acceptable Use Policy</h2><p>The Customer shall not use the Platform to process shipments containing prohibited goods under applicable Indian law; engage in fraudulent COD transactions; attempt to access or disrupt SendIt's systems; or reverse-engineer the Platform.</p><h2>5. Intellectual Property</h2><p>SendIt retains all intellectual property rights in the Platform. The Customer retains all rights in their own data uploaded to the Platform. "SendIt", "SwiftShip" and "WareSync" are registered trademarks of SendIt Logistics Private Limited.</p><h2>6. Fees and Payment</h2><p>Subscription fees are charged monthly or annually in advance. All fees are exclusive of GST. Payment is due within 7 days of invoice date. Overdue invoices accrue interest at 18% per annum from the due date.</p><h2>7. Liability Limitation</h2><p>SendIt's aggregate liability to the Customer for all claims shall not exceed the total fees paid in the 3 months preceding the event giving rise to the claim. SendIt shall not be liable for any indirect, incidental, or consequential damages. These limitations do not apply to liability arising from gross negligence, fraud, or wilful misconduct.</p><h2>8. 3PL Service Terms</h2><h3>8.1 Liability for Goods in Transit</h3><p>SendIt's liability for loss of or damage to goods in transit is limited to ₹1,000 per shipment or the declared value of the goods (whichever is lower), unless the Customer has purchased additional freight insurance. Claims must be submitted within 48 hours of delivery or non-delivery.</p><h3>8.2 Force Majeure</h3><p>SendIt shall not be liable for failure to perform 3PL obligations due to events beyond its reasonable control, including acts of God, natural disasters, pandemic, strikes, government orders, or road closures.</p><h2>9. Termination</h2><p>Either party may terminate the subscription on 30 days' written notice. SendIt may terminate immediately if the Customer breaches the Acceptable Use Policy, fails to pay fees within 30 days of notice, or engages in fraudulent activity.</p><h2>10. Governing Law</h2><p>These Terms shall be governed by the laws of India. Disputes shall be referred to binding arbitration under the Arbitration and Conciliation Act, 1996, with the seat of arbitration in Bengaluru, Karnataka, conducted in English before a sole arbitrator.</p></div></div></div></div>
     <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
 </div>
 
@@ -2815,7 +2909,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
       <a href="#">1. What are cookies</a><a href="#">2. Cookies we use</a><a href="#">3. Third-party cookies</a><a href="#">4. Managing cookies</a><a href="#">5. Contact</a>
     </div></div>
     <div class="legal-body">
-      <div class="legal-meta">Last updated: 1 November 2024</div>
+      <div class="legal-meta">Last updated: 5 August 2026</div>
       <h2>1. What Are Cookies</h2>
       <p>Cookies are small text files placed on your device when you visit a website. They allow the website to recognise your device on subsequent visits, remember your preferences, and provide a personalised experience.</p>
       <h2>2. Cookies We Use</h2>
@@ -3010,6 +3104,53 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.scrollY > 20) { nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)'; } else { nav.style.boxShadow = 'none'; }
   });
 });
+
+// ── Cookie Consent ────────────────────────────────────────────────────────────
+function initCookieBanner() {
+  var consent = localStorage.getItem('sendit_cookie_consent');
+  if (!consent) {
+    // Show banner after short delay so page loads first
+    setTimeout(function() {
+      var banner = document.getElementById('cookie-banner');
+      if (banner) banner.classList.add('visible');
+    }, 800);
+  }
+}
+
+function handleCookieChoice(choice) {
+  localStorage.setItem('sendit_cookie_consent', choice);
+  localStorage.setItem('sendit_cookie_date', new Date().toISOString());
+  hideCookieBanner();
+  if (choice === 'accept') {
+    // Could initialise analytics here in production
+    console.log('Analytics cookies accepted');
+  }
+}
+
+function hideCookieBanner() {
+  var banner = document.getElementById('cookie-banner');
+  if (banner) {
+    banner.classList.remove('visible');
+    setTimeout(function() { banner.style.display = 'none'; }, 400);
+  }
+}
+
+document.addEventListener('DOMContentLoaded', initCookieBanner);
 </script>
+
+<!-- ── Cookie Consent Banner ─────────────────────────────────────────────── -->
+<div id="cookie-banner" class="cookie-banner" role="dialog" aria-label="Cookie consent" aria-live="polite">
+  <div class="cookie-banner-inner">
+    <div class="cookie-banner-text">
+      <div class="cookie-banner-title">🍪 We use cookies</div>
+      <p class="cookie-banner-body">We use essential cookies to make our site work, and optional analytics cookies to understand how you use it. See our <a href="#" onclick="showPage('cookie');hideCookieBanner()" class="cookie-banner-link">Cookie Policy</a> for details.</p>
+    </div>
+    <div class="cookie-banner-actions">
+      <button class="cookie-btn cookie-btn-decline" onclick="handleCookieChoice('decline')">Decline optional</button>
+      <button class="cookie-btn cookie-btn-accept" onclick="handleCookieChoice('accept')">Accept all</button>
+    </div>
+  </div>
+</div>
+
 </body>
 </html>
