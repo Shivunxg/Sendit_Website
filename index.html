@@ -1486,6 +1486,10 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   display:grid;
   grid-template-columns:1fr 1fr;
   min-height:100vh;
+  position:fixed;
+  top:0;left:0;right:0;bottom:0;
+  z-index:500;
+  overflow-y:auto;
 }
 /* Left branding panel */
 .login-left{
@@ -3288,6 +3292,8 @@ function showPage(pageId) {
   if (pageId === 'pricing') { setTimeout(initPricingSlider, 80); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   const target = document.getElementById('page-' + pageId);
+  var nav = document.getElementById('mainNav');
+  if (nav) nav.style.display = (pageId === 'login') ? 'none' : '';
   if (target) { target.classList.add('active'); } else { document.getElementById('page-404').classList.add('active'); }
   window.scrollTo({ top: 0, behavior: 'smooth' });
   setTimeout(initScrollAnimations, 100);
