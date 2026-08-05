@@ -700,6 +700,161 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .pricing-base-card:not(.pbase-featured) .pbase-tier{margin-top:0}
 .pricing-base-card.pbase-featured .pbase-tier{margin-top:8px}
 
+
+/* ══ WARESYNC SHOWCASE ══════════════════════════════════════════════════════ */
+.ws-showcase{padding:80px 0;background:#f0f2f7}
+.ws-showcase-header{text-align:center;margin-bottom:36px}
+.ws-showcase-header p{color:var(--steel);margin-top:8px}
+
+/* Tabs */
+.ws-tabs{display:flex;justify-content:center;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.ws-tab{padding:8px 22px;border-radius:20px;border:1.5px solid #d1d8ee;background:#fff;font-size:0.84rem;font-weight:600;color:#5a6a8a;cursor:pointer;transition:all 0.15s}
+.ws-tab.active,.ws-tab:hover{background:#1B4FD8;color:#fff;border-color:#1B4FD8}
+
+/* Slide container */
+.ws-slides{position:relative}
+.ws-slide{display:none;grid-template-columns:1fr 1.6fr;gap:48px;align-items:center}
+.ws-slide.active{display:grid}
+
+/* Copy panel */
+.ws-eyebrow{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:#1B4FD8;margin-bottom:10px}
+.ws-headline{font-size:2rem;font-weight:800;color:#fff;line-height:1.15;margin-bottom:14px}
+.ws-headline-dark{font-size:2rem;font-weight:800;color:#0c1c3e;line-height:1.15;margin-bottom:14px}
+.ws-body{font-size:0.92rem;color:rgba(255,255,255,0.75);line-height:1.7;margin-bottom:24px}
+.ws-body-dark{font-size:0.92rem;color:#5a6a8a;line-height:1.7;margin-bottom:24px}
+.ws-checks{list-style:none;display:flex;flex-direction:column;gap:10px}
+.ws-checks li{font-size:0.88rem;color:#1a2a4a;display:flex;align-items:center;gap:10px}
+.ws-checks li::before{content:'✓';color:#10b981;font-weight:700;font-size:1rem;flex-shrink:0}
+.ws-callout{display:inline-block;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.18);border-radius:10px;padding:10px 16px;margin-top:24px}
+.ws-callout-label{font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:rgba(255,255,255,0.5);display:block;margin-bottom:4px}
+.ws-callout-val{font-size:0.88rem;font-weight:700;color:#fff}
+
+/* Dark slide background */
+.ws-slide-dark{background:#0f1e4a;border-radius:16px;padding:40px;gap:32px}
+.ws-slide-dark .ws-copy{padding:0}
+
+/* Browser chrome */
+.ws-browser{background:#fff;border-radius:12px;box-shadow:0 8px 40px rgba(15,22,60,0.18);overflow:hidden;position:relative;border:1px solid #e5e8f0}
+.ws-browser-dark{background:#1a2a5e;border-color:#2d4080}
+.ws-browser-bar{display:flex;align-items:center;gap:6px;padding:8px 14px;background:#f7f8fa;border-bottom:1px solid #e8ecf2;font-size:0.72rem}
+.ws-browser-bar-dark{background:#142045;border-bottom-color:#2d4080}
+.ws-dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex-shrink:0}
+.ws-dot-r{background:#ff5f57}.ws-dot-y{background:#febc2e}.ws-dot-g{background:#28c840}
+.ws-url{flex:1;background:#fff;border:1px solid #e0e4ee;border-radius:5px;padding:3px 10px;color:#8090b8;margin:0 8px;font-size:0.7rem}
+.ws-url-dark{flex:1;background:#0d1735;border:1px solid #2d4080;border-radius:5px;padding:3px 10px;color:#5a7aaa;margin:0 8px;font-size:0.7rem}
+.ws-badge-pill{margin-left:auto;background:#e8f0fe;color:#1B4FD8;padding:3px 10px;border-radius:20px;font-size:0.68rem;font-weight:600;white-space:nowrap}
+.ws-badge-pill-blue{background:#dbeafe;color:#1d4ed8}
+.ws-browser-actions-dark{color:#6b9fff;font-size:0.82rem;margin-left:auto}
+
+/* App layout */
+.ws-app{display:flex;min-height:340px}
+.ws-nav{width:150px;flex-shrink:0;border-right:1px solid #f0f2f7;padding:14px 0;background:#fff}
+.ws-nav-dark{background:#1a2a5e;border-right-color:#2d4080}
+.ws-nav-logo{display:flex;align-items:center;gap:8px;padding:0 12px 14px;font-size:0.88rem;font-weight:700;color:#0c1c3e;border-bottom:1px solid #f0f2f7;margin-bottom:8px}
+.ws-nav-logo-dark{display:flex;align-items:center;gap:8px;padding:0 12px 14px;font-size:0.88rem;font-weight:700;color:#fff;border-bottom:1px solid #2d4080;margin-bottom:8px}
+.ws-logo-box{width:24px;height:24px;background:#1B4FD8;border-radius:6px;font-size:0.6rem;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700}
+.ws-logo-box-dark{width:24px;height:24px;background:#3d5aee;border-radius:6px}
+.ws-nav-items{display:flex;flex-direction:column;gap:1px}
+.ws-nav-item{font-size:0.72rem;color:#6a7a99;padding:7px 12px;border-radius:6px;cursor:pointer;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;transition:background 0.1s}
+.ws-nav-item:hover{background:#f5f7ff;color:#1B4FD8}
+.ws-nav-active{background:#1B4FD8!important;color:#fff!important;font-weight:600}
+.ws-nav-active-dark{background:#3d5aee!important;color:#fff!important;font-weight:600}
+
+/* Main content area */
+.ws-main{flex:1;padding:16px 20px;overflow:hidden}
+.ws-main-dark{background:#1a2a5e;padding:16px 20px}
+.ws-page-title{font-size:1.1rem;font-weight:700;color:#0c1c3e}
+.ws-page-sub{font-size:0.72rem;color:#8090b8;margin-top:2px}
+.ws-page-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:12px;gap:8px;flex-wrap:wrap}
+
+/* Dashboard dark */
+.ws-dash-hero{background:linear-gradient(135deg,#2a4cee,#1B4FD8);border-radius:10px;padding:14px 18px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap}
+.ws-dash-title{font-size:1rem;font-weight:700;color:#fff;margin-bottom:4px}
+.ws-dash-sub{font-size:0.7rem;color:rgba(255,255,255,0.7)}
+.ws-dash-pills{display:flex;gap:6px;flex-wrap:wrap}
+.ws-dash-pill{background:rgba(255,255,255,0.15);color:#fff;font-size:0.65rem;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.ws-kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}
+.ws-kpi{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:8px;padding:10px 12px;display:flex;align-items:flex-start;gap:10px}
+.ws-kpi-icon{width:28px;height:28px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:0.75rem;color:#fff;flex-shrink:0}
+.ws-kpi-blue{background:#1B4FD8}.ws-kpi-purple{background:#7c3aed}.ws-kpi-green{background:#059669}.ws-kpi-blue2{background:#0891b2}
+.ws-kpi-num{font-size:1rem;font-weight:700;color:#fff;line-height:1.2}
+.ws-kpi-lbl{font-size:0.65rem;color:rgba(255,255,255,0.6);margin-top:2px}
+.ws-kpi-delta{font-size:0.62rem;color:#34d399;margin-top:3px}
+.ws-workflow-card{background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:10px;padding:12px 16px}
+.ws-workflow-title{font-size:0.82rem;font-weight:600;color:#fff;margin-bottom:8px}
+.ws-workflow-bar{background:rgba(107,159,255,0.15);border-radius:5px;padding:5px 12px;font-size:0.72rem;color:#6b9fff;margin-bottom:10px;text-align:center}
+.ws-workflow-stages{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;text-align:center}
+.ws-stage{background:rgba(255,255,255,0.04);border-radius:8px;padding:10px 6px}
+.ws-stage-done{background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25)}
+.ws-stage-icon{font-size:1.1rem;margin-bottom:4px}
+.ws-stage-name{font-size:0.65rem;color:rgba(255,255,255,0.6);margin-bottom:3px}
+.ws-stage-num{font-size:0.9rem;font-weight:700;color:#fff}
+
+/* Filter tabs */
+.ws-filter-tabs{display:flex;gap:4px;margin-bottom:12px;flex-wrap:wrap}
+.ws-ftab{font-size:0.72rem;font-weight:600;padding:5px 12px;border-radius:20px;cursor:pointer;color:#5a6a8a;border:1px solid transparent}
+.ws-ftab-active{background:#1B4FD8;color:#fff}
+
+/* Search / button */
+.ws-search{font-size:0.72rem;color:#9aabcc;border:1px solid #e0e4ee;border-radius:6px;padding:5px 10px;background:#f8f9fc}
+.ws-btn-blue{font-size:0.72rem;font-weight:700;background:#1B4FD8;color:#fff;padding:5px 12px;border-radius:6px;white-space:nowrap}
+
+/* Table */
+.ws-table{width:100%;border-collapse:collapse;font-size:0.75rem}
+.ws-table th{text-align:left;font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:#9aabcc;padding:6px 8px;border-bottom:1px solid #f0f2f7}
+.ws-table td{padding:8px 8px;color:#2c3a5c;border-bottom:1px solid #f8f9fc;vertical-align:middle}
+.ws-table tr:last-child td{border-bottom:none}
+.ws-mono{font-family:monospace;letter-spacing:0.02em}
+.ws-bold{font-weight:700}
+.ws-gray{color:#8090b8}
+.ws-red{color:#ef4444}
+
+/* Badges */
+.ws-badge{font-size:0.65rem;font-weight:700;padding:3px 8px;border-radius:20px;white-space:nowrap}
+.ws-badge-green{background:#d1fae5;color:#065f46}
+.ws-badge-yellow{background:#fef3c7;color:#92400e}
+.ws-badge-blue{background:#dbeafe;color:#1e40af}
+.ws-badge-purple{background:#ede9fe;color:#5b21b6}
+.ws-badge-red{background:#fee2e2;color:#991b1b}
+.ws-badge-orange{background:#fff7ed;color:#c2410c}
+.ws-badge-outline{background:#f0f2f7;color:#5a6a8a;border:1px solid #d1d8ee}
+
+/* Inventory stats */
+.ws-inv-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:4px}
+.ws-inv-stat{background:#f8f9fc;border:1px solid #e8ecf2;border-radius:8px;padding:10px 14px}
+.ws-inv-stat-lbl{font-size:0.68rem;color:#8090b8;margin-bottom:4px}
+.ws-inv-stat-num{font-size:1.1rem;font-weight:700;color:#0c1c3e}
+
+/* Courier tabs */
+.ws-courier-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.ws-ctab{font-size:0.72rem;font-weight:500;padding:4px 12px;border:1px solid #e0e4ee;border-radius:6px;color:#5a6a8a;background:#fff}
+.ws-ctab-blue{background:#1B4FD8;color:#fff;border-color:#1B4FD8}
+
+/* Kanban */
+.ws-kanban{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:8px}
+.ws-kanban-col{background:#f8f9fc;border-radius:10px;padding:10px}
+.ws-kanban-header{font-size:0.75rem;font-weight:700;color:#0c1c3e;margin-bottom:8px;display:flex;align-items:center;gap:6px}
+.ws-kanban-count{font-size:0.68rem;font-weight:700;padding:2px 7px;border-radius:20px;color:#fff}
+.ws-count-blue{background:#1B4FD8}.ws-count-orange{background:#f59e0b}.ws-count-green{background:#10b981}
+.ws-kanban-card{background:#fff;border:1px solid #e8ecf2;border-radius:8px;padding:8px 10px;margin-bottom:6px}
+.ws-kcard-done{border-color:#d1fae5;background:#f0fdf4}
+.ws-kcard-id{font-size:0.72rem;font-weight:700;color:#0c1c3e;margin-bottom:2px}
+.ws-kcard-sub{font-size:0.65rem;color:#8090b8}
+.ws-kcard-tag{font-size:0.65rem;font-weight:600;color:#059669}
+
+/* Floating callout pill */
+.ws-callout-float{position:absolute;background:#fff;border:1px solid #e0e4ee;box-shadow:0 4px 16px rgba(0,0,0,0.1);border-radius:20px;padding:6px 14px;font-size:0.75rem;font-weight:600;color:#2c3a5c;display:flex;align-items:center;gap:6px;white-space:nowrap}
+.ws-callout-float-teal{background:#fff;border-color:#a7f3d0;color:#065f46}
+.ws-callout-float-blue{background:#0f1e4a;border-color:#2d4080;color:#6b9fff;font-size:0.68rem}
+
+/* Responsive */
+@media(max-width:900px){
+  .ws-slide,.ws-slide.active{grid-template-columns:1fr;gap:24px}
+  .ws-kpi-row{grid-template-columns:repeat(2,1fr)}
+  .ws-workflow-stages{grid-template-columns:repeat(2,1fr)}
+  .ws-kanban{grid-template-columns:1fr}
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -826,6 +981,17 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
     }
   ]
 }
+
+// WareSync mockup tabs
+function wsShow(idx) {
+  document.querySelectorAll('.ws-slide').forEach((s,i) => {
+    s.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.ws-tab').forEach((t,i) => {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
 </script>
 <script type="application/ld+json">
 {
@@ -1256,6 +1422,344 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
       </div>
     </div>
   </section>
+    <!-- ══ WARESYNC PRODUCT MOCKUP SHOWCASE ══════════════════════════════════ -->
+  <section class="ws-showcase">
+    <div class="container">
+      <div class="ws-showcase-header animate-on-scroll">
+        <div class="eyebrow">Product Tour</div>
+        <h2>See WareSync in action</h2>
+        <p>Five modules. One platform. Everything your warehouse needs.</p>
+      </div>
+
+      <!-- Tab pills -->
+      <div class="ws-tabs" role="tablist">
+        <button class="ws-tab active" onclick="wsShow(0)" role="tab">Dashboard</button>
+        <button class="ws-tab" onclick="wsShow(1)" role="tab">Orders</button>
+        <button class="ws-tab" onclick="wsShow(2)" role="tab">Inventory</button>
+        <button class="ws-tab" onclick="wsShow(3)" role="tab">Warehouse</button>
+        <button class="ws-tab" onclick="wsShow(4)" role="tab">Shipping</button>
+      </div>
+
+      <!-- Slides -->
+      <div class="ws-slides">
+
+        <!-- ─── SLIDE 0: Dashboard (dark) ─────────────────────────────── -->
+        <div class="ws-slide ws-slide-dark active" id="ws-slide-0">
+          <div class="ws-copy">
+            <div class="ws-eyebrow">Powerful Dashboard</div>
+            <h3 class="ws-headline">Everything you need.<br>One dashboard.</h3>
+            <p class="ws-body">A single command center for orders, inventory, revenue and fulfillment — updating live as your warehouse works.</p>
+            <div class="ws-callout ws-callout-dark">
+              <span class="ws-callout-label">ONE-CLICK NAV</span>
+              <span class="ws-callout-val">Every module, one rail</span>
+            </div>
+          </div>
+          <div class="ws-browser ws-browser-dark">
+            <div class="ws-browser-bar ws-browser-bar-dark">
+              <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
+              <span class="ws-url-dark">waresync.sendit.co.in/dashboard</span>
+              <span class="ws-browser-actions-dark">🔔 &nbsp; S</span>
+            </div>
+            <div class="ws-app">
+              <div class="ws-nav ws-nav-dark">
+                <div class="ws-nav-logo-dark"><div class="ws-logo-box-dark"></div><span>WareSync</span></div>
+                <div class="ws-nav-items">
+                  <div class="ws-nav-item ws-nav-active-dark">⊞ Dashboard</div>
+                  <div class="ws-nav-item">🛒 Orders</div>
+                  <div class="ws-nav-item">📦 Inventory</div>
+                  <div class="ws-nav-item">🏠 Warehouse</div>
+                  <div class="ws-nav-item">⚙ Hub Management</div>
+                  <div class="ws-nav-item">🛡 Brand Onboarding</div>
+                  <div class="ws-nav-item">⚖ Adjustments</div>
+                  <div class="ws-nav-item">🚚 Shipping</div>
+                  <div class="ws-nav-item">🔗 Integrations</div>
+                  <div class="ws-nav-item">📊 Reports</div>
+                </div>
+              </div>
+              <div class="ws-main ws-main-dark">
+                <div class="ws-dash-hero">
+                  <div class="ws-dash-hero-left">
+                    <div class="ws-dash-title">Dashboard</div>
+                    <div class="ws-dash-sub">Welcome back. Overview of your logistics and warehouse operations.</div>
+                  </div>
+                  <div class="ws-dash-pills">
+                    <span class="ws-dash-pill">37 Orders Today</span>
+                    <span class="ws-dash-pill">37 Total Orders</span>
+                    <span class="ws-dash-pill">All Systems Active</span>
+                  </div>
+                </div>
+                <div class="ws-kpi-row">
+                  <div class="ws-kpi"><div class="ws-kpi-icon ws-kpi-blue">↗</div><div><div class="ws-kpi-num">37</div><div class="ws-kpi-lbl">Orders Today</div><div class="ws-kpi-delta">↗ +0% from last month</div></div></div>
+                  <div class="ws-kpi"><div class="ws-kpi-icon ws-kpi-purple">📦</div><div><div class="ws-kpi-num">40</div><div class="ws-kpi-lbl">Items Sold</div><div class="ws-kpi-delta">↗ +0% from last month</div></div></div>
+                  <div class="ws-kpi"><div class="ws-kpi-icon ws-kpi-green">↗</div><div><div class="ws-kpi-num">₹3,327</div><div class="ws-kpi-lbl">Revenue Today</div><div class="ws-kpi-delta">↗ +0% from last month</div></div></div>
+                  <div class="ws-kpi"><div class="ws-kpi-icon ws-kpi-blue2">👤</div><div><div class="ws-kpi-num">369</div><div class="ws-kpi-lbl">Total Inventory</div><div class="ws-kpi-delta">↗ +0% from last month</div></div></div>
+                </div>
+                <div class="ws-workflow-card">
+                  <div class="ws-workflow-title">🕐 Order Workflow <span style="color:#6b9fff;font-size:0.72rem;margin-left:8px">Track orders through each stage of fulfillment</span></div>
+                  <div class="ws-workflow-bar">↗ Total Orders: 37</div>
+                  <div class="ws-workflow-stages">
+                    <div class="ws-stage"><div class="ws-stage-icon">🕐</div><div class="ws-stage-name">Pending</div><div class="ws-stage-num">12</div></div>
+                    <div class="ws-stage"><div class="ws-stage-icon">📦</div><div class="ws-stage-name">Packed</div><div class="ws-stage-num">10</div></div>
+                    <div class="ws-stage"><div class="ws-stage-icon">🚚</div><div class="ws-stage-name">Shipped</div><div class="ws-stage-num">9</div></div>
+                    <div class="ws-stage ws-stage-done"><div class="ws-stage-icon">✓</div><div class="ws-stage-name">Delivered</div><div class="ws-stage-num">6</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ws-callout-float ws-callout-float-teal">
+              <span style="color:#10b981">●</span> FULFILLMENT FLOW &nbsp; Pending → Delivered
+            </div>
+            <div class="ws-callout-float ws-callout-float-blue" style="top:12px;right:12px;left:auto">
+              LIVE REVENUE &nbsp; <strong>₹3,327 today</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 1: Orders ────────────────────────────────────────── -->
+        <div class="ws-slide" id="ws-slide-1">
+          <div class="ws-copy">
+            <div class="ws-eyebrow">Order Management</div>
+            <h3 class="ws-headline-dark">Manage orders from<br>a single dashboard.</h3>
+            <p class="ws-body-dark">Capture orders from every channel, route them automatically and move each one through pick, pack and ship — without ever leaving WareSync.</p>
+            <ul class="ws-checks">
+              <li>Every channel in one unified queue</li>
+              <li>Status visible at a glance, end to end</li>
+              <li>Fulfill in one click, stock updates itself</li>
+            </ul>
+          </div>
+          <div class="ws-browser">
+            <div class="ws-browser-bar">
+              <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
+              <span class="ws-url">waresync.sendit.co.in/orders</span>
+              <span class="ws-badge-pill">● Status at a glance</span>
+            </div>
+            <div class="ws-app">
+              <div class="ws-nav">
+                <div class="ws-nav-logo"><div class="ws-logo-box"></div><span style="font-weight:700">WareSync</span></div>
+                <div class="ws-nav-items">
+                  <div class="ws-nav-item">⊞ Dashboard</div>
+                  <div class="ws-nav-item ws-nav-active">🛒 Orders</div>
+                  <div class="ws-nav-item">📦 Inventory</div>
+                  <div class="ws-nav-item">🏠 Warehouse</div>
+                  <div class="ws-nav-item">⚙ Hub Management</div>
+                  <div class="ws-nav-item">🛡 Brand Onboarding</div>
+                  <div class="ws-nav-item">⚖ Adjustments</div>
+                  <div class="ws-nav-item">🚚 Shipping</div>
+                  <div class="ws-nav-item">🔗 Integrations</div>
+                  <div class="ws-nav-item">📊 Reports</div>
+                </div>
+              </div>
+              <div class="ws-main">
+                <div class="ws-page-header">
+                  <div><div class="ws-page-title">Orders</div><div class="ws-page-sub">37 orders · updated just now</div></div>
+                  <div style="display:flex;gap:8px;align-items:center"><div class="ws-search">🔍 Search orders</div><div class="ws-btn-blue">+ New Order</div></div>
+                </div>
+                <div class="ws-filter-tabs">
+                  <span class="ws-ftab ws-ftab-active">All 37</span><span class="ws-ftab">Pending 12</span><span class="ws-ftab">Packed 10</span><span class="ws-ftab">Shipped 9</span><span class="ws-ftab">Delivered 6</span>
+                </div>
+                <table class="ws-table">
+                  <thead><tr><th>ORDER</th><th>CUSTOMER</th><th>ITEMS</th><th>STATUS</th><th>TOTAL</th></tr></thead>
+                  <tbody>
+                    <tr><td class="ws-mono">#WS-1042</td><td>Aarav Textiles</td><td>3</td><td><span class="ws-badge ws-badge-yellow">Pending</span></td><td>₹1,240</td></tr>
+                    <tr><td class="ws-mono">#WS-1041</td><td>Meera Kitchenware</td><td>1</td><td><span class="ws-badge ws-badge-purple">Packed</span></td><td>₹560</td></tr>
+                    <tr><td class="ws-mono">#WS-1040</td><td>Nova Electronics</td><td>6</td><td><span class="ws-badge ws-badge-blue">Shipped</span></td><td>₹4,910</td></tr>
+                    <tr><td class="ws-mono">#WS-1039</td><td>Sana Apparel</td><td>2</td><td><span class="ws-badge ws-badge-green">Delivered</span></td><td>₹880</td></tr>
+                    <tr><td class="ws-mono">#WS-1038</td><td>Orbit Traders</td><td>4</td><td><span class="ws-badge ws-badge-yellow">Pending</span></td><td>₹2,150</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="ws-callout-float" style="bottom:12px;left:20px">
+              <span style="color:#10b981">●</span> One-click fulfillment
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 2: Inventory ─────────────────────────────────────── -->
+        <div class="ws-slide" id="ws-slide-2">
+          <div class="ws-copy">
+            <div class="ws-eyebrow">Inventory Management</div>
+            <h3 class="ws-headline-dark">Real-time<br>inventory visibility.</h3>
+            <p class="ws-body-dark">Know exactly what you have and where — across every warehouse and SKU. Stock updates the moment an order moves, so counts are always accurate.</p>
+            <ul class="ws-checks">
+              <li>Live counts across every location</li>
+              <li>Automatic low-stock alerts</li>
+              <li>Batch, bin and barcode tracking</li>
+            </ul>
+          </div>
+          <div class="ws-browser">
+            <div class="ws-browser-bar">
+              <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
+              <span class="ws-url">waresync.sendit.co.in/inventory</span>
+              <span class="ws-badge-pill ws-badge-pill-blue">● Live stock counts</span>
+            </div>
+            <div class="ws-app">
+              <div class="ws-nav">
+                <div class="ws-nav-logo"><div class="ws-logo-box"></div><span style="font-weight:700">WareSync</span></div>
+                <div class="ws-nav-items">
+                  <div class="ws-nav-item">⊞ Dashboard</div>
+                  <div class="ws-nav-item">🛒 Orders</div>
+                  <div class="ws-nav-item ws-nav-active">📦 Inventory</div>
+                  <div class="ws-nav-item">🏠 Warehouse</div>
+                  <div class="ws-nav-item">⚙ Hub Management</div>
+                  <div class="ws-nav-item">🛡 Brand Onboarding</div>
+                  <div class="ws-nav-item">⚖ Adjustments</div>
+                  <div class="ws-nav-item">🚚 Shipping</div>
+                  <div class="ws-nav-item">🔗 Integrations</div>
+                  <div class="ws-nav-item">📊 Reports</div>
+                </div>
+              </div>
+              <div class="ws-main">
+                <div class="ws-page-title" style="margin-bottom:12px">Inventory</div>
+                <div class="ws-inv-stats">
+                  <div class="ws-inv-stat"><div class="ws-inv-stat-lbl">Total Inventory</div><div class="ws-inv-stat-num">369</div></div>
+                  <div class="ws-inv-stat"><div class="ws-inv-stat-lbl">Low Stock</div><div class="ws-inv-stat-num ws-red">12</div></div>
+                  <div class="ws-inv-stat"><div class="ws-inv-stat-lbl">Out of Stock</div><div class="ws-inv-stat-num ws-red">3</div></div>
+                </div>
+                <table class="ws-table" style="margin-top:12px">
+                  <thead><tr><th>PRODUCT</th><th>SKU</th><th>LOCATION</th><th>IN STOCK</th><th>STATUS</th></tr></thead>
+                  <tbody>
+                    <tr><td>Cotton Tote Bag</td><td class="ws-mono ws-gray">TOT-014</td><td class="ws-gray">Mumbai · A2</td><td>184</td><td><span class="ws-badge ws-badge-green">In stock</span></td></tr>
+                    <tr><td>Ceramic Mug 350ml</td><td class="ws-mono ws-gray">MUG-092</td><td class="ws-gray">Delhi · B1</td><td>9</td><td><span class="ws-badge ws-badge-yellow">Low</span></td></tr>
+                    <tr><td>Wireless Mouse</td><td class="ws-mono ws-gray">MOU-231</td><td class="ws-gray">Mumbai · C4</td><td>57</td><td><span class="ws-badge ws-badge-green">In stock</span></td></tr>
+                    <tr><td>Steel Bottle 1L</td><td class="ws-mono ws-gray">BOT-045</td><td class="ws-gray">Pune · A1</td><td>0</td><td><span class="ws-badge ws-badge-red">Out</span></td></tr>
+                    <tr><td>Notebook A5</td><td class="ws-mono ws-gray">NOT-118</td><td class="ws-gray">Delhi · D2</td><td>120</td><td><span class="ws-badge ws-badge-green">In stock</span></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="ws-callout-float" style="bottom:12px;right:20px;left:auto">
+              <span style="color:#f59e0b">●</span> Low-stock alerts
+            </div>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 3: Warehouse Operations ─────────────────────────── -->
+        <div class="ws-slide" id="ws-slide-3">
+          <div class="ws-browser" style="order:1">
+            <div class="ws-browser-bar">
+              <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
+              <span class="ws-url">waresync.sendit.co.in/warehouse</span>
+              <span class="ws-badge-pill" style="margin-left:auto">● Live floor status</span>
+            </div>
+            <div class="ws-app">
+              <div class="ws-nav">
+                <div class="ws-nav-logo"><div class="ws-logo-box"></div><span style="font-weight:700">WareSync</span></div>
+                <div class="ws-nav-items">
+                  <div class="ws-nav-item">⊞ Dashboard</div>
+                  <div class="ws-nav-item">🛒 Orders</div>
+                  <div class="ws-nav-item">📦 Inventory</div>
+                  <div class="ws-nav-item ws-nav-active">🏠 Warehouse</div>
+                  <div class="ws-nav-item">⚙ Hub Management</div>
+                  <div class="ws-nav-item">🛡 Brand Onboarding</div>
+                  <div class="ws-nav-item">⚖ Adjustments</div>
+                  <div class="ws-nav-item">🚚 Shipping</div>
+                  <div class="ws-nav-item">🔗 Integrations</div>
+                  <div class="ws-nav-item">📊 Reports</div>
+                </div>
+              </div>
+              <div class="ws-main">
+                <div class="ws-page-header">
+                  <div class="ws-page-title">Warehouse Operations</div>
+                  <div style="display:flex;gap:8px"><span class="ws-badge ws-badge-outline">8 active pickers</span><span class="ws-badge ws-badge-blue">Avg pick 42s</span></div>
+                </div>
+                <div class="ws-kanban">
+                  <div class="ws-kanban-col">
+                    <div class="ws-kanban-header">To Pick <span class="ws-kanban-count ws-count-blue">9</span></div>
+                    <div class="ws-kanban-card"><div class="ws-kcard-id">#WS-1042 · 3 items</div><div class="ws-kcard-sub">Bin A2 · A4 · C1</div></div>
+                    <div class="ws-kanban-card"><div class="ws-kcard-id">#WS-1038 · 4 items</div><div class="ws-kcard-sub">Bin B1 · B3</div></div>
+                  </div>
+                  <div class="ws-kanban-col">
+                    <div class="ws-kanban-header">Packing <span class="ws-kanban-count ws-count-orange">6</span></div>
+                    <div class="ws-kanban-card"><div class="ws-kcard-id">#WS-1041 · 1 item</div><div class="ws-kcard-sub">Station 2 · Priya</div></div>
+                    <div class="ws-kanban-card"><div class="ws-kcard-id">#WS-1036 · 2 items</div><div class="ws-kcard-sub">Station 1 · Rohit</div></div>
+                  </div>
+                  <div class="ws-kanban-col">
+                    <div class="ws-kanban-header">Ready to Ship <span class="ws-kanban-count ws-count-green">4</span></div>
+                    <div class="ws-kanban-card ws-kcard-done"><div class="ws-kcard-id">#WS-1040 · 6 items</div><div class="ws-kcard-tag">Labelled · Delhivery</div></div>
+                    <div class="ws-kanban-card ws-kcard-done"><div class="ws-kcard-id">#WS-1033 · 2 items</div><div class="ws-kcard-tag">Labelled · Blue Dart</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="ws-callout-float" style="bottom:12px;left:20px">
+              <span style="color:#10b981">●</span> Guided picking
+            </div>
+          </div>
+          <div class="ws-copy" style="order:2">
+            <div class="ws-eyebrow">Warehouse Operations</div>
+            <h3 class="ws-headline-dark">Track the floor, live.</h3>
+            <p class="ws-body-dark">See every pick, pack and put-away as it happens. WareSync guides staff through each task and keeps the whole team moving in sync.</p>
+            <ul class="ws-checks">
+              <li>Guided pick, pack and put-away</li>
+              <li>Task assignment across the team</li>
+              <li>Bin-level accuracy with barcodes</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ─── SLIDE 4: Shipping ──────────────────────────────────────── -->
+        <div class="ws-slide" id="ws-slide-4">
+          <div class="ws-copy">
+            <div class="ws-eyebrow">Shipping & Fulfillment</div>
+            <h3 class="ws-headline-dark">End-to-end logistics<br>management.</h3>
+            <p class="ws-body-dark">Compare rates, book any courier and track every parcel to the doorstep — all from one screen, with live status synced back to the order.</p>
+            <ul class="ws-checks">
+              <li>Multi-courier rate comparison</li>
+              <li>One-click label generation</li>
+              <li>Live tracking synced to orders</li>
+            </ul>
+          </div>
+          <div class="ws-browser">
+            <div class="ws-browser-bar">
+              <span class="ws-dot ws-dot-r"></span><span class="ws-dot ws-dot-y"></span><span class="ws-dot ws-dot-g"></span>
+              <span class="ws-url">waresync.sendit.co.in/shipping</span>
+              <span class="ws-badge-pill ws-badge-pill-blue">● Multi-courier booking</span>
+            </div>
+            <div class="ws-app">
+              <div class="ws-nav">
+                <div class="ws-nav-logo"><div class="ws-logo-box"></div><span style="font-weight:700">WareSync</span></div>
+                <div class="ws-nav-items">
+                  <div class="ws-nav-item">⊞ Dashboard</div>
+                  <div class="ws-nav-item">🛒 Orders</div>
+                  <div class="ws-nav-item">📦 Inventory</div>
+                  <div class="ws-nav-item">🏠 Warehouse</div>
+                  <div class="ws-nav-item">⚙ Hub Management</div>
+                  <div class="ws-nav-item">🛡 Brand Onboarding</div>
+                  <div class="ws-nav-item">⚖ Adjustments</div>
+                  <div class="ws-nav-item ws-nav-active">🚚 Shipping</div>
+                  <div class="ws-nav-item">🔗 Integrations</div>
+                  <div class="ws-nav-item">📊 Reports</div>
+                </div>
+              </div>
+              <div class="ws-main">
+                <div class="ws-page-title" style="margin-bottom:10px">Shipping</div>
+                <div class="ws-courier-tabs">
+                  <span class="ws-ctab">Delhivery</span><span class="ws-ctab">Blue Dart</span><span class="ws-ctab">DTDC</span><span class="ws-ctab">Ekart</span><span class="ws-ctab ws-ctab-blue">+ Book shipment</span>
+                </div>
+                <table class="ws-table" style="margin-top:10px">
+                  <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
+                  <tbody>
+                    <tr><td class="ws-mono ws-bold">DLV-77213</td><td class="ws-gray">Delhivery</td><td class="ws-gray">Bengaluru</td><td><span class="ws-badge ws-badge-green">Delivered</span></td><td class="ws-gray">—</td></tr>
+                    <tr><td class="ws-mono ws-bold">BD-40921</td><td class="ws-gray">Blue Dart</td><td class="ws-gray">Hyderabad</td><td><span class="ws-badge ws-badge-orange">Out for delivery</span></td><td class="ws-gray">Today</td></tr>
+                    <tr><td class="ws-mono ws-bold">DTDC-1180</td><td class="ws-gray">DTDC</td><td class="ws-gray">Chennai</td><td><span class="ws-badge ws-badge-blue">In transit</span></td><td class="ws-gray">2 days</td></tr>
+                    <tr><td class="ws-mono ws-bold">EKT-55302</td><td class="ws-gray">Ekart</td><td class="ws-gray">Kolkata</td><td><span class="ws-badge ws-badge-purple">Label created</span></td><td class="ws-gray">3 days</td></tr>
+                    <tr><td class="ws-mono ws-bold">DLV-77198</td><td class="ws-gray">Delhivery</td><td class="ws-gray">Pune</td><td><span class="ws-badge ws-badge-blue">In transit</span></td><td class="ws-gray">1 day</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="ws-callout-float" style="bottom:12px;right:20px;left:auto">
+              <span style="color:#10b981">●</span> Live tracking
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /ws-slides -->
+    </div>
+  </section>
+
+
   <section class="features-section"><div class="container"><div class="features-header animate-on-scroll"><div class="eyebrow">WMS Features</div><h2>Purpose-built for high-throughput fulfilment</h2><p>From GRN to dispatch — every warehouse workflow digitised and optimised.</p></div><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg></div><h4>Inbound & GRN</h4><p>Barcode/QR scanning for goods receipt. Automated PO matching, discrepancy alerts, and vendor scorecards.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m7.5 4.27 9 5.15"/><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div><h4>Put-Away & Slotting</h4><p>Intelligent slotting based on velocity, weight, and pick frequency. Directed put-away to handheld devices.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><line x1="9" y1="3" x2="9" y2="18"/><line x1="15" y1="6" x2="15" y2="21"/></svg></div><h4>Multi-Node Inventory</h4><p>Real-time inventory visibility across all your warehouses, dark stores, and retail outlets.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/><path d="M7.5 17.5 10 13l2.5 2.5L15 10l2 7"/><path d="m10 13-1.5 3"/><path d="m14 13 1.5-4.5L18 10"/><path d="M8 21l1.5-4"/><path d="M15.5 17.5l1 3"/></svg></div><h4>Pick-Pack-Ship</h4><p>Wave, zone, and cluster picking. Packing station integration with weight validation.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="15" y="3" width="6" height="6" rx="1"/><rect x="3" y="15" width="6" height="6" rx="1"/><path d="M15 16h2v6"/><path d="M15 19h4"/></svg></div><h4>Cycle Counts & Audits</h4><p>Scheduled and on-demand cycle counts. Variance reports with root-cause tagging.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></div><h4>Returns & Reverse Logistics</h4><p>Receive, grade, and reroute returned items. QC disposition workflows: restock, refurbish, liquidate.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-5"/><path d="M9 8V2"/><path d="M15 8V2"/><path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"/></svg></div><h4>ERP & OMS Integration</h4><p>Native sync with SAP, Oracle, Tally, and major OMS platforms. Bi-directional inventory updates.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/></svg></div><h4>Multi-Client / Multi-Tenant</h4><p>Run multiple brand or client operations from one WareSync instance. Separate P&L and inventory isolation.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>Ops Dashboards</h4><p>Throughput, dwell time, picker productivity, and SLA adherence — live on mobile or wall screen.</p></div></div></div></section>
   <section class="cta-band"><div class="container"><div class="cta-inner"><div class="cta-text"><h2>Cut mis-ships. Accelerate dispatch. Scale without chaos.</h2><p>WareSync customers typically cut order processing time by 40% within 90 days of go-live.</p></div><div class="cta-actions"><a class="btn btn-primary btn-lg" href="#" onclick="showPage('demo')">Book a Demo →</a></div></div></div></section>
     <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
