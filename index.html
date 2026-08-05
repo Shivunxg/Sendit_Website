@@ -982,27 +982,6 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   ]
 }
 
-// WareSync mockup tabs
-function wsShow(idx) {
-  // Use IDs to be precise — avoids matching ws-slides container or other pages
-  for (var i = 0; i < 5; i++) {
-    var slide = document.getElementById('ws-slide-' + i);
-    if (slide) slide.style.display = (i === idx) ? 'grid' : 'none';
-  }
-  document.querySelectorAll('.ws-tab').forEach(function(t, i) {
-    t.classList.toggle('active', i === idx);
-  });
-}
-// Init: hide slides 1-4, show 0
-document.addEventListener('DOMContentLoaded', function() {
-  for (var i = 1; i < 5; i++) {
-    var s = document.getElementById('ws-slide-' + i);
-    if (s) s.style.display = 'none';
-  }
-  var s0 = document.getElementById('ws-slide-0');
-  if (s0) s0.style.display = 'grid';
-});
-
 </script>
 <script type="application/ld+json">
 {
@@ -2051,6 +2030,18 @@ document.addEventListener('DOMContentLoaded', function() {
 </div>
 
 <script>
+
+// WareSync mockup tabs
+function wsShow(idx) {
+  for (var i = 0; i < 5; i++) {
+    var slide = document.getElementById('ws-slide-' + i);
+    if (slide) slide.style.display = (i === idx) ? 'grid' : 'none';
+  }
+  document.querySelectorAll('.ws-tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === idx);
+  });
+}
+
 function showPage(pageId) {
   if (pageId === 'pricing') { setTimeout(initPricingSlider, 80); }
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
