@@ -89,9 +89,9 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .nav-link:hover{color:var(--white)}
 .nav-link .chevron{font-size:10px;transition:transform 0.2s}
 .nav-item:hover .chevron{transform:rotate(180deg)}
-.mega-menu{position:absolute;top:calc(100% + 1px);left:50%;transform:translateX(-50%) translateY(-4px);background:var(--slate);border:1px solid rgba(200,208,220,0.12);border-radius:var(--radius-md);padding:24px;min-width:520px;opacity:0;visibility:hidden;transition:opacity 0.15s,visibility 0.15s,transform 0.15s;box-shadow:var(--shadow-heavy)}
+.mega-menu{position:absolute;top:calc(100% + 1px);left:50%;transform:translateX(-50%) translateY(-4px);background:var(--slate);border:1px solid rgba(200,208,220,0.12);border-radius:var(--radius-md);padding:16px;min-width:260px;max-width:280px;opacity:0;visibility:hidden;transition:opacity 0.15s,visibility 0.15s,transform 0.15s;box-shadow:var(--shadow-heavy)}
 .nav-item:hover .mega-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0)}
-.mega-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mega-grid{display:flex;flex-direction:column;gap:4px}
 .mega-item{display:flex;align-items:flex-start;gap:12px;padding:12px;border-radius:var(--radius-sm);transition:background 0.15s}
 .mega-item:hover{background:rgba(255,255,255,0.05)}
 .mega-icon{width:36px;height:36px;background:rgba(27,79,216,0.18);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0}.mega-icon svg{width:18px;height:18px;color:#6B9FFF}
@@ -1831,10 +1831,10 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
                 </div>
               </div>
             </div>
-            <!-- Floating pill -->
-            <div class="hmb-float-pill">
-              <span class="hmb-pill-dot"></span> Live tracking · 5 carriers
-            </div>
+          </div>
+          <!-- Floating pill — below browser frame -->
+          <div class="hmb-float-pill-outer">
+            <span class="hmb-pill-dot"></span> Live tracking · 5 carriers
           </div>
         </div>
       </div>
