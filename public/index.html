@@ -1722,6 +1722,29 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .login-divider::before,.login-divider::after{border-color:rgba(255,255,255,0.1)}
 }
 
+
+.login-back-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:none;
+  border:none;
+  color:#9aabcc;
+  font-size:0.82rem;
+  font-weight:600;
+  cursor:pointer;
+  padding:0;
+  margin-bottom:32px;
+  transition:color 0.15s;
+}
+.login-back-btn:hover{color:#1B4FD8}
+.login-back-btn svg{width:16px;height:16px;transition:transform 0.15s}
+.login-back-btn:hover svg{transform:translateX(-3px)}
+@media(max-width:768px){
+  .login-back-btn{color:rgba(200,212,240,0.5)}
+  .login-back-btn:hover{color:#6B9FFF}
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -2983,6 +3006,12 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
     <!-- Right panel — product selector -->
     <div class="login-right">
       <div class="login-right-inner">
+
+        <!-- Back button -->
+        <button class="login-back-btn" onclick="showPage('home')" aria-label="Back to home">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><path d="m12 5-7 7 7 7"/></svg>
+          Back to site
+        </button>
 
         <div class="login-right-header">
           <h3 class="login-title">Sign in to SendIt</h3>
