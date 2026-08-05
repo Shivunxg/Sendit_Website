@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SendIt — Courier Orchestration, WMS & 3PL Logistics | India</title>
-<meta name="description" content="SendIt: SwiftShip courier orchestration, WareSync warehouse management, and 3PL operations across India. Built for D2C, FMCG & retail. Book a demo today.">
+<meta name="description" content="SwiftShip courier orchestration + WareSync WMS + 3PL operations across India. Built for D2C, FMCG & retail. 80K+ shipments/month. Book a free demo.">
 <meta property="og:title" content="SendIt — Enterprise Logistics Infrastructure">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -240,12 +240,12 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .int-header p{color:var(--steel)}
 .int-category-block{margin-bottom:40px}
 .int-category-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--steel);margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--steel-xs)}
-.int-logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-.int-logo-card{background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:18px 16px 14px;display:flex;flex-direction:column;align-items:center;gap:8px;transition:all 0.15s}
+.int-logo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;grid-auto-rows:1fr}
+.int-logo-card{background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:20px 16px 16px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;transition:all 0.15s;min-height:110px}
 .int-logo-card:hover{border-color:#1B4FD8;box-shadow:0 2px 12px rgba(27,79,216,0.08);transform:translateY(-2px)}
-.int-logo-img{height:36px;width:auto;max-width:120px;object-fit:contain;filter:none}
+.int-logo-img{height:36px;width:auto;max-width:110px;object-fit:contain;filter:none;display:block;flex-shrink:0}
 .int-logo-placeholder{font-size:0.95rem;font-weight:700;color:var(--ink);text-align:center;min-height:36px;display:flex;align-items:center}
-.int-logo-name{font-size:0.72rem;font-weight:600;color:var(--text-body);text-align:center}
+.int-logo-name{font-size:0.72rem;font-weight:600;color:var(--text-body);text-align:center;line-height:1.3;max-width:120px}
 .int-logo-flag{font-size:0.66rem;color:#92610A;text-align:center;line-height:1.4}
 .flag-action{background:#FEF9EF;border:1px solid #E8C97A;border-radius:4px;padding:3px 7px}
 .int-more{text-align:center;margin-top:24px;font-size:0.85rem;color:var(--steel)}
@@ -618,6 +618,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 @media(max-width:600px){.res-grid,.res-case-grid,.res-guide-grid{grid-template-columns:1fr}}
 
 </style>
+<link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
 <meta property="og:description" content="SendIt — India's enterprise logistics infrastructure. SwiftShip courier orchestration, WareSync warehouse management, and 3PL operations across 8 states.">
 <meta property="og:image" content="https://www.sendit.in/assets/sendit-og.png">
@@ -739,6 +740,47 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
         "@type": "Country",
         "name": "India"
       }
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://www.sendit.in/"},
+    {"@type":"ListItem","position":2,"name":"SwiftShip","item":"https://www.sendit.in/products/swiftship"},
+    {"@type":"ListItem","position":3,"name":"WareSync","item":"https://www.sendit.in/products/waresync"},
+    {"@type":"ListItem","position":4,"name":"Pricing","item":"https://www.sendit.in/pricing"},
+    {"@type":"ListItem","position":5,"name":"3PL Fulfillment","item":"https://www.sendit.in/solutions/3pl"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is SwiftShip?",
+      "acceptedAnswer": {"@type":"Answer","text":"SwiftShip is SendIt's multi-carrier courier orchestration SaaS. It auto-allocates shipments to the best carrier, tracks every package, manages NDR escalations, and reconciles COD — all in one platform."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is WareSync?",
+      "acceptedAnswer": {"@type":"Answer","text":"WareSync is SendIt's warehouse management system (WMS). It handles inbound GRN, multi-node inventory, pick-pack-ship workflows, cycle counts, and integrations with SAP, Oracle, and Tally."}
+    },
+    {
+      "@type": "Question",
+      "name": "How many PIN codes does SendIt cover?",
+      "acceptedAnswer": {"@type":"Answer","text":"SendIt covers 12,000+ PIN codes across India through its network of owned and empanelled courier partners including India Post, Ekart, Delhivery, Blue Dart, DTDC, XpressBees, and Amazon Shipping."}
+    },
+    {
+      "@type": "Question",
+      "name": "What is the pricing for SwiftShip?",
+      "acceptedAnswer": {"@type":"Answer","text":"SwiftShip offers a Freemium plan at ₹0/month for up to 100 orders, a Business plan at ₹1,000/month plus ₹4 per order, and an Enterprise plan with custom pricing for 10,000+ orders per month."}
     }
   ]
 }
