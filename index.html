@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMwQzFDM0UiLz4KICA8dGV4dCB4PSIzMiIgeT0iNDYiIAogICAgICAgIGZvbnQtZmFtaWx5PSJJbnRlciwgLWFwcGxlLXN5c3RlbSwgQXJpYWwsIHNhbnMtc2VyaWYiIAogICAgICAgIGZvbnQtc2l6ZT0iNDIiIAogICAgICAgIGZvbnQtd2VpZ2h0PSI5MDAiIAogICAgICAgIGZpbGw9IndoaXRlIiAKICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGRvbWluYW50LWJhc2VsaW5lPSJhdXRvIj5TPC90ZXh0PgogIDxyZWN0IHg9IjQwIiB5PSIxMiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzFCNEZEOCIvPgo8L3N2Zz4=">
   <link rel="shortcut icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCI+CiAgPHJlY3Qgd2lkdGg9IjY0IiBoZWlnaHQ9IjY0IiByeD0iMTIiIGZpbGw9IiMwQzFDM0UiLz4KICA8dGV4dCB4PSIzMiIgeT0iNDYiIAogICAgICAgIGZvbnQtZmFtaWx5PSJJbnRlciwgLWFwcGxlLXN5c3RlbSwgQXJpYWwsIHNhbnMtc2VyaWYiIAogICAgICAgIGZvbnQtc2l6ZT0iNDIiIAogICAgICAgIGZvbnQtd2VpZ2h0PSI5MDAiIAogICAgICAgIGZpbGw9IndoaXRlIiAKICAgICAgICB0ZXh0LWFuY2hvcj0ibWlkZGxlIgogICAgICAgIGRvbWluYW50LWJhc2VsaW5lPSJhdXRvIj5TPC90ZXh0PgogIDxyZWN0IHg9IjQwIiB5PSIxMiIgd2lkdGg9IjEwIiBoZWlnaHQ9IjEwIiByeD0iNSIgZmlsbD0iIzFCNEZEOCIvPgo8L3N2Zz4=">
   <meta name="theme-color" content="#0C1C3E">
@@ -1083,6 +1084,215 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .int-page-api-cta{flex-direction:column;gap:24px}
 }
 
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE RESPONSIVENESS — full audit
+   Breakpoints: 768px (tablet), 480px (phone)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Nav ─────────────────────────────────────────────────────── */
+@media(max-width:768px){
+  .nav-links,.nav-right .btn{display:none}
+  .hamburger{display:flex}
+  .nav-inner{padding:0 16px}
+
+  /* ── Hero ────────────────────────────────────────────────── */
+  .hero-inner{grid-template-columns:1fr;gap:40px;padding-top:80px}
+  .hero-copy{text-align:center}
+  .hero-copy h1{font-size:clamp(2rem,8vw,3rem)}
+  .hero-ctas{justify-content:center;flex-wrap:wrap}
+  .hero-visual{display:none}
+  .hero-stats{justify-content:center;gap:24px;flex-wrap:wrap}
+
+  /* ── Trusted by ──────────────────────────────────────────── */
+  .trusted-bar{height:64px}
+  .trusted-label{padding:0 12px;font-size:0.65rem}
+  .trusted-logo-item{padding:0 18px}
+  .trusted-logo-img{height:22px}
+
+  /* ── Stats strip ─────────────────────────────────────────── */
+  .stats-grid{grid-template-columns:repeat(2,1fr);gap:24px}
+
+  /* ── Pillars ─────────────────────────────────────────────── */
+  .pillar-cards{grid-template-columns:1fr;gap:16px}
+
+  /* ── How it works ────────────────────────────────────────── */
+  .steps-grid{grid-template-columns:1fr;gap:24px}
+  .step-connector{display:none}
+
+  /* ── Solutions / Industries ──────────────────────────────── */
+  .solutions-grid{grid-template-columns:1fr}
+  .industries-grid{grid-template-columns:repeat(2,1fr)}
+
+  /* ── Network map ─────────────────────────────────────────── */
+  .network-layout{grid-template-columns:1fr;gap:24px}
+  .network-hubs{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+  .india-map-wrap{height:280px}
+
+  /* ── Features grid ───────────────────────────────────────── */
+  .features-grid{grid-template-columns:1fr}
+
+  /* ── Page heroes ─────────────────────────────────────────── */
+  .page-hero{padding-top:88px!important;padding-bottom:32px!important}
+  .page-hero-inner h1{font-size:clamp(1.8rem,6vw,2.4rem)}
+  .page-hero-ctas{flex-wrap:wrap;gap:10px}
+  .page-hero-ctas .btn{width:100%;justify-content:center;text-align:center}
+
+  /* ── WareSync showcase ───────────────────────────────────── */
+  .ws-showcase{padding:48px 0}
+  .ws-tabs{gap:6px}
+  .ws-tab{padding:6px 14px;font-size:0.78rem}
+  .ws-slide,.ws-slide.active{grid-template-columns:1fr!important;gap:20px}
+  .ws-slide-dark{padding:24px 16px}
+  .ws-headline,.ws-headline-dark{font-size:1.4rem}
+  .ws-browser{order:1!important}
+  .ws-copy{order:2!important}
+  .ws-app{min-height:260px}
+  .ws-nav{width:100px}
+  .ws-kpi-row{grid-template-columns:repeat(2,1fr)}
+  .ws-workflow-stages{grid-template-columns:repeat(2,1fr)}
+  .ws-kanban{grid-template-columns:1fr}
+
+  /* ── Pricing ─────────────────────────────────────────────── */
+  .pricing-base-grid{grid-template-columns:1fr;border-radius:var(--radius-lg)}
+  .pricing-base-card{border-right:none!important;border-bottom:1.5px solid #d1d8ee}
+  .pricing-base-card:last-child{border-bottom:none}
+  .pricing-slider-wrap{padding:20px}
+  .pricing-v2-grid{grid-template-columns:1fr}
+
+  /* ── Integrations homepage ───────────────────────────────── */
+  .int-logo-grid{-webkit-mask-image:none;mask-image:none}
+  .int-page-stats{grid-template-columns:repeat(2,1fr)}
+  .int-page-stat{border-bottom:1px solid var(--steel-xs)}
+  .int-page-grid{grid-template-columns:repeat(2,1fr)}
+  .int-page-api-cta{flex-direction:column;padding:28px 20px;gap:20px}
+  .int-page-api-cta>div:last-child{flex-direction:column;width:100%}
+  .int-page-api-cta .btn{width:100%;justify-content:center}
+
+  /* ── Resources ───────────────────────────────────────────── */
+  .res-grid{grid-template-columns:1fr}
+  .res-case-grid{grid-template-columns:1fr}
+  .res-guide-grid{grid-template-columns:1fr}
+
+  /* ── Blog ────────────────────────────────────────────────── */
+  .blog-stats-row{grid-template-columns:repeat(2,1fr)}
+  .blog-body{padding:0 4px}
+
+  /* ── Stock photo banner ──────────────────────────────────── */
+  .stock-photo-banner{height:220px!important}
+
+  /* ── CTA band ────────────────────────────────────────────── */
+  .cta-inner{flex-direction:column;gap:24px;text-align:center}
+  .cta-actions{flex-direction:column;align-items:center;width:100%}
+  .cta-actions .btn{width:100%;justify-content:center}
+
+  /* ── Footer ──────────────────────────────────────────────── */
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:1/-1}
+  .footer-bottom{flex-direction:column;gap:12px;text-align:center}
+  .footer-legal{justify-content:center;flex-wrap:wrap}
+
+  /* ── Contact ─────────────────────────────────────────────── */
+  .contact-grid{grid-template-columns:1fr!important}
+
+  /* ── Login ───────────────────────────────────────────────── */
+  .login-cards{grid-template-columns:1fr!important;gap:16px}
+
+  /* ── Legal ───────────────────────────────────────────────── */
+  .legal-layout{grid-template-columns:1fr}
+  .legal-nav{display:none}
+
+  /* ── 3PL / solution pages ────────────────────────────────── */
+  .ws-showcase-header h2{font-size:1.5rem}
+
+  /* ── General utility ─────────────────────────────────────── */
+  .container{padding:0 16px}
+  .section-header h2{font-size:clamp(1.5rem,5vw,2rem)}
+  .animate-on-scroll{opacity:1!important;transform:none!important}
+}
+
+/* ── Phone only (480px) ──────────────────────────────────────── */
+@media(max-width:480px){
+  .hero-copy h1{font-size:1.9rem}
+  .stats-grid{grid-template-columns:1fr 1fr}
+  .stat-num{font-size:2rem}
+  .industries-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .ws-tab{padding:5px 10px;font-size:0.72rem}
+  .ws-kpi-row{grid-template-columns:1fr 1fr}
+  .blog-stats-row{grid-template-columns:1fr 1fr}
+  .hmb-stats{grid-template-columns:repeat(3,1fr)}
+  .hmb-nav{width:88px}
+  .hmb-nav-item{font-size:0.6rem;padding:5px 6px}
+  .int-page-grid{grid-template-columns:repeat(2,1fr)}
+  .pv2-tier{font-size:1.2rem}
+  .pv2-price{font-size:1.6rem}
+  .ws-inv-stats{grid-template-columns:repeat(3,1fr)}
+}
+
+/* ── Tablet (768-1024px) ─────────────────────────────────────── */
+@media(min-width:769px) and (max-width:1024px){
+  .hero-inner{gap:32px}
+  .hero-copy h1{font-size:2.6rem}
+  .pillar-cards{grid-template-columns:repeat(2,1fr)}
+  .features-grid{grid-template-columns:repeat(2,1fr)}
+  .res-case-grid{grid-template-columns:repeat(2,1fr)}
+  .res-guide-grid{grid-template-columns:repeat(2,1fr)}
+  .int-page-stats{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+  .pricing-base-grid{grid-template-columns:1fr}
+  .ws-slide,.ws-slide.active{grid-template-columns:1fr!important;gap:24px}
+  .ws-browser{order:1!important}
+  .ws-copy{order:2!important}
+}
+
+
+@media(max-width:768px){
+  /* Override any inline padding on page heroes */
+  .page[style] section.page-hero,section.page-hero[style]{
+    padding-top:88px!important;
+    padding-bottom:28px!important;
+  }
+  /* WareSync mockup — ensure browser chrome readable */
+  .hmb-main{padding:10px 10px}
+  .hmb-table th,.hmb-table td{padding:5px 4px;font-size:0.62rem}
+  .hmb-courier-tabs{display:none}
+  /* Nav desktop links already hidden, ensure logo visible */
+  .nav-logo{flex-shrink:0}
+  /* Footer contact */
+  .footer-contact{font-size:0.75rem}
+  /* Trusted by banner */
+  .trusted-bar{height:56px}
+  /* Remove horizontal scroll from integration marquee on mobile */
+  .ws-showcase .container{overflow-x:hidden}
+  /* Pricing slider */
+  .pricing-slider-ticks{font-size:0.6rem}
+  .pricing-slider-ticks span:nth-child(n+6){display:none}
+  /* Blog body */
+  .blog-body h2{font-size:1.1rem;margin:28px 0 10px}
+  .blog-body p,.blog-body li{font-size:0.88rem}
+  /* WareSync kanban */
+  .ws-kanban{grid-template-columns:1fr;gap:8px}
+  .ws-kpi-row{gap:6px}
+  /* Network stats */
+  .network-stats{grid-template-columns:repeat(2,1fr)}
+  /* Int page api cta mobile */
+  .int-page-api-cta .btn{width:100%!important;text-align:center;justify-content:center}
+  /* Case study metric grids */
+  [style*="grid-template-columns:1fr 1fr 1fr"]{grid-template-columns:1fr 1fr!important}
+}
+@media(max-width:480px){
+  /* Very small screens */
+  .ws-tab{padding:5px 8px;font-size:0.68rem}
+  .breadcrumb{font-size:0.7rem}
+  .eyebrow{font-size:0.65rem}
+  .btn-lg{padding:12px 20px;font-size:0.9rem}
+  .hero-copy h1{font-size:1.75rem;line-height:1.2}
+  .page-hero-inner h1{font-size:1.6rem}
+  .stat-num{font-size:1.8rem}
+  .stat-label{font-size:0.65rem}
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -1127,13 +1337,13 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
         {
           "@type": "ContactPoint",
           "contactType": "sales",
-          "email": "sales@sendit.in",
+          "email": "sales@sendit.co.in",
           "areaServed": "IN"
         },
         {
           "@type": "ContactPoint",
           "contactType": "customer support",
-          "email": "support@sendit.in",
+          "email": "sales@sendit.co.in",
           "areaServed": "IN"
         }
       ],
@@ -1692,7 +1902,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
           <div class="nav-logo"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBzdGFuZGFsb25lPSJubyI/Pgo8IURPQ1RZUEUgc3ZnIFBVQkxJQyAiLS8vVzNDLy9EVEQgU1ZHIDIwMDEwOTA0Ly9FTiIKICJodHRwOi8vd3d3LnczLm9yZy9UUi8yMDAxL1JFQy1TVkctMjAwMTA5MDQvRFREL3N2ZzEwLmR0ZCI+CjxzdmcgdmVyc2lvbj0iMS4wIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiB3aWR0aD0iNDYyLjAwMDAwMHB0IiBoZWlnaHQ9IjE4Ny4wMDAwMDBwdCIgdmlld0JveD0iMCAwIDQ2Mi4wMDAwMDAgMTg3LjAwMDAwMCIKIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIG1lZXQiPgoKPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoMC4wMDAwMDAsMTg3LjAwMDAwMCkgc2NhbGUoMC4xMDAwMDAsLTAuMTAwMDAwKSIKZmlsbD0iI0ZGRkZGRiIgc3Ryb2tlPSJub25lIj4KPHBhdGggZD0iTTM0NzMgMTYwOSBjLTExOCAtMjAgLTI0NyAtOTAgLTMyNCAtMTc3IC01OCAtNjYgLTExNiAtMTkxIC0xMzAKLTI4MSAtMjAgLTEzNCAxMiAtMjc4IDg4IC0zOTAgbDM4IC01NiA1IDc1IDUgNzUgODUgMCA4NSAwIDMgLTE0MyAzIC0xNDMgMzIKLTE0IGMxOCAtNyA0OSAtMTYgNzAgLTIwIGwzNyAtNyAwIDE5NSAwIDE5NiAtNDcgMyAtNDggMyAtMyA2MiAtMyA2MiA0OCAzIDQ4CjMgMyA3MyAzIDcyIDg0IDAgODQgMCAzIC03MiAzIC03MyAxMDcgLTMgMTA3IC0zIDMgNTEgMyA1MCA5MCAtODQgOTAgLTg0IC05MgotOTQgLTkzIC05MyAwIDYzIDAgNjIgLTEwNSAwIC0xMDUgMCAwIC0xOTYgMCAtMTk2IDM4IDYgYzY4IDEzIDE3NSA3MSAyNDAKMTMxIDE0MyAxMzIgMjA2IDMyMyAxNjggNTA1IC00OCAyMjcgLTIxNSAzOTMgLTQzOSA0MzUgLTg2IDE2IC0xMDcgMTcgLTE4NCA0egptLTE3MiAtNTY4IGMyMCAtMjAgMjkgLTM5IDI5IC02MSAwIC00MiAtNDcgLTkwIC04OCAtOTAgLTM3IDAgLTc4IDMxIC04NiA2NgotMTQgNTUgMzMgMTEzIDkyIDExNCAxMyAwIDM3IC0xMyA1MyAtMjl6Ii8+CjxwYXRoIGQ9Ik0yNjcwIDkwNCBjMCAtOTUgMCAtOTYgLTIyIC04OSAtMTA1IDMyIC0xODMgMjUgLTI2MSAtMjUgLTExNiAtNzMKLTE1MCAtMjU5IC02OSAtMzc5IDcyIC0xMDcgMjE2IC0xNDUgMzMwIC04OCA0OCAyNCA1MCAyNCA1NSA2IDQgLTE2IDE1IC0xOQo3MSAtMTkgbDY2IDAgMCAzNDUgMCAzNDUgLTg1IDAgLTg1IDAgMCAtOTZ6IG0tMzMgLTI0NSBjMjIgLTE5IDQzIC02NSA0MyAtOTYKMCAtMzggLTM0IC05MSAtNjYgLTEwMyAtNTIgLTIwIC05NCAtMTIgLTEzMCAyNCAtMjkgMjkgLTM0IDQxIC0zNCA3OSAwIDk4CjExNCAxNTYgMTg3IDk2eiIvPgo8cGF0aCBkPSJNNjUzIDk4MCBjLTg1IC0xOCAtMTQzIC02NyAtMTYzIC0xMzggLTE0IC01MSAtMTMgLTg2IDUgLTEyOSAzMCAtNzEKNjMgLTkzIDE5MSAtMTI5IDEwOSAtMzAgMTI0IC0zOCAxMjQgLTczIDAgLTM3IC0yMyAtNTYgLTcwIC01NiAtNDAgMCAtODAgMjYKLTgwIDUyIDAgMTAgLTIyIDEzIC05NSAxMyAtNTIgMCAtOTUgLTQgLTk1IC04IDAgLTUgNyAtMzEgMTUgLTU5IDIwIC02OCA4MgotMTI1IDE1NCAtMTQzIDExNCAtMjcgMjUxIDAgMzA4IDYyIDUxIDU1IDY5IDE1OCAzNyAyMjEgLTM1IDY5IC03MiA5MiAtMjAzCjEyNyAtNzcgMjEgLTEyMSA0NiAtMTIxIDY5IDAgMjIgMzQgNDEgNzEgNDEgMzQgMCA0MyAtNSA1NyAtMzAgMTcgLTMwIDE4IC0zMAoxMDUgLTMwIGw4OSAwIC03IDQzIGMtMTMgNzYgLTU2IDEyOSAtMTI3IDE1NiAtNDAgMTUgLTE0NyAyMSAtMTk1IDExeiIvPgo8cGF0aCBkPSJNMTI3MSA4MzAgYy0xMzMgLTI4IC0yMjEgLTE1MCAtMjA4IC0yOTEgMTIgLTE0MCAxMjIgLTIzOCAyNjggLTIzOQoxMTYgMCAxOTUgNDIgMjQzIDEzMCBsMjcgNTAgLTkwIDAgYy01MCAwIC05MSAtNCAtOTEgLTggMCAtMTUgLTQ5IC0zMiAtOTEKLTMyIC0zMSAwIC00NyA3IC03MCAyOSAtNTggNTggLTUwIDYxIDE2MSA2MSBsMTkwIDAgMCA1MyBjMCA2NCAtMzYgMTQzIC04MwoxODMgLTY2IDU2IC0xNjggODEgLTI1NiA2NHogbTE0MCAtMTU5IGMxNiAtMTYgMjkgLTM0IDI5IC00MCAwIC03IC0zNyAtMTEKLTEwNSAtMTEgbC0xMDYgMCAxNiAzMCBjMjAgMzggNDEgNDkgOTMgNTAgMzUgMCA0OSAtNiA3MyAtMjl6Ii8+CjxwYXRoIGQ9Ik0xOTA1IDgxNCBjLTE2IC04IC0zOCAtMjIgLTQ3IC0zMSAtMTYgLTE0IC0xOCAtMTMgLTI5IDExIC0xMSAyNAotMTcgMjYgLTcxIDI2IGwtNTggMCAwIC0yNTUgMCAtMjU1IDg1IDAgODUgMCAwIDE1NSBjMCAxNjUgNyAxOTYgNDcgMjE0IDM1CjE2IDYwIDE0IDgzIC05IDE4IC0xOCAyMCAtMzMgMjAgLTE5MCBsMCAtMTcxIDg4IDMgODcgMyAwIDE4MCBjMCAxOTQgLTYgMjI2Ci01NCAyNzggLTE0IDE2IC0zOCAzNSAtNTMgNDMgLTM3IDE5IC0xNDUgMTggLTE4MyAtMnoiLz4KPHBhdGggZD0iTTMxNjAgNDk1IGwwIC0xODUgODUgMCA4NSAwIDAgMTI4IDAgMTI3IC0zOCAyMiBjLTIxIDEyIC01NyAzOCAtODEKNTcgLTI0IDIwIC00NSAzNiAtNDcgMzYgLTIgMCAtNCAtODMgLTQgLTE4NXoiLz4KPHBhdGggZD0iTTM0NzIgNDY1IGM1IC01OSAyNCAtOTQgNzIgLTEyOSAyMyAtMTcgNDUgLTIyIDEzMiAtMjQgbDEwNCAtNCAwIDc2CjAgNzYgLTQzIDAgYy00NSAwIC04NyAyMiAtODcgNDYgMCAxMSAtMTggMTQgLTkxIDE0IGwtOTEgMCA0IC01NXoiLz4KPC9nPgo8L3N2Zz4K" alt="SendIt" class="sendit-logo-img" style="height:40px"></div>
           <p>SendIt is India's enterprise logistics infrastructure — SwiftShip courier orchestration, WareSync WMS, and 3PL operations under one roof.</p>
           
-          <div class="footer-contact" style="font-size:0.78rem;line-height:1.7">📍 BHIVE Platinum, 48, Church St,<br>Ashok Nagar, Bengaluru – 560 001<br><br>📍 No.786/289, Rajiv Gandhi Rd,<br>JP Nagar 6th Phase, Bengaluru – 560 078<br><br><a href="mailto:sales@sendit.in">sales@sendit.in</a></div>
+          <div class="footer-contact" style="font-size:0.78rem;line-height:1.7">📍 BHIVE Platinum, 48, Church St,<br>Ashok Nagar, Bengaluru – 560 001<br><br>📍 No.786/289, Rajiv Gandhi Rd,<br>JP Nagar 6th Phase, Bengaluru – 560 078<br><br><a href="mailto:sales@sendit.co.in">sales@sendit.co.in</a></div>
         </div>
         <div class="footer-col"><h5>Products</h5><div class="footer-links"><a href="#" onclick="showPage('swiftship')">SwiftShip</a><a href="#" onclick="showPage('waresync')">WareSync</a><a href="#" onclick="showPage('pricing')">Pricing</a></div></div>
         <div class="footer-col"><h5>Solutions</h5><div class="footer-links"><a href="#" onclick="showPage('warehousing')">Managed Warehousing</a><a href="#" onclick="showPage('lastmile')">Last-Mile Delivery</a><a href="#" onclick="showPage('ftlptl')">FTL / PTL Freight</a><a href="#" onclick="showPage('3pl')">3PL Fulfillment</a></div></div>
@@ -2315,7 +2525,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
       </div>
     </div>
   </section>
-  <section style="padding:80px 0;background:var(--offwhite)"><div class="container"><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><h4>Sales Enquiries</h4><p>Want a demo, a quote, or a pricing conversation? Our sales team responds within 4 business hours.</p><br><a href="mailto:sales@sendit.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">sales@sendit.in</a></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><h4>Customer Support</h4><p>Existing customers with platform or operations issues. P1 issues resolved within 2 hours.</p><br><a href="mailto:support@sendit.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">support@sendit.in</a></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div><h4>Press & Media</h4><p>Journalist, analyst, or podcaster? Our comms team handles press enquiries and interview requests.</p><br><a href="mailto:press@sendit.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">press@sendit.in</a></div></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;max-width:700px;" class="animate-on-scroll"><div style="background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:24px;"><h4 style="margin-bottom:8px;">📍 Registered Office</h4><p style="font-size:0.85rem;color:var(--steel);line-height:1.7;">BHIVE Platinum Church Street<br>48, Church St, Haridevpur,<br>Shanthala Nagar, Ashok Nagar,<br>Bengaluru, Karnataka 560 001</p></div><div style="background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:24px;"><h4 style="margin-bottom:8px;">📍 Operations Office</h4><p style="font-size:0.85rem;color:var(--steel);line-height:1.7;">No.786/289, Rajiv Gandhi Rd,<br>JP Nagar 6th Phase,<br>Bengaluru, Karnataka 560 078,<br>India</p></div></div></div></section>
+  <section style="padding:80px 0;background:var(--offwhite)"><div class="container"><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div><h4>Sales Enquiries</h4><p>Want a demo, a quote, or a pricing conversation? Our sales team responds within 4 business hours.</p><br><a href="mailto:sales@sendit.co.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">sales@sendit.co.in</a></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div><h4>Customer Support</h4><p>Existing customers with platform or operations issues. P1 issues resolved within 2 hours.</p><br><a href="mailto:sales@sendit.co.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">sales@sendit.co.in</a></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg></div><h4>Press & Media</h4><p>Journalist, analyst, or podcaster? Our comms team handles press enquiries and interview requests.</p><br><a href="mailto:sales@sendit.co.in" style="color:#1B4FD8;font-weight:600;font-size:0.88rem;">sales@sendit.co.in</a></div></div><div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:48px;max-width:700px;" class="animate-on-scroll"><div style="background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:24px;"><h4 style="margin-bottom:8px;">📍 Registered Office</h4><p style="font-size:0.85rem;color:var(--steel);line-height:1.7;">BHIVE Platinum Church Street<br>48, Church St, Haridevpur,<br>Shanthala Nagar, Ashok Nagar,<br>Bengaluru, Karnataka 560 001</p></div><div style="background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:24px;"><h4 style="margin-bottom:8px;">📍 Operations Office</h4><p style="font-size:0.85rem;color:var(--steel);line-height:1.7;">No.786/289, Rajiv Gandhi Rd,<br>JP Nagar 6th Phase,<br>Bengaluru, Karnataka 560 078,<br>India</p></div></div></div></section>
     <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
 </div>
 
@@ -2336,7 +2546,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 <!-- PRIVACY -->
 <div class="page" id="page-privacy">
   <section class="page-hero" style="padding-bottom:48px"><div class="container"><div class="page-hero-inner"><div class="breadcrumb"><a href="#" onclick="showPage('home')">Home</a> <span class="breadcrumb-sep">›</span> Legal › Privacy Policy</div><div class="eyebrow eyebrow-light">Legal</div><h1>Privacy Policy</h1></div></div></section>
-  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. About this Policy</a><a href="#">2. Data We Collect</a><a href="#">3. How We Use Data</a><a href="#">4. Third-Party Sharing</a><a href="#">5. Data Retention</a><a href="#">6. Your Rights (DPDPA 2023)</a><a href="#">7. Cookies</a><a href="#">8. Security</a><a href="#">9. DPO Contact</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 1 November 2024</div><h2>1. About This Policy</h2><p>This Privacy Policy is published by <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), a company incorporated under the Companies Act, 2013, with its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us", or "our").</p><p>SendIt operates the SwiftShip courier orchestration platform, the WareSync warehouse management system, and provides third-party logistics (3PL) services. This Policy is framed in compliance with India's Digital Personal Data Protection Act, 2023 ("DPDPA 2023").</p><h2>2. Data We Collect</h2><h3>2.1 Account and Business Data</h3><p>When you register for SwiftShip or WareSync, we collect your name, business name, GST number, work email address, mobile number, billing address, and payment instrument details (stored via our PCI-DSS-compliant payment processor).</p><h3>2.2 Shipment and Consignee Data</h3><p>In the course of processing shipments, we collect and process the following data about end consignees: full name, delivery address (including PIN code), mobile number or email address for delivery notifications, order value (for COD purposes), and package contents description.</p><h3>2.3 Rider and Fleet Location Data</h3><p>For last-mile delivery operations, we collect real-time GPS location data from our rider application. This data is used solely for route optimisation, live tracking provision, COD accountability, and operational performance monitoring.</p><h2>3. How We Use Your Data</h2><p>We use personal data for: providing and operating the platforms; fulfilling 3PL service obligations; processing payments and COD reconciliation; sending shipment tracking notifications; conducting security monitoring; complying with applicable law; and improving our services through aggregate analytics.</p><h2>4. Third-Party Sharing</h2><p>We share personal data with: carrier partners (shipment data for delivery purposes); payment processors (Razorpay, Cashfree); cloud infrastructure providers (AWS Mumbai region); communication service providers (SMS/WhatsApp notifications); and regulatory authorities when required by applicable Indian law. We do not sell personal data to any third party.</p><h2>5. Data Retention</h2><p>Shipment and consignee data is retained for 7 years from the date of shipment. Account data is retained for the duration of the customer relationship and for 7 years thereafter. Rider location data is retained in raw form for 90 days and in aggregated form for 3 years.</p><h2>6. Your Rights Under DPDPA 2023</h2><p>You have the right to access, correction, erasure, and grievance redressal in respect of your personal data. To exercise any of these rights, contact our DPO at dpo@sendit.in. We will respond within 30 days.</p><h2>7. Cookies</h2><p>Our website uses strictly necessary cookies (session management, security) and analytics cookies (Google Analytics 4, deployed only with consent). Advertising and tracking cookies are not deployed on our Platforms.</p><h2>8. Security</h2><p>We implement industry-standard security controls including TLS 1.2+ encryption in transit, AES-256 encryption at rest, role-based access controls, and multi-factor authentication.</p><h2>9. Data Protection Officer</h2><p><strong>Email:</strong> dpo@sendit.in<br><strong>Address:</strong> Data Protection Officer, SendIt Logistics Private Limited, BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001</p></div></div></div></div>
+  <div class="legal-page"><div class="container"><div class="legal-layout"><div class="legal-nav"><h5>Contents</h5><div class="legal-nav-links"><a href="#">1. About this Policy</a><a href="#">2. Data We Collect</a><a href="#">3. How We Use Data</a><a href="#">4. Third-Party Sharing</a><a href="#">5. Data Retention</a><a href="#">6. Your Rights (DPDPA 2023)</a><a href="#">7. Cookies</a><a href="#">8. Security</a><a href="#">9. DPO Contact</a></div></div><div class="legal-body"><div class="legal-meta">Last updated: 1 November 2024</div><h2>1. About This Policy</h2><p>This Privacy Policy is published by <strong>SendIt Logistics Private Limited</strong> (CIN: U74999KA2025PTC123456), a company incorporated under the Companies Act, 2013, with its registered office at BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001, Karnataka, India ("SendIt", "we", "us", or "our").</p><p>SendIt operates the SwiftShip courier orchestration platform, the WareSync warehouse management system, and provides third-party logistics (3PL) services. This Policy is framed in compliance with India's Digital Personal Data Protection Act, 2023 ("DPDPA 2023").</p><h2>2. Data We Collect</h2><h3>2.1 Account and Business Data</h3><p>When you register for SwiftShip or WareSync, we collect your name, business name, GST number, work email address, mobile number, billing address, and payment instrument details (stored via our PCI-DSS-compliant payment processor).</p><h3>2.2 Shipment and Consignee Data</h3><p>In the course of processing shipments, we collect and process the following data about end consignees: full name, delivery address (including PIN code), mobile number or email address for delivery notifications, order value (for COD purposes), and package contents description.</p><h3>2.3 Rider and Fleet Location Data</h3><p>For last-mile delivery operations, we collect real-time GPS location data from our rider application. This data is used solely for route optimisation, live tracking provision, COD accountability, and operational performance monitoring.</p><h2>3. How We Use Your Data</h2><p>We use personal data for: providing and operating the platforms; fulfilling 3PL service obligations; processing payments and COD reconciliation; sending shipment tracking notifications; conducting security monitoring; complying with applicable law; and improving our services through aggregate analytics.</p><h2>4. Third-Party Sharing</h2><p>We share personal data with: carrier partners (shipment data for delivery purposes); payment processors (Razorpay, Cashfree); cloud infrastructure providers (AWS Mumbai region); communication service providers (SMS/WhatsApp notifications); and regulatory authorities when required by applicable Indian law. We do not sell personal data to any third party.</p><h2>5. Data Retention</h2><p>Shipment and consignee data is retained for 7 years from the date of shipment. Account data is retained for the duration of the customer relationship and for 7 years thereafter. Rider location data is retained in raw form for 90 days and in aggregated form for 3 years.</p><h2>6. Your Rights Under DPDPA 2023</h2><p>You have the right to access, correction, erasure, and grievance redressal in respect of your personal data. To exercise any of these rights, contact our DPO at sales@sendit.co.in. We will respond within 30 days.</p><h2>7. Cookies</h2><p>Our website uses strictly necessary cookies (session management, security) and analytics cookies (Google Analytics 4, deployed only with consent). Advertising and tracking cookies are not deployed on our Platforms.</p><h2>8. Security</h2><p>We implement industry-standard security controls including TLS 1.2+ encryption in transit, AES-256 encryption at rest, role-based access controls, and multi-factor authentication.</p><h2>9. Data Protection Officer</h2><p><strong>Email:</strong> sales@sendit.co.in<br><strong>Address:</strong> Data Protection Officer, SendIt Logistics Private Limited, BHIVE Platinum, 48, Church Street, Ashok Nagar, Bengaluru – 560 001</p></div></div></div></div>
     <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">© 2026 SendIt Logistics Private Limited · <a href="#" onclick="showPage('home')" style="color:var(--steel)">← Back to Home</a></div><div class="footer-legal"><a href="#" onclick="showPage('privacy')">Privacy</a><a href="#" onclick="showPage('terms')">Terms</a></div></div></div></footer>
 </div>
 
@@ -2559,7 +2769,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
       <p>You can control and manage cookies in several ways:</p>
       <ul><li><strong>Browser settings:</strong> Most browsers allow you to refuse or delete cookies.</li><li><strong>Opt-out tools:</strong> Google Analytics opt-out at tools.google.com/dlpage/gaoptout</li><li><strong>Cookie banner:</strong> Choose which categories to accept via our consent banner on first visit.</li></ul>
       <h2>5. Contact</h2>
-      <p>Questions about cookies? Contact our DPO at <a href="mailto:dpo@sendit.in" style="color:#1B4FD8">dpo@sendit.in</a></p>
+      <p>Questions about cookies? Contact our DPO at <a href="mailto:sales@sendit.co.in" style="color:#1B4FD8">sales@sendit.co.in</a></p>
       <p><strong>Data Protection Officer</strong><br>SendIt Logistics Private Limited<br>BHIVE Platinum, 48, Church Street, Ashok Nagar<br>Bengaluru &ndash; 560 001, Karnataka, India</p>
     </div>
   </div></div></div>
