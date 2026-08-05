@@ -979,9 +979,9 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 
 /* ── Trusted By Banner ────────────────────────────────────────── */
 .trusted-bar{
-  background:#0C1C3E;
-  border-top:1px solid rgba(200,208,220,0.08);
-  border-bottom:1px solid rgba(200,208,220,0.08);
+  background:#ffffff;
+  border-top:1px solid #e8ecf2;
+  border-bottom:1px solid #e8ecf2;
   display:flex;
   align-items:center;
   height:80px;
@@ -993,11 +993,11 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   font-weight:600;
   text-transform:uppercase;
   letter-spacing:0.12em;
-  color:rgba(200,208,220,0.35);
+  color:#9aabcc;
   white-space:nowrap;
   padding:0 28px 0 32px;
   flex-shrink:0;
-  border-right:1px solid rgba(200,208,220,0.1);
+  border-right:1px solid #e8ecf2;
 }
 .trusted-marquee-wrap{
   flex:1;
@@ -1026,7 +1026,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   justify-content:center;
   padding:0 36px;
   height:80px;
-  border-right:1px solid rgba(200,208,220,0.06);
+  border-right:1px solid #f0f2f7;
   flex-shrink:0;
 }
 .trusted-logo-img{
@@ -1034,11 +1034,11 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   width:auto;
   max-width:110px;
   object-fit:contain;
-  filter:brightness(0) invert(1);
-  opacity:0.55;
+  filter:none;
+  opacity:0.75;
   transition:opacity 0.2s;
 }
-.trusted-logo-item:hover .trusted-logo-img{opacity:0.9}
+.trusted-logo-item:hover .trusted-logo-img{opacity:1}
 @media(prefers-reduced-motion:reduce){.trusted-track{animation:none}}
 @media(max-width:600px){
   .trusted-label{padding:0 16px;font-size:0.65rem}
