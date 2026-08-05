@@ -1293,6 +1293,73 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .stat-label{font-size:0.65rem}
 }
 
+
+@media(max-width:768px){
+  /* Demo & Quote form layout */
+  .form-layout{
+    grid-template-columns:1fr!important;
+    gap:32px!important;
+  }
+  .form-left h2{
+    font-size:1.6rem;
+  }
+  .form-card{
+    padding:24px 20px!important;
+    border-radius:12px;
+  }
+  .form-row{
+    grid-template-columns:1fr!important;
+    gap:0!important;
+  }
+  .form-group{
+    margin-bottom:16px;
+  }
+  .form-input,.form-select,.form-textarea{
+    font-size:16px!important;
+    /* Prevents iOS zoom on focus */
+    padding:12px 14px;
+  }
+  .form-label{
+    font-size:0.82rem;
+    margin-bottom:6px;
+  }
+  .form-submit{
+    width:100%;
+    padding:14px;
+    font-size:1rem;
+    justify-content:center;
+  }
+  /* Quote page */
+  .form-page{
+    padding-top:24px!important;
+  }
+  .form-page .container{
+    padding:0 16px;
+  }
+  /* Checkbox / radio groups in form */
+  .form-check-group{
+    grid-template-columns:1fr 1fr!important;
+  }
+}
+@media(max-width:480px){
+  .form-card{
+    padding:20px 16px!important;
+  }
+  .form-left h2{
+    font-size:1.4rem;
+  }
+  .form-check-group{
+    grid-template-columns:1fr!important;
+  }
+}
+
+
+@media(max-width:768px){
+  input,select,textarea{
+    font-size:16px!important;
+  }
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
