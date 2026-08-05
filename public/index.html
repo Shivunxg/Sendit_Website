@@ -661,11 +661,11 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .pricing-slider::-webkit-slider-thumb:hover{transform:scale(1.2)}
 .pricing-slider-ticks{display:flex;justify-content:space-between;margin-top:10px}
 .pricing-slider-ticks span{font-size:0.75rem;color:var(--steel);font-family:var(--font-mono)}
-.pricing-base-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #d1d8ee;border-radius:var(--radius-lg);overflow:hidden;align-items:start}
-.pricing-base-card{padding:32px 28px;border-right:1.5px solid #d1d8ee;background:var(--white);display:flex;flex-direction:column}
+.pricing-base-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border:1.5px solid #d1d8ee;border-radius:var(--radius-lg);overflow:hidden;align-items:stretch}
+.pricing-base-card{padding:32px 28px;border-right:1.5px solid #d1d8ee;background:var(--white);display:flex;flex-direction:column;position:relative}
 .pricing-base-card:last-child{border-right:none}
-.pricing-base-card.pbase-featured{background:#fff;border-top:3px solid #1B4FD8}
-.pbase-badge-inline{display:inline-block;background:#e8f0fe;color:#1B4FD8;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:3px 10px;border-radius:20px;margin-bottom:12px;align-self:flex-start}
+.pricing-base-card.pbase-featured{background:#fff;border-top:3px solid #1B4FD8;padding-top:29px}
+.pbase-badge-inline{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:#1B4FD8;color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;padding:4px 16px;border-radius:0 0 8px 8px;white-space:nowrap}
 .pbase-tier{font-size:1.4rem;font-weight:800;color:var(--ink);margin-bottom:4px}
 .pbase-tagline{font-size:0.82rem;color:#1B4FD8;font-weight:500;margin-bottom:16px;line-height:1.4}
 .pbase-price{font-size:2rem;font-weight:800;color:var(--ink);line-height:1}
@@ -695,6 +695,10 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .res-guide-icon svg{width:20px;height:20px;color:#1B4FD8}
 @media(max-width:900px){.res-grid,.res-case-grid,.res-guide-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.res-grid,.res-case-grid,.res-guide-grid{grid-template-columns:1fr}}
+
+
+.pricing-base-card:not(.pbase-featured) .pbase-tier{margin-top:0}
+.pricing-base-card.pbase-featured .pbase-tier{margin-top:8px}
 
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
