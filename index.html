@@ -1989,6 +1989,98 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   .iw-grid{grid-template-columns:repeat(2,1fr)}
 }
 
+
+/* ── SwiftShip for Shopify card ────────────────────────────────── */
+.shopify-app-card{
+  background:#fff;
+  border:1px solid #e0e4ee;
+  border-radius:16px;
+  padding:36px 40px;
+  box-shadow:0 2px 16px rgba(0,0,0,0.05);
+}
+.shopify-app-header{
+  display:flex;
+  align-items:flex-start;
+  gap:16px;
+  margin-bottom:20px;
+}
+.shopify-app-icon{
+  width:48px;height:48px;
+  background:#e8f0fe;
+  border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  color:#1B4FD8;
+}
+.shopify-app-icon svg{width:24px;height:24px}
+.shopify-app-title-wrap{flex:1}
+.shopify-app-title-row{
+  display:flex;align-items:center;gap:12px;
+  flex-wrap:wrap;margin-bottom:6px;
+}
+.shopify-app-name{
+  font-size:1.2rem;font-weight:700;
+  color:var(--ink);margin:0;
+}
+.shopify-free-badge{
+  background:#e8f5e9;
+  color:#2e7d32;
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;
+  padding:4px 10px;border-radius:20px;
+  border:1px solid #c8e6c9;
+  white-space:nowrap;
+}
+.shopify-app-platform{
+  font-size:0.78rem;color:var(--steel);
+  display:flex;align-items:center;
+}
+.shopify-app-desc{
+  font-size:0.88rem;color:#4a5568;
+  line-height:1.75;margin:0 0 24px;
+  max-width:900px;
+}
+.shopify-app-features{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px 40px;
+  margin-bottom:24px;
+}
+.shopify-feat-col{display:flex;flex-direction:column;gap:12px}
+.shopify-feat{
+  display:flex;align-items:center;gap:10px;
+  font-size:0.85rem;color:#2d3748;
+}
+.shopify-check{
+  width:20px;height:20px;
+  border-radius:50%;
+  border:1.5px solid #1B4FD8;
+  color:#1B4FD8;
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.7rem;font-weight:700;
+  flex-shrink:0;
+  line-height:1;
+}
+.shopify-app-divider{
+  border-top:1px solid #e8ecf2;
+  margin:24px 0;
+}
+.shopify-app-footer-row{
+  display:flex;
+  align-items:flex-start;
+  gap:24px;
+}
+.shopify-app-note{
+  font-size:0.75rem;color:#8090b8;
+  line-height:1.65;margin:0;flex:1;
+}
+@media(max-width:768px){
+  .shopify-app-card{padding:24px 20px}
+  .shopify-app-features{grid-template-columns:1fr;gap:10px}
+  .shopify-app-footer-row{flex-direction:column;gap:16px}
+  .shopify-app-footer-row .btn{width:100%;justify-content:center}
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -3739,6 +3831,52 @@ tracking = client.tracking.<span class="cf">get</span>(<span class="cs">"DLV-772
           </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ── SWIFTSHIP FOR SHOPIFY ────────────────────────────────── -->
+  <section style="background:var(--offwhite);padding:0 0 80px">
+    <div class="container">
+      <div class="shopify-app-card animate-on-scroll">
+        <div class="shopify-app-header">
+          <div class="shopify-app-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 17H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v9a2 2 0 0 1-2 2h-1"/><circle cx="9" cy="17" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+          </div>
+          <div class="shopify-app-title-wrap">
+            <div class="shopify-app-title-row">
+              <h3 class="shopify-app-name">SwiftShip for Shopify</h3>
+              <span class="shopify-free-badge">FREE TO INSTALL</span>
+            </div>
+            <div class="shopify-app-platform">
+              <img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+Cjxzdmcgd2lkdGg9IjI1NnB4IiBoZWlnaHQ9IjI5MnB4IiB2aWV3Qm94PSIwIDAgMjU2IDI5MiIgdmVyc2lvbj0iMS4xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJ4TWlkWU1pZCI+Cgk8Zz4KCQk8cGF0aCBkPSJNMjIzLjc3MzYyNiw1Ny4zNDAyMDc4IEMyMjMuNTcyOTMyLDU1Ljg3OTM0MDUgMjIyLjI5NDA5LDU1LjA3MTg5NjMgMjIxLjIzNjk0NSw1NC45ODMyMTc1IEMyMjAuMTgyMTMzLDU0Ljg5NDUzODYgMTk3Ljg1MzczNCw1My4yMzk5NzgxIDE5Ny44NTM3MzQsNTMuMjM5OTc4MSBDMTk3Ljg1MzczNCw1My4yMzk5NzgxIDE4Mi4zNDY2MDQsMzcuODQ0ODYzOSAxODAuNjQ1MzcsMzYuMTQxMjk2NiBDMTc4Ljk0MTgwMywzNC40Mzc3MjkzIDE3NS42MTYzNDYsMzQuOTU1ODAwNCAxNzQuMzI1ODM2LDM1LjMzNjE4NiBDMTc0LjEzNDQ3NiwzNS4zOTIxOTM3IDE3MC45MzczNzEsMzYuMzc5MzI5MyAxNjUuNjQ2OTc3LDM4LjAxNTIyMDYgQzE2MC40NjYyNjYsMjMuMTEwMTczNyAxNTEuMzI1MzQ0LDkuNDExNjI1ODIgMTM1LjI0MTgwMiw5LjQxMTYyNTgyIEMxMzQuNzk4NDA4LDkuNDExNjI1ODIgMTM0LjM0MTAxMSw5LjQzMDI5NTA1IDEzMy44ODM2MTUsOS40NTU5NjUyNSBDMTI5LjMwOTY1NCwzLjQwNzEzNDU3IDEyMy42NDM1NDIsMC43Nzk0NDAzNzMgMTE4Ljc0OTg3LDAuNzc5NDQwMzczIEM4MS4yODUzOTIsMC43Nzk0NDAzNzMgNjMuMzg2MjY3Myw0Ny42MTM1Mzg3IDU3Ljc3MzgyOTksNzEuNDE0NDc0IEM0My4yMTY0OTc0LDc1LjkyNTQyNjggMzIuODczNzQzNyw3OS4xMzE4NjcxIDMxLjU1Mjg5NTYsNzkuNTQ3MjU3NSBDMjMuNDI3MTEzMSw4Mi4wOTU2MDc0IDIzLjE3MDQxMTEsODIuMzUyMzA5NCAyMi4xMDM5MzEzLDkwLjAwOTAyNzUgQzIxLjI5ODgyMDgsOTUuODA1ODIzNiAwLjAzNjkwMDkwMDksMjYwLjIzNTA3MSAwLjAzNjkwMDkwMDksMjYwLjIzNTA3MSBMMTY1LjcxNDY1MywyOTEuMjc3MzM0IEwyNTUuNDg1NjQ4LDI3MS44NTY2NjcgQzI1NS40ODU2NDgsMjcxLjg1NjY2NyAyMjMuOTcxOTg3LDU4LjgwMTA3NTEgMjIzLjc3MzYyNiw1Ny4zNDAyMDc4IEwyMjMuNzczNjI2LDU3LjM0MDIwNzggWiBNMTU2LjQ4OTcyLDQwLjg0ODI3NjMgQzE1Mi4zMjg4MTUsNDIuMTM2NDUzMiAxNDcuNTk4NDk5LDQzLjU5OTY1NDIgMTQyLjQ3MTQ2MSw0NS4xODY1Mzg4IEMxNDIuNDc2MTI5LDQ0LjE5OTQwMzIgMTQyLjQ4MDc5Niw0My4yMjYyNjk2IDE0Mi40ODA3OTYsNDIuMTY0NDU3MSBDMTQyLjQ4MDc5NiwzMi44OTk4NTE0IDE0MS4xOTQ5NTMsMjUuNDQxNDkzOSAxMzkuMTMyMDAzLDE5LjUyODAxNTEgQzE0Ny40MTg4MDcsMjAuNTY4ODI0NyAxNTIuOTM3ODk5LDI5Ljk5Njc4NjEgMTU2LjQ4OTcyLDQwLjg0ODI3NjMgTDE1Ni40ODk3Miw0MC44NDgyNzYzIFogTTEyOC44NTIyNTgsMjEuMzY0NjAwNiBDMTMxLjE1NTU3NCwyNy4xMzgwNjAyIDEzMi42NTM3OCwzNS40MjI1MzEyIDEzMi42NTM3OCw0Ni42MDMwNjY2IEMxMzIuNjUzNzgsNDcuMTc0ODExOCAxMzIuNjQ5MTEyLDQ3LjY5NzU1MDMgMTMyLjY0NDQ0NSw0OC4yMjcyODk3IEMxMjMuNTI2ODYsNTEuMDUxMDEwOCAxMTMuNjIwNDk5LDU0LjExNzQzMTkgMTAzLjY5MDgwMiw1Ny4xOTMxODc2IEMxMDkuMjY1OTAxLDM1LjY3Njg5OTUgMTE5LjcxNjAwMywyNS4yODUxMzkxIDEyOC44NTIyNTgsMjEuMzY0NjAwNiBMMTI4Ljg1MjI1OCwyMS4zNjQ2MDA2IFogTTExNy43MjA3MjksMTAuODI4MTUzNyBDMTE5LjMzNzk1MSwxMC44MjgxNTM3IDEyMC45NjY4NDEsMTEuMzc2NTYyMyAxMjIuNTI1NzIyLDEyLjQ1MDA0MzEgQzExMC41MTkwNzMsMTguMDk5ODE5IDk3LjY0ODk3MjUsMzIuMzMwNDM5OSA5Mi4yMTM4OTI4LDYwLjc0NzM0MjQgQzg0LjI3MDEzNTIsNjMuMjA3MDEzNSA3Ni41MDYwNjksNjUuNjEwNjc2OSA2OS4zMjc3NDk5LDY3LjgzNDY0OSBDNzUuNjkzOTU3NSw0Ni4xNTk2NzI0IDkwLjgxMTM2NjksMTAuODI4MTUzNyAxMTcuNzIwNzI5LDEwLjgyODE1MzcgTDExNy43MjA3MjksMTAuODI4MTUzNyBaIiBmaWxsPSIjOTVCRjQ2Ij48L3BhdGg+CgkJPHBhdGggZD0iTTIyMS4yMzY5NDUsNTQuOTgzMjE3NSBDMjIwLjE4MjEzMyw1NC44OTQ1Mzg2IDE5Ny44NTM3MzQsNTMuMjM5OTc4MSAxOTcuODUzNzM0LDUzLjIzOTk3ODEgQzE5Ny44NTM3MzQsNTMuMjM5OTc4MSAxODIuMzQ2NjA0LDM3Ljg0NDg2MzkgMTgwLjY0NTM3LDM2LjE0MTI5NjYgQzE4MC4wMDgyODMsMzUuNTA2NTQyNyAxNzkuMTQ5NDk4LDM1LjE4MjE2NDkgMTc4LjI1MTA0MiwzNS4wNDIxNDU2IEwxNjUuNzIzOTg4LDI5MS4yNzUwMDEgTDI1NS40ODU2NDgsMjcxLjg1NjY2NyBDMjU1LjQ4NTY0OCwyNzEuODU2NjY3IDIyMy45NzE5ODcsNTguODAxMDc1MSAyMjMuNzczNjI2LDU3LjM0MDIwNzggQzIyMy41NzI5MzIsNTUuODc5MzQwNSAyMjIuMjk0MDksNTUuMDcxODk2MyAyMjEuMjM2OTQ1LDU0Ljk4MzIxNzUiIGZpbGw9IiM1RThFM0UiPjwvcGF0aD4KCQk8cGF0aCBkPSJNMTM1LjI0MTgwMiwxMDQuNTg1MDI5IEwxMjQuMTczMjgyLDEzNy41MTA1NTEgQzEyNC4xNzMyODIsMTM3LjUxMDU1MSAxMTQuNDc0NjE3LDEzMi4zMzQ1MDcgMTAyLjU4Njk4NCwxMzIuMzM0NTA3IEM4NS4xNTkyNTczLDEzMi4zMzQ1MDcgODQuMjgxODAzNSwxNDMuMjcyMzQyIDg0LjI4MTgwMzUsMTQ2LjAyODM4NyBDODQuMjgxODAzNSwxNjEuMDY2NDUyIDEyMy40ODI1MiwxNjYuODI4MjQ0IDEyMy40ODI1MiwyMDIuMDUyNDE0IEMxMjMuNDgyNTIsMjI5Ljc2NDU1MyAxMDUuOTA1NDQsMjQ3LjYxMDAwNCA4Mi4yMDQ4NTE2LDI0Ny42MTAwMDQgQzUzLjc2NDYxMjYsMjQ3LjYxMDAwNCAzOS4yMjEyODIxLDIyOS45MDkyNCAzOS4yMjEyODIxLDIyOS45MDkyNCBMNDYuODM1OTk0NCwyMDQuNzUwMTE4IEM0Ni44MzU5OTQ0LDIwNC43NTAxMTggNjEuNzg1MzgwOCwyMTcuNTg1MjE0IDc0LjQwMTExMzMsMjE3LjU4NTIxNCBDODIuNjQzNTc4NSwyMTcuNTg1MjE0IDg1Ljk5NzAzOTEsMjExLjA5NTMyMyA4NS45OTcwMzkxLDIwNi4zNTMzMzggQzg1Ljk5NzAzOTEsMTg2LjczNjY0NCA1My44MzY5NTU5LDE4NS44NjE1MjQgNTMuODM2OTU1OSwxNTMuNjI5MDk4IEM1My44MzY5NTU5LDEyNi41MDAzNzIgNzMuMzA4OTYzMywxMDAuMjQ2NzY3IDExMi42MTQ2OTQsMTAwLjI0Njc2NyBDMTI3Ljc2MDEwOCwxMDAuMjQ2NzY3IDEzNS4yNDE4MDIsMTA0LjU4NTAyOSAxMzUuMjQxODAyLDEwNC41ODUwMjkiIGZpbGw9IiNGRkZGRkYiPjwvcGF0aD4KCTwvZz4KPC9zdmc+" alt="Shopify" style="height:18px;width:auto;object-fit:contain;vertical-align:middle;margin-right:6px">
+              Available on Shopify App Store
+            </div>
+          </div>
+        </div>
+
+        <p class="shopify-app-desc">The SwiftShip Shopify app is free to install with no subscription or software-access fee required. You only pay for courier postage and shipping labels used to fulfil your orders. Charges vary based on:</p>
+
+        <div class="shopify-app-features">
+          <div class="shopify-feat-col">
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Selected courier and service level</div>
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Pickup location and destination</div>
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Applicable courier surcharges</div>
+          </div>
+          <div class="shopify-feat-col">
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Parcel weight and dimensions</div>
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Delivery speed and shipment type</div>
+            <div class="shopify-feat"><span class="shopify-check">&#10003;</span> Applicable taxes</div>
+          </div>
+        </div>
+
+        <div class="shopify-app-divider"></div>
+
+        <div class="shopify-app-footer-row">
+          <p class="shopify-app-note">The final shipping charge is displayed before a merchant confirms a shipment. Variable courier postage and shipping-label costs are charged outside Shopify under Shopify's applicable billing exemption. These charges are for shipping services and are not app subscription fees.</p>
+          <a class="btn btn-primary" href="https://apps.shopify.com" target="_blank" rel="noopener" style="white-space:nowrap;flex-shrink:0">Install on Shopify &rarr;</a>
+        </div>
       </div>
     </div>
   </section>
