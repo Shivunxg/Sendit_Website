@@ -2472,7 +2472,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
 }
 .hero-dash-track.at-1{transform:translateX(-50%)}
-.hero-dash-panel{width:50%;flex-shrink:0}
+.hero-dash-panel{width:50%;flex-shrink:0;display:flex;flex-direction:column}
 /* Float pill */
 .hmb-float-pill-outer{
   display:inline-flex;align-items:center;gap:8px;
@@ -2492,6 +2492,25 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   .hero-d{min-height:auto;padding:96px 0 56px}
   .hero-h1{font-size:2rem}
   .hero-stats{gap:16px}
+}
+
+
+.hero-dash-panel .hero-mockup-browser{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+}
+.hero-dash-panel .hmb-app{
+  flex:1;
+}
+.hero-dash-panel .hmb-main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.hero-dash-track{
+  align-items:stretch;
 }
 
 </style>
