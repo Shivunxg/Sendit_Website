@@ -873,9 +873,11 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   background:#1a2a5e;
   border-radius:14px;
   overflow:hidden;
-  box-shadow:0 24px 60px rgba(0,0,0,0.4);
+  box-shadow:0 20px 48px rgba(0,0,0,0.4);
   border:1px solid rgba(107,159,255,0.2);
   position:relative;
+  width:100%;
+  max-width:100%;
 }
 .hmb-bar{
   display:flex;align-items:center;gap:6px;
@@ -891,12 +893,13 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   border-radius:5px;padding:3px 10px;
   font-size:0.68rem;color:#5a7aaa;font-family:monospace;
 }
-.hmb-app{display:flex;min-height:320px}
+.hmb-app{display:flex;min-height:280px;overflow:hidden;width:100%}
 .hmb-nav{
-  width:120px;flex-shrink:0;
+  width:110px;flex-shrink:0;
   background:#0f1a40;
   border-right:1px solid rgba(107,159,255,0.12);
-  padding:12px 0;
+  padding:10px 0;
+  min-width:0;
 }
 .hmb-logo{
   display:flex;align-items:center;gap:7px;
@@ -917,7 +920,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   background:rgba(27,79,216,0.25)!important;
   color:#6b9fff!important;font-weight:600;
 }
-.hmb-main{flex:1;padding:14px 16px;overflow:hidden}
+.hmb-main{flex:1;padding:12px 14px;overflow:hidden;min-width:0}
 .hmb-header{
   display:flex;justify-content:space-between;
   align-items:flex-start;margin-bottom:10px;
@@ -938,7 +941,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
   color:rgba(255,255,255,0.45);cursor:pointer;
 }
 .hmb-ctab-active{background:#1B4FD8;color:#fff;border-color:#1B4FD8}
-.hmb-table{width:100%;border-collapse:collapse;font-size:0.68rem}
+.hmb-table{width:100%;border-collapse:collapse;font-size:0.67rem;table-layout:fixed}
 .hmb-table th{
   text-align:left;font-size:0.6rem;font-weight:700;
   text-transform:uppercase;letter-spacing:0.08em;
@@ -962,8 +965,8 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .hmb-purple{background:rgba(139,92,246,0.2);color:#a78bfa}
 .hmb-stats{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:8px;margin-top:10px;
-  padding-top:10px;
+  gap:4px;margin-top:8px;
+  padding-top:8px;
   border-top:1px solid rgba(107,159,255,0.12);
 }
 .hmb-stat{text-align:center}
@@ -2330,7 +2333,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   position:relative;
   background:#0C1C3E;
   overflow:hidden;
-  padding:140px 0 80px;
+  padding:120px 0 72px;
   min-height:100vh;
   display:flex;
   align-items:center;
@@ -2374,9 +2377,10 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 /* Layout */
 .hero-inner{
   display:grid;
-  grid-template-columns:1fr 1.15fr;
-  gap:56px;
-  align-items:center;
+  grid-template-columns:1fr 1fr;
+  gap:48px;
+  align-items:start;
+  width:100%;
 }
 /* Copy */
 .hero-copy{position:relative;z-index:2}
@@ -2428,15 +2432,16 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 }
 .hero-stat-div{width:1px;height:32px;background:rgba(255,255,255,0.1);flex-shrink:0}
 /* Visual */
-.hero-visual{position:relative;z-index:2}
+.hero-visual{position:relative;z-index:2;width:100%;overflow:hidden;max-width:100%}
 /* Option D tab bar */
 .hero-d-tabs{
   display:flex;
   background:rgba(255,255,255,0.05);
   border:1px solid rgba(107,159,255,0.2);
+  border-bottom:none;
   border-radius:10px 10px 0 0;
   overflow:hidden;
-  margin-bottom:0;
+  width:100%;
 }
 .hero-d-tab{
   flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
@@ -2455,17 +2460,16 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 }
 .hero-d-tab:hover:not(.active){color:rgba(180,200,240,0.7)}
 /* Browser chrome under tabs — remove top border-radius */
-.hero-d-tabs + .hero-dash-track .hero-mockup-browser{
+.hero-dash-track .hero-mockup-browser{
   border-radius:0 0 12px 12px;
   border-top:none;
 }
 /* Slide track */
-.hero-dash-switcher{position:relative}
+.hero-dash-switcher{position:relative;width:100%;overflow:hidden}
 .hero-dash-track{
   display:flex;
   width:200%;
   transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
-  overflow:hidden;
 }
 .hero-dash-track.at-1{transform:translateX(-50%)}
 .hero-dash-panel{width:50%;flex-shrink:0}
