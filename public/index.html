@@ -119,7 +119,7 @@ h4,.h4{font-size:1rem;font-weight:600;color:var(--ink)}
 .hero-proof{display:flex;gap:24px;padding-top:24px;border-top:1px solid rgba(200,208,220,0.12)}
 .hero-proof-num{font-family:var(--font-mono);font-size:1.3rem;font-weight:500;color:var(--white)}
 .hero-proof-label{font-size:0.78rem;color:var(--steel)}
-.hero-visual{position:relative}
+.hero-visual{position:relative;position:relative}
 .route-diagram{background:var(--slate);border:1px solid rgba(200,208,220,0.1);border-radius:var(--radius-lg);padding:32px;position:relative;overflow:hidden}
 .route-diagram::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,#1B4FD8,transparent)}
 .route-header{margin-bottom:28px}
@@ -2291,26 +2291,34 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 .hero-flip-container{
   position:relative;
   cursor:pointer;
-  perspective:1200px;
+  perspective:1400px;
 }
 .hero-flip-inner{
   position:relative;
-  transition:transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+  width:100%;
+  transition:transform 0.75s cubic-bezier(0.4,0.2,0.2,1);
   transform-style:preserve-3d;
+  -webkit-transform-style:preserve-3d;
 }
 .hero-flip-inner.flipped{
   transform:rotateY(180deg);
+  -webkit-transform:rotateY(180deg);
 }
 .hero-flip-face{
-  backface-visibility:hidden;
   -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  width:100%;
 }
 .hero-flip-front{
   position:relative;
+  width:100%;
 }
 .hero-flip-back{
   position:absolute;
-  top:0;left:0;right:0;
+  top:0;
+  left:0;
+  width:100%;
+  -webkit-transform:rotateY(180deg);
   transform:rotateY(180deg);
 }
 .hero-flip-hint{
@@ -2370,6 +2378,10 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   color:rgba(180,200,240,0.35);
   margin-top:2px;
 }
+
+
+.hero-flip-back .hero-mockup-browser{width:100%}
+.hero-flip-front .hero-mockup-browser{width:100%}
 
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -4671,7 +4683,7 @@ function heroFlip() {
   var hint  = document.getElementById('heroFlipHint');
   if (inner) inner.classList.toggle('flipped', _heroFlipped);
   if (hint) {
-    hint.textContent = _heroFlipped ? '\u21BA Click to see SwiftShip' : '\u21BA Click to see WareSync';
+    hint.innerHTML = _heroFlipped ? '&#8635; Click to see SwiftShip' : '&#8635; Click to see WareSync';
   }
 }
 </script>
