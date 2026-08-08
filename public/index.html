@@ -2286,6 +2286,91 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 /* Hero A background override */
 .hero.hero-a-redesign{background:#080f24!important}
 
+
+/* ── Hero flip animation ──────────────────────────────────────── */
+.hero-flip-container{
+  position:relative;
+  cursor:pointer;
+  perspective:1200px;
+}
+.hero-flip-inner{
+  position:relative;
+  transition:transform 0.7s cubic-bezier(0.4,0.2,0.2,1);
+  transform-style:preserve-3d;
+}
+.hero-flip-inner.flipped{
+  transform:rotateY(180deg);
+}
+.hero-flip-face{
+  backface-visibility:hidden;
+  -webkit-backface-visibility:hidden;
+}
+.hero-flip-front{
+  position:relative;
+}
+.hero-flip-back{
+  position:absolute;
+  top:0;left:0;right:0;
+  transform:rotateY(180deg);
+}
+.hero-flip-hint{
+  position:absolute;
+  bottom:-28px;
+  left:50%;
+  transform:translateX(-50%);
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:0.72rem;
+  font-weight:600;
+  color:rgba(107,159,255,0.6);
+  white-space:nowrap;
+  transition:color 0.15s, opacity 0.3s;
+  pointer-events:none;
+}
+.hero-flip-container:hover .hero-flip-hint{
+  color:#6B9FFF;
+}
+.hero-flip-hint.hidden{opacity:0}
+/* WareSync kanban inside hero */
+.ws-hero-kanban{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:8px;
+  margin:8px 0;
+}
+.ws-hero-col-h{
+  font-size:0.68rem;
+  font-weight:700;
+  color:rgba(255,255,255,0.4);
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+  margin-bottom:6px;
+  display:flex;align-items:center;gap:4px;
+}
+.ws-hero-cnt{
+  font-size:0.6rem;font-weight:700;color:#fff;
+  padding:1px 5px;border-radius:8px;
+}
+.ws-hero-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:6px;
+  padding:6px 8px;
+  font-size:0.68rem;
+  color:rgba(180,200,240,0.8);
+  margin-bottom:4px;
+}
+.ws-hero-card-done{
+  border-color:rgba(16,185,129,0.2);
+  background:rgba(16,185,129,0.06);
+}
+.ws-hero-card-s{
+  font-size:0.62rem;
+  color:rgba(180,200,240,0.35);
+  margin-top:2px;
+}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -2570,14 +2655,19 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 
         <!-- RIGHT MOCKUP -->
         <div class="hero-visual">
-          <div class="hero-mockup-browser">
-            <div class="hmb-bar">
-              <span class="hmb-dot hmb-r"></span>
-              <span class="hmb-dot hmb-y"></span>
-              <span class="hmb-dot hmb-g"></span>
-              <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
-            </div>
-            <div class="hmb-app">
+          <div class="hero-flip-container" onclick="heroFlip()" title="Click to see WareSync">
+          <div class="hero-flip-inner" id="heroFlipInner">
+
+            <!-- FRONT: SwiftShip -->
+            <div class="hero-flip-face hero-flip-front">
+              <div class="hero-mockup-browser">
+                <div class="hmb-bar">
+                  <span class="hmb-dot hmb-r"></span>
+                  <span class="hmb-dot hmb-y"></span>
+                  <span class="hmb-dot hmb-g"></span>
+                  <span class="hmb-url" id="heroBrowserUrl">swiftship.sendit.co.in/shipments</span>
+                </div>
+                <div class="hmb-app">
               <div class="hmb-nav">
                 <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
                 <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
@@ -2620,6 +2710,70 @@ a img, button img, .login-product-card img { pointer-events: auto; }
               </div>
             </div>
           </div>
+              </div>
+            </div>
+
+            <!-- BACK: WareSync -->
+            <div class="hero-flip-face hero-flip-back">
+              <div class="hero-mockup-browser" style="border-color:rgba(5,150,105,0.3)">
+                <div class="hmb-bar">
+                  <span class="hmb-dot hmb-r"></span>
+                  <span class="hmb-dot hmb-y"></span>
+                  <span class="hmb-dot hmb-g"></span>
+                  <span class="hmb-url">waresync.sendit.co.in/warehouse</span>
+                </div>
+                <div class="hmb-app">
+              <div class="hmb-nav">
+                <div class="hmb-logo"><div class="hmb-logo-box" style="background:#059669"></div><span>WareSync</span></div>
+                <div class="hmb-nav-item hmb-nav-active" style="color:#059669!important;background:rgba(5,150,105,0.15)!important">&#127968; Warehouse</div>
+                <div class="hmb-nav-item">&#9635; Dashboard</div>
+                <div class="hmb-nav-item">&#128230; Orders</div>
+                <div class="hmb-nav-item">&#128230; Inventory</div>
+                <div class="hmb-nav-item">&#128200; Reports</div>
+                <div class="hmb-nav-item">&#9881; Settings</div>
+              </div>
+              <div class="hmb-main">
+                <div class="hmb-header">
+                  <div>
+                    <div class="hmb-title">Warehouse Operations</div>
+                    <div class="hmb-sub">8 active pickers &middot; Avg pick 42s</div>
+                  </div>
+                  <div class="hmb-btn" style="background:#059669">+ New Task</div>
+                </div>
+                <div class="ws-hero-kanban">
+                  <div class="ws-hero-col">
+                    <div class="ws-hero-col-h">To Pick <span class="ws-hero-cnt" style="background:#1B4FD8">9</span></div>
+                    <div class="ws-hero-card">#WS-1042 &middot; 3 items<div class="ws-hero-card-s">Bin A2 &middot; A4 &middot; C1</div></div>
+                    <div class="ws-hero-card">#WS-1038 &middot; 4 items<div class="ws-hero-card-s">Bin B1 &middot; B3</div></div>
+                  </div>
+                  <div class="ws-hero-col">
+                    <div class="ws-hero-col-h">Packing <span class="ws-hero-cnt" style="background:#f59e0b">6</span></div>
+                    <div class="ws-hero-card">#WS-1041 &middot; 1 item<div class="ws-hero-card-s">Station 2 &middot; Priya</div></div>
+                    <div class="ws-hero-card">#WS-1036 &middot; 2 items<div class="ws-hero-card-s">Station 1 &middot; Rohit</div></div>
+                  </div>
+                  <div class="ws-hero-col">
+                    <div class="ws-hero-col-h">Ready <span class="ws-hero-cnt" style="background:#10b981">4</span></div>
+                    <div class="ws-hero-card ws-hero-card-done">#WS-1040 &middot; 6 items<div class="ws-hero-card-s" style="color:#34d399">Delhivery</div></div>
+                    <div class="ws-hero-card ws-hero-card-done">#WS-1033 &middot; 2 items<div class="ws-hero-card-s" style="color:#34d399">Blue Dart</div></div>
+                  </div>
+                </div>
+                <div class="hmb-stats" style="margin-top:10px">
+                  <div class="hmb-stat"><div class="hmb-stat-num">37</div><div class="hmb-stat-lbl">Orders today</div></div>
+                  <div class="hmb-stat"><div class="hmb-stat-num">369</div><div class="hmb-stat-lbl">Total inventory</div></div>
+                  <div class="hmb-stat"><div class="hmb-stat-num">99.2%</div><div class="hmb-stat-lbl">Order accuracy</div></div>
+                </div>
+              </div>
+            </div>
+              </div>
+            </div>
+
+          </div>
+          <!-- Click hint -->
+          <div class="hero-flip-hint" id="heroFlipHint">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+            Click to see WareSync
+          </div>
+        </div>
           <div class="hmb-float-pill-outer">
             <span class="hmb-pill-dot"></span> Live tracking &middot; 5 carriers
           </div>
@@ -4507,6 +4661,18 @@ function filterLogos(cat) {
       btn.textContent.trim().toLowerCase() === cat
     );
   });
+}
+
+// Hero dashboard flip
+var _heroFlipped = false;
+function heroFlip() {
+  _heroFlipped = !_heroFlipped;
+  var inner = document.getElementById('heroFlipInner');
+  var hint  = document.getElementById('heroFlipHint');
+  if (inner) inner.classList.toggle('flipped', _heroFlipped);
+  if (hint) {
+    hint.textContent = _heroFlipped ? '\u21BA Click to see SwiftShip' : '\u21BA Click to see WareSync';
+  }
 }
 </script>
 
