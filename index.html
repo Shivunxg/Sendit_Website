@@ -2290,12 +2290,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 
 
 
-/* ── Hero dash switcher ───────────────────────────────────────── */
-.hero-dash-switcher{
-  position:relative;
-  cursor:pointer;
-  width:100%;
-}
+
 .hero-dash-track{
   display:flex;
   width:200%;
@@ -2327,6 +2322,172 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 .hero-dash-dot.active{
   background:#6B9FFF;
   transform:scale(1.3);
+}
+
+
+/* ── Hero D — route lines + tab panel ──────────────────────────── */
+.hero-d{
+  position:relative;
+  background:#0C1C3E;
+  overflow:hidden;
+  padding:140px 0 80px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
+/* Animated route SVG */
+.hero-routes{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0.18;
+}
+.hero-routes svg{width:100%;height:100%}
+.route-line-1{
+  stroke-dashoffset:0;
+  animation:route-march 18s linear infinite;
+}
+.route-line-2{
+  stroke-dashoffset:0;
+  animation:route-march 24s linear infinite reverse;
+}
+.route-line-3{
+  animation:route-march 30s linear infinite;
+}
+@keyframes route-march{
+  to{stroke-dashoffset:-200}
+}
+@media(prefers-reduced-motion:reduce){
+  .route-line-1,.route-line-2,.route-line-3{animation:none}
+}
+/* Left glow */
+.hero-glow-left{
+  position:absolute;
+  top:50%;left:-80px;
+  transform:translateY(-50%);
+  width:600px;height:600px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(27,79,216,0.28) 0%,transparent 65%);
+  pointer-events:none;
+  z-index:1;
+}
+/* Layout */
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1.15fr;
+  gap:56px;
+  align-items:center;
+}
+/* Copy */
+.hero-copy{position:relative;z-index:2}
+/* Option D tagline */
+.hero-d-tagline{
+  display:flex;align-items:center;gap:12px;
+  margin-bottom:16px;
+}
+.hero-d-line{
+  width:28px;height:2px;
+  background:#1B4FD8;
+  flex-shrink:0;
+}
+.hero-d-tag{
+  font-size:0.72rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:#6B9FFF;
+}
+/* H1 */
+.hero-h1{
+  font-size:clamp(2rem,4vw,3.2rem);
+  font-weight:800;color:#fff;
+  line-height:1.1;letter-spacing:-0.5px;
+  margin-bottom:18px;
+}
+.hero-h1-accent{display:block;color:#6B9FFF}
+/* Body */
+.hero-body{
+  font-size:0.95rem;
+  color:rgba(180,200,240,0.65);
+  line-height:1.75;
+  max-width:460px;
+  margin-bottom:28px;
+}
+/* Stats */
+.hero-stats{
+  display:flex;align-items:center;gap:24px;
+  margin-top:32px;padding-top:24px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  flex-wrap:wrap;
+}
+.hero-stat-num{
+  font-family:var(--font-mono);font-size:1.4rem;
+  font-weight:600;color:#fff;margin-bottom:4px;
+}
+.hero-stat-lbl{
+  font-size:0.7rem;color:rgba(180,200,240,0.45);
+  text-transform:uppercase;letter-spacing:0.07em;
+}
+.hero-stat-div{width:1px;height:32px;background:rgba(255,255,255,0.1);flex-shrink:0}
+/* Visual */
+.hero-visual{position:relative;z-index:2}
+/* Option D tab bar */
+.hero-d-tabs{
+  display:flex;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(107,159,255,0.2);
+  border-radius:10px 10px 0 0;
+  overflow:hidden;
+  margin-bottom:0;
+}
+.hero-d-tab{
+  flex:1;display:flex;align-items:center;justify-content:center;gap:7px;
+  padding:10px 8px;
+  font-size:0.8rem;font-weight:600;
+  color:rgba(180,200,240,0.45);
+  background:none;border:none;cursor:pointer;
+  border-bottom:2px solid transparent;
+  transition:all 0.15s;
+}
+.hero-d-tab svg{width:14px;height:14px;flex-shrink:0}
+.hero-d-tab.active{
+  color:#6B9FFF;
+  border-bottom-color:#1B4FD8;
+  background:rgba(27,79,216,0.1);
+}
+.hero-d-tab:hover:not(.active){color:rgba(180,200,240,0.7)}
+/* Browser chrome under tabs — remove top border-radius */
+.hero-d-tabs + .hero-dash-track .hero-mockup-browser{
+  border-radius:0 0 12px 12px;
+  border-top:none;
+}
+/* Slide track */
+.hero-dash-switcher{position:relative}
+.hero-dash-track{
+  display:flex;
+  width:200%;
+  transition:transform 0.5s cubic-bezier(0.4,0,0.2,1);
+  overflow:hidden;
+}
+.hero-dash-track.at-1{transform:translateX(-50%)}
+.hero-dash-panel{width:50%;flex-shrink:0}
+/* Float pill */
+.hmb-float-pill-outer{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(16,185,129,0.12);
+  border:1px solid rgba(16,185,129,0.3);
+  border-radius:20px;padding:6px 14px;
+  font-size:0.75rem;font-weight:600;color:#34d399;
+  margin-top:12px;
+}
+/* Responsive */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:36px}
+  .hero-d{padding:110px 0 56px}
+}
+@media(max-width:768px){
+  .hero-visual{display:none}
+  .hero-d{min-height:auto;padding:96px 0 56px}
+  .hero-h1{font-size:2rem}
+  .hero-stats{gap:16px}
 }
 
 </style>
@@ -2568,19 +2729,38 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 
 <!-- ═══ HOME PAGE ═══ -->
 <div class="page active" id="page-home">
-  <section class="hero hero-a-redesign">
-    <!-- Glow layers -->
+  <section class="hero hero-d">
+    <!-- Animated SVG route lines background -->
+    <div class="hero-routes" aria-hidden="true">
+      <svg viewBox="0 0 1440 700" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <!-- Dashed route paths -->
+        <path d="M-40 520 Q200 380 420 440 Q640 500 860 320 Q1080 140 1300 220 Q1380 250 1480 200" stroke="#1B4FD8" stroke-width="1.2" stroke-dasharray="8 5" fill="none" class="route-line-1"/>
+        <path d="M-40 600 Q180 500 380 560 Q580 620 780 480 Q980 340 1200 400 Q1360 440 1480 380" stroke="#6B9FFF" stroke-width="0.8" stroke-dasharray="6 8" fill="none" class="route-line-2"/>
+        <path d="M-40 350 Q160 260 340 300 Q520 340 700 220 Q880 100 1100 160 Q1300 210 1480 150" stroke="#1B4FD8" stroke-width="0.7" stroke-dasharray="4 10" fill="none" class="route-line-3" opacity="0.5"/>
+        <!-- Hub dots -->
+        <circle cx="420" cy="440" r="5" fill="#1B4FD8" opacity="0.8"/>
+        <circle cx="860" cy="320" r="5" fill="#1B4FD8" opacity="0.8"/>
+        <circle cx="340" cy="300" r="4" fill="#6B9FFF" opacity="0.6"/>
+        <circle cx="700" cy="220" r="4" fill="#6B9FFF" opacity="0.6"/>
+        <circle cx="780" cy="480" r="4" fill="#6B9FFF" opacity="0.5"/>
+        <!-- Glow circles on hubs -->
+        <circle cx="420" cy="440" r="12" fill="#1B4FD8" opacity="0.15"/>
+        <circle cx="860" cy="320" r="12" fill="#1B4FD8" opacity="0.15"/>
+      </svg>
+    </div>
+
+    <!-- Left glow -->
     <div class="hero-glow-left"></div>
-    <div class="hero-glow-right"></div>
 
     <div class="container" style="position:relative;z-index:2">
       <div class="hero-inner">
 
-        <!-- LEFT COPY -->
+        <!-- LEFT COPY (Option A content) -->
         <div class="hero-copy">
-          <div class="hero-eyebrow">
-            <span class="hero-eyebrow-dot"></span>
-            India's logistics infrastructure
+          <!-- Option D tagline treatment -->
+          <div class="hero-d-tagline">
+            <div class="hero-d-line"></div>
+            <span class="hero-d-tag">India's Logistics Infrastructure</span>
           </div>
           <h1 class="hero-h1">
             Orchestrate every shipment,
@@ -2593,9 +2773,10 @@ a img, button img, .login-product-card img { pointer-events: auto; }
             <a class="btn btn-primary btn-lg btn-arrow" href="#" onclick="showPage('demo')">Book a Demo</a>
             <a class="btn btn-secondary btn-lg" href="#" onclick="showPage('swiftship')">Explore Platform</a>
           </div>
+          <!-- Stats with dividers (Option A) -->
           <div class="hero-stats">
             <div class="hero-stat">
-              <div class="hero-stat-num" data-count="80000" data-suffix="K+">80K+</div>
+              <div class="hero-stat-num">80K+</div>
               <div class="hero-stat-lbl">Shipments / month</div>
             </div>
             <div class="hero-stat-div"></div>
@@ -2611,133 +2792,128 @@ a img, button img, .login-product-card img { pointer-events: auto; }
           </div>
         </div>
 
-        <!-- RIGHT MOCKUP -->
+        <!-- RIGHT PANEL (Option D tabbed switcher) -->
         <div class="hero-visual">
           <div class="hero-dash-switcher" id="heroDashSwitcher">
 
-          <!-- Slide wrapper -->
-          <div class="hero-dash-track" id="heroDashTrack">
+            <!-- Tab bar -->
+            <div class="hero-d-tabs">
+              <button class="hero-d-tab active" id="heroTab0" onclick="heroDashGo(0)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                SwiftShip
+              </button>
+              <button class="hero-d-tab" id="heroTab1" onclick="heroDashGo(1)">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
+                WareSync
+              </button>
+            </div>
 
-            <!-- PANEL 0: SwiftShip -->
-            <div class="hero-dash-panel">
-              <div class="hero-mockup-browser">
-                <div class="hmb-bar">
-                  <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
-                  <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
-                </div>
-                <div class="hmb-app">
-                  <div class="hmb-nav">
-                    <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
-                    <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
-                    <div class="hmb-nav-item">&#128202; Analytics</div>
-                    <div class="hmb-nav-item">&#128260; NDR</div>
-                    <div class="hmb-nav-item">&#128179; COD</div>
-                    <div class="hmb-nav-item">&#128279; Carriers</div>
-                    <div class="hmb-nav-item">&#9881; Settings</div>
+            <!-- Slide track -->
+            <div class="hero-dash-track" id="heroDashTrack">
+
+              <!-- PANEL 0: SwiftShip -->
+              <div class="hero-dash-panel">
+                <div class="hero-mockup-browser">
+                  <div class="hmb-bar">
+                    <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
+                    <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
                   </div>
-                  <div class="hmb-main">
-                    <div class="hmb-header">
-                      <div><div class="hmb-title">Shipments</div><div class="hmb-sub">142 active &middot; updated just now</div></div>
-                      <div class="hmb-btn">+ Book Shipment</div>
+                  <div class="hmb-app">
+                    <div class="hmb-nav">
+                      <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
+                      <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
+                      <div class="hmb-nav-item">&#128202; Analytics</div>
+                      <div class="hmb-nav-item">&#128260; NDR</div>
+                      <div class="hmb-nav-item">&#128179; COD</div>
+                      <div class="hmb-nav-item">&#128279; Carriers</div>
+                      <div class="hmb-nav-item">&#9881; Settings</div>
                     </div>
-                    <div class="hmb-courier-tabs">
-                      <span class="hmb-ctab hmb-ctab-active">All</span>
-                      <span class="hmb-ctab">Delhivery</span>
-                      <span class="hmb-ctab">Blue Dart</span>
-                      <span class="hmb-ctab">Ekart</span>
-                    </div>
-                    <table class="hmb-table">
-                      <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
-                      <tbody>
-                        <tr><td class="hmb-mono hmb-bold">DLV-77213</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Bengaluru</td><td><span class="hmb-badge hmb-green">Delivered</span></td><td class="hmb-muted">&mdash;</td></tr>
-                        <tr><td class="hmb-mono hmb-bold">BD-40921</td><td class="hmb-muted">Blue Dart</td><td class="hmb-muted">Hyderabad</td><td><span class="hmb-badge hmb-orange">Out for delivery</span></td><td class="hmb-muted">Today</td></tr>
-                        <tr style="background:rgba(27,79,216,0.06)"><td class="hmb-mono hmb-bold">EKT-55302</td><td class="hmb-muted">Ekart</td><td class="hmb-muted">Kolkata</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">2 days</td></tr>
-                        <tr><td class="hmb-mono hmb-bold">DTDC-1180</td><td class="hmb-muted">DTDC</td><td class="hmb-muted">Chennai</td><td><span class="hmb-badge hmb-purple">Label created</span></td><td class="hmb-muted">3 days</td></tr>
-                        <tr><td class="hmb-mono hmb-bold">DLV-77198</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Pune</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">1 day</td></tr>
-                      </tbody>
-                    </table>
-                    <div class="hmb-stats">
-                      <div class="hmb-stat"><div class="hmb-stat-num">97.5%</div><div class="hmb-stat-lbl">On-time delivery</div></div>
-                      <div class="hmb-stat"><div class="hmb-stat-num">&#8377;1,240</div><div class="hmb-stat-lbl">COD pending today</div></div>
-                      <div class="hmb-stat"><div class="hmb-stat-num">94.3%</div><div class="hmb-stat-lbl">First attempt delivery</div></div>
+                    <div class="hmb-main">
+                      <div class="hmb-header">
+                        <div><div class="hmb-title">Shipments</div><div class="hmb-sub">142 active &middot; updated just now</div></div>
+                        <div class="hmb-btn">+ Book Shipment</div>
+                      </div>
+                      <div class="hmb-courier-tabs">
+                        <span class="hmb-ctab hmb-ctab-active">All</span>
+                        <span class="hmb-ctab">Delhivery</span>
+                        <span class="hmb-ctab">Blue Dart</span>
+                        <span class="hmb-ctab">Ekart</span>
+                      </div>
+                      <table class="hmb-table">
+                        <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
+                        <tbody>
+                          <tr><td class="hmb-mono hmb-bold">DLV-77213</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Bengaluru</td><td><span class="hmb-badge hmb-green">Delivered</span></td><td class="hmb-muted">&mdash;</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">BD-40921</td><td class="hmb-muted">Blue Dart</td><td class="hmb-muted">Hyderabad</td><td><span class="hmb-badge hmb-orange">Out for delivery</span></td><td class="hmb-muted">Today</td></tr>
+                          <tr style="background:rgba(27,79,216,0.06)"><td class="hmb-mono hmb-bold">EKT-55302</td><td class="hmb-muted">Ekart</td><td class="hmb-muted">Kolkata</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">2 days</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">DTDC-1180</td><td class="hmb-muted">DTDC</td><td class="hmb-muted">Chennai</td><td><span class="hmb-badge hmb-purple">Label created</span></td><td class="hmb-muted">3 days</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">DLV-77198</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Pune</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">1 day</td></tr>
+                        </tbody>
+                      </table>
+                      <div class="hmb-stats">
+                        <div class="hmb-stat"><div class="hmb-stat-num">97.5%</div><div class="hmb-stat-lbl">On-time delivery</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">&#8377;1,240</div><div class="hmb-stat-lbl">COD pending today</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">94.3%</div><div class="hmb-stat-lbl">First attempt</div></div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            <!-- PANEL 1: WareSync -->
-            <div class="hero-dash-panel">
-              <div class="hero-mockup-browser" style="border-color:rgba(5,150,105,0.3)">
-                <div class="hmb-bar">
-                  <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
-                  <span class="hmb-url">waresync.sendit.co.in/warehouse</span>
-                </div>
-                <div class="hmb-app">
-                  <div class="hmb-nav">
-                    <div class="hmb-logo"><div class="hmb-logo-box" style="background:#059669"></div><span>WareSync</span></div>
-                    <div class="hmb-nav-item" style="background:rgba(5,150,105,0.15);color:#34d399;font-weight:600">&#127968; Warehouse</div>
-                    <div class="hmb-nav-item">&#9635; Dashboard</div>
-                    <div class="hmb-nav-item">&#128230; Orders</div>
-                    <div class="hmb-nav-item">&#128230; Inventory</div>
-                    <div class="hmb-nav-item">&#128200; Reports</div>
-                    <div class="hmb-nav-item">&#9881; Settings</div>
+              <!-- PANEL 1: WareSync -->
+              <div class="hero-dash-panel">
+                <div class="hero-mockup-browser" style="border-color:rgba(5,150,105,0.3)">
+                  <div class="hmb-bar">
+                    <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
+                    <span class="hmb-url">waresync.sendit.co.in/warehouse</span>
                   </div>
-                  <div class="hmb-main">
-                    <div class="hmb-header">
-                      <div><div class="hmb-title">Warehouse Operations</div><div class="hmb-sub">8 active pickers &middot; Avg pick 42s</div></div>
-                      <div class="hmb-btn" style="background:#059669">+ New Task</div>
+                  <div class="hmb-app">
+                    <div class="hmb-nav">
+                      <div class="hmb-logo"><div class="hmb-logo-box" style="background:#059669"></div><span>WareSync</span></div>
+                      <div class="hmb-nav-item" style="background:rgba(5,150,105,0.15);color:#34d399;font-weight:600">&#127968; Warehouse</div>
+                      <div class="hmb-nav-item">&#9635; Dashboard</div>
+                      <div class="hmb-nav-item">&#128230; Orders</div>
+                      <div class="hmb-nav-item">&#128230; Inventory</div>
+                      <div class="hmb-nav-item">&#128200; Reports</div>
+                      <div class="hmb-nav-item">&#9881; Settings</div>
                     </div>
-                    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 10px">
-                      <div style="display:flex;flex-direction:column;gap:4px">
-                        <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">To Pick <span style="background:#1B4FD8;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">9</span></div>
-                        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1042 &middot; 3 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin A2 &middot; A4</div></div>
-                        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1038 &middot; 4 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin B1 &middot; B3</div></div>
+                    <div class="hmb-main">
+                      <div class="hmb-header">
+                        <div><div class="hmb-title">Warehouse Operations</div><div class="hmb-sub">8 active pickers &middot; Avg pick 42s</div></div>
+                        <div class="hmb-btn" style="background:#059669">+ New Task</div>
                       </div>
-                      <div style="display:flex;flex-direction:column;gap:4px">
-                        <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Packing <span style="background:#f59e0b;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">6</span></div>
-                        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1041 &middot; 1 item<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 2 &middot; Priya</div></div>
-                        <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1036 &middot; 2 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 1 &middot; Rohit</div></div>
+                      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 10px">
+                        <div style="display:flex;flex-direction:column;gap:4px">
+                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">To Pick <span style="background:#1B4FD8;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">9</span></div>
+                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1042 &middot; 3 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin A2 &middot; A4</div></div>
+                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1038 &middot; 4 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin B1 &middot; B3</div></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:4px">
+                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Packing <span style="background:#f59e0b;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">6</span></div>
+                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1041 &middot; 1 item<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 2 &middot; Priya</div></div>
+                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1036 &middot; 2 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 1 &middot; Rohit</div></div>
+                        </div>
+                        <div style="display:flex;flex-direction:column;gap:4px">
+                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Ready <span style="background:#10b981;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">4</span></div>
+                          <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1040 &middot; 6 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Delhivery</div></div>
+                          <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1033 &middot; 2 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Blue Dart</div></div>
+                        </div>
                       </div>
-                      <div style="display:flex;flex-direction:column;gap:4px">
-                        <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Ready <span style="background:#10b981;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">4</span></div>
-                        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1040 &middot; 6 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Delhivery</div></div>
-                        <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1033 &middot; 2 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Blue Dart</div></div>
+                      <div class="hmb-stats">
+                        <div class="hmb-stat"><div class="hmb-stat-num">37</div><div class="hmb-stat-lbl">Orders today</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">369</div><div class="hmb-stat-lbl">Total inventory</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">99.2%</div><div class="hmb-stat-lbl">Order accuracy</div></div>
                       </div>
-                    </div>
-                    <div class="hmb-stats">
-                      <div class="hmb-stat"><div class="hmb-stat-num">37</div><div class="hmb-stat-lbl">Orders today</div></div>
-                      <div class="hmb-stat"><div class="hmb-stat-num">369</div><div class="hmb-stat-lbl">Total inventory</div></div>
-                      <div class="hmb-stat"><div class="hmb-stat-num">99.2%</div><div class="hmb-stat-lbl">Order accuracy</div></div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-          </div><!-- /track -->
+            </div><!-- /track -->
+          </div><!-- /switcher -->
 
-          <!-- Dot indicators -->
-          <div class="hero-dash-dots">
-            <button class="hero-dash-dot active" id="heroDot0" onclick="heroDashGo(0)" aria-label="SwiftShip"></button>
-            <button class="hero-dash-dot" id="heroDot1" onclick="heroDashGo(1)" aria-label="WareSync"></button>
-          </div>
-
-          <!-- Click hint -->
-          <div class="hero-flip-hint" id="heroFlipHint">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-            <span id="heroHintText">Click to see WareSync</span>
-          </div>
-
-        </div>
-          <!-- Click hint -->
-          <div class="hero-flip-hint" id="heroFlipHint">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:12px;height:12px"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
-            Click to see WareSync
-          </div>
-        </div>
-          <div class="hmb-float-pill-outer">
-            <span class="hmb-pill-dot"></span> Live tracking &middot; 5 carriers
+          <div class="hmb-float-pill-outer" id="heroFlipHint">
+            <span class="hmb-pill-dot"></span>
+            <span id="heroHintText">Auto-switching &middot; click to pause</span>
           </div>
         </div>
 
@@ -4625,34 +4801,44 @@ function filterLogos(cat) {
   });
 }
 
-// Hero dashboard switcher
+
+// Hero dashboard switcher (Option D)
 var _heroCurrent = 0;
+var _heroPaused = false;
 function heroDashGo(idx) {
   _heroCurrent = idx;
   var track = document.getElementById('heroDashTrack');
   var hint  = document.getElementById('heroHintText');
-  var dots  = document.querySelectorAll('.hero-dash-dot');
+  var tab0  = document.getElementById('heroTab0');
+  var tab1  = document.getElementById('heroTab1');
   if (track) {
-    if (idx === 1) { track.classList.add('at-1'); }
-    else           { track.classList.remove('at-1'); }
+    track.classList.toggle('at-1', idx === 1);
   }
-  dots.forEach(function(d,i){ d.classList.toggle('active', i===idx); });
-  if (hint) hint.textContent = idx===0 ? 'Click to see WareSync' : 'Click to see SwiftShip';
+  if (tab0) tab0.classList.toggle('active', idx === 0);
+  if (tab1) tab1.classList.toggle('active', idx === 1);
+  if (hint) hint.textContent = _heroPaused
+    ? (idx === 0 ? 'SwiftShip' : 'WareSync')
+    : 'Auto-switching · click to pause';
 }
 function heroDashToggle() {
+  _heroPaused = true;
   heroDashGo(_heroCurrent === 0 ? 1 : 0);
+  var hint = document.getElementById('heroHintText');
+  if (hint) hint.textContent = _heroCurrent === 1 ? 'WareSync' : 'SwiftShip';
 }
-// Auto-switch every 5 seconds
-var _heroTimer = setInterval(function(){ heroDashGo(_heroCurrent===0?1:0); }, 5000);
-// Pause on hover
-document.addEventListener('DOMContentLoaded', function(){
+var _heroTimer = setInterval(function() {
+  if (!_heroPaused) heroDashGo(_heroCurrent === 0 ? 1 : 0);
+}, 4000);
+document.addEventListener('DOMContentLoaded', function() {
   var sw = document.getElementById('heroDashSwitcher');
-  if(!sw) return;
-  sw.addEventListener('click', function(){ heroDashToggle(); clearInterval(_heroTimer); });
-  sw.addEventListener('mouseenter', function(){ clearInterval(_heroTimer); });
-  sw.addEventListener('mouseleave', function(){
-    clearInterval(_heroTimer);
-    _heroTimer = setInterval(function(){ heroDashGo(_heroCurrent===0?1:0); }, 5000);
+  if (!sw) return;
+  sw.addEventListener('click', function(e) {
+    var tabClicked = e.target.closest('.hero-d-tab');
+    if (tabClicked) {
+      _heroPaused = true;
+      clearInterval(_heroTimer);
+      heroDashGo(tabClicked.id === 'heroTab0' ? 0 : 1);
+    }
   });
 });
 </script>
