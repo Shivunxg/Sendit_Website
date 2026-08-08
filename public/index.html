@@ -2161,6 +2161,131 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   z-index: 1;
 }
 
+
+/* ── Hero A redesign ──────────────────────────────────────────── */
+.hero-a-redesign{
+  position:relative;
+  background:#080f24;
+  overflow:hidden;
+  padding:140px 0 80px;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+}
+.hero-glow-left{
+  position:absolute;
+  top:50%;left:0;
+  transform:translateY(-60%);
+  width:700px;height:700px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(27,79,216,0.35) 0%,transparent 65%);
+  pointer-events:none;
+  z-index:1;
+}
+.hero-glow-right{
+  position:absolute;
+  top:10%;right:-100px;
+  width:500px;height:500px;
+  border-radius:50%;
+  background:radial-gradient(ellipse,rgba(107,159,255,0.15) 0%,transparent 65%);
+  pointer-events:none;
+  z-index:1;
+}
+/* Hero layout */
+.hero-inner{
+  display:grid;
+  grid-template-columns:1fr 1.1fr;
+  gap:60px;
+  align-items:center;
+}
+.hero-copy{position:relative;z-index:2}
+/* Eyebrow */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:0.72rem;font-weight:700;letter-spacing:0.12em;
+  text-transform:uppercase;color:#6B9FFF;
+  margin-bottom:20px;
+}
+.hero-eyebrow-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:#10b981;
+  box-shadow:0 0 8px rgba(16,185,129,0.7);
+  animation:pulse-dot 2s ease infinite;
+  flex-shrink:0;
+}
+/* H1 */
+.hero-h1{
+  font-size:clamp(2.2rem,4.5vw,3.4rem);
+  font-weight:800;
+  color:#ffffff;
+  line-height:1.1;
+  letter-spacing:-1px;
+  margin-bottom:20px;
+}
+.hero-h1-accent{
+  display:block;
+  color:#6B9FFF;
+}
+/* Body */
+.hero-body{
+  font-size:1rem;
+  color:rgba(180,200,240,0.65);
+  line-height:1.75;
+  max-width:480px;
+  margin-bottom:32px;
+}
+/* Stats */
+.hero-stats{
+  display:flex;
+  align-items:center;
+  gap:24px;
+  margin-top:36px;
+  padding-top:28px;
+  border-top:1px solid rgba(255,255,255,0.08);
+  flex-wrap:wrap;
+}
+.hero-stat-num{
+  font-family:var(--font-mono);
+  font-size:1.5rem;
+  font-weight:600;
+  color:#ffffff;
+  margin-bottom:4px;
+}
+.hero-stat-lbl{
+  font-size:0.72rem;
+  color:rgba(180,200,240,0.45);
+  text-transform:uppercase;
+  letter-spacing:0.07em;
+}
+.hero-stat-div{
+  width:1px;
+  height:36px;
+  background:rgba(255,255,255,0.1);
+  flex-shrink:0;
+}
+/* Visual panel */
+.hero-visual{
+  position:relative;
+  z-index:2;
+}
+/* Mobile */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:40px}
+  .hero-a-redesign{padding:120px 0 60px}
+  .hero-h1{font-size:2.2rem}
+}
+@media(max-width:768px){
+  .hero-a-redesign{min-height:auto;padding:100px 0 60px}
+  .hero-visual{display:none}
+  .hero-h1{font-size:1.9rem}
+  .hero-stats{gap:16px}
+  .hero-glow-left{width:400px;height:400px}
+}
+
+
+/* Hero A background override */
+.hero.hero-a-redesign{background:#080f24!important}
+
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.in/">
@@ -2400,24 +2525,50 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 
 <!-- ═══ HOME PAGE ═══ -->
 <div class="page active" id="page-home">
-  <section class="hero">
-    <div class="hero-bg"></div>
-    <div class="container">
-      <div class="hero-content">
-        <div class="hero-left">
-          <div class="hero-badge"><div class="hero-badge-dot"></div><span class="hero-badge-text">Now live across 28 states in India</span></div>
-          <h1>Orchestrate every shipment, <span class="accent">warehouse to doorstep</span></h1>
-          <p class="hero-sub">SendIt — courier orchestration, warehouse management, and 3PL operations — one platform, one network. Built for D2C brands, retail, and FMCG businesses ready to professionalize their logistics.</p>
+  <section class="hero hero-a-redesign">
+    <!-- Glow layers -->
+    <div class="hero-glow-left"></div>
+    <div class="hero-glow-right"></div>
+
+    <div class="container" style="position:relative;z-index:2">
+      <div class="hero-inner">
+
+        <!-- LEFT COPY -->
+        <div class="hero-copy">
+          <div class="hero-eyebrow">
+            <span class="hero-eyebrow-dot"></span>
+            India's logistics infrastructure
+          </div>
+          <h1 class="hero-h1">
+            Orchestrate every shipment,
+            <span class="hero-h1-accent">warehouse to doorstep</span>
+          </h1>
+          <p class="hero-body">
+            SwiftShip courier orchestration, WareSync warehouse management, and 3PL operations — one platform, one network. Built for D2C brands, retail, and FMCG businesses ready to professionalize their logistics.
+          </p>
           <div class="hero-ctas">
             <a class="btn btn-primary btn-lg btn-arrow" href="#" onclick="showPage('demo')">Book a Demo</a>
             <a class="btn btn-secondary btn-lg" href="#" onclick="showPage('swiftship')">Explore Platform</a>
           </div>
-          <div class="hero-proof">
-            <div class="hero-proof-item"><div class="hero-proof-num">80K+</div><div class="hero-proof-label">Shipments / month</div></div>
-            <div class="hero-proof-item"><div class="hero-proof-num">97.5%</div><div class="hero-proof-label">On-time delivery</div></div>
-            <div class="hero-proof-item"><div class="hero-proof-num">12,000+</div><div class="hero-proof-label">PIN codes served</div></div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <div class="hero-stat-num" data-count="80000" data-suffix="K+">80K+</div>
+              <div class="hero-stat-lbl">Shipments / month</div>
+            </div>
+            <div class="hero-stat-div"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">97.5%</div>
+              <div class="hero-stat-lbl">On-time delivery</div>
+            </div>
+            <div class="hero-stat-div"></div>
+            <div class="hero-stat">
+              <div class="hero-stat-num">12,000+</div>
+              <div class="hero-stat-lbl">PIN codes served</div>
+            </div>
           </div>
         </div>
+
+        <!-- RIGHT MOCKUP -->
         <div class="hero-visual">
           <div class="hero-mockup-browser">
             <div class="hmb-bar">
@@ -2427,25 +2578,20 @@ a img, button img, .login-product-card img { pointer-events: auto; }
               <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
             </div>
             <div class="hmb-app">
-              <!-- Sidebar -->
               <div class="hmb-nav">
-                <div class="hmb-logo">
-                  <div class="hmb-logo-box"></div>
-                  <span>SwiftShip</span>
-                </div>
-                <div class="hmb-nav-item hmb-nav-active">📦 Shipments</div>
-                <div class="hmb-nav-item">📊 Analytics</div>
-                <div class="hmb-nav-item">🔄 NDR</div>
-                <div class="hmb-nav-item">💳 COD</div>
-                <div class="hmb-nav-item">🔗 Carriers</div>
-                <div class="hmb-nav-item">⚙ Settings</div>
+                <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
+                <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
+                <div class="hmb-nav-item">&#128202; Analytics</div>
+                <div class="hmb-nav-item">&#128260; NDR</div>
+                <div class="hmb-nav-item">&#128179; COD</div>
+                <div class="hmb-nav-item">&#128279; Carriers</div>
+                <div class="hmb-nav-item">&#9881; Settings</div>
               </div>
-              <!-- Main -->
               <div class="hmb-main">
                 <div class="hmb-header">
                   <div>
                     <div class="hmb-title">Shipments</div>
-                    <div class="hmb-sub">142 active · updated just now</div>
+                    <div class="hmb-sub">142 active &middot; updated just now</div>
                   </div>
                   <div class="hmb-btn">+ Book Shipment</div>
                 </div>
@@ -2457,70 +2603,28 @@ a img, button img, .login-product-card img { pointer-events: auto; }
                   <span class="hmb-ctab">DTDC</span>
                 </div>
                 <table class="hmb-table">
-                  <thead>
-                    <tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr>
-                  </thead>
+                  <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
                   <tbody>
-                    <tr>
-                      <td class="hmb-mono hmb-bold">DLV-77213</td>
-                      <td class="hmb-muted">Delhivery</td>
-                      <td class="hmb-muted">Bengaluru</td>
-                      <td><span class="hmb-badge hmb-green">Delivered</span></td>
-                      <td class="hmb-muted">—</td>
-                    </tr>
-                    <tr>
-                      <td class="hmb-mono hmb-bold">BD-40921</td>
-                      <td class="hmb-muted">Blue Dart</td>
-                      <td class="hmb-muted">Hyderabad</td>
-                      <td><span class="hmb-badge hmb-orange">Out for delivery</span></td>
-                      <td class="hmb-muted">Today</td>
-                    </tr>
-                    <tr class="hmb-row-highlight">
-                      <td class="hmb-mono hmb-bold">EKT-55302</td>
-                      <td class="hmb-muted">Ekart</td>
-                      <td class="hmb-muted">Kolkata</td>
-                      <td><span class="hmb-badge hmb-blue">In transit</span></td>
-                      <td class="hmb-muted">2 days</td>
-                    </tr>
-                    <tr>
-                      <td class="hmb-mono hmb-bold">DTDC-1180</td>
-                      <td class="hmb-muted">DTDC</td>
-                      <td class="hmb-muted">Chennai</td>
-                      <td><span class="hmb-badge hmb-purple">Label created</span></td>
-                      <td class="hmb-muted">3 days</td>
-                    </tr>
-                    <tr>
-                      <td class="hmb-mono hmb-bold">DLV-77198</td>
-                      <td class="hmb-muted">Delhivery</td>
-                      <td class="hmb-muted">Pune</td>
-                      <td><span class="hmb-badge hmb-blue">In transit</span></td>
-                      <td class="hmb-muted">1 day</td>
-                    </tr>
+                    <tr><td class="hmb-mono hmb-bold">DLV-77213</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Bengaluru</td><td><span class="hmb-badge hmb-green">Delivered</span></td><td class="hmb-muted">&mdash;</td></tr>
+                    <tr><td class="hmb-mono hmb-bold">BD-40921</td><td class="hmb-muted">Blue Dart</td><td class="hmb-muted">Hyderabad</td><td><span class="hmb-badge hmb-orange">Out for delivery</span></td><td class="hmb-muted">Today</td></tr>
+                    <tr style="background:rgba(27,79,216,0.06)"><td class="hmb-mono hmb-bold">EKT-55302</td><td class="hmb-muted">Ekart</td><td class="hmb-muted">Kolkata</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">2 days</td></tr>
+                    <tr><td class="hmb-mono hmb-bold">DTDC-1180</td><td class="hmb-muted">DTDC</td><td class="hmb-muted">Chennai</td><td><span class="hmb-badge hmb-purple">Label created</span></td><td class="hmb-muted">3 days</td></tr>
+                    <tr><td class="hmb-mono hmb-bold">DLV-77198</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Pune</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">1 day</td></tr>
                   </tbody>
                 </table>
-                <!-- Stats row -->
                 <div class="hmb-stats">
-                  <div class="hmb-stat">
-                    <div class="hmb-stat-num">97.5%</div>
-                    <div class="hmb-stat-lbl">On-time delivery</div>
-                  </div>
-                  <div class="hmb-stat">
-                    <div class="hmb-stat-num">₹1,240</div>
-                    <div class="hmb-stat-lbl">COD pending today</div>
-                  </div>
-                  <div class="hmb-stat">
-                    <div class="hmb-stat-num">94.3%</div>
-                    <div class="hmb-stat-lbl">First attempt delivery</div>
-                  </div>
+                  <div class="hmb-stat"><div class="hmb-stat-num">97.5%</div><div class="hmb-stat-lbl">On-time delivery</div></div>
+                  <div class="hmb-stat"><div class="hmb-stat-num">&#8377;1,240</div><div class="hmb-stat-lbl">COD pending today</div></div>
+                  <div class="hmb-stat"><div class="hmb-stat-num">94.3%</div><div class="hmb-stat-lbl">First attempt delivery</div></div>
                 </div>
               </div>
             </div>
           </div>
-          <!-- Floating pill — below browser frame -->
           <div class="hmb-float-pill-outer">
-            <span class="hmb-pill-dot"></span> Live tracking · 5 carriers
+            <span class="hmb-pill-dot"></span> Live tracking &middot; 5 carriers
           </div>
         </div>
+
       </div>
     </div>
   </section>
