@@ -7,7 +7,26 @@
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-MRWC90FQDQ');
+  gtag('config', 'G-MRWC90FQDQ', {
+    'send_page_view': true,
+    'cookie_flags': 'SameSite=None;Secure'
+  });
+
+  // Track SPA page changes — fires when showPage() is called
+  var _gaOrigShowPage = window.showPage;
+  document.addEventListener('DOMContentLoaded', function() {
+    if (typeof showPage === 'function') {
+      var _orig = showPage;
+      window.showPage = function(pageId) {
+        _orig(pageId);
+        gtag('event', 'page_view', {
+          'page_title': pageId,
+          'page_location': window.location.href + '#' + pageId,
+          'page_path': '/' + pageId
+        });
+      };
+    }
+  });
 </script>
 <meta charset="UTF-8">
   <script>
@@ -41,11 +60,15 @@
 <meta name="description" content="SwiftShip courier orchestration + WareSync WMS + 3PL operations across India. Built for D2C, FMCG & retail. 80K+ shipments/month. Book a free demo.">
 <meta property="og:title" content="SendIt — Enterprise Logistics Infrastructure">
 <meta property="og:type" content="website">
+  <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
   <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
