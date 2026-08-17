@@ -1,5 +1,5 @@
 # robots.txt — SendIt Logistics Private Limited
-# https://www.sendit.in
+# https://www.sendit.co.in
 
 User-agent: *
 Allow: /
@@ -22,7 +22,7 @@ Allow: /book-a-demo
 Allow: /request-a-quote
 
 # Sitemap
-Sitemap: https://www.sendit.in/sitemap.xml
+Sitemap: https://www.sendit.co.in/sitemap.xml
 
 # Crawl-delay for polite bots
 Crawl-delay: 2
