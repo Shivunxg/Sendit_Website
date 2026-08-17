@@ -1,8 +1,4 @@
 {
-  "buildCommand": "cp public/index.html public/index.html",
-  "outputDirectory": "public",
-  "installCommand": "echo 'skip'",
-  "framework": null,
   "headers": [
     {
       "source": "/(.*)",
@@ -34,7 +30,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
+          "value": "no-cache, must-revalidate"
         },
         {
           "key": "Content-Type",
@@ -47,11 +43,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "no-cache, no-store, must-revalidate"
-        },
-        {
-          "key": "Content-Type",
-          "value": "image/png"
+          "value": "no-cache, must-revalidate"
         }
       ]
     },
@@ -67,12 +59,6 @@
           "value": "nosniff"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/((?!favicon|ms-icon|robots|sitemap|sendit|logo).*)",
-      "destination": "/index.html"
     }
   ]
 }
