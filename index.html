@@ -4917,6 +4917,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// ── Manual Favicon Override ────────────────────────────────────────────────
+// To set a custom favicon:
+//   1. Open browser console
+//   2. Run: SendIt.setFavicon()  → opens file picker
+//   OR run: SendIt.setFaviconUrl('https://your-url/favicon.png')
+//   3. Refresh — favicon persists via localStorage
+
+window.SendIt = window.SendIt || {};
+
+window.SendIt.applyFavicon = function(dataUrl) {
+  // Remove all existing favicon links
+  document.querySelectorAll('link[rel*="icon"]').forEach(function(el){ el.remove(); });
+  // Add new ones
+  ['icon','shortcut icon'].forEach(function(rel){
+    var l = document.createElement('link');
+    l.rel = rel; l.href = dataUrl; document.head.appendChild(l);
+  });
+  localStorage.setItem('sendit_favicon_override', dataUrl);
+  console.log('%c✓ Favicon updated!', 'color:#10b981;font-weight:bold');
+  console.log('Refresh the page to see it in the browser tab.');
+};
+
+window.SendIt.setFavicon = function() {
+  var input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*,.ico';
+  input.onchange = function(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function(ev) {
+      window.SendIt.applyFavicon(ev.target.result);
+    };
+    reader.readAsDataURL(file);
+  };
+  input.click();
+};
+
+window.SendIt.setFaviconUrl = function(url) {
+  window.SendIt.applyFavicon(url);
+};
+
+window.SendIt.clearFavicon = function() {
+  localStorage.removeItem('sendit_favicon_override');
+  console.log('Favicon override cleared. Refresh to revert to default.');
+};
+
+// Apply stored override on load
+(function(){
+  var stored = localStorage.getItem('sendit_favicon_override');
+  if (stored) {
+    window.SendIt.applyFavicon(stored);
+    console.log('%cSendIt: custom favicon applied from localStorage', 'color:#6B9FFF');
+  }
+})();
 </script>
 
 <!-- ── Cookie Consent Badge ─────────────────────────────────────────────── -->
