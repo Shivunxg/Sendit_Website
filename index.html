@@ -4560,6 +4560,15 @@ tracking = client.tracking.<span class="cf">get</span>(<span class="cs">"DLV-772
 
 <script>
 
+// Set favicon via JS - bypasses Vite HTML processing
+(function(){
+  var link = document.querySelector("link[rel~='icon']");
+  if (!link) { link = document.createElement('link'); link.rel = 'icon'; document.head.appendChild(link); }
+  link.type = 'image/png';
+  link.href = 'data:image/png;base64,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';
+})();
+
+
 // ── Asset Protection ──────────────────────────────────────────────────────────
 (function() {
 
