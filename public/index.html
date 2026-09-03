@@ -2580,6 +2580,174 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   .hero-stats{gap:14px!important}
 }
 
+
+/* ── SenditPlus page ─────────────────────────────────────────────── */
+.sp-hero{background:var(--ink);padding-top:140px;padding-bottom:80px;position:relative;overflow:hidden}
+.sp-hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 60% 40%,rgba(27,79,216,0.15) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 0% 80%,rgba(107,159,255,0.06) 0%,transparent 60%)}
+.sp-hero-bg::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(27,79,216,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(27,79,216,0.06) 1px,transparent 1px);background-size:60px 60px}
+.sp-new-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(107,159,255,0.12);border:1px solid rgba(107,159,255,0.35);border-radius:20px;padding:5px 16px;margin-bottom:24px;cursor:default}
+.sp-new-badge-dot{width:6px;height:6px;background:#6B9FFF;border-radius:50%;animation:pulse-dot 2s ease infinite}
+.sp-new-badge-text{font-size:0.78rem;font-weight:600;color:#6B9FFF;letter-spacing:0.08em;text-transform:uppercase}
+.sp-hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2}
+.sp-hero h1{color:var(--white);margin-bottom:20px}
+.sp-hero h1 .sp-accent{color:#6B9FFF}
+.sp-hero-sub{font-size:1.05rem;color:var(--steel);max-width:480px;margin-bottom:36px;line-height:1.7}
+.sp-hero-ctas{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:40px}
+.sp-wheel{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.sp-wheel-item{background:var(--slate);border:1px solid rgba(200,208,220,0.1);border-radius:var(--radius-md);padding:20px 16px;display:flex;flex-direction:column;align-items:center;gap:10px;cursor:pointer;transition:all 0.2s;text-align:center}
+.sp-wheel-item:hover,.sp-wheel-item.active{background:rgba(27,79,216,0.2);border-color:rgba(27,79,216,0.5);transform:translateY(-2px)}
+.sp-wheel-icon{width:42px;height:42px;border-radius:10px;background:rgba(27,79,216,0.2);display:flex;align-items:center;justify-content:center;font-size:20px}
+.sp-wheel-label{font-size:0.78rem;font-weight:600;color:var(--white)}
+.sp-wheel-sub{font-size:0.7rem;color:var(--steel)}
+
+/* Shimmer badge (homepage) */
+@keyframes sp-shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
+.sp-hero-shimmer-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 16px;border-radius:20px;border:1px solid rgba(107,159,255,0.4);background:rgba(27,79,216,0.08);cursor:pointer;margin-bottom:20px;position:relative;overflow:hidden;transition:border-color 0.2s}
+.sp-hero-shimmer-badge::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent 0%,rgba(107,159,255,0.18) 50%,transparent 100%);background-size:200% 100%;animation:sp-shimmer 2.2s linear infinite}
+@media(prefers-reduced-motion:reduce){.sp-hero-shimmer-badge::after{animation:none}}
+.sp-hero-shimmer-badge span{font-size:0.78rem;font-weight:600;color:#6B9FFF;letter-spacing:0.06em;text-transform:uppercase;position:relative;z-index:1}
+.sp-hero-shimmer-badge .sp-arrow{color:#6B9FFF;font-size:0.9rem;position:relative;z-index:1}
+
+/* Comparison table */
+.sp-compare{padding:90px 0;background:var(--offwhite)}
+.sp-compare-header{text-align:center;max-width:580px;margin:0 auto 56px}
+.sp-compare-header p{color:var(--steel);margin-top:14px;line-height:1.7}
+.sp-compare-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;border:1px solid var(--steel-xs);border-radius:var(--radius-lg);overflow:hidden}
+.sp-col{padding:0}
+.sp-col-head{padding:24px 28px;font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--steel-xs)}
+.sp-col:nth-child(1) .sp-col-head{background:var(--white);color:var(--steel)}
+.sp-col:nth-child(2) .sp-col-head{background:#fff8f5;color:#c0392b}
+.sp-col:nth-child(3) .sp-col-head{background:rgba(27,79,216,0.06);color:#1B4FD8}
+.sp-col-rows{display:flex;flex-direction:column}
+.sp-row{padding:16px 28px;font-size:0.88rem;line-height:1.55;border-bottom:1px solid var(--steel-xs);color:var(--text-body)}
+.sp-row:last-child{border-bottom:none}
+.sp-col:nth-child(1) .sp-row{background:var(--white);font-weight:500;color:var(--ink)}
+.sp-col:nth-child(2) .sp-row{background:#fff8f5;color:#7a3a30}
+.sp-col:nth-child(3) .sp-row{background:rgba(27,79,216,0.04);color:#1a3070}
+.sp-col:nth-child(2){border-left:1px solid var(--steel-xs);border-right:1px solid var(--steel-xs)}
+.sp-check{color:#1B4FD8;font-weight:700;margin-right:6px}
+.sp-cross{color:#e74c3c;margin-right:6px}
+
+/* Proof stats */
+.sp-stats{background:#0C1C3E;padding:70px 0}
+.sp-stats-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:0}
+.sp-stat-item{padding:28px 16px;border-right:1px solid rgba(200,208,220,0.08);text-align:center}
+.sp-stat-item:first-child{border-left:1px solid rgba(200,208,220,0.08)}
+.sp-stat-num{font-family:var(--font-mono);font-size:clamp(1.5rem,3vw,2.2rem);font-weight:500;color:var(--white);letter-spacing:-0.02em;line-height:1}
+.sp-stat-label{font-size:0.72rem;color:var(--steel);text-transform:uppercase;letter-spacing:0.06em;margin-top:8px}
+
+/* India map section */
+.sp-map-section{padding:90px 0;background:var(--offwhite)}
+.sp-map-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:60px;align-items:start}
+.sp-map-svg-wrap{position:relative}
+.sp-india-map{width:100%;max-width:440px}
+.sp-map-tables{display:flex;flex-direction:column;gap:24px}
+.sp-map-table{background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-md);overflow:hidden}
+.sp-map-table-head{padding:12px 18px;background:var(--ink);font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--white)}
+.sp-map-table-row{display:flex;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--steel-xs);font-size:0.85rem}
+.sp-map-table-row:last-child{border-bottom:none}
+.sp-map-table-row span:first-child{color:var(--text-body)}
+.sp-map-table-row span:last-child{font-family:var(--font-mono);font-size:0.8rem;color:#1B4FD8;font-weight:600}
+
+/* Hub spoke */
+.sp-hub{padding:90px 0;background:#112059}
+.sp-hub-header{text-align:center;max-width:540px;margin:0 auto 60px}
+.sp-hub-header h2{color:var(--white)}
+.sp-hub-header p{color:var(--steel);margin-top:12px}
+.sp-hub-diagram{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:800px;margin:0 auto;position:relative}
+.sp-hub-center{grid-column:2;grid-row:1;display:flex;align-items:center;justify-content:center;margin-bottom:0}
+.sp-hub-spoke{background:rgba(255,255,255,0.04);border:1px solid rgba(200,208,220,0.1);border-radius:var(--radius-md);padding:24px;text-align:center;opacity:0;transform:translateY(16px);transition:opacity 0.5s ease,transform 0.5s ease}
+.sp-hub-spoke.sp-visible{opacity:1;transform:translateY(0)}
+.sp-hub-spoke-icon{font-size:28px;margin-bottom:10px;display:block}
+.sp-hub-spoke h4{font-size:0.88rem;color:var(--white);margin-bottom:6px}
+.sp-hub-spoke p{font-size:0.78rem;color:var(--steel);line-height:1.5}
+.sp-hub-center-card{background:rgba(27,79,216,0.2);border:2px solid rgba(27,79,216,0.6);border-radius:var(--radius-lg);padding:28px;text-align:center;width:140px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.sp-hub-center-card span{font-size:36px}
+.sp-hub-center-card p{font-size:0.72rem;font-weight:700;color:#6B9FFF;text-transform:uppercase;letter-spacing:0.08em;margin-top:8px}
+
+/* Carousel */
+.sp-carousel-section{padding:90px 0;background:var(--offwhite)}
+.sp-carousel-header{text-align:center;max-width:560px;margin:0 auto 48px}
+.sp-carousel-tabs{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin-bottom:40px}
+.sp-tab{display:flex;align-items:center;gap:8px;padding:10px 18px;border-radius:30px;border:1.5px solid var(--steel-xs);background:var(--white);font-size:0.83rem;font-weight:600;color:var(--steel);cursor:pointer;transition:all 0.18s}
+.sp-tab.active{background:#1B4FD8;border-color:#1B4FD8;color:var(--white)}
+.sp-tab:hover:not(.active){border-color:var(--steel-lt);color:var(--ink)}
+.sp-tab-icon{font-size:16px}
+.sp-carousel-track-wrap{position:relative;overflow:hidden;border-radius:var(--radius-lg)}
+.sp-carousel-track{display:flex;transition:transform 0.42s cubic-bezier(0.4,0,0.2,1)}
+.sp-slide{min-width:100%;background:var(--white);border:1px solid var(--steel-xs);border-radius:var(--radius-lg);padding:48px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;opacity:0;transition:opacity 0.3s}
+.sp-slide.sp-slide-active{opacity:1}
+.sp-slide-left h3{color:var(--ink);margin-bottom:12px;font-size:1.4rem}
+.sp-slide-left p{color:var(--steel);font-size:0.95rem;line-height:1.7;margin-bottom:28px}
+.sp-slide-bullets{display:flex;flex-direction:column;gap:12px}
+.sp-bullet{display:flex;align-items:flex-start;gap:12px;font-size:0.88rem;color:var(--text-body);line-height:1.5}
+.sp-bullet-dot{width:7px;height:7px;border-radius:50%;background:#1B4FD8;flex-shrink:0;margin-top:6px}
+.sp-slide-right{display:flex;flex-direction:column;gap:14px}
+.sp-mini-card{background:var(--offwhite);border:1px solid var(--steel-xs);border-radius:var(--radius-md);padding:20px}
+.sp-mini-card h4{font-size:0.88rem;color:var(--ink);margin-bottom:5px}
+.sp-mini-card p{font-size:0.8rem;color:var(--steel);line-height:1.5}
+.sp-stat-callout{background:var(--ink);border-radius:var(--radius-md);padding:24px;text-align:center;margin-top:auto}
+.sp-stat-callout .sp-big-num{font-family:var(--font-mono);font-size:2.2rem;font-weight:500;color:#6B9FFF;line-height:1}
+.sp-stat-callout .sp-big-label{font-size:0.78rem;color:var(--steel);margin-top:8px;line-height:1.4}
+.sp-carousel-dots{display:flex;justify-content:center;gap:8px;margin-top:28px}
+.sp-dot{width:8px;height:8px;border-radius:50%;background:var(--steel-xs);cursor:pointer;transition:all 0.2s;border:none;padding:0}
+.sp-dot.active{background:#1B4FD8;width:24px;border-radius:4px}
+.sp-carousel-arrows{display:flex;justify-content:center;gap:12px;margin-top:16px}
+.sp-arrow-btn{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--steel-xs);background:var(--white);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all 0.2s;font-size:16px;color:var(--steel)}
+.sp-arrow-btn:hover{border-color:#1B4FD8;color:#1B4FD8}
+
+/* Pricing */
+.sp-pricing{padding:90px 0;background:#0C1C3E}
+.sp-pricing-header{text-align:center;max-width:540px;margin:0 auto 56px}
+.sp-pricing-header h2{color:var(--white)}
+.sp-pricing-header p{color:var(--steel);margin-top:12px}
+.sp-pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.sp-price-card{background:var(--slate);border:1px solid rgba(200,208,220,0.1);border-radius:var(--radius-lg);padding:36px;position:relative;overflow:hidden}
+.sp-price-card.featured{background:rgba(27,79,216,0.12);border-color:rgba(27,79,216,0.5)}
+.sp-price-card.featured::before{content:'Most Popular';position:absolute;top:16px;right:16px;font-size:0.68rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#6B9FFF;background:rgba(107,159,255,0.12);padding:3px 10px;border-radius:30px;border:1px solid rgba(107,159,255,0.3)}
+.sp-price-name{font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--steel);margin-bottom:12px}
+.sp-price-amount{font-family:var(--font-mono);font-size:2.5rem;color:var(--white);font-weight:500;line-height:1;margin-bottom:4px}
+.sp-price-note{font-size:0.8rem;color:var(--steel);margin-bottom:24px;line-height:1.5}
+.sp-price-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.sp-price-feat{font-size:0.83rem;color:rgba(200,208,220,0.8);display:flex;align-items:flex-start;gap:8px;line-height:1.5}
+.sp-price-feat::before{content:'✓';color:#2ECC71;font-weight:700;flex-shrink:0}
+
+/* Closing CTA */
+.sp-cta-section{padding:100px 0;background:var(--ink);text-align:center;position:relative;overflow:hidden}
+.sp-cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 70% at 50% 50%,rgba(27,79,216,0.1) 0%,transparent 70%)}
+.sp-cta-section h2{color:var(--white);margin-bottom:16px;position:relative;z-index:1}
+.sp-cta-section p{color:var(--steel);max-width:420px;margin:0 auto 40px;line-height:1.7;position:relative;z-index:1}
+.sp-cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;z-index:1}
+.sp-wa-float{position:fixed;bottom:28px;right:28px;z-index:200;width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,0.4);transition:transform 0.2s,box-shadow 0.2s;cursor:pointer}
+.sp-wa-float:hover{transform:scale(1.08);box-shadow:0 6px 28px rgba(37,211,102,0.5)}
+.sp-wa-float svg{width:28px;height:28px;fill:white}
+
+/* Animate on scroll */
+.sp-anim{opacity:0;transform:translateY(24px);transition:opacity 0.55s ease,transform 0.55s ease}
+.sp-anim.sp-in{opacity:1;transform:translateY(0)}
+
+/* Responsive */
+@media(max-width:1024px){
+  .sp-hero-inner{grid-template-columns:1fr;gap:40px}
+  .sp-wheel{grid-template-columns:repeat(3,1fr)}
+  .sp-compare-grid{grid-template-columns:1fr}
+  .sp-stats-grid{grid-template-columns:repeat(3,1fr)}
+  .sp-map-inner{grid-template-columns:1fr}
+  .sp-pricing-grid{grid-template-columns:1fr}
+  .sp-slide{grid-template-columns:1fr;gap:28px}
+  .sp-hub-diagram{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .sp-stats-grid{grid-template-columns:repeat(2,1fr)}
+  .sp-carousel-tabs{gap:4px}
+  .sp-tab{padding:8px 12px;font-size:0.75rem}
+  .sp-slide{padding:28px 20px}
+  .sp-wheel{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .sp-stats-grid{grid-template-columns:1fr 1fr}
+  .sp-compare-grid{grid-template-columns:1fr}
+}
 </style>
 <link rel="sitemap" type="application/xml" href="/sitemap.xml">
 <link rel="canonical" href="https://www.sendit.co.in/">
@@ -2793,6 +2961,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
       <a class="nav-link" href="javascript:void(0)" onclick="return showPage('pricing')">Pricing</a>
       
       <a class="nav-link" href="javascript:void(0)" onclick="return showPage('resources')">Resources</a>
+      <a class="nav-link" href="javascript:void(0)" onclick="return showPage('allinonemarketing')" style="color:#6B9FFF;font-weight:600">SenditPlus ✦</a>
     </div>
     <div class="nav-ctas">
       <a class="nav-login" href="javascript:void(0)" onclick="return showPage('login')">Login</a>
@@ -2810,7 +2979,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   </div>
   <div class="mobile-section"><div class="mobile-section-title">Products</div><div class="mobile-links"><a class="mobile-link" href="javascript:void(0)" onclick="showPage('swiftship');closeMobileNav();return false">SwiftShip — Courier Orchestration</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('waresync');closeMobileNav();return false">WareSync — Warehouse Management</a></div></div>
   <div class="mobile-section"><div class="mobile-section-title">Solutions</div><div class="mobile-links"><a class="mobile-link" href="javascript:void(0)" onclick="showPage('warehousing');closeMobileNav();return false">Managed Warehousing</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('lastmile');closeMobileNav();return false">Last-Mile Delivery</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('ftlptl');closeMobileNav();return false">FTL / PTL Freight</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('3pl');closeMobileNav();return false">3PL Fulfillment</a></div></div>
-  <div class="mobile-section"><div class="mobile-section-title">Company</div><div class="mobile-links"><a class="mobile-link" href="javascript:void(0)" onclick="showPage('pricing');closeMobileNav();return false">Pricing</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('about');closeMobileNav();return false">About Us</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('resources');closeMobileNav();return false">Resources</a></div></div>
+  <div class="mobile-section"><div class="mobile-section-title">Company</div><div class="mobile-links"><a class="mobile-link" href="javascript:void(0)" onclick="showPage('pricing');closeMobileNav();return false">Pricing</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('about');closeMobileNav();return false">About Us</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('resources');closeMobileNav();return false">Resources</a><a class="mobile-link" href="javascript:void(0)" onclick="showPage('allinonemarketing');closeMobileNav();return false" style="color:#6B9FFF;font-weight:600">🚀 SenditPlus</a></div></div>
   <div class="mobile-ctas"><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="showPage('demo');closeMobileNav();return false">Book a Demo</a><a class="btn btn-secondary btn-lg" href="javascript:void(0)" onclick="showPage('login');closeMobileNav();return false">Login</a></div>
 </div>
 
@@ -2852,6 +3021,10 @@ a img, button img, .login-product-card img { pointer-events: auto; }
             <div class="hero-d-line"></div>
             <span class="hero-d-tag">India's Logistics Infrastructure</span>
           </div>
+          <a class="sp-hero-shimmer-badge" href="javascript:void(0)" onclick="return showPage('allinonemarketing')" title="Introducing SenditPlus">
+            <span>🚀 New: SenditPlus — logistics + growth, one stack</span>
+            <span class="sp-arrow">→</span>
+          </a>
           <h1 class="hero-h1">
             Orchestrate every shipment,
             <span class="hero-h1-accent">warehouse to doorstep</span>
@@ -4600,6 +4773,472 @@ tracking = client.tracking.<span class="cf">get</span>(<span class="cs">"DLV-772
   <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">&copy; 2026 SendIt Logistics Private Limited &middot; <a href="javascript:void(0)" onclick="return showPage('home')" style="color:var(--steel)">&larr; Back to Home</a></div><div class="footer-legal"><a href="javascript:void(0)" onclick="return showPage('privacy')">Privacy</a><a href="javascript:void(0)" onclick="return showPage('terms')">Terms</a></div></div></div></footer>
 </div>
 
+
+<div class="page" id="page-allinonemarketing">
+
+  <!-- ── HERO ── -->
+  <section class="sp-hero">
+    <div class="sp-hero-bg" aria-hidden="true"></div>
+    <div class="container">
+      <div class="sp-hero-inner">
+        <div class="sp-hero-copy">
+          <div class="sp-new-badge">
+            <span class="sp-new-badge-dot"></span>
+            <span class="sp-new-badge-text">Introducing SenditPlus</span>
+          </div>
+          <h1>Making D2C &amp; B2C brand growth<br><span class="sp-accent">simpler, connected &amp; scalable.</span></h1>
+          <p class="sp-hero-sub">One platform for logistics, WhatsApp automation, email marketing, SEO, digital ads, and customer engagement. Stop juggling six vendors — run everything from one stack.</p>
+          <div class="sp-hero-ctas">
+            <a class="btn btn-primary btn-lg btn-arrow" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a>
+            <a class="btn btn-secondary btn-lg" href="#sp-carousel" onclick="document.getElementById('sp-carousel').scrollIntoView({behavior:'smooth'});return false">See How It Works</a>
+          </div>
+        </div>
+        <div class="sp-hero-right">
+          <div class="sp-wheel" id="spHeroWheel">
+            <div class="sp-wheel-item active" onclick="spGoTo(0)" data-slide="0"><div class="sp-wheel-icon">🚚</div><div class="sp-wheel-label">Logistics</div><div class="sp-wheel-sub">20+ couriers</div></div>
+            <div class="sp-wheel-item" onclick="spGoTo(1)" data-slide="1"><div class="sp-wheel-icon">💬</div><div class="sp-wheel-label">WhatsApp</div><div class="sp-wheel-sub">Automation</div></div>
+            <div class="sp-wheel-item" onclick="spGoTo(2)" data-slide="2"><div class="sp-wheel-icon">📧</div><div class="sp-wheel-label">Email</div><div class="sp-wheel-sub">Marketing</div></div>
+            <div class="sp-wheel-item" onclick="spGoTo(3)" data-slide="3"><div class="sp-wheel-icon">🔍</div><div class="sp-wheel-label">SEO</div><div class="sp-wheel-sub">Organic growth</div></div>
+            <div class="sp-wheel-item" onclick="spGoTo(4)" data-slide="4"><div class="sp-wheel-icon">📣</div><div class="sp-wheel-label">Digital Ads</div><div class="sp-wheel-sub">Meta &amp; Google</div></div>
+            <div class="sp-wheel-item" onclick="spGoTo(5)" data-slide="5"><div class="sp-wheel-icon">⭐</div><div class="sp-wheel-label">Engagement</div><div class="sp-wheel-sub">Loyalty &amp; CRM</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── COMPARISON ── -->
+  <section class="sp-compare">
+    <div class="container">
+      <div class="sp-compare-header sp-anim">
+        <div class="eyebrow">The SenditPlus Difference</div>
+        <h2>Most brands stitch together six different vendors.</h2>
+        <p>That means six invoices, six support lines, six dashboards, and zero unified data. SenditPlus changes that.</p>
+      </div>
+      <div class="sp-compare-grid sp-anim">
+        <div class="sp-col">
+          <div class="sp-col-head">What You Need To Do</div>
+          <div class="sp-col-rows">
+            <div class="sp-row">Deliver orders on time</div>
+            <div class="sp-row">Recover abandoned carts</div>
+            <div class="sp-row">Run Meta &amp; Google ads</div>
+            <div class="sp-row">Rank on Google search</div>
+            <div class="sp-row">Retain repeat customers</div>
+            <div class="sp-row">Analyse full funnel</div>
+          </div>
+        </div>
+        <div class="sp-col">
+          <div class="sp-col-head">❌ How Others Do It</div>
+          <div class="sp-col-rows">
+            <div class="sp-row"><span class="sp-cross">✕</span>Shiprocket + courier contracts</div>
+            <div class="sp-row"><span class="sp-cross">✕</span>Interakt / Wati subscription</div>
+            <div class="sp-row"><span class="sp-cross">✕</span>Separate ad agency, 15–20% cut</div>
+            <div class="sp-row"><span class="sp-cross">✕</span>Freelance SEO retainer</div>
+            <div class="sp-row"><span class="sp-cross">✕</span>LoyaltyRewardz or similar SaaS</div>
+            <div class="sp-row"><span class="sp-cross">✕</span>Fragmented — no single view</div>
+          </div>
+        </div>
+        <div class="sp-col">
+          <div class="sp-col-head">✅ What SenditPlus Does</div>
+          <div class="sp-col-rows">
+            <div class="sp-row"><span class="sp-check">✓</span>SwiftShip — 20+ couriers, ~30% below market</div>
+            <div class="sp-row"><span class="sp-check">✓</span>WhatsApp flows built-in, zero extra SaaS</div>
+            <div class="sp-row"><span class="sp-check">✓</span>Dedicated manager, direct ad-account billing</div>
+            <div class="sp-row"><span class="sp-check">✓</span>Technical SEO + content, included</div>
+            <div class="sp-row"><span class="sp-check">✓</span>Loyalty, reviews &amp; retargeting — one platform</div>
+            <div class="sp-row"><span class="sp-check">✓</span>Unified dashboard across all channels</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PROOF STATS ── -->
+  <section class="sp-stats">
+    <div class="container">
+      <div class="sp-stats-grid">
+        <div class="sp-stat-item sp-anim">
+          <div class="sp-stat-num" data-count="250" data-suffix="+">0</div>
+          <div class="sp-stat-label">Brands on platform</div>
+        </div>
+        <div class="sp-stat-item sp-anim">
+          <div class="sp-stat-num" data-count="50" data-suffix="L+ daily reach">0</div>
+          <div class="sp-stat-label">WhatsApp reach / day</div>
+        </div>
+        <div class="sp-stat-item sp-anim">
+          <div class="sp-stat-num" data-count="10" data-suffix="K+">0</div>
+          <div class="sp-stat-label">Shipments / day</div>
+        </div>
+        <div class="sp-stat-item sp-anim">
+          <div class="sp-stat-num" data-count-dec="2.4" data-suffix="x">0</div>
+          <div class="sp-stat-label">SEO traffic uplift</div>
+        </div>
+        <div class="sp-stat-item sp-anim">
+          <div class="sp-stat-num" data-count="27" data-suffix="%">0</div>
+          <div class="sp-stat-label">Retention uplift</div>
+        </div>
+        <div class="sp-stat-item sp-anim" style="display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(27,79,216,0.08);border-left:1px solid rgba(200,208,220,0.08)">
+          <div class="sp-stat-num" style="font-size:1.2rem;line-height:1.3">One stack.<br>Full growth.</div>
+          <div class="sp-stat-label" style="margin-top:10px">That's SenditPlus.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PAN-INDIA MAP ── -->
+  <section class="sp-map-section">
+    <div class="container">
+      <div class="eyebrow sp-anim">Pan-India Footprint</div>
+      <h2 class="sp-anim" style="margin-bottom:48px">Reach your customers everywhere in India.</h2>
+      <div class="sp-map-inner">
+        <div class="sp-map-svg-wrap sp-anim">
+          <svg class="sp-india-map" viewBox="0 0 400 460" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Simplified India silhouette path -->
+            <path d="M180 20 L220 18 L260 30 L290 50 L310 80 L320 110 L315 140 L305 160 L320 180 L330 210 L325 240 L310 260 L295 280 L280 300 L265 320 L255 345 L245 365 L235 385 L225 405 L215 425 L210 445 L205 440 L200 420 L195 400 L185 380 L175 360 L165 340 L155 320 L140 300 L125 280 L110 255 L100 230 L95 205 L90 178 L95 155 L100 130 L110 105 L120 82 L140 60 L160 40 Z" fill="#1A3070" stroke="rgba(107,159,255,0.3)" stroke-width="1.5"/>
+            <!-- State lines simplified -->
+            <path d="M180 20 L190 80 L210 100 L230 80 L260 30" stroke="rgba(107,159,255,0.15)" stroke-width="0.8" fill="none"/>
+            <path d="M100 130 L180 140 L260 130 L310 110" stroke="rgba(107,159,255,0.15)" stroke-width="0.8" fill="none"/>
+            <path d="M95 205 L180 210 L310 210" stroke="rgba(107,159,255,0.15)" stroke-width="0.8" fill="none"/>
+            <!-- City pins with pulse -->
+            <!-- Mumbai -->
+            <circle cx="115" cy="220" r="10" fill="rgba(27,79,216,0.2)" class="sp-pin-pulse" style="animation-delay:0s"/>
+            <circle cx="115" cy="220" r="5" fill="#1B4FD8"/>
+            <text x="125" y="224" fill="#6B9FFF" font-size="10" font-family="Inter,sans-serif" font-weight="600">Mumbai</text>
+            <!-- Delhi -->
+            <circle cx="195" cy="90" r="10" fill="rgba(27,79,216,0.2)" class="sp-pin-pulse" style="animation-delay:0.3s"/>
+            <circle cx="195" cy="90" r="5" fill="#1B4FD8"/>
+            <text x="205" y="94" fill="#6B9FFF" font-size="10" font-family="Inter,sans-serif" font-weight="600">Delhi</text>
+            <!-- Bengaluru -->
+            <circle cx="180" cy="330" r="10" fill="rgba(27,79,216,0.2)" class="sp-pin-pulse" style="animation-delay:0.6s"/>
+            <circle cx="180" cy="330" r="5" fill="#1B4FD8"/>
+            <text x="190" y="334" fill="#6B9FFF" font-size="10" font-family="Inter,sans-serif" font-weight="600">Bengaluru</text>
+            <!-- Chennai -->
+            <circle cx="210" cy="365" r="10" fill="rgba(27,79,216,0.2)" class="sp-pin-pulse" style="animation-delay:0.9s"/>
+            <circle cx="210" cy="365" r="5" fill="#6B9FFF"/>
+            <text x="222" y="369" fill="#6B9FFF" font-size="10" font-family="Inter,sans-serif" font-weight="600">Chennai</text>
+            <!-- Hyderabad -->
+            <circle cx="215" cy="270" r="10" fill="rgba(27,79,216,0.2)" class="sp-pin-pulse" style="animation-delay:1.2s"/>
+            <circle cx="215" cy="270" r="5" fill="#6B9FFF"/>
+            <text x="227" y="274" fill="#6B9FFF" font-size="10" font-family="Inter,sans-serif" font-weight="600">Hyderabad</text>
+          </svg>
+          <style>.sp-pin-pulse{animation:sp-pin 2.5s ease infinite}@keyframes sp-pin{0%,100%{r:8;opacity:0.3}50%{r:14;opacity:0.15}}@media(prefers-reduced-motion:reduce){.sp-pin-pulse{animation:none}}</style>
+        </div>
+        <div class="sp-map-tables">
+          <div class="sp-map-table sp-anim">
+            <div class="sp-map-table-head">🏙️ Top 5 Cities</div>
+            <div class="sp-map-table-row"><span>Mumbai</span><span>32K+ brands</span></div>
+            <div class="sp-map-table-row"><span>Bengaluru</span><span>28K+ brands</span></div>
+            <div class="sp-map-table-row"><span>Delhi NCR</span><span>24K+ brands</span></div>
+            <div class="sp-map-table-row"><span>Hyderabad</span><span>16K+ brands</span></div>
+            <div class="sp-map-table-row"><span>Chennai</span><span>12K+ brands</span></div>
+          </div>
+          <div class="sp-map-table sp-anim">
+            <div class="sp-map-table-head">📦 Top 5 Categories</div>
+            <div class="sp-map-table-row"><span>Fashion &amp; Apparel</span><span>38%</span></div>
+            <div class="sp-map-table-row"><span>Beauty &amp; Personal Care</span><span>22%</span></div>
+            <div class="sp-map-table-row"><span>Electronics &amp; Accessories</span><span>18%</span></div>
+            <div class="sp-map-table-row"><span>Home &amp; Lifestyle</span><span>14%</span></div>
+            <div class="sp-map-table-row"><span>Food &amp; Health</span><span>8%</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HUB & SPOKE ── -->
+  <section class="sp-hub">
+    <div class="container">
+      <div class="sp-hub-header">
+        <div class="eyebrow eyebrow-light">Why One Stack</div>
+        <h2>Stop losing growth to disconnected tools.</h2>
+        <p>Every delay, every missed WhatsApp, every orphaned ad — they compound. SenditPlus connects the dots.</p>
+      </div>
+      <div class="sp-hub-diagram" id="spHubDiagram">
+        <div class="sp-hub-spoke" data-delay="0">
+          <span class="sp-hub-spoke-icon">⏱️</span>
+          <h4>Stop losing orders to delays</h4>
+          <p>Real-time courier switching means NDR drops by 40% on average.</p>
+        </div>
+        <div class="sp-hub-center">
+          <div class="sp-hub-center-card">
+            <span>⚡</span>
+            <p>SenditPlus Core</p>
+          </div>
+        </div>
+        <div class="sp-hub-spoke" data-delay="100">
+          <span class="sp-hub-spoke-icon">💬</span>
+          <h4>Own the customer relationship</h4>
+          <p>Automated WhatsApp flows keep customers informed and coming back.</p>
+        </div>
+        <div class="sp-hub-spoke" data-delay="200">
+          <span class="sp-hub-spoke-icon">📈</span>
+          <h4>Turn ad spend into profit</h4>
+          <p>AI-tuned Meta &amp; Google campaigns with creative production included.</p>
+        </div>
+        <div class="sp-hub-spoke" data-delay="300">
+          <span class="sp-hub-spoke-icon">🔍</span>
+          <h4>Be found before paid ads</h4>
+          <p>Technical SEO &amp; content that compounds — 2.4x organic traffic in 6 months.</p>
+        </div>
+        <div class="sp-hub-spoke" data-delay="400">
+          <span class="sp-hub-spoke-icon">🔁</span>
+          <h4>Make every customer a repeat buyer</h4>
+          <p>Loyalty, reviews &amp; segmented retargeting drive +32% repeat purchases.</p>
+        </div>
+        <div class="sp-hub-spoke" data-delay="500">
+          <span class="sp-hub-spoke-icon">📊</span>
+          <h4>See the full picture, always</h4>
+          <p>One dashboard — logistics, marketing, and engagement — no more tab-switching.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CAPABILITY CAROUSEL ── -->
+  <section class="sp-carousel-section" id="sp-carousel">
+    <div class="container">
+      <div class="sp-carousel-header sp-anim">
+        <div class="eyebrow">6-in-1 Platform</div>
+        <h2>Everything your brand needs to grow.</h2>
+      </div>
+      <div class="sp-carousel-tabs" id="spTabs" role="tablist">
+        <button class="sp-tab active" onclick="spGoTo(0)" role="tab" aria-selected="true"><span class="sp-tab-icon">🚚</span>Logistics</button>
+        <button class="sp-tab" onclick="spGoTo(1)" role="tab"><span class="sp-tab-icon">💬</span>WhatsApp</button>
+        <button class="sp-tab" onclick="spGoTo(2)" role="tab"><span class="sp-tab-icon">📧</span>Email</button>
+        <button class="sp-tab" onclick="spGoTo(3)" role="tab"><span class="sp-tab-icon">🔍</span>SEO</button>
+        <button class="sp-tab" onclick="spGoTo(4)" role="tab"><span class="sp-tab-icon">📣</span>Digital Ads</button>
+        <button class="sp-tab" onclick="spGoTo(5)" role="tab"><span class="sp-tab-icon">⭐</span>Engagement</button>
+      </div>
+      <div class="sp-carousel-track-wrap">
+        <div class="sp-carousel-track" id="spTrack">
+
+          <!-- Slide 0: Logistics -->
+          <div class="sp-slide sp-slide-active">
+            <div class="sp-slide-left">
+              <h3>All-in-One Logistics</h3>
+              <p>Access 20+ courier partners through one API. Smart courier selection, RTO protection, and live tracking — all under one roof, at rates ~30% below standalone contracts.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>20+ courier partners — Blue Dart, Delhivery, Ekart, India Post &amp; more</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>AI-powered courier selection based on pin code, weight &amp; cost</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>RTO protection suite — NDR automation, fake-delivery detection</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Live tracking widget — embeddable on your website or app</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-stat-callout">
+                <div class="sp-big-num">~30%</div>
+                <div class="sp-big-label">below standalone market rates<br>on average across courier partners</div>
+              </div>
+              <div class="sp-mini-card">
+                <h4>🚀 SwiftShip Integration</h4>
+                <p>Fully powered by SwiftShip — Sendit's flagship courier orchestration platform used by 80K+ shipments per month.</p>
+              </div>
+              <div class="sp-mini-card">
+                <h4>📊 WareSync WMS</h4>
+                <p>Integrated warehouse management — inventory, inbound/outbound, and ERP sync across all your storage nodes.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Slide 1: WhatsApp -->
+          <div class="sp-slide">
+            <div class="sp-slide-left">
+              <h3>WhatsApp Automation</h3>
+              <p>Send the right message at the right moment — from order confirmation to cart recovery — without any extra SaaS subscription.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Official WhatsApp Business API — verified sender, no spam risk</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Pre-built flows for 15+ logistics and marketing events</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Two-way chatbot support — human handoff when needed</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Delivery feedback collection drives reviews &amp; retargeting lists</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-mini-card"><h4>📦 Order Tracking</h4><p>Automated status updates at every milestone — dispatched, out for delivery, delivered.</p></div>
+              <div class="sp-mini-card"><h4>🛒 Cart Recovery</h4><p>Trigger WhatsApp messages 30 min, 2h, and 24h after cart abandonment with personalised product reminders.</p></div>
+              <div class="sp-mini-card"><h4>🤖 Chatbot Support</h4><p>Handle order queries, return requests, and FAQs automatically — 24/7, zero agent cost.</p></div>
+              <div class="sp-mini-card"><h4>⭐ Delivery Feedback</h4><p>Post-delivery survey via WhatsApp feeds directly into your reputation and retargeting engine.</p></div>
+            </div>
+          </div>
+
+          <!-- Slide 2: Email -->
+          <div class="sp-slide">
+            <div class="sp-slide-left">
+              <h3>Email Marketing</h3>
+              <p>Lifecycle email flows that turn one-time buyers into loyal customers. Built-in templates, smart segmentation, and deliverability tuned for Indian inboxes.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Welcome series — brand story, first-purchase nudge, social proof</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Abandoned cart — 3-touch sequence with urgency &amp; offer escalation</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Post-purchase &amp; win-back flows — review requests, replenishment nudges</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>A/B testing on subject lines, send times, and CTA copy</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-stat-callout">
+                <div class="sp-big-num">18%</div>
+                <div class="sp-big-label">of total brand revenue attributable<br>to SenditPlus email flows on average</div>
+              </div>
+              <div class="sp-mini-card"><h4>🎯 Welcome Flows</h4><p>Convert new subscribers at 3x industry average with personalised first-purchase journeys.</p></div>
+              <div class="sp-mini-card"><h4>🔁 Win-Back Series</h4><p>Re-engage lapsed customers automatically — the highest-ROI email segment for any D2C brand.</p></div>
+            </div>
+          </div>
+
+          <!-- Slide 3: SEO -->
+          <div class="sp-slide">
+            <div class="sp-slide-left">
+              <h3>SEO &amp; Organic Growth</h3>
+              <p>Compound organic traffic that reduces your paid acquisition dependence over time. Technical foundation + content strategy + authority building, all managed by our SEO team.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Technical health audit — Core Web Vitals, schema, crawlability</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Keyword research mapped to buyer intent &amp; category pages</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Content calendar — blog, category copy, product descriptions</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Authority building — outreach, backlinks, and digital PR</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-stat-callout">
+                <div class="sp-big-num">2.4x</div>
+                <div class="sp-big-label">organic traffic growth in 6 months<br>across SenditPlus SEO clients</div>
+              </div>
+              <div class="sp-mini-card"><h4>⚙️ Technical Health</h4><p>We fix what's invisible but critical — page speed, structured data, duplicate content, and crawl budget.</p></div>
+              <div class="sp-mini-card"><h4>🏆 Authority Building</h4><p>Domain authority built through genuine editorial links, guest posts, and industry PR — no black-hat shortcuts.</p></div>
+            </div>
+          </div>
+
+          <!-- Slide 4: Digital Ads -->
+          <div class="sp-slide">
+            <div class="sp-slide-left">
+              <h3>Digital Marketing</h3>
+              <p>Dedicated account managers, AI-tuned campaigns across Meta &amp; Google, and creative production included — without the agency markup.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Dedicated account manager — single point of contact, zero handoffs</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>AI-tuned bid optimisation across Meta, Google &amp; YouTube</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Creative production — static, video, UGC-style ads in-house</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Direct ad-account billing — no agency markup on ad spend</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-stat-callout">
+                <div class="sp-big-num">5x–10x</div>
+                <div class="sp-big-label">ROAS growth target within<br>12 months for qualifying brands</div>
+              </div>
+              <div class="sp-mini-card"><h4>🤖 AI Optimisation</h4><p>Machine learning bid strategies trained on 250+ brand datasets — your campaigns benefit from collective intelligence.</p></div>
+              <div class="sp-mini-card"><h4>🎬 Creative Production</h4><p>Static creatives, reels, and UGC-style videos produced by our in-house team — refresh every 2 weeks.</p></div>
+            </div>
+          </div>
+
+          <!-- Slide 5: Engagement -->
+          <div class="sp-slide">
+            <div class="sp-slide-left">
+              <h3>Customer Engagement</h3>
+              <p>Loyalty programmes, review generation, and segmented retargeting — built to maximise lifetime value and repeat purchase rate for every brand on the platform.</p>
+              <div class="sp-slide-bullets">
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Loyalty &amp; rewards — points, tiers, referral programmes</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Review generation — automated ask via WhatsApp &amp; email post-delivery</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Segmented retargeting — RFM-based cohorts across all channels</span></div>
+                <div class="sp-bullet"><div class="sp-bullet-dot"></div><span>Win-back campaigns for 90-day lapsed customers</span></div>
+              </div>
+            </div>
+            <div class="sp-slide-right">
+              <div class="sp-stat-callout">
+                <div class="sp-big-num">+32%</div>
+                <div class="sp-big-label">repeat-purchase uplift<br>across SenditPlus engagement clients</div>
+              </div>
+              <div class="sp-mini-card"><h4>🎁 Loyalty &amp; Rewards</h4><p>Fully configurable points, cashback, and tier system — integrated with your existing store in days, not months.</p></div>
+              <div class="sp-mini-card"><h4>🎯 Segmented Retargeting</h4><p>RFM cohorts (Recency, Frequency, Monetary) feed directly into WhatsApp, email, and paid ad audiences.</p></div>
+            </div>
+          </div>
+
+        </div><!-- /sp-carousel-track -->
+      </div>
+      <div class="sp-carousel-arrows">
+        <button class="sp-arrow-btn" onclick="spPrev()" aria-label="Previous">←</button>
+        <div class="sp-carousel-dots" id="spDots">
+          <button class="sp-dot active" onclick="spGoTo(0)" aria-label="Slide 1"></button>
+          <button class="sp-dot" onclick="spGoTo(1)" aria-label="Slide 2"></button>
+          <button class="sp-dot" onclick="spGoTo(2)" aria-label="Slide 3"></button>
+          <button class="sp-dot" onclick="spGoTo(3)" aria-label="Slide 4"></button>
+          <button class="sp-dot" onclick="spGoTo(4)" aria-label="Slide 5"></button>
+          <button class="sp-dot" onclick="spGoTo(5)" aria-label="Slide 6"></button>
+        </div>
+        <button class="sp-arrow-btn" onclick="spNext()" aria-label="Next">→</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PRICING ── -->
+  <section class="sp-pricing">
+    <div class="container">
+      <div class="sp-pricing-header sp-anim">
+        <div class="eyebrow eyebrow-light">Transparent Pricing</div>
+        <h2>Pay for what you use. Nothing more.</h2>
+        <p>No platform lock-in, no long-term contracts for v1. Start with logistics, add channels as you grow.</p>
+      </div>
+      <div class="sp-pricing-grid">
+        <div class="sp-price-card sp-anim">
+          <div class="sp-price-name">Platform</div>
+          <div class="sp-price-amount">₹0</div>
+          <div class="sp-price-note">Zero platform fee — forever. You only pay for what you use.</div>
+          <div class="sp-price-features">
+            <div class="sp-price-feat">Dashboard access — all channels</div>
+            <div class="sp-price-feat">WareSync WMS lite</div>
+            <div class="sp-price-feat">Analytics &amp; reporting</div>
+            <div class="sp-price-feat">Dedicated onboarding</div>
+            <div class="sp-price-feat">API &amp; integrations access</div>
+          </div>
+          <a class="btn btn-secondary" href="javascript:void(0)" onclick="return showPage('demo')">Get Started Free</a>
+        </div>
+        <div class="sp-price-card featured sp-anim">
+          <div class="sp-price-name">Logistics</div>
+          <div class="sp-price-amount" style="font-size:1.6rem;margin-bottom:2px">~30% below</div>
+          <div class="sp-price-note">market rates · per shipment billing · no minimum volume commitment</div>
+          <div class="sp-price-features">
+            <div class="sp-price-feat">20+ courier partners</div>
+            <div class="sp-price-feat">AI courier selection</div>
+            <div class="sp-price-feat">RTO protection suite</div>
+            <div class="sp-price-feat">COD remittance in 2 days</div>
+            <div class="sp-price-feat">Live tracking &amp; NDR automation</div>
+          </div>
+          <a class="btn btn-primary" href="javascript:void(0)" onclick="return showPage('quote')">Get a Rate Card</a>
+        </div>
+        <div class="sp-price-card sp-anim">
+          <div class="sp-price-name">Marketing</div>
+          <div class="sp-price-amount" style="font-size:1.6rem;margin-bottom:2px">Custom</div>
+          <div class="sp-price-note">Based on channel mix &amp; ad spend. Commission-based — we win when you win.</div>
+          <div class="sp-price-features">
+            <div class="sp-price-feat">WhatsApp automation flows</div>
+            <div class="sp-price-feat">Email lifecycle marketing</div>
+            <div class="sp-price-feat">SEO &amp; content management</div>
+            <div class="sp-price-feat">Meta &amp; Google ad management</div>
+            <div class="sp-price-feat">Loyalty &amp; engagement suite</div>
+          </div>
+          <a class="btn btn-outline" href="javascript:void(0)" onclick="return showPage('demo')" style="color:var(--white);border-color:rgba(200,208,220,0.3)">Talk to Us</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CLOSING CTA ── -->
+  <section class="sp-cta-section">
+    <div class="container">
+      <div class="eyebrow eyebrow-light sp-anim">Ready to grow?</div>
+      <h2 class="sp-anim">Let's grow your brand, together.</h2>
+      <p class="sp-anim">One call. One team. One stack that handles logistics, marketing, and everything in between.</p>
+      <div class="sp-cta-btns sp-anim">
+        <a class="btn btn-primary btn-lg btn-arrow" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a>
+        <a class="btn btn-secondary btn-lg" href="https://wa.me/918040000000?text=Hi%2C%20I%20want%20to%20know%20more%20about%20SenditPlus" target="_blank" rel="noopener">💬 Chat on WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp button (only shown on this page) -->
+  <a class="sp-wa-float" href="https://wa.me/918040000000?text=Hi%2C%20I%20want%20to%20know%20more%20about%20SenditPlus" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" id="spWaFloat" style="display:none">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  </a>
+
+  <!-- page footer -->
+  <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">&copy; 2026 SendIt Logistics Private Limited &middot; <a href="javascript:void(0)" onclick="return showPage('home')" style="color:var(--steel)">&larr; Back to Home</a></div><div class="footer-legal"><a href="javascript:void(0)" onclick="return showPage('privacy')">Privacy</a><a href="javascript:void(0)" onclick="return showPage('terms')">Terms</a></div></div></div></footer>
+</div>
+
 <div class="page" id="page-404">
   <section style="min-height:80vh;display:flex;align-items:center;justify-content:center;background:var(--ink);text-align:center;padding:80px 20px;"><div><div style="font-family:var(--font-mono);font-size:5rem;font-weight:500;color:rgba(200,208,220,0.1);line-height:1;">404</div><h2 style="color:var(--white);margin-bottom:12px;">Page not found</h2><p style="color:var(--steel);margin-bottom:32px;">This shipment seems to have gone missing. Let's get you back on track.</p><a class="btn btn-primary" href="javascript:void(0)" onclick="return showPage('home')">← Return to Homepage</a></div></section>
 </div>
@@ -4712,7 +5351,7 @@ window.addEventListener('popstate', function(e) {
 // On initial load, set correct state
 (function() {
   var path = window.location.pathname.replace(/^\//, '') || 'home';
-  var validPages = ['home','swiftship','waresync','pricing','integrations','technology','resources','demo','quote','3pl','warehousing','lastmile','ftlptl','about','contact','privacy','terms','cookie','aup','sla','login','compare','blog-rto','blog-cycle','blog-sla','blog-cod','blog-ftlptl','blog-d2c'];
+  var validPages = ['home','swiftship','waresync','pricing','integrations','technology','resources','demo','quote','3pl','warehousing','lastmile','ftlptl','about','contact','privacy','terms','cookie','aup','sla','login','compare','blog-rto','blog-cycle','blog-sla','blog-cod','blog-ftlptl','blog-d2c','allinonemarketing'];
   var pageId = validPages.includes(path) ? path : 'home';
   history.replaceState({ page: pageId }, '', pageId === 'home' ? '/' : '/' + pageId);
   if (pageId !== 'home') showPage(pageId, false);
@@ -5013,6 +5652,131 @@ window.SendIt.clearFavicon = function() {
     window.SendIt.applyFavicon(stored);
     console.log('%cSendIt: custom favicon applied from localStorage', 'color:#6B9FFF');
   }
+})();
+
+// ── SenditPlus carousel ───────────────────────────────────────────
+(function() {
+  var spCurrent = 0;
+  var spTotal = 6;
+  var spTimer = null;
+  var spPaused = false;
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  window.spGoTo = function(idx) {
+    var track = document.getElementById('spTrack');
+    if (!track) return;
+    var slides = track.querySelectorAll('.sp-slide');
+    var tabs = document.getElementById('spTabs');
+    var dots = document.getElementById('spDots');
+    var wheel = document.getElementById('spHeroWheel');
+
+    slides.forEach(function(s, i) {
+      s.classList.toggle('sp-slide-active', i === idx);
+    });
+    if (tabs) tabs.querySelectorAll('.sp-tab').forEach(function(t, i) {
+      t.classList.toggle('active', i === idx);
+      t.setAttribute('aria-selected', i === idx ? 'true' : 'false');
+    });
+    if (dots) dots.querySelectorAll('.sp-dot').forEach(function(d, i) {
+      d.classList.toggle('active', i === idx);
+    });
+    if (wheel) wheel.querySelectorAll('.sp-wheel-item').forEach(function(w, i) {
+      w.classList.toggle('active', i === idx);
+    });
+    track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+    spCurrent = idx;
+  };
+
+  window.spNext = function() { spGoTo((spCurrent + 1) % spTotal); };
+  window.spPrev = function() { spGoTo((spCurrent - 1 + spTotal) % spTotal); };
+
+  function spStartAuto() {
+    if (prefersReduced) return;
+    spTimer = setInterval(function() {
+      if (!spPaused) spNext();
+    }, 7000);
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var section = document.getElementById('sp-carousel');
+    if (section) {
+      section.addEventListener('mouseenter', function() { spPaused = true; });
+      section.addEventListener('mouseleave', function() { spPaused = false; });
+      section.addEventListener('touchstart', function() { spPaused = true; }, { passive: true });
+    }
+    spStartAuto();
+
+    // Hub spoke sequential reveal
+    var hubSpokes = document.querySelectorAll('.sp-hub-spoke');
+    if (hubSpokes.length) {
+      var hubObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            hubSpokes.forEach(function(spoke, i) {
+              setTimeout(function() { spoke.classList.add('sp-visible'); }, parseInt(spoke.dataset.delay || 0));
+            });
+            hubObs.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      hubObs.observe(document.querySelector('.sp-hub-diagram') || hubSpokes[0]);
+    }
+
+    // Count-up for sp-stat-num
+    var spStatEls = document.querySelectorAll('#page-allinonemarketing .sp-stat-num[data-count], #page-allinonemarketing .sp-stat-num[data-count-dec]');
+    if (spStatEls.length) {
+      var countObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (!entry.isIntersecting) return;
+          var el = entry.target;
+          var isDec = el.hasAttribute('data-count-dec');
+          var target = parseFloat(isDec ? el.dataset.countDec : el.dataset.count);
+          var suffix = el.dataset.suffix || '';
+          var duration = prefersReduced ? 0 : 1200;
+          var start = performance.now();
+          function tick(now) {
+            var t = Math.min((now - start) / duration, 1);
+            var ease = 1 - Math.pow(1 - t, 3);
+            var val = isDec ? (ease * target).toFixed(1) : Math.round(ease * target);
+            el.textContent = val + suffix;
+            if (t < 1) requestAnimationFrame(tick);
+          }
+          if (duration === 0) { el.textContent = target + suffix; } else { requestAnimationFrame(tick); }
+          countObs.unobserve(el);
+        });
+      }, { threshold: 0.5 });
+      spStatEls.forEach(function(el) { countObs.observe(el); });
+    }
+
+    // Generic scroll reveal for .sp-anim
+    var animEls = document.querySelectorAll('#page-allinonemarketing .sp-anim');
+    if (animEls.length) {
+      var animObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sp-in');
+            animObs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      animEls.forEach(function(el, i) {
+        el.style.transitionDelay = (i % 4) * 80 + 'ms';
+        animObs.observe(el);
+      });
+    }
+
+    // Show/hide floating WhatsApp button based on active page
+    var waFloat = document.getElementById('spWaFloat');
+    var origShowPage = window.showPage;
+    if (waFloat && origShowPage) {
+      var _spWrap = window.showPage;
+      window.showPage = function(pageId, pushState) {
+        var result = _spWrap(pageId, pushState);
+        waFloat.style.display = pageId === 'allinonemarketing' ? 'flex' : 'none';
+        return result;
+      };
+    }
+  });
 })();
 </script>
 
