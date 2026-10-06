@@ -3082,15 +3082,15 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 /* ---- the new hero visual (drop-in) ---- */
 /* Proposed look: slate city, brand blue only on the SendIt warehouse, signal orange for anything moving */
 .whn{
-  --whn-panel-a:#18223A; --whn-panel-b:#0A1224; --whn-frame:rgba(255,255,255,.09);
-  --whn-ground:#121A2C; --whn-block:#172036; --whn-road:#0A0F1D; --whn-mark:#3B4560;
-  --whn-wall:#3A4560; --whn-whwall:#2C4E9A; --whn-roof:#1F57E0; --whn-tile:#A6553A;
-  --whn-lit:#F7C64B; --whn-tree:#2D6A50; --whn-route:#FF7A2E; --whn-step:#FF7A2E; --whn-line:rgba(255,255,255,.12);
+  --whn-panel-a:transparent; --whn-panel-b:transparent; --whn-frame:transparent;
+  --whn-ground:#0F2147; --whn-block:#13284F; --whn-road:#0A1633; --whn-mark:#2C4372; --whn-whwall:#2C4E9A;
+  --whn-wall:#34466F; --whn-roof:#2563EB; --whn-tile:#A6553A;
+  --whn-lit:#F7C64B; --whn-tree:#2D6A50; --whn-route:#FF7A2E; --whn-step:#FF7A2E; --whn-line:rgba(107,159,255,.18);
 }
-.whn:not([data-look="current"]) canvas{-webkit-mask-image:radial-gradient(ellipse 72% 68% at 52% 50%, #000 62%, transparent 100%);mask-image:radial-gradient(ellipse 72% 68% at 52% 50%, #000 62%, transparent 100%)}
+.whn:not([data-look="current"]) canvas{-webkit-mask-image:radial-gradient(ellipse 52% 50% at 52% 50%, #000 62%, transparent 100%);mask-image:radial-gradient(ellipse 52% 50% at 52% 50%, #000 62%, transparent 100%)}
 .whn{position:relative;width:100%;aspect-ratio:540/500;max-width:100%;border-radius:14px;overflow:hidden;
   background:radial-gradient(80% 70% at 50% 45%, var(--whn-panel-a) 0%, var(--whn-panel-b) 75%);border:1px solid var(--whn-frame);
-  box-shadow:0 30px 80px rgba(3,10,30,.55);font-family:var(--whn-sans);color:var(--whn-ink)}
+  box-shadow:none;font-family:var(--whn-sans);color:var(--whn-ink)}
 .whn canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .whn-chip{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(9,22,52,.82);border:1px solid var(--whn-line);
   font:600 11px/1 var(--whn-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--whn-muted);backdrop-filter:blur(6px)}
