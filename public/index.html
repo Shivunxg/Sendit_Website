@@ -3078,9 +3078,18 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   --whn-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
   --whn-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
 }
+.hero-inner > .hero-visual{align-self:center}
 /* ---- the new hero visual (drop-in) ---- */
+/* Proposed look: slate city, brand blue only on the SendIt warehouse, signal orange for anything moving */
+.whn{
+  --whn-panel-a:#18223A; --whn-panel-b:#0A1224; --whn-frame:rgba(255,255,255,.09);
+  --whn-ground:#121A2C; --whn-block:#172036; --whn-road:#0A0F1D; --whn-mark:#3B4560;
+  --whn-wall:#3A4560; --whn-whwall:#2C4E9A; --whn-roof:#1F57E0; --whn-tile:#A6553A;
+  --whn-lit:#F7C64B; --whn-tree:#2D6A50; --whn-route:#FF7A2E; --whn-step:#FF7A2E; --whn-line:rgba(255,255,255,.12);
+}
+.whn:not([data-look="current"]) canvas{-webkit-mask-image:radial-gradient(ellipse 72% 68% at 52% 50%, #000 62%, transparent 100%);mask-image:radial-gradient(ellipse 72% 68% at 52% 50%, #000 62%, transparent 100%)}
 .whn{position:relative;width:100%;aspect-ratio:540/500;max-width:100%;border-radius:14px;overflow:hidden;
-  background:radial-gradient(80% 70% at 50% 45%, #133070 0%, var(--whn-ground) 70%);border:1px solid var(--whn-line);
+  background:radial-gradient(80% 70% at 50% 45%, var(--whn-panel-a) 0%, var(--whn-panel-b) 75%);border:1px solid var(--whn-frame);
   box-shadow:0 30px 80px rgba(3,10,30,.55);font-family:var(--whn-sans);color:var(--whn-ink)}
 .whn canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
 .whn-chip{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(9,22,52,.82);border:1px solid var(--whn-line);
@@ -3100,7 +3109,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 .whn-card small{font-size:12px;color:var(--whn-muted)}
 .whn-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
 .whn-steps i{height:4px;border-radius:9px;background:rgba(157,176,214,.22);transition:background .3s}
-.whn-steps i.on{background:var(--whn-blue2)}
+.whn-steps i.on{background:var(--whn-step)}
 .whn-steps i.done{background:var(--whn-good)}
 .whn-steplab{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font:600 10px/1 var(--whn-mono);letter-spacing:.04em;color:var(--whn-muted);text-transform:uppercase}
 @keyframes whn-ping{0%{box-shadow:0 0 0 0 rgba(60,197,131,.55)}100%{box-shadow:0 0 0 8px rgba(60,197,131,0)}}
@@ -3125,8 +3134,11 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   const host = document.getElementById('whn'); if (!host) return;
   const cv = host.querySelector('canvas'), ctx = cv.getContext('2d');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const C = {}; ['ground','block','road','mark','wall','roof','lit','tree','van','glass','tire','blue','blue2','orange','teal','purple','good','ink','muted']
+  const C = {};
+  const readTokens = () => ['ground','block','road','mark','wall','whwall','roof','tile','route','lit','tree','van','glass','tire','blue','blue2','orange','teal','purple','good','ink','muted']
     .forEach(n => C[n] = getComputedStyle(host).getPropertyValue('--whn-' + n).trim());
+  readTokens();
+  const proposed = () => host.dataset.look !== 'current';
   const rgb = h => { if (h.startsWith('rgb')) return h.match(/[\d.]+/g).slice(0,3).map(Number); h = h.replace('#',''); const n = parseInt(h,16); return [n>>16&255, n>>8&255, n&255]; };
   const shade = (h, a) => { const [r,g,b] = rgb(h); const f = v => Math.round(a < 0 ? v*(1+a) : v + (255-v)*a); return `rgb(${f(r)},${f(g)},${f(b)})`; };
   const alpha = (h, a) => { const [r,g,b] = rgb(h); return `rgba(${r},${g},${b},${a})`; };
@@ -3142,7 +3154,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   function resize(){
     dpr = Math.min(2, window.devicePixelRatio || 1); W = host.clientWidth; H = host.clientHeight;
     cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
-    k = Math.min(W/25, H/14.5); ox = W/2 - 1.2*k; oy = H/2 - 7.4*k - 0.9*k;
+    if (proposed()){ k = Math.min(W/26.5, H/15.5); ox = W/2 - 0.7*k; oy = H/2 - 7.4*k + 0.15*k; } else { k = Math.min(W/25, H/14.5); ox = W/2 - 1.2*k; oy = H/2 - 7.4*k - 0.9*k; }
     draw();
   }
 
@@ -3233,7 +3245,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
     const base = b.flash > 0 ? shade(C.wall, b.flash*0.25) : C.wall;
     if (b.t === 'house'){
       box(b.x, b.y, 0, b.w, b.d, b.h, base);
-      const cx = b.x + b.w/2, cy = b.y + b.d/2, ap = [cx, cy, b.h + 0.55], rf = shade(C.roof, -0.15);
+      const cx = b.x + b.w/2, cy = b.y + b.d/2, ap = [cx, cy, b.h + 0.55], rf = C.tile;
       poly([[b.x,b.y,b.h],[b.x+b.w,b.y,b.h],ap], shade(rf, 0.2)); poly([[b.x,b.y,b.h],[b.x,b.y+b.d,b.h],ap], shade(rf, 0.1));
       poly([[b.x+b.w,b.y,b.h],[b.x+b.w,b.y+b.d,b.h],ap], shade(rf, -0.25)); poly([[b.x,b.y+b.d,b.h],[b.x+b.w,b.y+b.d,b.h],ap], rf);
       poly([[cx-0.15,b.y+b.d,0.25],[cx+0.15,b.y+b.d,0.25],[cx+0.15,b.y+b.d,0.5],[cx-0.15,b.y+b.d,0.5]], alpha(C.lit, 0.75 + 0.25*b.flash));
@@ -3249,12 +3261,12 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   }
   function drawWarehouse(){
     const { x, y, w, d, h } = WH;
-    box(x, y, 0, w, d, h, '#2A4C8E', C.roof);
+    box(x, y, 0, w, d, h, C.whwall, C.roof);
     for (const sy of [1.1, 2.0]) poly([[x+0.4,sy,h],[x+w-0.4,sy,h],[x+w-0.4,sy+0.35,h],[x+0.4,sy+0.35,h]], shade(C.roof, 0.25));
     poly([[x,y+d,h-0.22],[x+w,y+d,h-0.22],[x+w,y+d,h-0.1],[x,y+d,h-0.1]], C.orange);
     for (let i = 0; i < 3; i++){ const dx = x + 0.45 + i*1.45;
       poly([[dx,y+d,0],[dx+0.9,y+d,0],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], alpha(C.lit, 0.85));
-      poly([[dx,y+d,0.6],[dx+0.9,y+d,0.6],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], shade('#2A4C8E', -0.35)); }
+      poly([[dx,y+d,0.6],[dx+0.9,y+d,0.6],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], shade(C.whwall, -0.35)); }
     const [sx, sy] = P(x + w, y + d - 0.25, 0.75), s = k/20;
     ctx.save(); ctx.translate(sx, sy); ctx.transform(s, -s/2, 0, s, 0, 0);
     ctx.fillStyle = 'rgba(232,237,246,.85)'; ctx.font = '700 11px ui-monospace, Menlo, monospace'; ctx.fillText('WARESYNC', 0, 0); ctx.restore();
@@ -3289,7 +3301,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   function drawRoutes(){
     vans.forEach(v => {
       if (v.state !== 'out') return;
-      const col = C[v.c[1]], [lx, ly] = laneOffset(v);
+      const col = proposed() ? C.route : C[v.c[1]], [lx, ly] = laneOffset(v);
       const pts = [[v.x + lx, v.y + ly], ...v.path.map(p => [p.x, p.y])];
       ctx.save(); ctx.strokeStyle = alpha(col, 0.95); ctx.lineWidth = 2.2; ctx.setLineDash([7, 6]); ctx.lineDashOffset = -clock*28; ctx.lineCap = 'round';
       ctx.shadowColor = alpha(col, 0.8); ctx.shadowBlur = 8;
@@ -3301,7 +3313,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   function drawPins(){
     vans.forEach(v => {
       if (v.state !== 'out') return;
-      const col = C[v.c[1]], [sx, sy] = P(v.dest.p[0], v.dest.p[1], 0), r = Math.max(6, k*0.32);
+      const col = proposed() ? C.route : C[v.c[1]], [sx, sy] = P(v.dest.p[0], v.dest.p[1], 0), r = Math.max(6, k*0.32);
       ctx.fillStyle = col; ctx.beginPath(); ctx.arc(sx, sy - r*1.7, r, Math.PI*0.85, Math.PI*2.15); ctx.lineTo(sx, sy); ctx.closePath(); ctx.fill();
       ctx.beginPath(); ctx.arc(sx, sy - r*1.7, r*0.42, 0, 7); ctx.fillStyle = '#fff'; ctx.fill();
       label(v.dest.pin, sx, sy - r*3.1, 'rgba(9,22,52,.9)', '#E8EDF6');
