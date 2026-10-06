@@ -3487,6 +3487,637 @@ a img, button img, .login-product-card img { pointer-events: auto; }
       </div>
     </div>
   </section>
+  <!-- ══ WARESYNC LIVE YARD VIEW ══ -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;600;700&display=swap">
+<style>
+/* Layout: headline, then a live yard board — isometric live yard on canvas with HUD cards over it,
+   a side panel driven by three mode chips (Map / Live units / Tasks). Scoped under .wsg for drop-in. */
+:root{
+  --wsg-bg:#F4F4F1; --wsg-surface:#FFFFFF; --wsg-ink:#0E1A33; --wsg-muted:#5A6479; --wsg-line:#E1E2E3;
+  --wsg-navy:#14284F; --wsg-orange:#F26A1B; --wsg-teal:#0E8A8C; --wsg-purple:#6B4BD6;
+  --wsg-good:#1D8A57; --wsg-warn:#B97A06; --wsg-info:#2F5FD0;
+  --wsg-ground:#E9EAE6; --wsg-grid:#D3D6D4; --wsg-yard:#D4D8DE; --wsg-lane:#FFFFFF;
+  --wsg-wall:#E9ECF2; --wsg-roof:#2B56C9; --wsg-trailer:#F7F7F5; --wsg-cargo:#D29A5C; --wsg-wood:#9A6A3A;
+  --wsg-tire:#2A2F3A; --wsg-glass:#1C2A44;
+  --wsg-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --wsg-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --wsg-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --wsg-shadow: 0 1px 2px rgba(14,26,51,.06), 0 8px 24px rgba(14,26,51,.08);
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --wsg-bg:#0A1120; --wsg-surface:#111B31; --wsg-ink:#E7ECF5; --wsg-muted:#97A2B8; --wsg-line:#24304A;
+  --wsg-navy:#3C63C4; --wsg-orange:#FF7A2E; --wsg-teal:#25B3AE; --wsg-purple:#9077F2;
+  --wsg-good:#3CC583; --wsg-warn:#E8A93A; --wsg-info:#6E95F5;
+  --wsg-ground:#0E1729; --wsg-grid:#1A2640; --wsg-yard:#18233B; --wsg-lane:#3A4A6C;
+  --wsg-wall:#2A3757; --wsg-roof:#3560D8; --wsg-trailer:#C9CFDB; --wsg-cargo:#C48A4E; --wsg-wood:#7C5430;
+  --wsg-tire:#05080F; --wsg-glass:#0A1222;
+  --wsg-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --wsg-bg:#0A1120; --wsg-surface:#111B31; --wsg-ink:#E7ECF5; --wsg-muted:#97A2B8; --wsg-line:#24304A;
+  --wsg-navy:#3C63C4; --wsg-orange:#FF7A2E; --wsg-teal:#25B3AE; --wsg-purple:#9077F2;
+  --wsg-good:#3CC583; --wsg-warn:#E8A93A; --wsg-info:#6E95F5;
+  --wsg-ground:#0E1729; --wsg-grid:#1A2640; --wsg-yard:#18233B; --wsg-lane:#3A4A6C;
+  --wsg-wall:#2A3757; --wsg-roof:#3560D8; --wsg-trailer:#C9CFDB; --wsg-cargo:#C48A4E; --wsg-wood:#7C5430;
+  --wsg-tire:#05080F; --wsg-glass:#0A1222;
+  --wsg-shadow: 0 1px 2px rgba(0,0,0,.3), 0 10px 28px rgba(0,0,0,.35);
+  color-scheme:dark;
+}
+
+.wsg{font-family:var(--wsg-sans);color:var(--wsg-ink);background:var(--wsg-bg);
+  padding-inline:clamp(16px,4vw,48px);padding-block:clamp(40px,6vw,88px);}
+.wsg *{box-sizing:border-box}
+.wsg-inner{max-width:1240px;margin:0 auto;display:flex;flex-direction:column;gap:28px}
+.wsg-head{display:flex;flex-direction:column;gap:12px;max-width:760px}
+.wsg-eyebrow{margin:0;font:600 12px/1 var(--wsg-mono);letter-spacing:.12em;text-transform:uppercase;color:var(--wsg-teal)}
+.wsg-head h2{margin:0;font-weight:800;font-size:clamp(2rem,4.6vw,3.5rem);line-height:1.02;letter-spacing:-.035em;text-wrap:balance;color:var(--wsg-ink)}
+.wsg-head h2 em{font-family:var(--wsg-serif);font-weight:400;font-style:italic;letter-spacing:-.01em;color:var(--wsg-orange)}
+.wsg-sub{margin:0;font-size:clamp(1rem,1.4vw,1.125rem);line-height:1.55;color:var(--wsg-muted);max-width:60ch}
+
+.wsg-stage{display:grid;grid-template-columns:minmax(0,1fr);gap:16px}
+@media (min-width:1000px){.wsg-stage{grid-template-columns:minmax(0,1fr) 330px}}
+
+.wsg-board{position:relative;background:var(--wsg-ground);border:1px solid var(--wsg-line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.wsg-canvaswrap{position:relative;height:300px}
+.wsg-canvaswrap canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:manipulation}
+.wsg-kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:12px 12px 0}
+.wsg-track{padding:0 12px 12px}
+@media (min-width:760px){
+  .wsg-canvaswrap{height:clamp(440px,46vw,560px)}
+  .wsg-kpis{position:absolute;top:14px;left:14px;z-index:2;padding:0;grid-template-columns:repeat(3,auto)}
+  .wsg-track{position:absolute;left:14px;bottom:14px;z-index:2;padding:0;width:min(560px,calc(100% - 28px))}
+}
+
+.wsg-card{background:var(--wsg-surface);border:1px solid var(--wsg-line);border-radius:12px;box-shadow:var(--wsg-shadow)}
+.wsg-kpi{padding:10px 12px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.wsg-kpi-label{font:600 10px/1.25 var(--wsg-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--wsg-muted)}
+.wsg-kpi-value{font:700 clamp(17px,2vw,21px)/1 var(--wsg-mono);font-variant-numeric:tabular-nums;color:var(--wsg-ink);transition:color .4s}
+.wsg-kpi-value.is-up{color:var(--wsg-good)}
+.wsg-kpi-sub{font-size:11px;line-height:1.3;color:var(--wsg-muted)}
+
+.wsg-trackcard{padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.wsg-track-top{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px}
+.wsg-track-title{font:700 13px/1.3 var(--wsg-mono);color:var(--wsg-ink)}
+.wsg-track-meta{font-size:12px;color:var(--wsg-muted)}
+.wsg-steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr))}
+.wsg-step{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;font-size:11px;color:var(--wsg-muted);min-width:0}
+.wsg-step::before{content:"";position:absolute;top:8px;right:50%;width:100%;height:2px;background:var(--wsg-line)}
+.wsg-step:first-child::before{display:none}
+.wsg-step.is-done::before,.wsg-step.is-active::before{background:var(--wsg-teal)}
+.wsg-dot{position:relative;z-index:1;width:18px;height:18px;border-radius:50%;border:2px solid var(--wsg-line);background:var(--wsg-surface);display:grid;place-items:center}
+.wsg-step.is-done .wsg-dot{background:var(--wsg-teal);border-color:var(--wsg-teal)}
+.wsg-step.is-done .wsg-dot::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--wsg-surface)}
+.wsg-step.is-active .wsg-dot{border-color:var(--wsg-orange)}
+.wsg-step.is-active .wsg-dot::after{content:"";width:8px;height:8px;border-radius:50%;background:var(--wsg-orange);animation:wsg-pulse 1.4s ease-in-out infinite}
+.wsg-step.is-active{color:var(--wsg-ink);font-weight:600}
+.wsg-step span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:100%}
+@keyframes wsg-pulse{50%{transform:scale(.55);opacity:.6}}
+
+.wsg-panel{padding:16px;display:flex;flex-direction:column;gap:14px;min-width:0;align-self:start}
+.wsg-panel-head{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.wsg-site{display:flex;flex-direction:column;gap:3px;min-width:0}
+.wsg-site b{font-size:15px;letter-spacing:-.01em}
+.wsg-site small{font:500 11px/1.2 var(--wsg-mono);color:var(--wsg-muted)}
+.wsg-live{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:999px;background:color-mix(in srgb,var(--wsg-good) 14%,transparent);color:var(--wsg-good);font:600 11px/1 var(--wsg-mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wsg-live::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;animation:wsg-pulse 1.6s ease-in-out infinite}
+.wsg-util{display:flex;flex-direction:column;gap:6px}
+.wsg-util-row{display:flex;justify-content:space-between;font-size:12px;color:var(--wsg-muted)}
+.wsg-util-row b{color:var(--wsg-ink);font-family:var(--wsg-mono);font-variant-numeric:tabular-nums}
+.wsg-bar{height:6px;border-radius:99px;background:var(--wsg-line);overflow:hidden}
+.wsg-bar i{display:block;height:100%;background:var(--wsg-teal);border-radius:99px;transition:width .5s ease}
+.wsg-h3{margin:0;font:600 10px/1 var(--wsg-mono);letter-spacing:.1em;text-transform:uppercase;color:var(--wsg-muted)}
+.wsg-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.wsg-row{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:8px;border-radius:10px;border:1px solid transparent;background:none;color:inherit;font:inherit;text-align:left}
+button.wsg-row{cursor:pointer}
+button.wsg-row:hover{background:color-mix(in srgb,var(--wsg-ink) 4%,transparent)}
+button.wsg-row[aria-pressed="true"]{border-color:var(--wsg-purple);background:color-mix(in srgb,var(--wsg-purple) 8%,transparent)}
+.wsg-row:focus-visible,.wsg-chip:focus-visible,.wsg-pause:focus-visible{outline:2px solid var(--wsg-purple);outline-offset:2px}
+.wsg-tagnum{font:700 11px/1 var(--wsg-mono);width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:color-mix(in srgb,var(--wsg-navy) 10%,transparent);color:var(--wsg-navy)}
+.wsg-rowtext{display:flex;flex-direction:column;gap:2px;min-width:0}
+.wsg-rowtext b{font:600 12.5px/1.25 var(--wsg-mono);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wsg-rowtext small{font-size:11.5px;color:var(--wsg-muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wsg-pill{font:600 10.5px/1 var(--wsg-mono);padding:5px 7px;border-radius:6px;white-space:nowrap;font-variant-numeric:tabular-nums}
+.is-good{color:var(--wsg-good);background:color-mix(in srgb,var(--wsg-good) 13%,transparent)}
+.is-warn{color:var(--wsg-warn);background:color-mix(in srgb,var(--wsg-warn) 15%,transparent)}
+.is-info{color:var(--wsg-info);background:color-mix(in srgb,var(--wsg-info) 13%,transparent)}
+.is-idle{color:var(--wsg-muted);background:color-mix(in srgb,var(--wsg-muted) 13%,transparent)}
+.wsg-inv-row .wsg-rowtext b,.wsg-inv-row .wsg-rowtext small{white-space:normal}
+.wsg-mission{display:flex;flex-direction:column;gap:6px;padding:10px;border:1px solid var(--wsg-line);border-radius:10px}
+.wsg-mission-top{display:flex;justify-content:space-between;gap:8px;font-size:12.5px}
+.wsg-mission-top b{font-weight:600;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wsg-mission-top span{font:600 11px/1.4 var(--wsg-mono);color:var(--wsg-muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.wsg-mission .wsg-bar i{background:var(--wsg-orange)}
+
+.wsg-controls{display:flex;flex-wrap:wrap;align-items:center;gap:10px 12px}
+.wsg-chips{display:flex;flex-wrap:wrap;gap:10px}
+.wsg-chip{display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;border:1px solid var(--wsg-line);background:var(--wsg-surface);color:var(--wsg-ink);box-shadow:var(--wsg-shadow);font:700 12px/1 var(--wsg-mono);letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:transform .15s ease,background .2s}
+.wsg-chip:hover{transform:translateY(-1px)}
+.wsg-chip[aria-selected="true"]{background:var(--wsg-ink);color:var(--wsg-bg);border-color:var(--wsg-ink)}
+.wsg-chip svg{width:14px;height:14px}
+.wsg-pause{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:999px;border:1px solid var(--wsg-line);background:transparent;color:var(--wsg-muted);font:600 11px/1 var(--wsg-mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.wsg-note{width:100%;margin:0;font-size:12px;color:var(--wsg-muted)}
+@media (min-width:760px){.wsg-note{width:auto}}
+@media (prefers-reduced-motion:reduce){.wsg *{animation:none!important;transition:none!important}}
+</style>
+
+<section class="wsg" id="waresync-yard" aria-labelledby="wsg-h">
+ <div class="wsg-inner">
+  <header class="wsg-head">
+   <p class="wsg-eyebrow">WareSync · Live yard view</p>
+   <h2 id="wsg-h">Every dock, truck and pallet, <em>on one live map</em></h2>
+   <p class="wsg-sub">Trucks reversing into docks, forklifts staging pallets, stock counts updating as each pallet lands. Tap a truck to follow its shipment from gate-in to put-away.</p>
+  </header>
+
+  <div class="wsg-stage">
+   <div class="wsg-board">
+    <div class="wsg-kpis">
+     <div class="wsg-card wsg-kpi"><span class="wsg-kpi-label">Pallets on hand</span><span class="wsg-kpi-value" id="wsg-stock">610</span><span class="wsg-kpi-sub" id="wsg-stock-sub">Zone C · 68% full</span></div>
+     <div class="wsg-card wsg-kpi"><span class="wsg-kpi-label">Trucks in yard</span><span class="wsg-kpi-value" id="wsg-trucks">3</span><span class="wsg-kpi-sub" id="wsg-trucks-sub">1 reversing</span></div>
+     <div class="wsg-card wsg-kpi"><span class="wsg-kpi-label">Unloaded today</span><span class="wsg-kpi-value" id="wsg-unl">186</span><span class="wsg-kpi-sub">pallets since 06:00</span></div>
+    </div>
+    <div class="wsg-canvaswrap">
+     <canvas id="wsg-canvas" role="img" aria-label="Animated isometric view of a warehouse yard: trucks reverse into four docks, forklifts move pallets to a staging zone."></canvas>
+    </div>
+    <div class="wsg-track">
+     <div class="wsg-card wsg-trackcard" aria-live="polite">
+      <div class="wsg-track-top">
+       <span class="wsg-track-title" id="wsg-tr-title">#SHP-48247 · KA 05 MN 2210</span>
+       <span class="wsg-track-meta" id="wsg-tr-meta">From Peenya, Bengaluru · Dock 1</span>
+      </div>
+      <ol class="wsg-steps" id="wsg-steps">
+       <li class="wsg-step"><i class="wsg-dot"></i><span>Dispatched</span></li>
+       <li class="wsg-step"><i class="wsg-dot"></i><span>In transit</span></li>
+       <li class="wsg-step"><i class="wsg-dot"></i><span>Gate in</span></li>
+       <li class="wsg-step"><i class="wsg-dot"></i><span>At dock</span></li>
+       <li class="wsg-step"><i class="wsg-dot"></i><span id="wsg-last">Unloading</span></li>
+      </ol>
+     </div>
+    </div>
+   </div>
+
+   <aside class="wsg-card wsg-panel" aria-label="Site panel">
+    <div class="wsg-panel-head">
+     <div class="wsg-site"><b>Hoskote Cross-Dock</b><small>WH-BLR-01 · 4 docks · 4 forklifts</small></div>
+     <span class="wsg-live" id="wsg-clock">Live</span>
+    </div>
+    <div class="wsg-util">
+     <div class="wsg-util-row"><span>Dock utilisation</span><b id="wsg-util-n">3 / 4</b></div>
+     <div class="wsg-bar"><i id="wsg-util-bar" style="width:75%"></i></div>
+    </div>
+
+    <div id="wsg-tab-map" role="tabpanel" aria-labelledby="wsg-chip-map">
+     <div style="display:flex;flex-direction:column;gap:14px">
+      <h3 class="wsg-h3">Docks</h3>
+      <ul class="wsg-list" id="wsg-docks"></ul>
+      <h3 class="wsg-h3">Inventory · Zone C</h3>
+      <ul class="wsg-list" id="wsg-inv"></ul>
+     </div>
+    </div>
+    <div id="wsg-tab-units" role="tabpanel" aria-labelledby="wsg-chip-units" hidden>
+     <div style="display:flex;flex-direction:column;gap:14px">
+      <h3 class="wsg-h3">Trucks</h3><ul class="wsg-list" id="wsg-u-trucks"></ul>
+      <h3 class="wsg-h3">Forklifts</h3><ul class="wsg-list" id="wsg-u-forks"></ul>
+     </div>
+    </div>
+    <div id="wsg-tab-missions" role="tabpanel" aria-labelledby="wsg-chip-missions" hidden>
+     <div style="display:flex;flex-direction:column;gap:10px" id="wsg-missions"></div>
+    </div>
+   </aside>
+  </div>
+
+  <div class="wsg-controls">
+   <div class="wsg-chips" role="tablist" aria-label="View mode">
+    <button class="wsg-chip" role="tab" id="wsg-chip-map" data-mode="map" aria-selected="true" aria-controls="wsg-tab-map">
+     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M1.5 4 6 2l4 2 4.5-2v10L10 14l-4-2-4.5 2z"/><path d="M6 2v10M10 4v10"/></svg>Map view</button>
+    <button class="wsg-chip" role="tab" id="wsg-chip-units" data-mode="units" aria-selected="false" aria-controls="wsg-tab-units">
+     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="8" cy="8" r="2.5" fill="currentColor"/><circle cx="8" cy="8" r="6"/></svg>Live units</button>
+    <button class="wsg-chip" role="tab" id="wsg-chip-missions" data-mode="missions" aria-selected="false" aria-controls="wsg-tab-missions">
+     <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 14V2l9 3.5L3 9"/></svg>Tasks</button>
+   </div>
+   <button class="wsg-pause" id="wsg-pause" type="button" aria-pressed="false">Pause</button>
+   <p class="wsg-note">Simulated yard. Live sites stream from your WareSync dock and handheld scans.</p>
+  </div>
+ </div>
+</section>
+
+<script>
+(() => {
+  const root = document.querySelector('.wsg');
+  const cv = document.getElementById('wsg-canvas');
+  const wrap = cv.parentElement;
+  const ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- colours from tokens ---------- */
+  const C = {};
+  const TOK = ['bg','surface','ink','muted','line','navy','orange','teal','purple','good','warn','info','ground','grid','yard','lane','wall','roof','trailer','cargo','wood','tire','glass'];
+  function readTokens(){ const cs = getComputedStyle(root); TOK.forEach(n => C[n] = cs.getPropertyValue('--wsg-' + n).trim() || '#888888'); }
+  function rgb(h){ h = h.replace('#',''); if (h.length === 3) h = h.split('').map(c => c + c).join(''); const n = parseInt(h,16); return [n>>16&255, n>>8&255, n&255]; }
+  function shade(h, a){ const [r,g,b] = rgb(h); const f = v => Math.round(a < 0 ? v*(1+a) : v + (255-v)*a); return `rgb(${f(r)},${f(g)},${f(b)})`; }
+  function alpha(h, a){ const [r,g,b] = rgb(h); return `rgba(${r},${g},${b},${a})`; }
+
+  /* ---------- isometric projection ---------- */
+  let W = 0, H = 0, k = 20, ox = 0, oy = 0, dpr = 1;
+  const P = (x, y, z = 0) => [ox + (x - y) * k, oy + (x + y) * k * 0.5 - z * k];
+  function poly(pts, fill){ ctx.beginPath(); pts.forEach((p, i) => { const [a, b] = P(p[0], p[1], p[2] || 0); i ? ctx.lineTo(a, b) : ctx.moveTo(a, b); }); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); }
+  function box(x, y, z, w, d, h, base, top){
+    poly([[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]], shade(base,-0.10));
+    poly([[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]], shade(base,-0.24));
+    poly([[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]], top || base);
+  }
+  function resize(){
+    dpr = Math.min(2, window.devicePixelRatio || 1);
+    W = wrap.clientWidth; H = wrap.clientHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    k = W < 640 ? Math.min(W/21, H/15.5) : Math.min(W/31, H/19.5);
+    ox = W/2 - (W >= 760 ? 0.2*k : 0);
+    oy = H/2 - 20.5*0.5*k + 1.9*k - (W >= 760 ? 1.1*k : 0.3*k);
+    if (paused || !running) draw();
+  }
+
+  /* ---------- world ---------- */
+  const DOCKS = [5.5, 8, 10.5, 13];
+  const DOCK_Y = 7.05, OFF_Y = 20.5, ARR = 5.2, DEP = 4.2;
+  const LOADS = [
+    ['KA 05 MN 2210','Peenya, Bengaluru'],['TN 09 BX 4120','Hosur'],['KA 51 AF 7734','Nelamangala'],
+    ['MH 12 QD 0891','Pune'],['TN 22 CK 3306','Chennai'],['KA 03 HJ 5518','Whitefield'],
+    ['AP 39 TR 6402','Tirupati'],['KA 01 AB 4821','Yeshwanthpur'],['KA 53 GE 1187','Bidadi'],['TN 70 DL 9035','Krishnagiri']
+  ];
+  const CABS = ['navy','teal','purple','orange'];
+  let loadIdx = 0;
+  function newLoad(t){ const L = LOADS[loadIdx % LOADS.length]; loadIdx++;
+    Object.assign(t, { reg:L[0], origin:L[1], n:5 + Math.floor(Math.random()*4), done:0, inflight:0, cab:CABS[loadIdx % 4], shp:'SHP-' + (48210 + loadIdx*37), hold:0 }); }
+  const trucks = DOCKS.map((dx, i) => { const t = { dock:i, x:dx + 0.25, ty:OFF_Y, state:'gap', t:0, gapDur:1 }; newLoad(t); return t; });
+  Object.assign(trucks[0], { state:'unloading', ty:DOCK_Y, n:9, done:4 });
+  Object.assign(trucks[1], { state:'arriving', t:2.2 });
+  Object.assign(trucks[2], { state:'unloading', ty:DOCK_Y, n:7, done:1 });
+  Object.assign(trucks[3], { state:'gap', t:0, gapDur:4 });
+  trucks[1].ty = OFF_Y + (DOCK_Y - OFF_Y) * easeOut(2.2/ARR);
+
+  const slots = [];
+  for (let lvl = 0; lvl < 2; lvl++) for (let r = 0; r < 3; r++) for (let c = 0; c < 4; c++)
+    slots.push({ x:17.0 + c*0.88, y:12.9 + r*0.88, lvl, state:'free', t:0 });
+  // a few pallets already staged
+  [0,1,2,4,5,8,12,13].forEach((i, n) => { slots[i].state = 'full'; slots[i].t = -n; });
+  const below = s => slots.find(o => o.lvl === 0 && o.x === s.x && o.y === s.y);
+  const above = s => slots.find(o => o.lvl === 1 && o.x === s.x && o.y === s.y);
+  function allocSlot(){
+    let s = slots.find(o => o.lvl === 0 && o.state === 'free');
+    if (!s) s = slots.find(o => o.lvl === 1 && o.state === 'free' && below(o).state === 'full');
+    if (s) s.state = 'reserved';
+    return s;
+  }
+
+  const forks = DOCKS.map((dx, i) => {
+    const hx = dx + 1.85, hy = 9.5;
+    return { id:'FL-0' + (i+1), dock:i, home:[hx, hy], ly:11.25 + i*0.34, x:hx, y:hy, dir:[0,-1], path:[], wait:0, loaded:false, task:null, phase:'idle' };
+  });
+
+  let stock = 610, unloaded = 186, clock = 0, stockFlash = 0, nextOut = 7, putTimer = 0;
+  let selected = 0, mode = 'map';
+
+  /* ---------- simulation ---------- */
+  function easeOut(p){ return 1 - Math.pow(1-p, 3); }
+  function easeIn(p){ return p*p*p; }
+  function blocked(tr, ny){
+    const x0 = tr.x - 0.1, x1 = tr.x + 1.0, y0 = ny - 0.1, y1 = ny + 3.7;
+    return forks.some(f => f.x + 0.3 > x0 && f.x - 0.3 < x1 && f.y + 0.3 > y0 && f.y - 0.3 < y1);
+  }
+  function updTruck(tr, dt){
+    tr.t += dt;
+    if (tr.state === 'gap'){
+      if (tr.t >= tr.gapDur){ newLoad(tr); tr.state = 'arriving'; tr.t = 0; tr.ty = OFF_Y; }
+    } else if (tr.state === 'arriving'){
+      const p = Math.min(1, tr.t/ARR), ny = OFF_Y + (DOCK_Y - OFF_Y) * easeOut(p);
+      if (blocked(tr, ny)) { tr.t -= dt; return; }
+      tr.ty = ny; if (p >= 1){ tr.state = 'unloading'; tr.t = 0; }
+    } else if (tr.state === 'unloading'){
+      if (tr.done >= tr.n){ tr.hold += dt; if (tr.hold > 1.4){ tr.state = 'departing'; tr.t = 0; } }
+    } else if (tr.state === 'departing'){
+      const p = Math.min(1, tr.t/DEP), ny = DOCK_Y + (OFF_Y - DOCK_Y) * easeIn(p);
+      if (blocked(tr, ny)) { tr.t -= dt; return; }
+      tr.ty = ny; if (p >= 1){ tr.state = 'gap'; tr.t = 0; tr.gapDur = 2 + Math.random()*4; }
+    }
+  }
+  function startTrip(f, tr){
+    const s = allocSlot(); if (!s) return;
+    tr.inflight++; f.task = { tr, s };
+    const [hx, hy] = f.home, px = DOCKS[f.dock] + 1.52;
+    f.path = [ {x:px,y:8.25,act:'load'}, {x:hx,y:hy}, {x:hx,y:f.ly}, {x:s.x,y:f.ly}, {x:s.x,y:s.y-0.55,act:'drop'}, {x:s.x,y:f.ly}, {x:hx,y:f.ly}, {x:hx,y:hy} ];
+  }
+  function updFork(f, dt){
+    const tr = trucks[f.dock];
+    if (!f.path.length){
+      f.phase = 'idle';
+      if (tr.state === 'unloading' && tr.done + tr.inflight < tr.n) startTrip(f, tr);
+      return;
+    }
+    if (f.wait > 0){ f.wait -= dt; return; }
+    const wp = f.path[0], dx = wp.x - f.x, dy = wp.y - f.y, dist = Math.hypot(dx, dy), step = 3.6*dt;
+    if (dist > 0.001) f.dir = Math.abs(dx) > Math.abs(dy) ? [Math.sign(dx),0] : [0,Math.sign(dy)];
+    f.phase = f.loaded ? 'carry' : (wp.act === 'load' ? 'pick' : 'return');
+    if (dist <= step){
+      f.x = wp.x; f.y = wp.y; f.path.shift();
+      if (wp.act === 'load'){ f.loaded = true; f.wait = 0.55; f.dir = [1,0]; }
+      if (wp.act === 'drop'){
+        f.loaded = false; f.wait = 0.45;
+        const { tr: t, s } = f.task; s.state = 'full'; s.t = clock;
+        t.done++; t.inflight--; stock++; unloaded++; stockFlash = 0.8; f.task = null;
+      }
+    } else { f.x += dx/dist*step; f.y += dy/dist*step; }
+  }
+  function updStaging(dt){
+    putTimer += dt;
+    const full = slots.filter(s => s.state === 'full');
+    if (putTimer > 2.4 && full.length > 9){
+      putTimer = 0;
+      const cands = full.filter(s => s.lvl === 1 || !(above(s) && above(s).state !== 'free'));
+      cands.sort((a, b) => b.lvl - a.lvl || a.t - b.t);
+      if (cands[0]) cands[0].state = 'free';
+    }
+    nextOut -= dt;
+    if (nextOut <= 0){ stock -= 2 + Math.floor(Math.random()*3); nextOut = 6 + Math.random()*4; }
+  }
+  function step(dt){
+    clock += dt;
+    trucks.forEach(t => updTruck(t, dt));
+    forks.forEach(f => updFork(f, dt));
+    updStaging(dt);
+    if (stockFlash > 0) stockFlash -= dt;
+  }
+
+  /* ---------- drawing ---------- */
+  function wallText(text, x0, y0, z0, sizePx, color, face){
+    const [sx, sy] = P(x0, y0, z0);
+    ctx.save(); ctx.translate(sx, sy);
+    const s = k/20;
+    if (face === 'x') ctx.transform(s, -s/2, 0, s, 0, 0); else if (face === 'ground') ctx.transform(s, s/2, -s, s/2, 0, 0); else ctx.transform(s, s/2, 0, s, 0, 0);
+    ctx.fillStyle = color; ctx.font = `700 ${sizePx}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = 'alphabetic';
+    ctx.fillText(text, 0, 0); ctx.restore();
+  }
+  function drawGround(){
+    poly([[-12,-6],[32,-6],[32,26],[-12,26]], C.ground);
+    ctx.strokeStyle = C.grid; ctx.lineWidth = 1; ctx.beginPath();
+    for (let x = -4; x <= 26; x++){ const [a,b] = P(x,-4), [c,d] = P(x,22); ctx.moveTo(a,b); ctx.lineTo(c,d); }
+    for (let y = -4; y <= 22; y++){ const [a,b] = P(-4,y), [c,d] = P(26,y); ctx.moveTo(a,b); ctx.lineTo(c,d); }
+    ctx.stroke();
+    // road
+    poly([[-12,16.6],[32,16.6],[32,18.6],[-12,18.6]], shade(C.yard,-0.08));
+    ctx.setLineDash([k*0.6, k*0.6]); ctx.strokeStyle = C.lane; ctx.lineWidth = Math.max(1, k*0.06);
+    ctx.beginPath(); { const [a,b] = P(-12,17.6), [c,d] = P(32,17.6); ctx.moveTo(a,b); ctx.lineTo(c,d); } ctx.stroke(); ctx.setLineDash([]);
+    // yard apron
+    poly([[3.4,7],[15.6,7],[15.6,16.6],[3.4,16.6]], C.yard);
+    // staging pad
+    poly([[16.3,12.0],[20.6,12.0],[20.6,15.6],[16.3,15.6]], C.yard);
+    ctx.lineWidth = Math.max(1, k*0.05); ctx.strokeStyle = C.lane;
+    ctx.beginPath();
+    DOCKS.forEach(dx => { for (const lx of [dx-0.05, dx+1.45]){ const [a,b] = P(lx,7.4), [c,d] = P(lx,11); ctx.moveTo(a,b); ctx.lineTo(c,d); } });
+    ctx.stroke();
+    ctx.setLineDash([k*0.3, k*0.25]); ctx.strokeStyle = alpha(C.teal, 0.9);
+    ctx.beginPath(); [[16.3,12],[20.6,12],[20.6,15.6],[16.3,15.6],[16.3,12]].forEach((p,i) => { const [a,b] = P(p[0],p[1]); i ? ctx.lineTo(a,b) : ctx.moveTo(a,b); }); ctx.stroke(); ctx.setLineDash([]);
+    wallText('STAGING · ZONE C', 16.5, 15.45, 0, 9, alpha(C.teal, 0.95), 'ground');
+    // dock plates
+    DOCKS.forEach(dx => poly([[dx,7],[dx+1.4,7],[dx+1.4,7.35],[dx,7.35]], shade(C.yard,-0.16)));
+  }
+  function drawBuilding(){
+    const X = 4, Y = 1, Wd = 11, D = 6, Ht = 3.1;
+    ctx.globalAlpha = 0.10; poly([[X+Wd,Y],[X+Wd+1.6,Y+0.9],[X+Wd+1.6,Y+D+0.9],[X+Wd,Y+D]], C.ink); ctx.globalAlpha = 1;
+    box(X, Y, 0, Wd, D, Ht, C.wall, C.roof);
+    box(X-0.08, Y-0.08, Ht, Wd+0.16, 0.16, 0.18, C.roof); box(X-0.08, Y-0.08, Ht, 0.16, D+0.16, 0.18, C.roof);
+    box(X-0.08, Y+D-0.08, Ht, Wd+0.16, 0.16, 0.18, C.roof); box(X+Wd-0.08, Y-0.08, Ht, 0.16, D+0.16, 0.18, C.roof);
+    for (const sy of [2.1, 3.6, 5.1]) poly([[X+0.9,sy,Ht],[X+Wd-0.9,sy,Ht],[X+Wd-0.9,sy+0.55,Ht],[X+0.9,sy+0.55,Ht]], shade(C.roof, 0.22));
+    box(X+1.0, Y+0.6, Ht, 1.3, 0.9, 0.55, C.wall); box(X+8.4, Y+0.6, Ht, 1.3, 0.9, 0.55, C.wall);
+    poly([[X,Y+D,2.82],[X+Wd,Y+D,2.82],[X+Wd,Y+D,2.98],[X,Y+D,2.98]], C.orange);
+    poly([[X+Wd,Y,2.82],[X+Wd,Y+D,2.82],[X+Wd,Y+D,2.98],[X+Wd,Y,2.98]], shade(C.orange,-0.2));
+    wallText('WARESYNC', X+Wd, Y+D-0.5, 1.9, 13, shade(C.wall,-0.62), 'x');
+    wallText('WH-BLR-01 · HOSKOTE', X+Wd, Y+D-0.5, 1.35, 7, shade(C.wall,-0.48), 'x');
+    DOCKS.forEach((dx, i) => {
+      const tr = trucks[i], yy = Y + D;
+      const open = tr.state === 'unloading' || (tr.state === 'arriving' && tr.ty < 9.5) || (tr.state === 'departing' && tr.ty < 8);
+      poly([[dx-0.08,yy,0],[dx+1.48,yy,0],[dx+1.48,yy,1.95],[dx-0.08,yy,1.95]], shade(C.wall,-0.42));
+      if (open){
+        poly([[dx,yy,0],[dx+1.4,yy,0],[dx+1.4,yy,1.85],[dx,yy,1.85]], shade(C.glass, -0.2));
+        poly([[dx,yy,1.55],[dx+1.4,yy,1.55],[dx+1.4,yy,1.85],[dx,yy,1.85]], shade(C.wall,-0.3));
+      } else {
+        poly([[dx,yy,0],[dx+1.4,yy,0],[dx+1.4,yy,1.85],[dx,yy,1.85]], shade(C.wall,-0.25));
+        ctx.strokeStyle = shade(C.wall,-0.35); ctx.lineWidth = 1; ctx.beginPath();
+        for (let z = 0.25; z < 1.85; z += 0.25){ const [a,b] = P(dx,yy,z), [c,d] = P(dx+1.4,yy,z); ctx.moveTo(a,b); ctx.lineTo(c,d); }
+        ctx.stroke();
+      }
+      const lamp = tr.state === 'unloading' ? C.good : tr.state === 'arriving' ? C.warn : shade(C.wall,-0.35);
+      const [lx, ly] = P(dx+1.25, yy, 2.25); ctx.beginPath(); ctx.arc(lx, ly, Math.max(2, k*0.09), 0, 7); ctx.fillStyle = lamp; ctx.fill();
+      wallText('DOCK ' + (i+1), dx+0.05, yy, 2.12, 7.5, shade(C.wall,-0.6), 'y');
+    });
+  }
+  function shadowRect(x0, y0, x1, y1){ ctx.globalAlpha = 0.14; poly([[x0,y0],[x1,y0],[x1,y1],[x0,y1]], C.ink); ctx.globalAlpha = 1; }
+  function drawTruck(tr){
+    const x = tr.x, y = tr.ty;
+    shadowRect(x+0.15, y+0.1, x+1.15, y+3.7);
+    box(x+0.08, y+0.3, 0, 0.74, 0.7, 0.2, C.tire); box(x+0.08, y+1.65, 0, 0.74, 0.7, 0.2, C.tire);
+    box(x, y, 0.18, 0.9, 2.62, 1.12, C.trailer, shade(C.trailer, 0.3));
+    poly([[x+0.9,y+0.18,0.66],[x+0.9,y+2.44,0.66],[x+0.9,y+2.44,0.78],[x+0.9,y+0.18,0.78]], C.orange);
+    poly([[x,y+2.62,0.66],[x+0.9,y+2.62,0.66],[x+0.9,y+2.62,0.78],[x,y+2.62,0.78]], shade(C.orange,-0.1));
+    box(x+0.1, y+2.85, 0, 0.7, 0.55, 0.16, C.tire);
+    const cc = C[tr.cab];
+    box(x+0.04, y+2.72, 0.12, 0.82, 0.82, 0.86, cc, shade(cc, 0.15));
+    poly([[x+0.1,y+3.54,0.58],[x+0.8,y+3.54,0.58],[x+0.8,y+3.54,0.9],[x+0.1,y+3.54,0.9]], C.glass);
+    poly([[x+0.86,y+2.8,0.58],[x+0.86,y+3.3,0.58],[x+0.86,y+3.3,0.88],[x+0.86,y+2.8,0.88]], C.glass);
+  }
+  function drawPallet(cx, cy, z, s){
+    box(cx-s/2-0.02, cy-s/2-0.02, z, s+0.04, s+0.04, 0.07, C.wood);
+    box(cx-s/2, cy-s/2, z+0.07, s, s, s*0.72, C.cargo, shade(C.cargo, 0.22));
+  }
+  function drawFork(f){
+    const x = f.x, y = f.y, [ux, uy] = f.dir;
+    shadowRect(x-0.3, y-0.3, x+0.34, y+0.34);
+    const parts = [];
+    parts.push({ key:x+y, fn:() => { box(x-0.24, y-0.24, 0.05, 0.48, 0.48, 0.34, C.orange, shade(C.orange, 0.12));
+      [[-0.22,-0.22],[0.16,-0.22],[-0.22,0.16],[0.16,0.16]].forEach(([a,b]) => box(x+a, y+b, 0.39, 0.06, 0.06, 0.34, C.ink));
+      box(x-0.24, y-0.24, 0.73, 0.48, 0.48, 0.05, C.ink); } });
+    const mx = x + ux*0.3, my = y + uy*0.3;
+    parts.push({ key:mx+my, fn:() => ux ? box(mx-0.04, my-0.2, 0, 0.08, 0.4, 0.95, C.ink) : box(mx-0.2, my-0.04, 0, 0.4, 0.08, 0.95, C.ink) });
+    if (f.loaded){ const px = x + ux*0.6, py = y + uy*0.6; parts.push({ key:px+py, fn:() => drawPallet(px, py, 0.12, 0.46) }); }
+    parts.sort((a, b) => a.key - b.key).forEach(p => p.fn());
+  }
+  function tag(text, sx, sy, fg, bg){
+    ctx.font = `600 11px "JetBrains Mono", ui-monospace, monospace`;
+    const w = ctx.measureText(text).width + 12, h = 18;
+    ctx.fillStyle = bg; ctx.strokeStyle = C.line; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.roundRect ? ctx.roundRect(sx-w/2, sy-h, w, h, 5) : ctx.rect(sx-w/2, sy-h, w, h); ctx.fill(); ctx.stroke();
+    ctx.fillStyle = fg; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(text, sx, sy-h/2+0.5);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  }
+  function pin(sx, sy){
+    const r = Math.max(7, k*0.3);
+    ctx.fillStyle = C.purple; ctx.beginPath();
+    ctx.arc(sx, sy - r*1.6, r, Math.PI*0.85, Math.PI*2.15); ctx.lineTo(sx, sy); ctx.closePath(); ctx.fill();
+    ctx.beginPath(); ctx.arc(sx, sy - r*1.6, r*0.4, 0, 7); ctx.fillStyle = C.surface; ctx.fill();
+  }
+  function isoRing(cx, cy, r, color, a){
+    const [sx, sy] = P(cx, cy); ctx.globalAlpha = a; ctx.strokeStyle = color; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.ellipse(sx, sy, Math.SQRT2*k*r, k*r/Math.SQRT2, 0, 0, 7); ctx.stroke(); ctx.globalAlpha = 1;
+  }
+  function pathLine(pts, color){
+    ctx.setLineDash([6, 5]); ctx.strokeStyle = color; ctx.lineWidth = 2; ctx.beginPath();
+    pts.forEach((p, i) => { const [a, b] = P(p[0], p[1], 0.02); i ? ctx.lineTo(a, b) : ctx.moveTo(a, b); }); ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  function draw(){
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    ctx.clearRect(0, 0, W, H);
+    drawGround();
+    // selection ring
+    const st = trucks[selected], sdx = DOCKS[selected];
+    const ph = (clock % 1.8) / 1.8;
+    isoRing(sdx + 0.7, 7.6, 0.6 + ph*0.9, C.purple, 0.9*(1-ph));
+    isoRing(sdx + 0.7, 7.6, 0.6, C.purple, 0.5);
+    if (mode === 'missions'){
+      forks.forEach(f => { if (f.path.length) pathLine([[f.x, f.y], ...f.path.map(p => [p.x, p.y])], C.teal); });
+      trucks.forEach(t => { if (t.state === 'arriving') pathLine([[t.x+0.45, t.ty+3.6], [t.x+0.45, DOCK_Y+0.4]], C.orange); });
+    }
+    drawBuilding();
+    const items = [];
+    slots.forEach(s => { if (s.state === 'full') items.push({ key:s.x + s.y + s.lvl*0.01, fn:() => drawPallet(s.x, s.y, s.lvl*0.5, 0.62) }); });
+    trucks.forEach(t => { if (t.state !== 'gap') items.push({ key:t.x + 0.45 + t.ty + 1.6, fn:() => drawTruck(t) }); });
+    forks.forEach(f => items.push({ key:f.x + f.y, fn:() => drawFork(f) }));
+    items.sort((a, b) => a.key - b.key).forEach(i => i.fn());
+
+    if (mode === 'units'){
+      trucks.forEach(t => { if (t.state === 'gap') return; const [sx, sy] = P(t.x+0.45, t.ty+1.3, 1.5); tag(t.reg, sx, sy - 6, C.ink, C.surface); });
+      forks.forEach(f => { const [sx, sy] = P(f.x, f.y, 1.0); tag(f.id, sx, sy - 4, C.surface, C.teal); });
+    }
+    if (mode === 'missions'){
+      trucks.forEach(t => { if (t.state !== 'unloading') return; const [sx, sy] = P(t.x+0.45, t.ty+1.3, 1.5); tag(`${t.done}/${t.n}`, sx, sy - 6, C.surface, C.orange); });
+    }
+    if (st.state !== 'gap'){
+      const bob = reduce || paused ? 0 : Math.sin(clock*3)*0.12;
+      const [sx, sy] = P(st.x+0.45, st.ty+1.3, 1.45 + bob + (mode === 'units' ? 0.9 : 0));
+      pin(sx, sy);
+    }
+  }
+
+  /* ---------- HUD + panel ---------- */
+  const $ = id => document.getElementById(id);
+  const fmt = n => n.toLocaleString('en-IN');
+  const tf = new Intl.DateTimeFormat('en-IN', { timeZone:'Asia/Kolkata', hour:'2-digit', minute:'2-digit', hour12:false });
+  function truckStatus(t){
+    if (t.state === 'gap') return ['Free', 'is-idle', 'Next truck booked'];
+    if (t.state === 'arriving') return ['Reversing', 'is-warn', t.reg];
+    if (t.state === 'unloading') return t.done >= t.n ? ['Sealing', 'is-info', t.reg] : [`Unloading ${t.done}/${t.n}`, 'is-good', t.reg];
+    return ['Gate out', 'is-info', t.reg];
+  }
+  const dockList = $('wsg-docks');
+  dockList.innerHTML = DOCKS.map((_, i) => `<li><button class="wsg-row" type="button" data-dock="${i}" aria-pressed="${i === selected}"><span class="wsg-tagnum">D${i+1}</span><span class="wsg-rowtext"><b data-f="reg"></b><small data-f="from"></small></span><span class="wsg-pill" data-f="pill"></span></button></li>`).join('');
+  dockList.addEventListener('click', e => { const b = e.target.closest('[data-dock]'); if (b) select(+b.dataset.dock); });
+  const INV = [['Corrugated box 12×10×8', 'SKU-CB-1210', 1240, 'In stock', 'is-good'], ['Dal sacks 30 kg', 'SKU-DS-30', 382, 'In stock', 'is-good'], ['Packing tape 48 mm', 'SKU-PT-48', 96, 'Low', 'is-warn'], ['Inbound pallets staged', 'Zone C · awaiting put-away', 0, 'Put-away', 'is-info']];
+  $('wsg-inv').innerHTML = INV.map((r, i) => `<li class="wsg-row wsg-inv-row"><span class="wsg-tagnum">${String.fromCharCode(65+i)}</span><span class="wsg-rowtext"><b>${r[0]}</b><small>${r[1]}</small></span><span class="wsg-pill ${r[4]}" ${i === 3 ? 'id="wsg-staged"' : ''}>${i === 3 ? '' : fmt(r[2]) + ' · '}${r[3]}</span></li>`).join('');
+  const stepsEl = [...$('wsg-steps').children];
+  let lastStock = stock;
+
+  function ui(){
+    // KPIs
+    const sv = $('wsg-stock'); sv.textContent = fmt(stock);
+    sv.classList.toggle('is-up', stockFlash > 0 && stock >= lastStock); lastStock = stock;
+    $('wsg-stock-sub').textContent = `Zone C · ${Math.round(stock/900*100)}% full`;
+    const inYard = trucks.filter(t => t.state !== 'gap').length, rev = trucks.filter(t => t.state === 'arriving').length;
+    $('wsg-trucks').textContent = inYard;
+    $('wsg-trucks-sub').textContent = rev ? `${rev} reversing to dock` : 'all docked';
+    $('wsg-unl').textContent = fmt(unloaded);
+    const busy = trucks.filter(t => t.state === 'unloading' || t.state === 'arriving').length;
+    $('wsg-util-n').textContent = `${busy} / 4`; $('wsg-util-bar').style.width = busy/4*100 + '%';
+    $('wsg-clock').textContent = 'Live ' + tf.format(new Date());
+    // docks
+    [...dockList.querySelectorAll('[data-dock]')].forEach((b, i) => {
+      const t = trucks[i], [lab, cls] = truckStatus(t);
+      b.setAttribute('aria-pressed', i === selected);
+      b.querySelector('[data-f=reg]').textContent = t.state === 'gap' ? 'Empty' : t.reg;
+      b.querySelector('[data-f=from]').textContent = t.state === 'gap' ? 'Next truck booked' : 'From ' + t.origin;
+      const p = b.querySelector('[data-f=pill]'); p.textContent = lab; p.className = 'wsg-pill ' + cls;
+    });
+    $('wsg-staged').textContent = slots.filter(s => s.state === 'full').length + ' · Put-away';
+    // tracking card
+    const t = trucks[selected];
+    let active = 4, last = 'Unloading';
+    if (t.state === 'gap'){ $('wsg-tr-title').textContent = `Dock ${selected+1} · free`; $('wsg-tr-meta').textContent = 'Next inbound truck is on the way'; active = -1; last = 'Unloading'; }
+    else {
+      $('wsg-tr-title').textContent = `#${t.shp} · ${t.reg}`;
+      $('wsg-tr-meta').textContent = `From ${t.origin} · Dock ${selected+1} · ${t.n} pallets`;
+      if (t.state === 'arriving'){ active = 2; }
+      else if (t.state === 'unloading'){ active = 4; last = t.done >= t.n ? `Unloaded ${t.n}/${t.n}` : `Unloading ${t.done}/${t.n}`; if (t.done >= t.n) active = 5; }
+      else { active = 5; last = `Unloaded ${t.n}/${t.n}`; }
+    }
+    $('wsg-last').textContent = last;
+    stepsEl.forEach((li, i) => { li.classList.toggle('is-done', active >= 0 && i < active); li.classList.toggle('is-active', i === active); });
+    // tabs
+    if (mode === 'units'){
+      $('wsg-u-trucks').innerHTML = trucks.map((t, i) => { const [lab, cls] = truckStatus(t);
+        return `<li class="wsg-row"><span class="wsg-tagnum">D${i+1}</span><span class="wsg-rowtext"><b>${t.state === 'gap' ? '—' : t.reg}</b><small>${t.state === 'gap' ? 'Dock free' : t.origin}</small></span><span class="wsg-pill ${cls}">${lab}</span></li>`; }).join('');
+      const FS = { idle:['Idle','is-idle'], pick:['Picking','is-warn'], carry:['Carrying','is-good'], return:['Returning','is-info'] };
+      $('wsg-u-forks').innerHTML = forks.map(f => { const [lab, cls] = FS[f.phase];
+        return `<li class="wsg-row"><span class="wsg-tagnum">${f.id.slice(3)}</span><span class="wsg-rowtext"><b>${f.id}</b><small>Serving Dock ${f.dock+1}</small></span><span class="wsg-pill ${cls}">${lab}</span></li>`; }).join('');
+    }
+    if (mode === 'missions'){
+      const ms = [];
+      trucks.forEach((t, i) => {
+        if (t.state === 'unloading') ms.push([`Unload ${t.reg}`, `${t.done}/${t.n}`, t.done/t.n, `Dock ${i+1} · ${forks[i].id}`]);
+        if (t.state === 'arriving') ms.push([`Receive ${t.reg}`, 'Reversing', Math.min(1, t.t/ARR), `Dock ${i+1} · from ${t.origin}`]);
+      });
+      const staged = slots.filter(s => s.state === 'full').length;
+      ms.push(['Put away to racks', `${staged} staged`, 1 - staged/24, 'Zone C → Aisles 4–9']);
+      ms.push(['Outbound wave 14', '2 of 3 booked', 0.66, 'Dispatch 21:30 · Bengaluru metro']);
+      $('wsg-missions').innerHTML = ms.map(m => `<div class="wsg-mission"><div class="wsg-mission-top"><b>${m[0]}</b><span>${m[1]}</span></div><div class="wsg-bar"><i style="width:${Math.round(m[2]*100)}%"></i></div><small style="font-size:11.5px;color:var(--wsg-muted)">${m[3]}</small></div>`).join('');
+    }
+  }
+
+  function select(i){ selected = i; ui(); if (!running || paused) draw(); }
+  document.querySelectorAll('.wsg-chip').forEach(ch => ch.addEventListener('click', () => {
+    mode = ch.dataset.mode;
+    document.querySelectorAll('.wsg-chip').forEach(c => c.setAttribute('aria-selected', c === ch));
+    ['map','units','missions'].forEach(m => $('wsg-tab-' + m).hidden = m !== mode);
+    ui(); if (!running || paused) draw();
+  }));
+
+  // click a truck on the canvas
+  function hit(e){
+    const r = cv.getBoundingClientRect(), mx = e.clientX - r.left, my = e.clientY - r.top;
+    let best = -1, bd = Infinity;
+    trucks.forEach((t, i) => { if (t.state === 'gap') return; const [sx, sy] = P(t.x+0.45, t.ty+1.6, 0.6); const d = Math.hypot(sx-mx, sy-my); if (d < Math.max(28, k*1.9) && d < bd){ bd = d; best = i; } });
+    return best;
+  }
+  cv.addEventListener('click', e => { const i = hit(e); if (i >= 0) select(i); });
+  cv.addEventListener('mousemove', e => { cv.style.cursor = hit(e) >= 0 ? 'pointer' : 'default'; });
+
+  /* ---------- loop ---------- */
+  let running = false, paused = reduce, visible = true, last = 0, uiAcc = 0;
+  const pauseBtn = $('wsg-pause');
+  function setPauseLabel(){ pauseBtn.textContent = paused ? 'Play' : 'Pause'; pauseBtn.setAttribute('aria-pressed', paused); }
+  pauseBtn.addEventListener('click', () => { paused = !paused; setPauseLabel(); if (!paused) start(); });
+  setPauseLabel();
+  function frame(ts){
+    if (!running) return;
+    if (paused || !visible || document.hidden){ running = false; return; }
+    const dt = Math.min(0.05, (ts - last) / 1000 || 0.016); last = ts;
+    step(dt); draw();
+    uiAcc += dt; if (uiAcc > 0.25){ uiAcc = 0; ui(); }
+    requestAnimationFrame(frame);
+  }
+  function start(){ if (running || paused || !visible || document.hidden) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; if (visible) start(); }, { threshold:0.05 }).observe(cv);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) start(); });
+
+  const retheme = () => { readTokens(); draw(); };
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', retheme);
+  new MutationObserver(retheme).observe(document.documentElement, { attributes:true, attributeFilter:['data-theme'] });
+  new ResizeObserver(resize).observe(wrap);
+  document.fonts && document.fonts.ready.then(() => draw());
+
+  readTokens(); resize(); ui(); draw(); start();
+})();
+</script>
+  <!-- ══ /WARESYNC LIVE YARD VIEW ══ -->
     <!-- ══ WARESYNC PRODUCT MOCKUP SHOWCASE ══════════════════════════════════ -->
   <section class="ws-showcase">
     <div class="container">
