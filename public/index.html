@@ -3068,127 +3068,295 @@ a img, button img, .login-product-card img { pointer-events: auto; }
 
         <!-- RIGHT PANEL (Option D tabbed switcher) -->
         <div class="hero-visual">
-          <div class="hero-dash-switcher" id="heroDashSwitcher">
+<style>
+/* Warehouse-to-doorstep hero animation (scoped under .whn) */
+:root{
+  --whn-bg:#0C1C3E; --whn-panel:#0F2350; --whn-ink:#F2F5FB; --whn-muted:#9DB0D6; --whn-line:rgba(107,159,255,.22);
+  --whn-blue:#1B4FD8; --whn-blue2:#6B9FFF; --whn-orange:#F26A1B; --whn-teal:#22B3AE; --whn-purple:#9077F2; --whn-good:#3CC583;
+  --whn-ground:#0E2147; --whn-block:#11285A; --whn-road:#091634; --whn-mark:#2B4C8F; --whn-wall:#24427F; --whn-roof:#2E5BD6;
+  --whn-lit:#F7C64B; --whn-tree:#1D5C5A; --whn-van:#E8EDF6; --whn-glass:#081022; --whn-tire:#050A16;
+  --whn-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
+  --whn-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+}
+/* ---- the new hero visual (drop-in) ---- */
+.whn{position:relative;width:100%;aspect-ratio:540/500;max-width:100%;border-radius:14px;overflow:hidden;
+  background:radial-gradient(80% 70% at 50% 45%, #133070 0%, var(--whn-ground) 70%);border:1px solid var(--whn-line);
+  box-shadow:0 30px 80px rgba(3,10,30,.55);font-family:var(--whn-sans);color:var(--whn-ink)}
+.whn canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.whn-chip{position:absolute;display:inline-flex;align-items:center;gap:8px;padding:7px 11px;border-radius:999px;background:rgba(9,22,52,.82);border:1px solid var(--whn-line);
+  font:600 11px/1 var(--whn-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--whn-muted);backdrop-filter:blur(6px)}
+.whn-live{top:14px;left:14px}
+.whn-live::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--whn-good);box-shadow:0 0 0 0 rgba(60,197,131,.6);animation:whn-ping 1.8s ease-out infinite}
+.whn-count{top:14px;right:14px;flex-direction:column;align-items:flex-end;gap:5px;border-radius:12px;padding:9px 12px}
+.whn-count b{font:700 20px/1 var(--whn-mono);color:var(--whn-ink);letter-spacing:0;font-variant-numeric:tabular-nums;transition:color .4s}
+.whn-count b.is-up{color:var(--whn-good)}
+.whn-card{position:absolute;left:14px;right:14px;bottom:14px;max-width:360px;padding:12px 14px;border-radius:12px;background:rgba(9,22,52,.88);border:1px solid var(--whn-line);backdrop-filter:blur(8px);display:flex;flex-direction:column;gap:9px}
+.whn-card-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.whn-card-top b{font:700 13px/1.2 var(--whn-mono)}
+.whn-badge{font:700 10.5px/1 var(--whn-mono);padding:5px 7px;border-radius:5px;white-space:nowrap}
+.whn-badge.out{color:var(--whn-orange);background:rgba(242,106,27,.14)}
+.whn-badge.done{color:var(--whn-good);background:rgba(60,197,131,.14)}
+.whn-badge.load{color:var(--whn-blue2);background:rgba(107,159,255,.14)}
+.whn-card small{font-size:12px;color:var(--whn-muted)}
+.whn-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.whn-steps i{height:4px;border-radius:9px;background:rgba(157,176,214,.22);transition:background .3s}
+.whn-steps i.on{background:var(--whn-blue2)}
+.whn-steps i.done{background:var(--whn-good)}
+.whn-steplab{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;font:600 10px/1 var(--whn-mono);letter-spacing:.04em;color:var(--whn-muted);text-transform:uppercase}
+@keyframes whn-ping{0%{box-shadow:0 0 0 0 rgba(60,197,131,.55)}100%{box-shadow:0 0 0 8px rgba(60,197,131,0)}}
+@media (max-width:520px){.whn-count{display:none}.whn-card{max-width:none;padding:10px 12px;gap:7px}.whn-steplab{display:none}}
+@media (prefers-reduced-motion:reduce){.whn *{animation:none!important;transition:none!important}}
+</style>
+<!-- ══ HERO NETWORK VISUAL ══ -->
+  <div class="whn" id="whn" role="img" aria-label="Animated city block at night: courier vans leave a WareSync warehouse, follow drawn routes and deliver parcels to Bengaluru addresses.">
+   <canvas></canvas>
+   <span class="whn-chip whn-live">Live · Bengaluru metro</span>
+   <span class="whn-chip whn-count">Delivered today<b id="whn-n">412</b></span>
+   <div class="whn-card" aria-live="polite">
+    <div class="whn-card-top"><b id="whn-awb">SWS-55302 · Ekart</b><span class="whn-badge out" id="whn-st">Out for delivery</span></div>
+    <small id="whn-to">Indiranagar · 560038</small>
+    <div class="whn-steps"><i id="whn-s0"></i><i id="whn-s1"></i><i id="whn-s2"></i></div>
+    <div class="whn-steplab"><span>Packed</span><span>On route</span><span>Delivered</span></div>
+   </div>
+  </div>
+  <!-- ══ /HERO NETWORK VISUAL ══ -->
+<script>
+(() => {
+  const host = document.getElementById('whn'); if (!host) return;
+  const cv = host.querySelector('canvas'), ctx = cv.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const C = {}; ['ground','block','road','mark','wall','roof','lit','tree','van','glass','tire','blue','blue2','orange','teal','purple','good','ink','muted']
+    .forEach(n => C[n] = getComputedStyle(host).getPropertyValue('--whn-' + n).trim());
+  const rgb = h => { if (h.startsWith('rgb')) return h.match(/[\d.]+/g).slice(0,3).map(Number); h = h.replace('#',''); const n = parseInt(h,16); return [n>>16&255, n>>8&255, n&255]; };
+  const shade = (h, a) => { const [r,g,b] = rgb(h); const f = v => Math.round(a < 0 ? v*(1+a) : v + (255-v)*a); return `rgb(${f(r)},${f(g)},${f(b)})`; };
+  const alpha = (h, a) => { const [r,g,b] = rgb(h); return `rgba(${r},${g},${b},${a})`; };
 
-            <!-- Tab bar -->
-            <div class="hero-d-tabs">
-              <button class="hero-d-tab active" id="heroTab0" onclick="heroDashGo(0)">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
-                SwiftShip
-              </button>
-              <button class="hero-d-tab" id="heroTab1" onclick="heroDashGo(1)">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 20a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8l-7 5V8l-7 5V4a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M17 18h1"/><path d="M12 18h1"/><path d="M7 18h1"/></svg>
-                WareSync
-              </button>
-            </div>
+  let W = 0, H = 0, k = 16, ox = 0, oy = 0, dpr = 1;
+  const P = (x, y, z = 0) => [ox + (x - y)*k, oy + (x + y)*k*0.5 - z*k];
+  const poly = (pts, fill) => { ctx.beginPath(); pts.forEach((p, i) => { const [a, b] = P(p[0], p[1], p[2] || 0); i ? ctx.lineTo(a, b) : ctx.moveTo(a, b); }); ctx.closePath(); ctx.fillStyle = fill; ctx.fill(); };
+  function box(x, y, z, w, d, h, base, top){
+    poly([[x,y+d,z],[x+w,y+d,z],[x+w,y+d,z+h],[x,y+d,z+h]], shade(base,-0.12));
+    poly([[x+w,y,z],[x+w,y+d,z],[x+w,y+d,z+h],[x+w,y,z+h]], shade(base,-0.32));
+    poly([[x,y,z+h],[x+w,y,z+h],[x+w,y+d,z+h],[x,y+d,z+h]], top || shade(base, 0.12));
+  }
+  function resize(){
+    dpr = Math.min(2, window.devicePixelRatio || 1); W = host.clientWidth; H = host.clientHeight;
+    cv.width = Math.round(W*dpr); cv.height = Math.round(H*dpr);
+    k = Math.min(W/25, H/14.5); ox = W/2 - 1.2*k; oy = H/2 - 7.4*k - 0.9*k;
+    draw();
+  }
 
-            <!-- Slide track -->
-            <div class="hero-dash-track" id="heroDashTrack">
+  /* ---------- city ---------- */
+  const HR = [4.5, 9.5], VR = [6.5, 12.5], RW = 0.65;
+  let seed = 7; const rnd = () => (seed = (seed*16807) % 2147483647) / 2147483647;
+  const WH = { x:0.6, y:0.5, w:4.6, d:2.75, h:1.6 };
+  const buildings = [
+    { t:'shop', x:7.5, y:1.3, w:2.0, d:2.0, h:1.1, awn:'orange' }, { t:'shop', x:9.8, y:1.0, w:1.7, d:2.3, h:1.5, awn:'teal' },
+    { t:'tower', x:13.5, y:0.6, w:2.1, d:2.6, h:3.3 },
+    { t:'house', x:0.8, y:6.0, w:1.2, d:1.4, h:0.75 }, { t:'house', x:2.6, y:6.2, w:1.2, d:1.3, h:0.75 }, { t:'house', x:4.3, y:6.0, w:1.2, d:1.5, h:0.8 },
+    { t:'tower', x:7.6, y:5.6, w:1.8, d:2.8, h:2.4 }, { t:'tower', x:10.0, y:5.7, w:1.5, d:2.6, h:1.8 },
+    { t:'house', x:13.6, y:5.9, w:1.4, d:1.5, h:0.85 },
+    { t:'house', x:1.0, y:10.8, w:1.3, d:1.4, h:0.8 }, { t:'house', x:3.3, y:11.0, w:1.2, d:1.3, h:0.75 },
+    { t:'shop', x:7.6, y:10.7, w:3.6, d:2.3, h:1.3, awn:'purple' },
+    { t:'tower', x:13.6, y:10.6, w:1.9, d:1.9, h:2.7 },
+  ];
+  buildings.forEach(b => { b.win = []; for (let i = 0; i < 40; i++) b.win.push(rnd() < 0.55); b.flash = 0; });
+  const trees = [[5.2,5.7],[0.5,8.4],[15.4,6.2],[15.2,8.2],[5.3,12.9],[12.0,13.4],[2.2,3.7],[15.5,13.3],[11.6,1.0]];
+  // destinations: drop point on a road, building index, area, PIN
+  const DEST = [
+    { p:[9.0,4.5],   via:[],                         b:1,  area:'Indiranagar',  pin:'560038' },
+    { p:[14.5,4.5],  via:[],                         b:2,  area:'Whitefield',   pin:'560066' },
+    { p:[6.5,7.0],   via:[[6.5,4.5]],                b:5,  area:'HSR Layout',   pin:'560102' },
+    { p:[12.5,7.0],  via:[[12.5,4.5]],               b:7,  area:'Koramangala',  pin:'560034' },
+    { p:[3.0,9.5],   via:[[6.5,4.5],[6.5,9.5]],      b:9,  area:'Jayanagar',    pin:'560041' },
+    { p:[9.5,9.5],   via:[[6.5,4.5],[6.5,9.5]],      b:11, area:'Malleshwaram', pin:'560003' },
+    { p:[14.5,9.5],  via:[[12.5,4.5],[12.5,9.5]],    b:12, area:'Hebbal',       pin:'560024' },
+  ];
+  const COURIERS = [['Ekart','orange'],['India Post','purple'],['Amazon Shipping','teal'],['Srimaruti','blue2']];
+  let awbSeq = 55290;
+  const vans = [0,1,2].map(i => ({ i, home:[1.3 + i*1.45, 4.5], x:1.3 + i*1.45, y:4.5, dir:[1,0], path:[], state:'load', t:1 + i*2.2, dest:null, c:COURIERS[i], awb:'' }));
+  const pops = []; let delivered = 412, flashN = 0, focus = vans[0], clock = 0;
 
-              <!-- PANEL 0: SwiftShip -->
-              <div class="hero-dash-panel">
-                <div class="hero-mockup-browser">
-                  <div class="hmb-bar">
-                    <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
-                    <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
-                  </div>
-                  <div class="hmb-app">
-                    <div class="hmb-nav">
-                      <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
-                      <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
-                      <div class="hmb-nav-item">&#128202; Analytics</div>
-                      <div class="hmb-nav-item">&#128260; NDR</div>
-                      <div class="hmb-nav-item">&#128179; COD</div>
-                      <div class="hmb-nav-item">&#128279; Carriers</div>
-                      <div class="hmb-nav-item">&#9881; Settings</div>
-                    </div>
-                    <div class="hmb-main">
-                      <div class="hmb-header">
-                        <div><div class="hmb-title">Shipments</div><div class="hmb-sub">142 active &middot; updated just now</div></div>
-                        <div class="hmb-btn">+ Book Shipment</div>
-                      </div>
-                      <div class="hmb-courier-tabs">
-                        <span class="hmb-ctab hmb-ctab-active">All</span>
-                        <span class="hmb-ctab">Delhivery</span>
-                        <span class="hmb-ctab">Blue Dart</span>
-                        <span class="hmb-ctab">Ekart</span>
-                      </div>
-                      <table class="hmb-table">
-                        <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
-                        <tbody>
-                          <tr><td class="hmb-mono hmb-bold">DLV-77213</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Bengaluru</td><td><span class="hmb-badge hmb-green">Delivered</span></td><td class="hmb-muted">&mdash;</td></tr>
-                          <tr><td class="hmb-mono hmb-bold">BD-40921</td><td class="hmb-muted">Blue Dart</td><td class="hmb-muted">Hyderabad</td><td><span class="hmb-badge hmb-orange">Out for delivery</span></td><td class="hmb-muted">Today</td></tr>
-                          <tr style="background:rgba(27,79,216,0.06)"><td class="hmb-mono hmb-bold">EKT-55302</td><td class="hmb-muted">Ekart</td><td class="hmb-muted">Kolkata</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">2 days</td></tr>
-                          <tr><td class="hmb-mono hmb-bold">DTDC-1180</td><td class="hmb-muted">DTDC</td><td class="hmb-muted">Chennai</td><td><span class="hmb-badge hmb-purple">Label created</span></td><td class="hmb-muted">3 days</td></tr>
-                          <tr><td class="hmb-mono hmb-bold">DLV-77198</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Pune</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">1 day</td></tr>
-                        </tbody>
-                      </table>
-                      <div class="hmb-stats">
-                        <div class="hmb-stat"><div class="hmb-stat-num">97.5%</div><div class="hmb-stat-lbl">On-time delivery</div></div>
-                        <div class="hmb-stat"><div class="hmb-stat-num">&#8377;1,240</div><div class="hmb-stat-lbl">COD pending today</div></div>
-                        <div class="hmb-stat"><div class="hmb-stat-num">94.3%</div><div class="hmb-stat-lbl">First attempt</div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  function dispatch(v){
+    const busy = vans.filter(o => o !== v && o.dest).map(o => o.dest);
+    const opts = DEST.filter(d => !busy.includes(d)); const d = opts[Math.floor(Math.random()*opts.length)];
+    v.dest = d; v.c = COURIERS[Math.floor(Math.random()*4)]; v.awb = 'SWS-' + (++awbSeq);
+    v.path = [...d.via.map(p => ({ x:p[0], y:p[1] })), { x:d.p[0], y:d.p[1], drop:true }];
+    v.state = 'out'; focus = v;
+  }
+  function update(dt){
+    clock += dt;
+    vans.forEach(v => {
+      if (v.state === 'load'){ v.t -= dt; if (v.t <= 0) dispatch(v); return; }
+      if (v.state === 'drop'){ v.t -= dt; if (v.t <= 0){ v.state = 'back'; v.path = [...v.dest.via.slice().reverse().map(p => ({ x:p[0], y:p[1] })), { x:v.home[0], y:v.home[1], home:true }]; } return; }
+      const wp = v.path[0], dx = wp.x - v.x, dy = wp.y - v.y, d = Math.hypot(dx, dy), st = (v.state === 'out' ? 2.7 : 3.2)*dt;
+      if (d > 0.001) v.dir = Math.abs(dx) > Math.abs(dy) ? [Math.sign(dx),0] : [0,Math.sign(dy)];
+      if (d <= st){
+        v.x = wp.x; v.y = wp.y; v.path.shift();
+        if (wp.drop){ v.state = 'drop'; v.t = 1.4; delivered++; flashN = 0.8; buildings[v.dest.b].flash = 1; pops.push({ x:v.x, y:v.y, t:0, pin:v.dest.pin }); focus = v; }
+        if (wp.home){ v.state = 'load'; v.t = 1.6 + Math.random()*1.6; v.dest = null; v.dir = [1,0]; }
+      } else { v.x += dx/d*st; v.y += dy/d*st; }
+    });
+    pops.forEach(p => p.t += dt); while (pops.length && pops[0].t > 1.8) pops.shift();
+    buildings.forEach(b => b.flash = Math.max(0, b.flash - dt*0.7));
+    flashN -= dt;
+  }
 
-              <!-- PANEL 1: WareSync -->
-              <div class="hero-dash-panel">
-                <div class="hero-mockup-browser" style="border-color:rgba(5,150,105,0.3)">
-                  <div class="hmb-bar">
-                    <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
-                    <span class="hmb-url">waresync.sendit.co.in/warehouse</span>
-                  </div>
-                  <div class="hmb-app">
-                    <div class="hmb-nav">
-                      <div class="hmb-logo"><div class="hmb-logo-box" style="background:#059669"></div><span>WareSync</span></div>
-                      <div class="hmb-nav-item" style="background:rgba(5,150,105,0.15);color:#34d399;font-weight:600">&#127968; Warehouse</div>
-                      <div class="hmb-nav-item">&#9635; Dashboard</div>
-                      <div class="hmb-nav-item">&#128230; Orders</div>
-                      <div class="hmb-nav-item">&#128230; Inventory</div>
-                      <div class="hmb-nav-item">&#128200; Reports</div>
-                      <div class="hmb-nav-item">&#9881; Settings</div>
-                    </div>
-                    <div class="hmb-main">
-                      <div class="hmb-header">
-                        <div><div class="hmb-title">Warehouse Operations</div><div class="hmb-sub">8 active pickers &middot; Avg pick 42s</div></div>
-                        <div class="hmb-btn" style="background:#059669">+ New Task</div>
-                      </div>
-                      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 10px">
-                        <div style="display:flex;flex-direction:column;gap:4px">
-                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">To Pick <span style="background:#1B4FD8;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">9</span></div>
-                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1042 &middot; 3 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin A2 &middot; A4</div></div>
-                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1038 &middot; 4 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Bin B1 &middot; B3</div></div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:4px">
-                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Packing <span style="background:#f59e0b;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">6</span></div>
-                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1041 &middot; 1 item<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 2 &middot; Priya</div></div>
-                          <div style="background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.07);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1036 &middot; 2 items<div style="font-size:0.62rem;color:rgba(180,200,240,0.35);margin-top:2px">Station 1 &middot; Rohit</div></div>
-                        </div>
-                        <div style="display:flex;flex-direction:column;gap:4px">
-                          <div style="font-size:0.65rem;font-weight:700;color:rgba(180,200,240,0.45);text-transform:uppercase;letter-spacing:0.06em;display:flex;align-items:center;gap:4px">Ready <span style="background:#10b981;color:#fff;font-size:0.6rem;padding:1px 5px;border-radius:8px">4</span></div>
-                          <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1040 &middot; 6 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Delhivery</div></div>
-                          <div style="background:rgba(16,185,129,0.06);border:1px solid rgba(16,185,129,0.2);border-radius:6px;padding:6px 8px;font-size:0.68rem;color:rgba(180,200,240,0.8)">#WS-1033 &middot; 2 items<div style="font-size:0.62rem;color:#34d399;margin-top:2px">Blue Dart</div></div>
-                        </div>
-                      </div>
-                      <div class="hmb-stats">
-                        <div class="hmb-stat"><div class="hmb-stat-num">37</div><div class="hmb-stat-lbl">Orders today</div></div>
-                        <div class="hmb-stat"><div class="hmb-stat-num">369</div><div class="hmb-stat-lbl">Total inventory</div></div>
-                        <div class="hmb-stat"><div class="hmb-stat-num">99.2%</div><div class="hmb-stat-lbl">Order accuracy</div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+  /* ---------- draw ---------- */
+  function drawGround(){
+    poly([[-3,-3],[19,-3],[19,17],[-3,17]], C.block);
+    const blocks = []; const xs = [-3, ...VR, 19], ys = [-3, ...HR, 17];
+    ctx.strokeStyle = alpha(C.blue2, 0.08); ctx.lineWidth = 1;
+    for (let i = 0; i < 3; i++) for (let j = 0; j < 3; j++){
+      const x0 = xs[i] + (i ? RW : 0) + 0.15, x1 = xs[i+1] - (i < 2 ? RW : 0) - 0.15, y0 = ys[j] + (j ? RW : 0) + 0.15, y1 = ys[j+1] - (j < 2 ? RW : 0) - 0.15;
+      poly([[x0,y0],[x1,y0],[x1,y1],[x0,y1]], shade(C.block, 0.04));
+    }
+    HR.forEach(y => poly([[-3,y-RW],[19,y-RW],[19,y+RW],[-3,y+RW]], C.road));
+    VR.forEach(x => poly([[x-RW,-3],[x+RW,-3],[x+RW,17],[x-RW,17]], C.road));
+    ctx.strokeStyle = C.mark; ctx.lineWidth = Math.max(1, k*0.05); ctx.setLineDash([k*0.45, k*0.4]); ctx.beginPath();
+    HR.forEach(y => { const [a,b] = P(-3,y), [c,d] = P(19,y); ctx.moveTo(a,b); ctx.lineTo(c,d); });
+    VR.forEach(x => { const [a,b] = P(x,-3), [c,d] = P(x,17); ctx.moveTo(a,b); ctx.lineTo(c,d); });
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+  function windows(b, faceY){
+    const cols = Math.max(1, Math.floor((faceY ? b.w : b.d)/0.45)), rows = Math.max(1, Math.floor((b.h - 0.3)/0.45));
+    let n = 0;
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++){
+      const lit = b.win[(n++) % b.win.length];
+      const u0 = 0.18 + c*((faceY ? b.w : b.d) - 0.3)/cols, u1 = u0 + 0.2, z0 = 0.3 + r*0.45, z1 = z0 + 0.22;
+      const col = lit ? alpha(C.lit, 0.55 + 0.45*b.flash) : 'rgba(5,10,24,.55)';
+      if (faceY) poly([[b.x+u0,b.y+b.d,z0],[b.x+u1,b.y+b.d,z0],[b.x+u1,b.y+b.d,z1],[b.x+u0,b.y+b.d,z1]], col);
+      else poly([[b.x+b.w,b.y+u0,z0],[b.x+b.w,b.y+u1,z0],[b.x+b.w,b.y+u1,z1],[b.x+b.w,b.y+u0,z1]], col);
+    }
+  }
+  function drawBuilding(b){
+    const base = b.flash > 0 ? shade(C.wall, b.flash*0.25) : C.wall;
+    if (b.t === 'house'){
+      box(b.x, b.y, 0, b.w, b.d, b.h, base);
+      const cx = b.x + b.w/2, cy = b.y + b.d/2, ap = [cx, cy, b.h + 0.55], rf = shade(C.roof, -0.15);
+      poly([[b.x,b.y,b.h],[b.x+b.w,b.y,b.h],ap], shade(rf, 0.2)); poly([[b.x,b.y,b.h],[b.x,b.y+b.d,b.h],ap], shade(rf, 0.1));
+      poly([[b.x+b.w,b.y,b.h],[b.x+b.w,b.y+b.d,b.h],ap], shade(rf, -0.25)); poly([[b.x,b.y+b.d,b.h],[b.x+b.w,b.y+b.d,b.h],ap], rf);
+      poly([[cx-0.15,b.y+b.d,0.25],[cx+0.15,b.y+b.d,0.25],[cx+0.15,b.y+b.d,0.5],[cx-0.15,b.y+b.d,0.5]], alpha(C.lit, 0.75 + 0.25*b.flash));
+      return;
+    }
+    box(b.x, b.y, 0, b.w, b.d, b.h, base, shade(C.wall, 0.1));
+    windows(b, true); windows(b, false);
+    if (b.t === 'shop'){ const c = C[b.awn];
+      poly([[b.x,b.y+b.d,0.62],[b.x+b.w,b.y+b.d,0.62],[b.x+b.w,b.y+b.d+0.25,0.5],[b.x,b.y+b.d+0.25,0.5]], c); }
+    if (b.t === 'tower'){ const [sx, sy] = P(b.x + b.w/2, b.y + b.d/2, b.h + 0.25);
+      box(b.x + b.w/2 - 0.03, b.y + b.d/2 - 0.03, b.h, 0.06, 0.06, 0.25, C.wall);
+      ctx.beginPath(); ctx.arc(sx, sy, Math.max(1.5, k*0.07), 0, 7); ctx.fillStyle = alpha('#FF4D4D', 0.5 + 0.5*Math.sin(clock*3)); ctx.fill(); }
+  }
+  function drawWarehouse(){
+    const { x, y, w, d, h } = WH;
+    box(x, y, 0, w, d, h, '#2A4C8E', C.roof);
+    for (const sy of [1.1, 2.0]) poly([[x+0.4,sy,h],[x+w-0.4,sy,h],[x+w-0.4,sy+0.35,h],[x+0.4,sy+0.35,h]], shade(C.roof, 0.25));
+    poly([[x,y+d,h-0.22],[x+w,y+d,h-0.22],[x+w,y+d,h-0.1],[x,y+d,h-0.1]], C.orange);
+    for (let i = 0; i < 3; i++){ const dx = x + 0.45 + i*1.45;
+      poly([[dx,y+d,0],[dx+0.9,y+d,0],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], alpha(C.lit, 0.85));
+      poly([[dx,y+d,0.6],[dx+0.9,y+d,0.6],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], shade('#2A4C8E', -0.35)); }
+    const [sx, sy] = P(x + w, y + d - 0.25, 0.75), s = k/20;
+    ctx.save(); ctx.translate(sx, sy); ctx.transform(s, -s/2, 0, s, 0, 0);
+    ctx.fillStyle = 'rgba(232,237,246,.85)'; ctx.font = '700 11px ui-monospace, Menlo, monospace'; ctx.fillText('WARESYNC', 0, 0); ctx.restore();
+  }
+  function drawTree([x, y]){
+    box(x-0.05, y-0.05, 0, 0.1, 0.1, 0.35, '#3A2A1C');
+    const [sx, sy] = P(x, y, 0.62); ctx.beginPath(); ctx.arc(sx, sy, k*0.36, 0, 7); ctx.fillStyle = C.tree; ctx.fill();
+    ctx.beginPath(); ctx.arc(sx - k*0.1, sy - k*0.1, k*0.18, 0, 7); ctx.fillStyle = shade(C.tree, 0.15); ctx.fill();
+  }
+  function laneOffset(v){ return [v.dir[1]*0.28, -v.dir[0]*0.28]; }
+  function drawVan(v){
+    const [lx, ly] = laneOffset(v), cx = v.x + lx, cy = v.y + ly, [ux, uy] = v.dir, col = C[v.c[1]];
+    const L = 1.0, Wd = 0.56;
+    // headlight glow on the road ahead
+    if (v.state !== 'load'){ const [gx, gy] = P(cx + ux*1.1, cy + uy*1.1, 0);
+      const g = ctx.createRadialGradient(gx, gy, 0, gx, gy, k*1.1); g.addColorStop(0, 'rgba(255,230,160,.28)'); g.addColorStop(1, 'rgba(255,230,160,0)');
+      ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(gx, gy, k*1.3, k*0.65, 0, 0, 7); ctx.fill(); }
+    const bx = ux ? cx - L/2 : cx - Wd/2, by = ux ? cy - Wd/2 : cy - L/2, bw = ux ? L : Wd, bd = ux ? Wd : L;
+    ctx.globalAlpha = 0.35; poly([[bx+0.06,by+0.06],[bx+bw+0.1,by+0.06],[bx+bw+0.1,by+bd+0.1],[bx+0.06,by+bd+0.1]], '#000'); ctx.globalAlpha = 1;
+    const cab = 0.32, body = L - cab;
+    const front = ux > 0 || uy > 0;
+    const parts = [];
+    const bodyBox = () => ux ? box(ux > 0 ? bx : bx + cab, by, 0.1, body, Wd, 0.6, C.van, shade(C.van, 0.2)) : box(bx, uy > 0 ? by : by + cab, 0.1, Wd, body, 0.6, C.van, shade(C.van, 0.2));
+    const cabBox = () => { if (ux) box(ux > 0 ? bx + body : bx, by + 0.02, 0.1, cab, Wd - 0.04, 0.46, col); else box(bx + 0.02, uy > 0 ? by + body : by, 0.1, Wd - 0.04, cab, 0.46, col);
+      if (ux > 0) poly([[bx+L,by+0.08,0.35],[bx+L,by+Wd-0.1,0.35],[bx+L,by+Wd-0.1,0.52],[bx+L,by+0.08,0.52]], C.glass);
+      if (uy > 0) poly([[bx+0.08,by+L,0.35],[bx+Wd-0.1,by+L,0.35],[bx+Wd-0.1,by+L,0.52],[bx+0.08,by+L,0.52]], C.glass); };
+    if (front){ bodyBox(); cabBox(); } else { cabBox(); bodyBox(); }
+    // brand stripe on visible long side
+    if (ux) poly([[bx + (ux > 0 ? 0.05 : cab + 0.05),by+Wd,0.38],[bx + (ux > 0 ? body - 0.05 : L - 0.05),by+Wd,0.38],[bx + (ux > 0 ? body - 0.05 : L - 0.05),by+Wd,0.46],[bx + (ux > 0 ? 0.05 : cab + 0.05),by+Wd,0.46]], col);
+    else poly([[bx+Wd,by + (uy > 0 ? 0.05 : cab + 0.05),0.38],[bx+Wd,by + (uy > 0 ? body - 0.05 : L - 0.05),0.38],[bx+Wd,by + (uy > 0 ? body - 0.05 : L - 0.05),0.46],[bx+Wd,by + (uy > 0 ? 0.05 : cab + 0.05),0.46]], col);
+  }
+  function drawRoutes(){
+    vans.forEach(v => {
+      if (v.state !== 'out') return;
+      const col = C[v.c[1]], [lx, ly] = laneOffset(v);
+      const pts = [[v.x + lx, v.y + ly], ...v.path.map(p => [p.x, p.y])];
+      ctx.save(); ctx.strokeStyle = alpha(col, 0.95); ctx.lineWidth = 2.2; ctx.setLineDash([7, 6]); ctx.lineDashOffset = -clock*28; ctx.lineCap = 'round';
+      ctx.shadowColor = alpha(col, 0.8); ctx.shadowBlur = 8;
+      ctx.beginPath(); pts.forEach((p, i) => { const [a, b] = P(p[0], p[1], 0.03); i ? ctx.lineTo(a, b) : ctx.moveTo(a, b); }); ctx.stroke(); ctx.restore();
+      const [dx, dy] = P(v.dest.p[0], v.dest.p[1]), ph = (clock % 1.4)/1.4;
+      ctx.strokeStyle = alpha(col, 1 - ph); ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(dx, dy, k*(0.4 + ph*0.9)*1.41, k*(0.4 + ph*0.9)*0.71, 0, 0, 7); ctx.stroke();
+    });
+  }
+  function drawPins(){
+    vans.forEach(v => {
+      if (v.state !== 'out') return;
+      const col = C[v.c[1]], [sx, sy] = P(v.dest.p[0], v.dest.p[1], 0), r = Math.max(6, k*0.32);
+      ctx.fillStyle = col; ctx.beginPath(); ctx.arc(sx, sy - r*1.7, r, Math.PI*0.85, Math.PI*2.15); ctx.lineTo(sx, sy); ctx.closePath(); ctx.fill();
+      ctx.beginPath(); ctx.arc(sx, sy - r*1.7, r*0.42, 0, 7); ctx.fillStyle = '#fff'; ctx.fill();
+      label(v.dest.pin, sx, sy - r*3.1, 'rgba(9,22,52,.9)', '#E8EDF6');
+    });
+    pops.forEach(p => { const a = 1 - p.t/1.8, [sx, sy] = P(p.x, p.y, 0.8 + p.t*0.9); ctx.globalAlpha = Math.max(0, a); label('✓ Delivered', sx, sy, 'rgba(18,70,48,.95)', '#7BE3AE'); ctx.globalAlpha = 1; });
+  }
+  function label(t, sx, sy, bg, fg){
+    ctx.font = '700 11px ui-monospace, Menlo, monospace'; const w = ctx.measureText(t).width + 12, h = 19;
+    ctx.fillStyle = bg; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(sx - w/2, sy - h/2, w, h, 5) : ctx.rect(sx - w/2, sy - h/2, w, h); ctx.fill();
+    ctx.fillStyle = fg; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(t, sx, sy + 0.5); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+  }
+  function draw(){
+    if (!W) return;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0); ctx.clearRect(0, 0, W, H);
+    drawGround(); drawRoutes();
+    const items = [];
+    buildings.forEach(b => items.push({ key: b.x + b.w/2 + b.y + b.d/2, fn: () => drawBuilding(b) }));
+    trees.forEach(t => items.push({ key: t[0] + t[1], fn: () => drawTree(t) }));
+    items.push({ key: WH.x + WH.w/2 + WH.y + WH.d/2, fn: drawWarehouse });
+    vans.forEach(v => { const [lx, ly] = laneOffset(v); items.push({ key: v.x + lx + v.y + ly + 0.4, fn: () => drawVan(v) }); });
+    items.sort((a, b) => a.key - b.key).forEach(i => i.fn());
+    drawPins();
+  }
 
-            </div><!-- /track -->
-          </div><!-- /switcher -->
+  /* ---------- card ---------- */
+  const $ = id => document.getElementById(id);
+  function ui(){
+    const n = $('whn-n'); n.textContent = delivered.toLocaleString('en-IN'); n.classList.toggle('is-up', flashN > 0);
+    const v = focus; if (!v || !v.awb) return;
+    const st = v.state === 'out' ? ['Out for delivery','out',1] : v.state === 'drop' || v.state === 'back' ? ['Delivered','done',3] : ['Packed at WareSync','load',0];
+    $('whn-awb').textContent = `${v.awb} · ${v.c[0]}`;
+    const b = $('whn-st'); b.textContent = st[0]; b.className = 'whn-badge ' + st[1];
+    const d = v.dest || v.lastDest; if (d) $('whn-to').textContent = `${d.area} · ${d.pin}`;
+    ['whn-s0','whn-s1','whn-s2'].forEach((id, i) => { const el = $(id); el.className = st[2] === 3 ? 'done' : (i < st[2] ? 'done' : i === st[2] ? 'on' : ''); });
+  }
+  vans.forEach(v => { const _d = Object.getOwnPropertyDescriptor(v, 'dest'); let val = null; Object.defineProperty(v, 'dest', { get(){ return val; }, set(x){ if (val) v.lastDest = val; val = x; } }); });
 
-          <div class="hmb-float-pill-outer" id="heroFlipHint">
-            <span class="hmb-pill-dot"></span>
-            <span id="heroHintText">Auto-switching &middot; click to pause</span>
-          </div>
+  /* ---------- loop ---------- */
+  let running = false, visible = true, last = 0, acc = 0;
+  function frame(ts){
+    if (!visible || document.hidden){ running = false; return; }
+    const dt = Math.min(0.05, (ts - last)/1000 || 0.016); last = ts;
+    update(dt); draw(); acc += dt; if (acc > 0.2){ acc = 0; ui(); }
+    requestAnimationFrame(frame);
+  }
+  function start(){ if (running || reduce || !visible || document.hidden) return; running = true; last = performance.now(); requestAnimationFrame(frame); }
+  new IntersectionObserver(es => { visible = es[0].isIntersecting; start(); }, { threshold:0.05 }).observe(host);
+  document.addEventListener('visibilitychange', start);
+  new ResizeObserver(resize).observe(host);
+  // open mid-run: one van already on its way
+  for (let i = 0; i < 70; i++) update(0.05);
+  delivered = 412;
+  resize(); ui(); start();
+})();
+</script>
         </div>
 
       </div>
@@ -3467,6 +3635,63 @@ a img, button img, .login-product-card img { pointer-events: auto; }
         <p>SwiftShip allocates every shipment to the right carrier based on rate, zone performance, and SLA — without your team lifting a finger.</p>
         <div class="page-hero-ctas"><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a><a class="btn btn-secondary" href="javascript:void(0)" onclick="return showPage('pricing')">See Pricing</a></div>
       </div>
+    </div>
+  </section>
+  <!-- ══ SWIFTSHIP PRODUCT SHOWCASE ══ -->
+  <section class="ss-showcase">
+    <style>.ss-showcase{padding:80px 0;background:#0C1C3E}.ss-showcase .ws-showcase-header h2{color:#fff}.ss-showcase .ws-showcase-header p{color:#9DB0D6}.ss-showcase-frame{max-width:820px;margin:0 auto}.ss-showcase-frame .hero-dash-panel{width:100%}@media(max-width:768px){.ss-showcase{padding:48px 0}.ss-showcase-frame{overflow-x:auto}}</style>
+    <div class="container">
+      <div class="ws-showcase-header animate-on-scroll">
+        <div class="eyebrow">Product Tour</div>
+        <h2>See SwiftShip in action</h2>
+        <p>Every shipment, courier and COD rupee in one dashboard.</p>
+      </div>
+      <div class="ss-showcase-frame animate-on-scroll"><div class="hero-dash-panel">
+<div class="hero-mockup-browser">
+                  <div class="hmb-bar">
+                    <span class="hmb-dot hmb-r"></span><span class="hmb-dot hmb-y"></span><span class="hmb-dot hmb-g"></span>
+                    <span class="hmb-url">swiftship.sendit.co.in/shipments</span>
+                  </div>
+                  <div class="hmb-app">
+                    <div class="hmb-nav">
+                      <div class="hmb-logo"><div class="hmb-logo-box"></div><span>SwiftShip</span></div>
+                      <div class="hmb-nav-item hmb-nav-active">&#128230; Shipments</div>
+                      <div class="hmb-nav-item">&#128202; Analytics</div>
+                      <div class="hmb-nav-item">&#128260; NDR</div>
+                      <div class="hmb-nav-item">&#128179; COD</div>
+                      <div class="hmb-nav-item">&#128279; Carriers</div>
+                      <div class="hmb-nav-item">&#9881; Settings</div>
+                    </div>
+                    <div class="hmb-main">
+                      <div class="hmb-header">
+                        <div><div class="hmb-title">Shipments</div><div class="hmb-sub">142 active &middot; updated just now</div></div>
+                        <div class="hmb-btn">+ Book Shipment</div>
+                      </div>
+                      <div class="hmb-courier-tabs">
+                        <span class="hmb-ctab hmb-ctab-active">All</span>
+                        <span class="hmb-ctab">Delhivery</span>
+                        <span class="hmb-ctab">Blue Dart</span>
+                        <span class="hmb-ctab">Ekart</span>
+                      </div>
+                      <table class="hmb-table">
+                        <thead><tr><th>TRACKING</th><th>COURIER</th><th>DESTINATION</th><th>STATUS</th><th>ETA</th></tr></thead>
+                        <tbody>
+                          <tr><td class="hmb-mono hmb-bold">DLV-77213</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Bengaluru</td><td><span class="hmb-badge hmb-green">Delivered</span></td><td class="hmb-muted">&mdash;</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">BD-40921</td><td class="hmb-muted">Blue Dart</td><td class="hmb-muted">Hyderabad</td><td><span class="hmb-badge hmb-orange">Out for delivery</span></td><td class="hmb-muted">Today</td></tr>
+                          <tr style="background:rgba(27,79,216,0.06)"><td class="hmb-mono hmb-bold">EKT-55302</td><td class="hmb-muted">Ekart</td><td class="hmb-muted">Kolkata</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">2 days</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">DTDC-1180</td><td class="hmb-muted">DTDC</td><td class="hmb-muted">Chennai</td><td><span class="hmb-badge hmb-purple">Label created</span></td><td class="hmb-muted">3 days</td></tr>
+                          <tr><td class="hmb-mono hmb-bold">DLV-77198</td><td class="hmb-muted">Delhivery</td><td class="hmb-muted">Pune</td><td><span class="hmb-badge hmb-blue">In transit</span></td><td class="hmb-muted">1 day</td></tr>
+                        </tbody>
+                      </table>
+                      <div class="hmb-stats">
+                        <div class="hmb-stat"><div class="hmb-stat-num">97.5%</div><div class="hmb-stat-lbl">On-time delivery</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">&#8377;1,240</div><div class="hmb-stat-lbl">COD pending today</div></div>
+                        <div class="hmb-stat"><div class="hmb-stat-num">94.3%</div><div class="hmb-stat-lbl">First attempt</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+      </div></div>
     </div>
   </section>
   <section class="features-section"><div class="container"><div class="features-header animate-on-scroll"><div class="eyebrow">Features</div><h2>Everything your shipping team needs — in one platform</h2><p>From carrier allocation to COD remittance, SwiftShip handles the full post-purchase workflow.</p></div><div class="features-grid animate-on-scroll"><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div><h4>Smart Carrier Allocation</h4><p>Auto-assign shipments to the best carrier based on zone, weight, COD amount, SLA, and performance history.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><h4>Multi-Carrier Rate Shopping</h4><p>Compare live rates across 15+ carriers in under 100ms. Apply business rules to balance cost and speed.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><h4>Real-Time Tracking</h4><p>Unified tracking events from every carrier. Push notifications via SMS, WhatsApp, and email.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><h4>NDR & RTO Management</h4><p>Automated NDR escalation workflows. Customer re-engagement via WhatsApp. RTO reduction playbooks.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div><h4>COD Reconciliation</h4><p>Automatic matching of COD remittances from 15+ carriers. Exception flags and settlement reports.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div><h4>SLA & Performance Dashboards</h4><p>Carrier-level SLA scorecards, zone-wise performance heatmaps, and delay root-cause analysis.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div><h4>100+ Integrations</h4><p>Native connectors for Shopify, WooCommerce, Amazon, Flipkart, Meesho, and all major ERPs.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div><h4>REST API & Webhooks</h4><p>Full-featured REST API with 99.9% uptime SLA. Real-time webhooks for every shipment event.</p></div><div class="feature-card"><div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></svg></div><h4>Returns Management</h4><p>Initiate return pickups from SwiftShip. Auto-generate reverse AWBs. QC integration with WareSync.</p></div></div></div></section>
