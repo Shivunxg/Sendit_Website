@@ -6824,9 +6824,6 @@ tracking = client.tracking.<span class="cf">get</span>(<span class="cs">"DLV-772
   </section>
 
   <!-- Floating WhatsApp button (only shown on this page) -->
-  <a class="sp-wa-float" href="https://wa.me/919972460957?text=Hi%2C%20I%20want%20to%20know%20more%20about%20SenditPlus" target="_blank" rel="noopener" aria-label="Chat on WhatsApp" id="spWaFloat" style="display:none">
-    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-  </a>
 
   <!-- page footer -->
   <footer class="footer"><div class="container"><div class="footer-bottom"><div class="footer-copy">&copy; 2026 SendIt Logistics Private Limited &middot; <a href="javascript:void(0)" onclick="return showPage('home')" style="color:var(--steel)">&larr; Back to Home</a></div><div class="footer-legal"><a href="javascript:void(0)" onclick="return showPage('privacy')">Privacy</a><a href="javascript:void(0)" onclick="return showPage('terms')">Terms</a></div></div></div></footer>
@@ -7387,5 +7384,128 @@ window.SendIt.clearFavicon = function() {
   </div>
 </div>
 
+
+<!-- ══ WHATSAPP CHAT ASSISTANT ══ -->
+<style>
+.wac{--wac-green:#25D366;--wac-ink:#0C1C3E;--wac-muted:#5A6479;--wac-line:#E3E7EF;--wac-bg:#FFFFFF;--wac-soft:#F3F6FB;
+  position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:250;font-family:var(--font-sans,'Inter',system-ui,sans-serif)}
+.wac *{box-sizing:border-box}
+.wac-fab{width:58px;height:58px;border-radius:50%;border:0;background:var(--wac-green);display:grid;place-items:center;cursor:pointer;box-shadow:0 6px 22px rgba(37,211,102,.45);transition:transform .2s ease}
+.wac-fab:hover{transform:scale(1.06)}
+.wac-fab svg{width:30px;height:30px;fill:#fff}
+.wac-fab .wac-x{display:none;width:22px;height:22px;stroke:#fff;fill:none;stroke-width:2.4}
+.wac.is-open .wac-fab svg:first-child{display:none}.wac.is-open .wac-fab .wac-x{display:block}
+.wac-fab:focus-visible,.wac-opt:focus-visible,.wac-send:focus-visible,.wac-close:focus-visible,.wac-teaser button:focus-visible{outline:2px solid #1B4FD8;outline-offset:3px}
+.wac-teaser{position:absolute;right:0;bottom:72px;width:260px;padding:12px 34px 12px 14px;background:var(--wac-bg);color:var(--wac-ink);border-radius:14px;box-shadow:0 10px 30px rgba(12,28,62,.18);font-size:13.5px;line-height:1.45;animation:wac-in .25s ease}
+.wac-teaser b{display:block;font-size:14px;margin-bottom:2px}
+.wac-teaser button{position:absolute;top:6px;right:6px;width:24px;height:24px;border:0;background:none;color:var(--wac-muted);font-size:18px;line-height:1;cursor:pointer;border-radius:6px}
+.wac-panel{position:absolute;right:0;bottom:72px;width:360px;max-width:calc(100vw - 40px);max-height:min(560px,calc(100vh - 120px));display:flex;flex-direction:column;background:var(--wac-bg);border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(12,28,62,.28);animation:wac-in .22s ease}
+.wac-head{background:var(--wac-ink);color:#fff;padding:16px 16px 14px;display:flex;gap:12px;align-items:center}
+.wac-av{width:40px;height:40px;border-radius:50%;background:var(--wac-green);display:grid;place-items:center;flex-shrink:0}
+.wac-av svg{width:22px;height:22px;fill:#fff}
+.wac-head b{display:block;font-size:15px;letter-spacing:-.01em}
+.wac-head small{display:flex;align-items:center;gap:6px;font-size:12px;color:#B7C4E0}
+.wac-head small::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--wac-green)}
+.wac-close{margin-left:auto;width:30px;height:30px;border-radius:8px;border:0;background:rgba(255,255,255,.08);color:#fff;font-size:18px;cursor:pointer}
+.wac-body{padding:16px;overflow-y:auto;display:flex;flex-direction:column;gap:12px;background:var(--wac-soft)}
+.wac-msg{align-self:flex-start;max-width:88%;background:#fff;border:1px solid var(--wac-line);border-radius:4px 14px 14px 14px;padding:10px 12px;font-size:13.5px;line-height:1.45;color:var(--wac-ink)}
+.wac-opts{display:flex;flex-direction:column;gap:8px}
+.wac-opt{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:11px 12px;border-radius:12px;border:1px solid var(--wac-line);background:#fff;color:var(--wac-ink);font:600 13.5px/1.3 inherit;font-family:inherit;cursor:pointer;transition:border-color .15s,background .15s}
+.wac-opt:hover{border-color:#1B4FD8;background:#F5F8FF}
+.wac-opt[aria-pressed="true"]{border-color:#1B4FD8;background:#EEF3FF}
+.wac-opt i{font-style:normal;width:28px;height:28px;border-radius:8px;display:grid;place-items:center;background:#EEF3FF;flex-shrink:0;font-size:15px}
+.wac-opt span{display:flex;flex-direction:column;gap:2px}
+.wac-opt small{font-weight:400;font-size:12px;color:var(--wac-muted)}
+.wac-tag{font:700 10px/1 inherit;font-family:inherit;letter-spacing:.06em;text-transform:uppercase;color:#1B4FD8;background:#EEF3FF;padding:3px 6px;border-radius:4px;align-self:flex-start}
+.wac-foot{padding:12px 16px 14px;border-top:1px solid var(--wac-line);display:flex;flex-direction:column;gap:8px;background:#fff}
+.wac-foot label{font-size:12px;font-weight:600;color:var(--wac-muted)}
+.wac-foot textarea{width:100%;min-height:44px;max-height:110px;resize:vertical;padding:9px 11px;border-radius:10px;border:1px solid var(--wac-line);font:14px/1.4 inherit;font-family:inherit;color:var(--wac-ink)}
+.wac-foot textarea:focus{outline:2px solid #1B4FD8;outline-offset:0;border-color:transparent}
+.wac-send{display:flex;align-items:center;justify-content:center;gap:8px;padding:12px;border-radius:10px;border:0;background:var(--wac-green);color:#06361A;font:700 14px/1 inherit;font-family:inherit;cursor:pointer}
+.wac-send svg{width:18px;height:18px;fill:#06361A}
+.wac-send:hover{background:#1FBE5B}
+.wac-note{font-size:11.5px;color:var(--wac-muted);text-align:center}
+@keyframes wac-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (max-width:520px){
+  .wac{right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .wac-panel{position:fixed;left:10px;right:10px;bottom:calc(84px + env(safe-area-inset-bottom,0px));width:auto;max-width:none;max-height:calc(100vh - 110px)}
+  .wac-teaser{width:min(260px,calc(100vw - 40px))}
+}
+@media (prefers-reduced-motion:reduce){.wac-panel,.wac-teaser{animation:none}.wac-fab{transition:none}}
+@media print{.wac{display:none}}
+</style>
+<div class="wac" id="wac">
+  <div class="wac-teaser" id="wacTeaser" hidden role="status">
+    <b>Questions about rates or coverage?</b>Chat with the SendIt team on WhatsApp.
+    <button type="button" id="wacTeaserX" aria-label="Dismiss">×</button>
+  </div>
+  <div class="wac-panel" id="wacPanel" hidden role="dialog" aria-modal="false" aria-labelledby="wacTitle">
+    <div class="wac-head">
+      <div class="wac-av"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></div>
+      <div><b id="wacTitle">SendIt Logistics</b><small>Chat with us on WhatsApp</small></div>
+      <button type="button" class="wac-close" id="wacClose" aria-label="Close chat">×</button>
+    </div>
+    <div class="wac-body">
+      <div class="wac-msg">Hi 👋 What can we help you with? Pick a topic and we'll continue on WhatsApp.</div>
+      <div class="wac-opts" id="wacOpts" role="group" aria-label="Topics"></div>
+    </div>
+    <div class="wac-foot">
+      <label for="wacQ">Add details (optional)</label>
+      <textarea id="wacQ" placeholder="e.g. 500 orders/month from Bengaluru, mostly prepaid"></textarea>
+      <button type="button" class="wac-send" id="wacSend"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>Continue on WhatsApp</button>
+      <div class="wac-note">Opens WhatsApp with your message ready to send.</div>
+    </div>
+  </div>
+  <button type="button" class="wac-fab" id="wacFab" aria-label="Chat with SendIt on WhatsApp" aria-expanded="false" aria-controls="wacPanel"><svg aria-hidden="true" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg><svg class="wac-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<script>
+(function(){
+  var NUMBER='919972460957';
+  var TOPICS=[
+    {id:'rates',icon:'📦',t:'Get shipping rates',s:'Courier rates for your lanes and weights',msg:'I\'d like shipping rates for my business',pages:['swiftship','pricing','lastmile','ftlptl','blog-rto','blog-cod','blog-sla','blog-d2c']},
+    {id:'warehouse',icon:'🏭',t:'Warehousing quote',s:'Storage, pick-pack and fulfilment',msg:'I\'d like a warehousing / fulfilment quote',pages:['warehousing','waresync','3pl','blog-cycle']},
+    {id:'shopify',icon:'🛍️',t:'Shopify app help',s:'Install and set up SwiftShip on Shopify',msg:'I need help with the SwiftShip Shopify app',pages:['integrations','technology']},
+    {id:'demo',icon:'📅',t:'Book a demo',s:'See SwiftShip and WareSync live',msg:'I\'d like to book a demo',pages:['home','demo','about']},
+    {id:'growth',icon:'🚀',t:'SenditPlus growth plan',s:'Logistics plus marketing in one stack',msg:'I want to know more about SenditPlus',pages:['allinonemarketing']},
+    {id:'other',icon:'💬',t:'Something else',s:'Talk to our team',msg:'I have a question',pages:['contact','quote']}
+  ];
+  var NAMES={home:'Home',swiftship:'SwiftShip',waresync:'WareSync',warehousing:'Warehousing',lastmile:'Last Mile','ftlptl':'FTL/PTL','3pl':'3PL',pricing:'Pricing',about:'About',resources:'Resources',demo:'Book a Demo',quote:'Get a Quote',contact:'Contact',integrations:'Integrations',technology:'Technology',allinonemarketing:'SenditPlus'};
+  var root=document.getElementById('wac'); if(!root) return;
+  var fab=document.getElementById('wacFab'), panel=document.getElementById('wacPanel'), opts=document.getElementById('wacOpts');
+  var teaser=document.getElementById('wacTeaser'), q=document.getElementById('wacQ'), chosen=null;
+  function page(){ var a=document.querySelector('.page.active'); return a ? a.id.replace(/^page-/,'') : 'home'; }
+  function pageName(){ var p=page(); return NAMES[p] || (p.indexOf('blog-')===0 ? 'Blog' : p); }
+  function track(name, params){ try{ if(window.gtag) gtag('event', name, params); }catch(e){} }
+  function render(){
+    var p=page(), list=TOPICS.slice().sort(function(a,b){ return (b.pages.indexOf(p)>-1) - (a.pages.indexOf(p)>-1); });
+    chosen = list[0].pages.indexOf(p)>-1 ? list[0] : null;
+    opts.innerHTML='';
+    list.forEach(function(tp){
+      var b=document.createElement('button'); b.type='button'; b.className='wac-opt'; b.setAttribute('aria-pressed', tp===chosen);
+      b.innerHTML='<i aria-hidden="true">'+tp.icon+'</i><span>'+tp.t+'<small>'+tp.s+'</small></span>';
+      b.addEventListener('click', function(){ chosen=tp; [].forEach.call(opts.children,function(c){c.setAttribute('aria-pressed', c===b);}); send(); });
+      opts.appendChild(b);
+    });
+  }
+  function send(){
+    var tp=chosen || TOPICS[5], extra=(q.value||'').trim();
+    var text='Hi SendIt, '+tp.msg+'.'+(extra?'\n\n'+extra:'')+'\n\n(From sendit.co.in · '+pageName()+' page)';
+    track('whatsapp_chat', {topic: tp.id, page: page()});
+    window.open('https://wa.me/'+NUMBER+'?text='+encodeURIComponent(text), '_blank', 'noopener');
+  }
+  function setOpen(o){
+    panel.hidden=!o; root.classList.toggle('is-open', o); fab.setAttribute('aria-expanded', o);
+    if(o){ teaser.hidden=true; render(); track('whatsapp_chat_open', {page: page()}); var f=opts.querySelector('.wac-opt'); if(f) f.focus(); }
+  }
+  fab.addEventListener('click', function(){ setOpen(panel.hidden); });
+  document.getElementById('wacClose').addEventListener('click', function(){ setOpen(false); fab.focus(); });
+  document.getElementById('wacSend').addEventListener('click', send);
+  document.addEventListener('keydown', function(e){ if(e.key==='Escape' && !panel.hidden){ setOpen(false); fab.focus(); } });
+  document.getElementById('wacTeaserX').addEventListener('click', function(){ teaser.hidden=true; });
+  var seen=false; try{ seen=sessionStorage.getItem('wacTeaser')==='1'; }catch(e){}
+  if(!seen){ setTimeout(function(){ if(panel.hidden){ teaser.hidden=false; try{ sessionStorage.setItem('wacTeaser','1'); }catch(e){} setTimeout(function(){ teaser.hidden=true; }, 9000); } }, 15000); }
+})();
+</script>
+<!-- ══ /WHATSAPP CHAT ASSISTANT ══ -->
 </body>
 </html>
