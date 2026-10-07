@@ -2931,6 +2931,23 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   ]
 }
 </script>
+<style id="type-inter">
+/* Typography: Inter throughout (headings, body, data), tight heading tracking */
+:root{--font-sans:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-mono:'Inter',system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+body{font-family:var(--font-sans)}
+h1,.hero-h1{font-weight:800;letter-spacing:-0.04em}
+h2{font-weight:800;letter-spacing:-0.03em}
+h3{letter-spacing:-0.02em}
+.hero-stat-num{font-variant-numeric:tabular-nums;letter-spacing:-0.02em}
+.wsg-head h2 em,.wsf-head h2 em{font-style:normal;font-weight:800;letter-spacing:-0.035em}
+.btn-shopify{background:#fff;color:#0C1C3E;border:1.5px solid #fff;font-weight:700}
+.btn-shopify:hover{background:#EEF2FF;border-color:#EEF2FF}
+.btn-shopify svg{width:18px;height:18px;flex-shrink:0}
+.btn-shopify:focus-visible{outline:2px solid #6B9FFF;outline-offset:3px}
+.hero-ctas .btn-lg{padding:15px 22px}
+.hero-ctas .btn-secondary{border-color:transparent;background:transparent;padding-left:4px;padding-right:4px;color:#9DB0D6;text-decoration:underline;text-underline-offset:4px;text-decoration-color:rgba(157,176,214,.4)}
+.hero-ctas .btn-secondary:hover{color:#fff;text-decoration-color:#fff}
+</style>
 </head>
 <body>
 
@@ -3045,6 +3062,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
           </p>
           <div class="hero-ctas">
             <a class="btn btn-primary btn-lg btn-arrow" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a>
+            <a class="btn btn-shopify btn-lg" href="https://apps.shopify.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>Get started free with Shopify</a>
             <a class="btn btn-secondary btn-lg" href="javascript:void(0)" onclick="return showPage('swiftship')">Explore Platform</a>
           </div>
           <!-- Stats with dividers (Option A) -->
@@ -3075,8 +3093,8 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   --whn-blue:#1B4FD8; --whn-blue2:#6B9FFF; --whn-orange:#F26A1B; --whn-teal:#22B3AE; --whn-purple:#9077F2; --whn-good:#3CC583;
   --whn-ground:#0E2147; --whn-block:#11285A; --whn-road:#091634; --whn-mark:#2B4C8F; --whn-wall:#24427F; --whn-roof:#2E5BD6;
   --whn-lit:#F7C64B; --whn-tree:#1D5C5A; --whn-van:#E8EDF6; --whn-glass:#081022; --whn-tire:#050A16;
-  --whn-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --whn-mono: ui-monospace, SFMono-Regular, "JetBrains Mono", Menlo, Consolas, monospace;
+  --whn-sans: "Inter", system-ui, sans-serif;
+  --whn-mono: "Inter", system-ui, sans-serif;
 }
 .hero-inner > .hero-visual{align-self:center}
 /* ---- the new hero visual (drop-in) ---- */
@@ -3269,7 +3287,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
       poly([[dx,y+d,0.6],[dx+0.9,y+d,0.6],[dx+0.9,y+d,0.95],[dx,y+d,0.95]], shade(C.whwall, -0.35)); }
     const [sx, sy] = P(x + w, y + d - 0.25, 0.75), s = k/20;
     ctx.save(); ctx.translate(sx, sy); ctx.transform(s, -s/2, 0, s, 0, 0);
-    ctx.fillStyle = 'rgba(232,237,246,.85)'; ctx.font = '700 11px ui-monospace, Menlo, monospace'; ctx.fillText('WARESYNC', 0, 0); ctx.restore();
+    ctx.fillStyle = 'rgba(232,237,246,.85)'; ctx.font = '700 11px "Inter", system-ui, sans-serif'; ctx.fillText('WARESYNC', 0, 0); ctx.restore();
   }
   function drawTree([x, y]){
     box(x-0.05, y-0.05, 0, 0.1, 0.1, 0.35, '#3A2A1C');
@@ -3321,7 +3339,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
     pops.forEach(p => { const a = 1 - p.t/1.8, [sx, sy] = P(p.x, p.y, 0.8 + p.t*0.9); ctx.globalAlpha = Math.max(0, a); label('✓ Delivered', sx, sy, 'rgba(18,70,48,.95)', '#7BE3AE'); ctx.globalAlpha = 1; });
   }
   function label(t, sx, sy, bg, fg){
-    ctx.font = '700 11px ui-monospace, Menlo, monospace'; const w = ctx.measureText(t).width + 12, h = 19;
+    ctx.font = '700 11px "Inter", system-ui, sans-serif'; const w = ctx.measureText(t).width + 12, h = 19;
     ctx.fillStyle = bg; ctx.beginPath(); ctx.roundRect ? ctx.roundRect(sx - w/2, sy - h/2, w, h, 5) : ctx.rect(sx - w/2, sy - h/2, w, h); ctx.fill();
     ctx.fillStyle = fg; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(t, sx, sy + 0.5); ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
   }
@@ -3645,7 +3663,7 @@ a img, button img, .login-product-card img { pointer-events: auto; }
         <div class="eyebrow eyebrow-light">Courier Orchestration</div>
         <h1>Smarter shipping decisions, automatically.</h1>
         <p>SwiftShip allocates every shipment to the right carrier based on rate, zone performance, and SLA — without your team lifting a finger.</p>
-        <div class="page-hero-ctas"><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a><a class="btn btn-secondary" href="javascript:void(0)" onclick="return showPage('pricing')">See Pricing</a></div>
+        <div class="page-hero-ctas"><a class="btn btn-primary btn-lg" href="javascript:void(0)" onclick="return showPage('demo')">Book a Demo</a><a class="btn btn-shopify btn-lg" href="https://apps.shopify.com" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1.2 12.2a1 1 0 0 1-1 .8H7.2a1 1 0 0 1-1-.8z"/><path d="M9 8V6.5a3 3 0 0 1 6 0V8"/></svg>Get started free with Shopify</a><a class="btn btn-secondary" href="javascript:void(0)" onclick="return showPage('pricing')">See Pricing</a></div>
       </div>
     </div>
   </section>
@@ -3725,9 +3743,6 @@ a img, button img, .login-product-card img { pointer-events: auto; }
     </div>
   </section>
   <!-- ══ WARESYNC FLOOR OPERATIONS VIEW ══ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;600;700&display=swap">
 <style>
 /* Layout: headline, KPI strip, isometric cut-away of one warehouse floor (receiving → storage → pick → pack → dispatch)
    beside a panel with the selected order's journey and three views (Floor / Live staff / Tasks). Scoped under .wsf. */
@@ -3739,8 +3754,8 @@ a img, button img, .login-product-card img { pointer-events: auto; }
   --wsf-wall:#E9ECF2; --wsf-trailer:#F7F7F5; --wsf-cargo:#D29A5C; --wsf-wood:#9A6A3A;
   --wsf-tire:#2A2F3A; --wsf-glass:#1C2A44; --wsf-belt:#3A4458; --wsf-tote:#2F6FD6; --wsf-skin:#B9835A; --wsf-steel:#5C6B86;
   --wsf-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --wsf-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --wsf-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --wsf-mono: "Inter", system-ui, sans-serif;
+  --wsf-serif: "Inter", system-ui, sans-serif;
   --wsf-shadow: 0 1px 2px rgba(14,26,51,.06), 0 8px 24px rgba(14,26,51,.08);
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
@@ -3948,7 +3963,7 @@ button.wsf-row[aria-pressed="true"]{border-color:var(--wsf-purple);background:co
     const [sx, sy] = P(x0, y0, z0), s = k/20;
     ctx.save(); ctx.translate(sx, sy);
     if (face === 'x') ctx.transform(s, -s/2, 0, s, 0, 0); else if (face === 'ground') ctx.transform(s, s/2, -s, s/2, 0, 0); else ctx.transform(s, s/2, 0, s, 0, 0);
-    ctx.fillStyle = color; ctx.font = `${weight} ${size}px "JetBrains Mono", ui-monospace, monospace`; ctx.fillText(text, 0, 0); ctx.restore();
+    ctx.fillStyle = color; ctx.font = `${weight} ${size}px "Inter", system-ui, sans-serif`; ctx.fillText(text, 0, 0); ctx.restore();
   }
   function resize(){
     dpr = Math.min(2, window.devicePixelRatio || 1);
@@ -4191,7 +4206,7 @@ button.wsf-row[aria-pressed="true"]{border-color:var(--wsf-purple);background:co
     box(p.x-0.45, p.y-0.45, 0, 0.9, 0.9, 0.1, C.wood);
     box(p.x-0.42, p.y-0.42, 0.1, 0.42, 0.84, 0.42, CARTON[0]); box(p.x+0.0, p.y-0.42, 0.1, 0.42, 0.84, 0.42, CARTON[2]);
     box(p.x-0.42, p.y-0.42, 0.52, 0.84, 0.84, 0.36, CARTON[1], shade(CARTON[1], 0.2));
-    if (p.state === 'grn'){ const [sx, sy] = P(p.x, p.y, 1.05); ctx.fillStyle = C.good; ctx.font = `700 10px "JetBrains Mono", monospace`; ctx.textAlign = 'center'; ctx.fillText('GRN ✓', sx, sy); ctx.textAlign = 'left'; }
+    if (p.state === 'grn'){ const [sx, sy] = P(p.x, p.y, 1.05); ctx.fillStyle = C.good; ctx.font = `700 10px "Inter", system-ui, sans-serif`; ctx.textAlign = 'center'; ctx.fillText('GRN ✓', sx, sy); ctx.textAlign = 'left'; }
     ctx.globalAlpha = 1;
   }
   function drawVan(){
@@ -4205,7 +4220,7 @@ button.wsf-row[aria-pressed="true"]{border-color:var(--wsf-purple);background:co
     poly([[x+0.08,y+0.9,0.55],[x+0.62,y+0.9,0.55],[x+0.62,y+0.9,0.9],[x+0.08,y+0.9,0.9]], C.glass);
   }
   function tag(text, sx, sy, fg, bg){
-    ctx.font = `600 11px "JetBrains Mono", ui-monospace, monospace`;
+    ctx.font = `600 11px "Inter", system-ui, sans-serif`;
     const w = ctx.measureText(text).width + 12, h = 18;
     ctx.fillStyle = bg; ctx.strokeStyle = C.line; ctx.lineWidth = 1; ctx.beginPath();
     ctx.roundRect ? ctx.roundRect(sx - w/2, sy - h, w, h, 5) : ctx.rect(sx - w/2, sy - h, w, h); ctx.fill(); ctx.stroke();
@@ -4730,9 +4745,6 @@ button.wsf-row[aria-pressed="true"]{border-color:var(--wsf-purple);background:co
     <div class="stock-photo-caption">SendIt Logistics warehouse operations</div>
   </div></section>
   <!-- ══ WARESYNC LIVE YARD VIEW ══ -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&family=JetBrains+Mono:wght@500;600;700&display=swap">
 <style>
 /* Layout: headline, then a live yard board — isometric live yard on canvas with HUD cards over it,
    a side panel driven by three mode chips (Map / Live units / Tasks). Scoped under .wsg for drop-in. */
@@ -4744,8 +4756,8 @@ button.wsf-row[aria-pressed="true"]{border-color:var(--wsf-purple);background:co
   --wsg-wall:#E9ECF2; --wsg-roof:#2B56C9; --wsg-trailer:#F7F7F5; --wsg-cargo:#D29A5C; --wsg-wood:#9A6A3A;
   --wsg-tire:#2A2F3A; --wsg-glass:#1C2A44;
   --wsg-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  --wsg-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  --wsg-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --wsg-mono: "Inter", system-ui, sans-serif;
+  --wsg-serif: "Inter", system-ui, sans-serif;
   --wsg-shadow: 0 1px 2px rgba(14,26,51,.06), 0 8px 24px rgba(14,26,51,.08);
 }
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
@@ -5097,7 +5109,7 @@ button.wsg-row[aria-pressed="true"]{border-color:var(--wsg-purple);background:co
     ctx.save(); ctx.translate(sx, sy);
     const s = k/20;
     if (face === 'x') ctx.transform(s, -s/2, 0, s, 0, 0); else if (face === 'ground') ctx.transform(s, s/2, -s, s/2, 0, 0); else ctx.transform(s, s/2, 0, s, 0, 0);
-    ctx.fillStyle = color; ctx.font = `700 ${sizePx}px "JetBrains Mono", ui-monospace, monospace`; ctx.textBaseline = 'alphabetic';
+    ctx.fillStyle = color; ctx.font = `700 ${sizePx}px "Inter", system-ui, sans-serif`; ctx.textBaseline = 'alphabetic';
     ctx.fillText(text, 0, 0); ctx.restore();
   }
   function drawGround(){
@@ -5185,7 +5197,7 @@ button.wsg-row[aria-pressed="true"]{border-color:var(--wsg-purple);background:co
     parts.sort((a, b) => a.key - b.key).forEach(p => p.fn());
   }
   function tag(text, sx, sy, fg, bg){
-    ctx.font = `600 11px "JetBrains Mono", ui-monospace, monospace`;
+    ctx.font = `600 11px "Inter", system-ui, sans-serif`;
     const w = ctx.measureText(text).width + 12, h = 18;
     ctx.fillStyle = bg; ctx.strokeStyle = C.line; ctx.lineWidth = 1;
     ctx.beginPath(); ctx.roundRect ? ctx.roundRect(sx-w/2, sy-h, w, h, 5) : ctx.rect(sx-w/2, sy-h, w, h); ctx.fill(); ctx.stroke();
