@@ -3174,6 +3174,13 @@ section.ss-showcase .ws-showcase-header p{color:var(--t-body)!important}
 /* FAQ and industry product links on the dotted ground */
 .faq-item,.ind-prod{border-color:var(--t-line)!important}
 .faq-intro h2{color:var(--t-ink)!important}
+/* footer bottom line: room between copyright and links */
+.footer-bottom{gap:16px 48px;flex-wrap:wrap}
+.footer-copy{min-width:0;line-height:1.6}
+@media (min-width:769px){.footer-copy{flex:1 1 420px;max-width:720px}}
+@media (max-width:768px){.footer-bottom{align-items:center!important;text-align:center}.footer-legal{justify-content:center}}
+.footer-legal{flex-shrink:0;flex-wrap:wrap;gap:8px 24px}
+.footer-legal a{white-space:nowrap}
 </style>
 <style id="sp-icons">
 .sp-ico{display:inline-flex;width:28px;height:28px;border-radius:8px;background:#EEF2FF;color:#1B4FD8;align-items:center;justify-content:center;margin-right:10px;vertical-align:middle;flex-shrink:0}
