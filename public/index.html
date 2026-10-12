@@ -3174,6 +3174,23 @@ section.ss-showcase .ws-showcase-header p{color:var(--t-body)!important}
 /* FAQ and industry product links on the dotted ground */
 .faq-item,.ind-prod{border-color:var(--t-line)!important}
 .faq-intro h2{color:var(--t-ink)!important}
+/* platform flow diagram */
+.how-visual{padding:28px!important;border-radius:20px!important}
+.platform-stack{gap:0!important}
+.stack-layer{background:#fff!important;border:1px solid rgba(27,27,27,.10)!important;border-radius:14px!important;padding:16px 18px!important;gap:14px!important}
+.stack-layer:hover{border-color:rgba(27,27,27,.28)!important}
+.stack-layer-icon{width:40px!important;height:40px!important;border-radius:10px;background:#F1F2F4}
+.stack-layer-icon svg{color:#1B1B1B!important}
+.stack-layer-name{color:#1B1B1B!important;font-family:var(--t-display);font-weight:700!important;font-size:.95rem!important;letter-spacing:-.01em}
+.stack-layer-detail{color:#5C6168!important;font-size:.78rem!important;line-height:1.45}
+.stack-layer-badge{font-family:var(--t-display)!important;font-weight:600;font-size:.66rem!important;letter-spacing:.1em;text-transform:uppercase;background:#F1F2F4!important;color:#4A4F57!important;border-radius:999px!important;padding:5px 10px!important}
+.platform-stack .stack-layer:nth-of-type(3),.platform-stack .stack-layer:nth-of-type(5){border-color:rgba(27,79,216,.35)!important;background:#F6F8FF!important}
+.platform-stack .stack-layer:nth-of-type(3) .stack-layer-icon,.platform-stack .stack-layer:nth-of-type(5) .stack-layer-icon{background:#1B4FD8}
+.platform-stack .stack-layer:nth-of-type(3) .stack-layer-icon svg,.platform-stack .stack-layer:nth-of-type(5) .stack-layer-icon svg{color:#fff!important}
+.platform-stack .stack-layer:nth-of-type(3) .stack-layer-badge,.platform-stack .stack-layer:nth-of-type(5) .stack-layer-badge{background:#1B4FD8!important;color:#fff!important}
+.stack-arrow{position:relative;height:26px;font-size:0!important;padding:0!important}
+.stack-arrow::before{content:"";position:absolute;left:50%;top:3px;bottom:3px;width:1.5px;background:rgba(27,27,27,.22)}
+.stack-arrow::after{content:"";position:absolute;left:50%;bottom:3px;width:6px;height:6px;border-right:1.5px solid rgba(27,27,27,.35);border-bottom:1.5px solid rgba(27,27,27,.35);transform:translate(-50%,0) rotate(45deg)}
 /* footer bottom line: room between copyright and links */
 .footer-bottom{gap:16px 48px;flex-wrap:wrap}
 .footer-copy{min-width:0;line-height:1.6}
